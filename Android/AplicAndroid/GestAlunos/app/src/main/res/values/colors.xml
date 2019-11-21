@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="colorPrimary">#CAF1FF</color>//Cor do focus
-    <color name="colorPrimaryDark">#1F556D</color>//Cor da barra de notificações
-    <color name="colorAccent">#CAF1FF</color>
-</resources>
