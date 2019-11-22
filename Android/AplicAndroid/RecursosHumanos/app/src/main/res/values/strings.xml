@@ -19,6 +19,8 @@
     <string name="forum">Fórum</string>
     <string name="configuracoes">Configurações</string>
     <string name="estatisticas">Estatisticas</string>
+    <string name="dialog_title">ola</string>
+    <string name="dialog_message">adeus</string>
 
 
 </resources>

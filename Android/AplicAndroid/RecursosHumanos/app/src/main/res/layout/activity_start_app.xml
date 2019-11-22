@@ -44,6 +44,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:background="@drawable/oval"
+        android:onClick="onClickContactos"
         android:layout_margin="20dp"
         android:layout_alignParentBottom="true"
         android:padding="19dp"
@@ -57,6 +58,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
         android:layout_marginBottom="228dp"
+        android:onClick="onClickInformacao"
         android:background="@drawable/oval"
         android:padding="10dp"
         android:src="@drawable/informacao" />
