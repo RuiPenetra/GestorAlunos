@@ -22,12 +22,7 @@ class AppAsset extends AssetBundle
         'css/jquery-jvectormap.css',
         'css/morris.css',
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic',
-
-        'css/site.css',
-        'css/bootstrap.min.css',
-        'css/ionicons.min.css',
         'css/blue.css',
-        'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic',
     ];
     public $js = [
       'js/jquery.min.js',
@@ -49,10 +44,6 @@ class AppAsset extends AssetBundle
       'js/raphael.min.js',
       'js/dashboard.js',
       'js/site.js',
-
-      'js/jquery.min.js',
-      'https://kit.fontawesome.com/3c3f38dd14.js',
-      'js/bootstrap.min.js',
       'js/icheck.min.js',
     ];
     public $depends = [
