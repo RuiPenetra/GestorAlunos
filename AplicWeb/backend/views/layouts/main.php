@@ -94,7 +94,7 @@ AppAsset::register($this);
                       <?= Html::img('@web/img/businessman.png', ['alt'=>'imgPerfil', 'class'=>'img-circle']); ?>
                       <p>
                         Nome de Pessoa
-                        <small>Professor</small>
+                        <small>Administrador</small>
                       </p>
                     </li>
                     <!-- Menu Body -->
@@ -123,7 +123,7 @@ AppAsset::register($this);
             </div>
             <div class="pull-left info">
               <p>Nome de Pessoa</p>
-              <a href="#"><i class="fa fa-id-card text-success"></i> Professor</a>
+              <a href="#"><i class="fa fa-id-card text-success"></i> Administrador</a>
             </div>
           </div>
           <!-- /.search form -->
