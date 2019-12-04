@@ -11,6 +11,8 @@ Este projeto tem como objetivo principal transmitir uma melhor experiência aos 
 ## Authors
 
 * **Simão Marques** - [simao1shider](https://github.com/simao1shider)
+* **Rui Penetra** - [RuiPenetra](https://github.com/RuiPenetra)
+* **Bruno Leopoldo** - [Dinas69](https://github.com/Dinas69)
 
 
 ## Acknowledgments
