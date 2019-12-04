@@ -10,6 +10,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 use yii\web\View;
+use yii\helpers\Url;
 
 
 AppAsset::register($this);
@@ -41,7 +42,8 @@ AppAsset::register($this);
         <nav class="navbar navbar-static-top">
           <div class="container">
             <div class="navbar-header">
-              <a href="../../index2.html" class="navbar-brand">GestorAlunos</a>
+              <a href="<?= Url::toRoute(['site/index'])?>" class="navbar-brand">GestorAlunos</a>
+              
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                 <i class="fa fa-bars"></i>
               </button>
