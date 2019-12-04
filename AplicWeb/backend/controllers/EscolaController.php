@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\DiaSem;
-use backend\models\DiaSemSearch;
+use backend\models\Escola;
+use backend\models\EscolaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * DiaSemController implements the CRUD actions for DiaSem model.
+ * EscolaController implements the CRUD actions for Escola model.
  */
-class DiasemController extends Controller
+class EscolaController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class DiasemController extends Controller
     }
 
     /**
-     * Lists all DiaSem models.
+     * Lists all Escola models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new DiaSemSearch();
+        $searchModel = new EscolaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class DiasemController extends Controller
     }
 
     /**
-     * Displays a single DiaSem model.
+     * Displays a single Escola model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class DiasemController extends Controller
     }
 
     /**
-     * Creates a new DiaSem model.
+     * Creates a new Escola model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new DiaSem();
+        $model = new Escola();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class DiasemController extends Controller
     }
 
     /**
-     * Updates an existing DiaSem model.
+     * Updates an existing Escola model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class DiasemController extends Controller
     }
 
     /**
-     * Deletes an existing DiaSem model.
+     * Deletes an existing Escola model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class DiasemController extends Controller
     }
 
     /**
-     * Finds the DiaSem model based on its primary key value.
+     * Finds the Escola model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return DiaSem the loaded model
+     * @return Escola the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = DiaSem::findOne($id)) !== null) {
+        if (($model = Escola::findOne($id)) !== null) {
             return $model;
         }
 

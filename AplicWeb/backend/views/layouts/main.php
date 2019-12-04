@@ -10,7 +10,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 use yii\web\View;
-
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -28,7 +28,7 @@ AppAsset::register($this);
 <?php
   if(!Yii::$app->user->isGuest) {
 ?>
-<body class="hold-transition skin-blue fixed hold-transition login-page">
+<body class="hold-transition skin-green fixed hold-transition login-page">
 <?php }else { ?>
 <body class="bg-light-blue color-palette">
 <?php } ?>
@@ -103,7 +103,7 @@ AppAsset::register($this);
                           <a href="" class="btn btn-info"><i class="fa fa-user"></i> Perfil</a>
                           <a href="" class="btn btn-info"><i class="fa fa-gear fa-spin"></i> Configurações Conta</a>
                           <a href="" class="btn btn-info"><i class="fa fa-user-cog"></i> Configurações Perfil</a>
-                          <a href="#" class="btn btn-info"><i class="fa fa-sign-out"></i> Sair</a>
+                          <a href="<?= Url::toRoute(['site/actionLogout'])?>" class="btn btn-info"><i class="fa fa-sign-out"></i> Sair</a>
                         </div>
                       <!-- /.row -->
                     </li>
@@ -131,33 +131,71 @@ AppAsset::register($this);
           <ul class="sidebar-menu" data-widget="tree">
             <li class="header">Nav</li>
             <li class="active">
-              <a href="#">
+              <a href="<?= Url::toRoute(['site/index'])?>">
                 <i class="fa fa-home"></i> <span>Home</span>
               </a>
             </li>
-            <li class="">
-              <a href="#">
-                <i class="fa fa-user"></i> <span>Alunos</span>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-user"></i> <span>Pessoas</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
               </a>
+              <ul class="treeview-menu">
+                <li class="">
+                  <a href="<?= Url::toRoute(['aluno/index'])?>">
+                    <i class="fa fa-user"></i> <span>Alunos</span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="<?= Url::toRoute(['professor/index'])?>">
+                    <i class="fa fa-user"></i> <span>Professores</span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="<?= Url::toRoute(['diretorcurso/index'])?>">
+                    <i class="fa fa-user"></i> <span>Diretor Curso</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-th"></i> <span>Escola</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li class="">
+                  <a href="<?= Url::toRoute(['escola/index'])?>">
+                    <i class="fa fa-user"></i> <span>Escolas</span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="<?= Url::toRoute(['tipocurso/index'])?>">
+                    <i class="fa fa-th"></i> <span>Tipos Curso</span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="<?= Url::toRoute(['curso/index'])?>">
+                    <i class="fa fa-book"></i> <span>Cursos</span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="<?= Url::toRoute(['disciplina/index'])?>">
+                    <i class="fa fa-user"></i> <span>Disciplinas</span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="<?= Url::toRoute(['horario/index'])?>">
+                    <i class="fa fa-user"></i> <span>Horários</span>
+                  </a>
+                </li>
+              </ul>
             </li>
             <li class="">
-              <a href="#">
-                <i class="fa fa-book"></i> <span>Disciplinas</span>
-              </a>
-            </li>
-            <li class="">
-              <a href="#">
-                <i class="fa fa-book"></i> <span>Cursos</span>
-              </a>
-            </li>
-            <li class="">
-              <a href="#">
-                <i class="fa fa-calendar"></i> <span>Horário</span>
-              </a>
-            </li>
-            <li class="">
-              <a href="#">
-                <i class="fa fa-book"></i> <span>Testes</span>
+              <a href="<?= Url::toRoute(['teste/index'])?>">
+                <i class="fa fa-book"></i> <span>Teste</span>
               </a>
             </li>
           </ul>

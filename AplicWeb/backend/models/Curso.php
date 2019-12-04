@@ -8,15 +8,18 @@ use Yii;
  * This is the model class for table "curso".
  *
  * @property int $id
- * @property int $id_horario
  * @property string $nome
  * @property string $abreviatura
+ * @property int $ano
  * @property int $tipo_curso
+ * @property int $id_escola
  *
  * @property Aluno[] $alunos
  * @property TipoCurso $tipoCurso
- * @property Horario $horario
+ * @property Escola $escola
+ * @property Horario[] $horarios
  * @property LinhaDiscCur[] $linhaDiscCurs
+ * @property Disciplina[] $discs
  */
 class Curso extends \yii\db\ActiveRecord
 {
@@ -34,12 +37,12 @@ class Curso extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_horario', 'nome', 'abreviatura', 'tipo_curso'], 'required'],
-            [['id_horario', 'tipo_curso'], 'integer'],
+            [['nome', 'abreviatura', 'ano', 'tipo_curso', 'id_escola'], 'required'],
+            [['ano', 'tipo_curso', 'id_escola'], 'integer'],
             [['nome'], 'string', 'max' => 255],
             [['abreviatura'], 'string', 'max' => 45],
             [['tipo_curso'], 'exist', 'skipOnError' => true, 'targetClass' => TipoCurso::className(), 'targetAttribute' => ['tipo_curso' => 'id']],
-            [['id_horario'], 'exist', 'skipOnError' => true, 'targetClass' => Horario::className(), 'targetAttribute' => ['id_horario' => 'id']],
+            [['id_escola'], 'exist', 'skipOnError' => true, 'targetClass' => Escola::className(), 'targetAttribute' => ['id_escola' => 'id']],
         ];
     }
 
@@ -50,10 +53,11 @@ class Curso extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_horario' => 'Id Horario',
             'nome' => 'Nome',
             'abreviatura' => 'Abreviatura',
+            'ano' => 'Ano',
             'tipo_curso' => 'Tipo Curso',
+            'id_escola' => 'Id Escola',
         ];
     }
 
@@ -76,9 +80,17 @@ class Curso extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getHorario()
+    public function getEscola()
     {
-        return $this->hasOne(Horario::className(), ['id' => 'id_horario']);
+        return $this->hasOne(Escola::className(), ['id' => 'id_escola']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getHorarios()
+    {
+        return $this->hasMany(Horario::className(), ['id_curso' => 'id']);
     }
 
     /**
@@ -87,5 +99,13 @@ class Curso extends \yii\db\ActiveRecord
     public function getLinhaDiscCurs()
     {
         return $this->hasMany(LinhaDiscCur::className(), ['id_curso' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDiscs()
+    {
+        return $this->hasMany(Disciplina::className(), ['id' => 'id_disc'])->viaTable('linha_disc_cur', ['id_curso' => 'id']);
     }
 }

@@ -4,12 +4,12 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Curso;
+use backend\models\Escola;
 
 /**
- * CursoSearch represents the model behind the search form of `backend\models\Curso`.
+ * EscolaSearch represents the model behind the search form of `backend\models\Escola`.
  */
-class CursoSearch extends Curso
+class EscolaSearch extends Escola
 {
     /**
      * {@inheritdoc}
@@ -17,7 +17,7 @@ class CursoSearch extends Curso
     public function rules()
     {
         return [
-            [['id', 'ano', 'tipo_curso', 'id_escola'], 'integer'],
+            [['id'], 'integer'],
             [['nome', 'abreviatura'], 'safe'],
         ];
     }
@@ -40,7 +40,7 @@ class CursoSearch extends Curso
      */
     public function search($params)
     {
-        $query = Curso::find();
+        $query = Escola::find();
 
         // add conditions that should always apply here
 
@@ -59,9 +59,6 @@ class CursoSearch extends Curso
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'ano' => $this->ano,
-            'tipo_curso' => $this->tipo_curso,
-            'id_escola' => $this->id_escola,
         ]);
 
         $query->andFilterWhere(['like', 'nome', $this->nome])

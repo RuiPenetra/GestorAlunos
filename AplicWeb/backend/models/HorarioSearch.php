@@ -17,7 +17,7 @@ class HorarioSearch extends Horario
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'id_curso'], 'integer'],
             [['nome'], 'safe'],
         ];
     }
@@ -59,6 +59,7 @@ class HorarioSearch extends Horario
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'id_curso' => $this->id_curso,
         ]);
 
         $query->andFilterWhere(['like', 'nome', $this->nome]);

@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * TipoTurnoController implements the CRUD actions for TipoTurno model.
  */
-class TipoTurnoController extends Controller
+class TipoturnoController extends Controller
 {
     /**
      * {@inheritdoc}

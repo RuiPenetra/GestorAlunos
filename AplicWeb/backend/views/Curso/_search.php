@@ -17,13 +17,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'id_horario') ?>
-
     <?= $form->field($model, 'nome') ?>
 
     <?= $form->field($model, 'abreviatura') ?>
 
+    <?= $form->field($model, 'ano') ?>
+
     <?= $form->field($model, 'tipo_curso') ?>
+
+    <?php // echo $form->field($model, 'id_escola') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

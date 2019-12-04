@@ -9,10 +9,10 @@ use Yii;
  *
  * @property int $id
  * @property string $nome
+ * @property int $id_curso
  *
- * @property Curso[] $cursos
  * @property DiaSem[] $diaSems
- * @property Perfil[] $perfils
+ * @property Curso $curso
  */
 class Horario extends \yii\db\ActiveRecord
 {
@@ -30,8 +30,10 @@ class Horario extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nome'], 'required'],
+            [['nome', 'id_curso'], 'required'],
+            [['id_curso'], 'integer'],
             [['nome'], 'string', 'max' => 255],
+            [['id_curso'], 'exist', 'skipOnError' => true, 'targetClass' => Curso::className(), 'targetAttribute' => ['id_curso' => 'id']],
         ];
     }
 
@@ -43,15 +45,8 @@ class Horario extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nome' => 'Nome',
+            'id_curso' => 'Id Curso',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCursos()
-    {
-        return $this->hasMany(Curso::className(), ['id_horario' => 'id']);
     }
 
     /**
@@ -65,8 +60,8 @@ class Horario extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPerfils()
+    public function getCurso()
     {
-        return $this->hasMany(Perfil::className(), ['id_horario' => 'id']);
+        return $this->hasOne(Curso::className(), ['id' => 'id_curso']);
     }
 }

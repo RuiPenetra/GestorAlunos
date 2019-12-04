@@ -12,13 +12,15 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id_horario')->textInput() ?>
-
     <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'abreviatura')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'ano')->textInput() ?>
+
     <?= $form->field($model, 'tipo_curso')->textInput() ?>
+
+    <?= $form->field($model, 'id_escola')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

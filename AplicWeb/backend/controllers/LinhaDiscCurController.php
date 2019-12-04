@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * LinhaDiscCurController implements the CRUD actions for LinhaDiscCur model.
  */
-class LinhaDiscCurController extends Controller
+class LinhadisccurController extends Controller
 {
     /**
      * {@inheritdoc}

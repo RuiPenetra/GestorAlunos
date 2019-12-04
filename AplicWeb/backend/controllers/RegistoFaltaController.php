@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * RegistoFaltaController implements the CRUD actions for RegistoFalta model.
  */
-class RegistoFaltaController extends Controller
+class RegistofaltaController extends Controller
 {
     /**
      * {@inheritdoc}

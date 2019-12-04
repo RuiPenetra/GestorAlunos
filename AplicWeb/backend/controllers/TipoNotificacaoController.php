@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * TipoNotificacaoController implements the CRUD actions for TipoNotificacao model.
  */
-class TipoNotificacaoController extends Controller
+class TiponotificacaoController extends Controller
 {
     /**
      * {@inheritdoc}

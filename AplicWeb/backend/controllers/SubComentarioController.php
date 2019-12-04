@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * SubComentarioController implements the CRUD actions for SubComentario model.
  */
-class SubComentarioController extends Controller
+class SubcomentarioController extends Controller
 {
     /**
      * {@inheritdoc}
