@@ -143,6 +143,11 @@ AppAsset::register($this);
               </a>
               <ul class="treeview-menu">
                 <li class="">
+                  <a href="<?= Url::toRoute(['user/index'])?>">
+                    <i class="fa fa-users"></i> <span>Utilizadores</span>
+                  </a>
+                </li>
+                <li class="">
                   <a href="<?= Url::toRoute(['aluno/index'])?>">
                     <i class="fa fa-user"></i> <span>Alunos</span>
                   </a>
