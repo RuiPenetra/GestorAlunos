@@ -1,0 +1,3 @@
+include ':app', ':accordionview'
+//include ':app', ':accordion_view-master-easyaccordion', ':accordionview'
+rootProject.name='GestAlunos'
