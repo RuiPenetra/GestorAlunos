@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <!--
+       <Button
+           android:id="@+id/btn_calendario"
+           android:layout_width="111dp"
+           android:layout_height="137dp"
+           android:layout_row="0"
+           android:layout_column="0"
+           android:layout_margin="10dp"
+           android:backgroundTint="@color/colorPrimary"
+           android:drawablePadding="@drawable/icon_calendario" />
+       <Button
+           android:id="@+id/btn_horario"
+           android:layout_width="100dp"
+           android:layout_height="100dp"
+           android:layout_row="0"
+           android:backgroundTint="#ffffff"
+           android:layout_column="1"
+           android:gravity="center"
+           android:layout_margin="10dp"
+           android:drawableStart="@drawable/icon_horario"
+    />
+       <Button
+           android:id="@+id/btn_forum"
+           android:layout_width="100dp"
+           android:layout_height="100dp"
+           android:layout_row="0"
+           android:backgroundTint="@color/colorPrimary"
+           android:layout_column="2"
+           android:layout_margin="10dp"
+           android:drawableStart="@drawable/icon_forum"
+     />
+
+       <Button
+           android:id="@+id/btn_estatiticas"
+           android:layout_width="100dp"
+           android:layout_height="100dp"
+           android:layout_row="0"
+           android:backgroundTint="@color/colorPrimary"
+           android:layout_column="0"
+           android:layout_margin="10dp"
+           android:drawablePadding="@dimen/center"
+           android:drawableStart="@drawable/icon_estatisticas"
+            />
+    -->
+
+    <ImageView
+        android:id="@+id/bt_img_calendario"
+        android:layout_width="@dimen/btn_welcome_width"
+        android:layout_height="@dimen/btn_welcome_height"
+        android:layout_row="0"
+        android:layout_column="0"
+        android:layout_margin="8dp"
+        android:background="@drawable/btn_retangular"
+        android:onClick="onClickCalendario"
+        android:padding="@dimen/btn_welcome_padding"
+        android:src="@drawable/icon_calendario" />
+
+    <ImageView
+        android:id="@+id/bt_img_horario"
+        android:layout_width="@dimen/btn_welcome_width"
+        android:layout_height="@dimen/btn_welcome_height"
+        android:layout_row="0"
+        android:layout_column="1"
+        android:layout_margin="8dp"
+        android:background="@drawable/btn_retangular"
+        android:onClick="onClickHorario"
+        android:padding="@dimen/btn_welcome_padding"
+        android:src="@drawable/icon_horario" />
+
+    <ImageView
+        android:id="@+id/bt_img_forum"
+        android:layout_width="@dimen/btn_welcome_width"
+        android:layout_height="@dimen/btn_welcome_height"
+        android:layout_row="2"
+        android:layout_column="0"
+        android:layout_margin="8dp"
+        android:background="@drawable/btn_retangular"
+        android:onClick="onClickForum"
+        android:padding="@dimen/btn_welcome_padding"
+        android:src="@drawable/icon_forum" />
+
+    <ImageView
+        android:id="@+id/bt_img_estatisticas"
+        android:layout_width="@dimen/btn_welcome_width"
+        android:layout_height="@dimen/btn_welcome_height"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:layout_margin="8dp"
+        android:background="@drawable/btn_retangular"
+        android:padding="@dimen/btn_welcome_padding"
+        android:src="@drawable/icon_estatisticas" />
+
+    <ImageView
+        android:id="@+id/bt_img_pagamentos"
+        android:layout_width="@dimen/btn_welcome_width"
+        android:layout_height="@dimen/btn_welcome_height"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:layout_margin="8dp"
+        android:background="@drawable/btn_retangular"
+        android:padding="@dimen/btn_welcome_padding"
+        android:src="@drawable/icon_pay" />
+
+    <ImageView
+        android:id="@+id/bt_img_registos"
+        android:layout_width="@dimen/btn_welcome_width"
+        android:layout_height="@dimen/btn_welcome_height"
+        android:layout_row="2"
+        android:layout_column="1"
+        android:layout_margin="8dp"
+        android:background="@drawable/btn_retangular"
+        android:padding="@dimen/btn_welcome_padding"
+        android:src="@drawable/icon_registo" />
+
+<!--    <ImageView
+        android:id="@+id/bt_img_configuracoes"
+        android:layout_width="@dimen/btn_welcome_width"
+        android:layout_height="@dimen/btn_welcome_height"
+        android:layout_row="3"
+        android:layout_column="0"
+        android:layout_margin="8dp"
+        android:background="@drawable/btn_retangular"
+        android:padding="@dimen/btn_welcome_padding"
+        android:src="@drawable/icon_config" />-->
+
+
+</GridLayout>
