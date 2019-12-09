@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             [
-                'attribute' => 'id_professor',
+                'attribute' => 'id_perfil',
                 'value' => 'perfil.nome',
             ],
 
