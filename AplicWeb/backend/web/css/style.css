@@ -85,6 +85,7 @@
 .input-div>div {
     position: relative;
     height: 45px;
+    width: 190px;
 }
 
 .input-div>div>h5 {
