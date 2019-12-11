@@ -10,7 +10,6 @@ use yii\helpers\Url;
 
 AppAssetLogin::register($this);
 
-$this->title = 'Login';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bodyClass">
@@ -37,7 +36,7 @@ $this->title = 'Login';
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="div">
-                    <h5>Email</h5>            
+                    <h5>Email</h5>       
                     <?= $form->field($model, 'username', ['options' => ['tag' => 'input', 'style' => 'display: none;']])->textInput(['class' => 'input'])->label(false) ?>     
              <!--<?//= $form->field($model, 'username', ['options' => ['tag' => 'input', 'class' => 'input require']])->label('') ?>-->
                 </div>

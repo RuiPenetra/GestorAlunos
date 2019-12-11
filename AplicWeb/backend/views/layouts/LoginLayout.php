@@ -29,6 +29,7 @@ $this->title = 'Login'
         <?php $this->head() ?>
     </head>
     <?php $this->beginBody() ?>
+
     <?=
     Breadcrumbs::widget([
         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
