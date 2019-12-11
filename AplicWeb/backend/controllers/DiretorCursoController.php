@@ -10,7 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * DiretorCursoController implements the CRUD actions for DiretorCurso model.
+ * DiretorcursoController implements the CRUD actions for DiretorCurso model.
  */
 class DiretorcursoController extends Controller
 {

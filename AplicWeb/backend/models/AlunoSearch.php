@@ -40,6 +40,7 @@ class AlunoSearch extends Aluno
     public function search($params)
     {
         $query = Aluno::find();
+        $query->joinWith(['perfil']);
 
         // add conditions that should always apply here
 
@@ -59,6 +60,7 @@ class AlunoSearch extends Aluno
         $query->andFilterWhere([
             'id_perfil' => $this->id_perfil,
             'id_curso' => $this->id_curso,
+            'perfil.nome' => $this->id_perfil,
         ]);
 
         return $dataProvider;

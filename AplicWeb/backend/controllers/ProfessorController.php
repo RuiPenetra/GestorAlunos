@@ -67,7 +67,7 @@ class ProfessorController extends Controller
         $model = new Professor();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_professor]);
+            return $this->redirect(['view', 'id' => $model->id_perfil]);
         }
 
         return $this->render('create', [
@@ -87,7 +87,7 @@ class ProfessorController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_professor]);
+            return $this->redirect(['view', 'id' => $model->id_perfil]);
         }
 
         return $this->render('update', [
