@@ -23,6 +23,7 @@ class AppAsset extends AssetBundle
         'css/morris.css',
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic',
         'css/blue.css',
+        'css/datepicker/datepicker.css',
     ];
     public $js = [
       'js/jquery.min.js',
@@ -49,7 +50,7 @@ class AppAsset extends AssetBundle
       'js/dashboard.js',
       'js/site.js',
       'js/icheck.min.js',
-      
+      'js/datepicker/datepicker.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
