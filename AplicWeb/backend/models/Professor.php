@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "professor".
  *
- * @property int $id_professor
+ * @property int $id_perfil
  *
  * @property Aula[] $aulas
  * @property DiretorCurso $diretorCurso
@@ -30,10 +30,10 @@ class Professor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_professor'], 'required'],
-            [['id_professor'], 'integer'],
-            [['id_professor'], 'unique'],
-            [['id_professor'], 'exist', 'skipOnError' => true, 'targetClass' => Perfil::className(), 'targetAttribute' => ['id_professor' => 'id']],
+            [['id_perfil'], 'required'],
+            [['id_perfil'], 'integer'],
+            [['id_perfil'], 'unique'],
+            [['id_perfil'], 'exist', 'skipOnError' => true, 'targetClass' => Perfil::className(), 'targetAttribute' => ['id_perfil' => 'id']],
         ];
     }
 
@@ -43,7 +43,7 @@ class Professor extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_professor' => 'Id Professor',
+            'id_perfil' => 'Id Professor',
         ];
     }
 
@@ -52,7 +52,7 @@ class Professor extends \yii\db\ActiveRecord
      */
     public function getAulas()
     {
-        return $this->hasMany(Aula::className(), ['id_professor' => 'id_professor']);
+        return $this->hasMany(Aula::className(), ['id_perfil' => 'id_perfil']);
     }
 
     /**
@@ -60,7 +60,7 @@ class Professor extends \yii\db\ActiveRecord
      */
     public function getDiretorCurso()
     {
-        return $this->hasOne(DiretorCurso::className(), ['id_professor' => 'id_professor']);
+        return $this->hasOne(DiretorCurso::className(), ['id_perfil' => 'id_perfil']);
     }
 
     /**
@@ -68,7 +68,7 @@ class Professor extends \yii\db\ActiveRecord
      */
     public function getDisciplinas()
     {
-        return $this->hasMany(Disciplina::className(), ['id_professor' => 'id_professor']);
+        return $this->hasMany(Disciplina::className(), ['id_perfil' => 'id_perfil']);
     }
 
     /**
@@ -76,6 +76,6 @@ class Professor extends \yii\db\ActiveRecord
      */
     public function getProfessor()
     {
-        return $this->hasOne(Perfil::className(), ['id' => 'id_professor']);
+        return $this->hasOne(Perfil::className(), ['id' => 'id_perfil']);
     }
 }

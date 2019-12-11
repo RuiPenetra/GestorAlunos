@@ -36,6 +36,10 @@ class AppAsset extends AssetBundle
       'js/bootstrap-datepicker.min.js',
       'js/bootstrap.min.js',
       'js/bootstrap3-wysihtml5.all.min.js',
+      'js/inputmask/jquery.inputmask.js',
+      'js/inputmask/jquery.inputmask.date.extensions.js',
+      'js/inputmask/jquery.inputmask.extensions.js',
+      'js/inputmask/maskcode.js',
       'js/daterangepicker.js',
       'js/demo.js',
       'js/fastclick.js',
@@ -45,6 +49,7 @@ class AppAsset extends AssetBundle
       'js/dashboard.js',
       'js/site.js',
       'js/icheck.min.js',
+      
     ];
     public $depends = [
         'yii\web\YiiAsset',

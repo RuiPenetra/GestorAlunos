@@ -17,7 +17,7 @@ class ProfessorSearch extends Professor
     public function rules()
     {
         return [
-            [['id_professor'], 'integer'],
+            [['id_perfil'], 'integer'],
         ];
     }
 
@@ -57,7 +57,7 @@ class ProfessorSearch extends Professor
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id_professor' => $this->id_professor,
+            'id_perfil' => $this->id_perfil,
         ]);
 
         return $dataProvider;
