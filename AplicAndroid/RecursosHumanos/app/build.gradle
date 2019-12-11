@@ -39,10 +39,9 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.browser:browser:1.0.0'
     implementation 'androidx.media:media:1.1.0'
-    implementation 'com.etebarian:meow-bottom-navigation:1.0.4' // Botão redondo navigation bar
+    //implementation 'com.etebarian:meow-bottom-navigation:1.0.4' // Botão redondo navigation bar
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
-    implementation 'com.sdsmdg.harjot:vectormaster:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     implementation 'androidx.cardview:cardview:1.0.0'
@@ -53,6 +52,3 @@ dependencies {
     //implementation 'com.riyagayasen.android:easyaccordion:1.0.3'//Biblioteca para usar o widget Acordião https://github.com/riyagayasen/Android_accordion_view
 
 }
-
-
-

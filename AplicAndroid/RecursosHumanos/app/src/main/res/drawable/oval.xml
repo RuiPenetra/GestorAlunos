@@ -5,10 +5,10 @@
     <item android:state_pressed="true">
         <shape
             android:shape="oval">
-            <solid android:color="#5DCCB7"/>
-            <stroke
+            <solid android:color="#ffffff"/>
+<!--            <stroke
                 android:width="3dp"
-                android:color="#3F897C"/>
+                android:color="#59B9FF"/>-->
         </shape>
     </item>
 
@@ -16,10 +16,10 @@
 
     <shape
         android:shape="oval">
-        <solid android:color="#3F897C"/>
-        <stroke
-            android:width="3dp"
-            android:color="#5DCCB7"/>
+        <solid android:color="#1E2327"/>
+        <!--<stroke
+            android:width="8dp"
+            android:color="#0D85D8"/>-->
     </shape>
     </item>
 

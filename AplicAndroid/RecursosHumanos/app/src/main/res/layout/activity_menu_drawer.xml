@@ -8,7 +8,6 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:theme="@style/Theme.AppCompat.Light.NoActionBar"
     tools:openDrawer="start">
 
     <include layout="@layout/app_bar_top"
@@ -26,10 +25,5 @@
         app:headerLayout="@layout/nav_header_drawer"
         app:menu="@menu/activity_menu_drawer"
         />
-
-    <!--<include layout="@layout/app_bar_navigation"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        ></include>-->
 
 </androidx.drawerlayout.widget.DrawerLayout>

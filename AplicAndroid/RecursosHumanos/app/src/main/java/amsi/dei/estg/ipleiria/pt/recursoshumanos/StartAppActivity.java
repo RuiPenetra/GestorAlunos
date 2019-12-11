@@ -51,7 +51,10 @@ public class StartAppActivity extends AppCompatActivity {
     }
 
     public void onClickInformacao(View view){
-        alertDialog();
+        Intent abrir = new Intent(this, InformacoesActivity.class);
+        startActivity(abrir);
+
+        //alertDialog();
     }
 
     public void onClickContactos(View view){

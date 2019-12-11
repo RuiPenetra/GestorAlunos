@@ -14,13 +14,19 @@ import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class WelcomeFragment extends Fragment {
+public class UnidadesCurricularesFragment extends Fragment {
+
+
+    public UnidadesCurricularesFragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_welcome, container, false);
+        return inflater.inflate(R.layout.fragment_unidades_curriculares, container, false);
     }
 
 }

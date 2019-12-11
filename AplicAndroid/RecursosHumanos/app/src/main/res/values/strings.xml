@@ -7,11 +7,12 @@
     <string name="navigation_drawer_close">Fechar</string>
 
     //Start APP Activity
-    <string name="login">Login</string>
+    <string name="bt_login">Login</string>
 
     //Login Activity
     <string name="email">Email:</string>
     <string name="password">Password:</string>
+    <string name="bt_entrar">Entrar</string>
 
     //Start Activity
     <string name="calendario">Calendário</string>
@@ -25,6 +26,15 @@
     <string name="titulo_contacto">Contactos</string>
     <string name="titulo_login">Login</string>
     <string name="titulo_informacoes">Informações</string>
+    <string name="nav_settings">Configuração</string>
+    <string name="nav_notificacoes">Notificações</string>
+    <string name="nav_turno">Turno</string>
+    <string name="nav_pagamentos">Pagamentos</string>
+    <string name="nav_forum">Forum</string>
+    <string name="nav_calendario">Calendário</string>
+    <string name="nav_horario">Horario</string>
+    <string name="nav_perfil">Perfil</string>
+    <string name="nav_inicio">Inicio</string>
 
 
 </resources>

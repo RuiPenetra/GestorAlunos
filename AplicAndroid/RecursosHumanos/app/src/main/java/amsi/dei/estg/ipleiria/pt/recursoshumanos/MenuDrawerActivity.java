@@ -15,8 +15,13 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.navigation.NavigationView;
 
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.CalendarioFragment;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.ConfiguracoesFragment;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.ForumFragment;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.HorarioFragment;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.PagamentosFragment;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.PerfilFragment;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.TurnosFragment;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.UnidadesCurricularesFragment;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.WelcomeFragment;
 
 public class MenuDrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -79,6 +84,24 @@ public class MenuDrawerActivity extends AppCompatActivity implements NavigationV
                 break;
             case R.id.nav_forum:
                 fragment = new ForumFragment();
+                setTitle(item.getTitle());
+                break;
+            case R.id.nav_pagamentos:
+                fragment = new PagamentosFragment();
+                setTitle(item.getTitle());
+                break;
+            case R.id.nav_turno:
+                fragment = new TurnosFragment();
+                setTitle(item.getTitle());
+                break;
+            case R.id.nav_unidades_curriculares:
+                fragment = new UnidadesCurricularesFragment();
+                setTitle(item.getTitle());
+            case R.id.nav_perfil:
+                fragment = new PerfilFragment();
+                setTitle(item.getTitle());
+            case R.id.nav_configuracoes:
+                fragment = new ConfiguracoesFragment();
                 setTitle(item.getTitle());
                 break;
             default:

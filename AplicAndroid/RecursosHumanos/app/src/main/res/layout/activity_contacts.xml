@@ -49,16 +49,34 @@
 
 
 </RelativeLayout>-->
-<ScrollView android:layout_width="wrap_content"
+<ScrollView
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/fundo_contactos"
+    android:fillViewport="true">
 
-    <RelativeLayout android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:background="@drawable/fundo3"
-        android:orientation="vertical"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/btn_retornar_inicio"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/oval"
+                android:onClick="onClickRetornarInicio"
+                android:padding="19dp"
+                android:src="@drawable/ic_retornar" />
+
+        </LinearLayout>
 
         <amsi.ipleiria.pt.accordionview.AccordionView
             android:id="@+id/btn_esecs"
@@ -81,7 +99,7 @@
                     android:id="@+id/tv_telefone_esecs"
                     android:layout_width="250dp"
                     android:layout_height="36dp"
-                    android:drawableLeft="@drawable/ic_telefone"
+                    android:drawableStart="@drawable/ic_telefone"
                     android:textColor="#ffffff"
                     android:background="#11000000"
                     android:layout_centerHorizontal="true"

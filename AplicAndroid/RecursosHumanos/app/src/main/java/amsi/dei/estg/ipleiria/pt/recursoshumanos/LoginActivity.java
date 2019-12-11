@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onClickLogin(View view){
         Intent next= new Intent(this, MenuDrawerActivity.class);
         startActivity(next);
+        finish();
     }
 
     public void onClickRetornar(View view){
