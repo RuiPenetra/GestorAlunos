@@ -58,11 +58,11 @@ class SiteController extends Controller {
      * @return string
      */
     public function actionIndex() {
-        if (Yii::$app->user->isGuest) {
-            return $this->render('index');
-        } else {
-            return $this->render('login');
-        }
+        /* if (Yii::$app->user->isGuest) { */
+        return $this->render('index');
+        /* } else {
+          return $this->render('login');
+          } */
     }
 
     /**
@@ -72,13 +72,16 @@ class SiteController extends Controller {
      */
     public function actionLogin() {
         $this->layout = 'LoginLayout';
+
         if (!Yii::$app->user->isGuest) {
+            $this->layout = 'main';
             return $this->goHome();
         }
 
         $model = new LoginForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            $this->layout = 'main';
             return $this->goBack();
         } else {
             $model->password = '';

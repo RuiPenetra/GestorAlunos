@@ -24,17 +24,8 @@ AppAsset::register($this);
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
-    <?php
-    if (!Yii::$app->user->isGuest) {
-        ?>
-        <body> <!--class="hold-transition skin-green fixed hold-transition login-page"-->>
-        <?php } else { ?>
-        <body> <!--class="bg-light-blue color-palette"-->
-        <?php } ?>
+        <body class="hold-transition skin-green fixed hold-transition login-page">
         <?php $this->beginBody() ?>
-        <?php
-        if (!Yii::$app->user->isGuest) {
-            ?>
             <div class="wrapper">
                 <header class="main-header">
                     <!-- Logo -->
@@ -218,19 +209,6 @@ AppAsset::register($this);
                     </section>
                 </div>
             </div>
-            <?php
-        } else {
-            ?>
-            <?=
-            Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ])
-            ?>
-            <?= Alert::widget() ?>
-            <?= $content ?>
-            <?php
-        }
-        ?>
         <?php $this->endBody() ?>
     </body>
 </html>

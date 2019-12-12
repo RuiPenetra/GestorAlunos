@@ -1,6 +1,12 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use backend\models\Perfil;
+use backend\models\Curso;
+use backend\models\Teste;
+
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Teste */
@@ -13,11 +19,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <?php $form = ActiveForm::begin(); ?>
+        <?= $form->field($model, 'data'); ?>
+        <input type="text" class="form-control pull-right" id="datepicker">
+        <?= $form->field($model, 'id')->dropDownList(ArrayHelper::map(Perfil::find()->all(), 'id','nome'), ['prompt'=>'Seleciona']) ?>
+        <?= $form->field($model, 'id')->dropDownList(ArrayHelper::map(Curso::find()->all(), 'id','nome'), ['prompt'=>'Seleciona']) ?>
+        <?= Html::submitButton('Criar', ['class' => 'btn btn-primary']) ?>
+    <?php ActiveForm::end(); ?>
 
-<div class="form-group">
+<!--<div class="form-group">
                 <label>Date masks:</label>
 
                 <div class="input-group">
@@ -26,6 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
                   </div>
                   <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
                 </div>
-                <!-- /.input group -->
               </div>
-</div>
+</div>-->
+
