@@ -7,6 +7,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use backend\models\Perfil;
 
 /**
  * Site controller
@@ -82,6 +83,8 @@ class SiteController extends Controller {
 
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             $this->layout = 'main';
+            $perfil = new Perfil();
+            
             return $this->goBack();
         } else {
             $model->password = '';

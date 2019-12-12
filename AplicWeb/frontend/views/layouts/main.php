@@ -20,15 +20,15 @@ AppAsset::register($this);
         <meta charset="<?= Yii::$app->charset ?>">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-<?php $this->registerCsrfMetaTags() ?>
+        <?php $this->registerCsrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
-        <?php
-        if (!Yii::$app->user->isGuest) {
-            ?>
+    <?php
+    if (!Yii::$app->user->isGuest) {
+        ?>
         <body class="hold-transition skin-blue layout-top-nav">
-    <?php } else { ?>
+        <?php } else { ?>
         <body class="hold-transition skin-blue hold-transition login-page">
         <?php } ?>
         <?php $this->beginBody() ?>
@@ -168,15 +168,15 @@ AppAsset::register($this);
                                     <!-- User Account Menu -->
                                     <li class="dropdown user user-menu">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-    <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'user-image']); ?>
-                                            <span class="hidden-xs">Nome de Pessoa</span>
+                                            <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'user-image']); ?>
+                                            <span class="hidden-xs"><?= \Yii::$app->user->identity->email ?></span>
                                         </a>
                                         <ul class="dropdown-menu">
                                             <!-- User image -->
                                             <li class="user-header">
-    <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'img-circle']); ?>
+                                                <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'img-circle']); ?>
                                                 <p>
-                                                    Nome de Pessoa
+                                                    <?= \Yii::$app->user->identity->email ?>
                                                     <small>Professor</small>
                                                 </p>
                                             </li>
@@ -202,11 +202,11 @@ AppAsset::register($this);
                 <div class="content-wrapper">
                     <div class="container">
                         <section class="content">
-    <?=
-    Breadcrumbs::widget([
-        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-    ])
-    ?>
+                            <?=
+                            Breadcrumbs::widget([
+                                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                            ])
+                            ?>
                             <?= Alert::widget() ?>
                             <?= $content ?>
                         </section>
@@ -226,7 +226,7 @@ AppAsset::register($this);
             <?php
         }
         ?>
-<?php $this->endBody() ?>
+        <?php $this->endBody() ?>
     </body>
 </html>
 <?php $this->endPage() ?>
