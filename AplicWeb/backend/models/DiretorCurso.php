@@ -30,7 +30,7 @@ class DiretorCurso extends \yii\db\ActiveRecord
             [['id_professor'], 'required'],
             [['id_professor'], 'integer'],
             [['id_professor'], 'unique'],
-            [['id_professor'], 'exist', 'skipOnError' => true, 'targetClass' => Professor::className(), 'targetAttribute' => ['id_professor' => 'id_professor']],
+            [['id_professor'], 'exist', 'skipOnError' => true, 'targetClass' => Professor::className(), 'targetAttribute' => ['id_professor' => 'id_perfil']],
         ];
     }
 
@@ -49,6 +49,6 @@ class DiretorCurso extends \yii\db\ActiveRecord
      */
     public function getProfessor()
     {
-        return $this->hasOne(Professor::className(), ['id_professor' => 'id_professor']);
+        return $this->hasOne(Professor::className(), ['id_perfil' => 'id_professor']);
     }
 }

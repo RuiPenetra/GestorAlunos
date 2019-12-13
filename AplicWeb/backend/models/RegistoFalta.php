@@ -36,7 +36,7 @@ class RegistoFalta extends \yii\db\ActiveRecord
             [['data_inicio', 'data_fim', 'num_horas', 'id_perfil', 'id_tipo'], 'required'],
             [['data_inicio', 'data_fim'], 'safe'],
             [['num_horas', 'id_perfil', 'id_tipo'], 'integer'],
-            [['id_perfil'], 'exist', 'skipOnError' => true, 'targetClass' => Perfil::className(), 'targetAttribute' => ['id_perfil' => 'id']],
+            [['id_perfil'], 'exist', 'skipOnError' => true, 'targetClass' => Perfil::className(), 'targetAttribute' => ['id_perfil' => 'id_user']],
             [['id_tipo'], 'exist', 'skipOnError' => true, 'targetClass' => TipoFalta::className(), 'targetAttribute' => ['id_tipo' => 'id']],
         ];
     }
@@ -61,7 +61,7 @@ class RegistoFalta extends \yii\db\ActiveRecord
      */
     public function getPerfil()
     {
-        return $this->hasOne(Perfil::className(), ['id' => 'id_perfil']);
+        return $this->hasOne(Perfil::className(), ['id_user' => 'id_perfil']);
     }
 
     /**

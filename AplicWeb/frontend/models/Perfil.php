@@ -1,26 +1,22 @@
 <?php
 
-namespace frontend\models;
+namespace app\models;
 
 use Yii;
 
 /**
  * This is the model class for table "perfil".
  *
- * @property int $id
+ * @property int $id_user
  * @property string $nome
  * @property string $email
- * @property string $morada
- * @property string $codigopostal
  * @property string $genero
- * @property string $estadocivil
  * @property int $telemovel
  * @property string $datanascimento
- * @property int $iban
- * @property int $numerocontribuinte
  *
  * @property Aluno $aluno
  * @property Comentario[] $comentarios
+ * @property User $user
  * @property Professor $professor
  * @property Publicacao[] $publicacaos
  * @property RegistoFalta[] $registoFaltas
@@ -41,10 +37,11 @@ class Perfil extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nome', 'email', 'morada', 'codigopostal', 'genero', 'estadocivil', 'telemovel', 'datanascimento', 'iban', 'numerocontribuinte'], 'required'],
-            [['telemovel', 'iban', 'numerocontribuinte'], 'integer'],
+            [['nome', 'email', 'genero', 'telemovel', 'datanascimento'], 'required'],
+            [['telemovel'], 'integer'],
             [['datanascimento'], 'safe'],
-            [['nome', 'email', 'morada', 'codigopostal', 'genero', 'estadocivil'], 'string', 'max' => 255],
+            [['nome', 'email', 'genero'], 'string', 'max' => 255],
+            [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
         ];
     }
 
@@ -54,17 +51,12 @@ class Perfil extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id_user' => 'Id User',
             'nome' => 'Nome',
             'email' => 'Email',
-            'morada' => 'Morada',
-            'codigopostal' => 'Codigopostal',
             'genero' => 'Genero',
-            'estadocivil' => 'Estadocivil',
             'telemovel' => 'Telemovel',
             'datanascimento' => 'Datanascimento',
-            'iban' => 'Iban',
-            'numerocontribuinte' => 'Numerocontribuinte',
         ];
     }
 
@@ -73,7 +65,7 @@ class Perfil extends \yii\db\ActiveRecord
      */
     public function getAluno()
     {
-        return $this->hasOne(Aluno::className(), ['id_perfil' => 'id']);
+        return $this->hasOne(Aluno::className(), ['id_perfil' => 'id_user']);
     }
 
     /**
@@ -81,7 +73,15 @@ class Perfil extends \yii\db\ActiveRecord
      */
     public function getComentarios()
     {
-        return $this->hasMany(Comentario::className(), ['id_perfil' => 'id']);
+        return $this->hasMany(Comentario::className(), ['id_perfil' => 'id_user']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'id_user']);
     }
 
     /**
@@ -89,7 +89,7 @@ class Perfil extends \yii\db\ActiveRecord
      */
     public function getProfessor()
     {
-        return $this->hasOne(Professor::className(), ['id_professor' => 'id']);
+        return $this->hasOne(Professor::className(), ['id_perfil' => 'id_user']);
     }
 
     /**
@@ -97,7 +97,7 @@ class Perfil extends \yii\db\ActiveRecord
      */
     public function getPublicacaos()
     {
-        return $this->hasMany(Publicacao::className(), ['id_perfil' => 'id']);
+        return $this->hasMany(Publicacao::className(), ['id_perfil' => 'id_user']);
     }
 
     /**
@@ -105,6 +105,6 @@ class Perfil extends \yii\db\ActiveRecord
      */
     public function getRegistoFaltas()
     {
-        return $this->hasMany(RegistoFalta::className(), ['id_perfil' => 'id']);
+        return $this->hasMany(RegistoFalta::className(), ['id_perfil' => 'id_user']);
     }
 }

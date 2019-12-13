@@ -24,17 +24,7 @@ AppAsset::register($this);
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
-    <?php
-    if (!Yii::$app->user->isGuest) {
-        ?>
         <body class="hold-transition skin-blue layout-top-nav">
-        <?php } else { ?>
-        <body class="hold-transition skin-blue hold-transition login-page">
-        <?php } ?>
-        <?php $this->beginBody() ?>
-        <?php
-        if (!Yii::$app->user->isGuest) {
-            ?>
             <div class="wrapper">
                 <header class="main-header">
                     <nav class="navbar navbar-static-top">
@@ -50,7 +40,8 @@ AppAsset::register($this);
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                                 <ul class="nav navbar-nav">
-                                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                                    <li><a href="#">Calendário</a></li>
+                                    <li><a href="#">Link</a></li>
                                     <li><a href="#">Link</a></li>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
@@ -213,19 +204,6 @@ AppAsset::register($this);
                     </div>
                 </div>
             </div>
-            <?php
-        } else {
-            ?>
-            <?=
-            Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ])
-            ?>
-            <?= Alert::widget() ?>
-            <?= $content ?>
-            <?php
-        }
-        ?>
         <?php $this->endBody() ?>
     </body>
 </html>

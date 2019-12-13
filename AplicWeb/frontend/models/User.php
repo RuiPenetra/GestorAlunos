@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\models;
+namespace app\models;
 
 use Yii;
 
@@ -17,6 +17,8 @@ use Yii;
  * @property int $created_at
  * @property int $updated_at
  * @property string $verification_token
+ *
+ * @property Perfil $perfil
  */
 class User extends \yii\db\ActiveRecord
 {
@@ -61,5 +63,13 @@ class User extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
             'verification_token' => 'Verification Token',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPerfil()
+    {
+        return $this->hasOne(Perfil::className(), ['id_user' => 'id']);
     }
 }

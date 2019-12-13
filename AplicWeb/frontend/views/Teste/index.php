@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\PerfilSearch */
+/* @var $searchModel frontend\models\TesteSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Perfils';
+$this->title = 'Testes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="perfil-index">
+<div class="teste-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Perfil', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Teste', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -26,12 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id_user',
-            'nome',
-            'email:email',
-            'genero',
-            'telemovel',
-            //'datanascimento',
+            'id',
+            'data',
+            'sala',
+            'duracao',
+            'id_disciplina',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\models;
+namespace app\models;
 
 use Yii;
 
@@ -34,7 +34,7 @@ class Aluno extends \yii\db\ActiveRecord
             [['id_perfil', 'id_curso'], 'required'],
             [['id_perfil', 'id_curso'], 'integer'],
             [['id_perfil'], 'unique'],
-            [['id_perfil'], 'exist', 'skipOnError' => true, 'targetClass' => Perfil::className(), 'targetAttribute' => ['id_perfil' => 'id']],
+            [['id_perfil'], 'exist', 'skipOnError' => true, 'targetClass' => Perfil::className(), 'targetAttribute' => ['id_perfil' => 'id_user']],
             [['id_curso'], 'exist', 'skipOnError' => true, 'targetClass' => Curso::className(), 'targetAttribute' => ['id_curso' => 'id']],
         ];
     }
@@ -55,7 +55,7 @@ class Aluno extends \yii\db\ActiveRecord
      */
     public function getPerfil()
     {
-        return $this->hasOne(Perfil::className(), ['id' => 'id_perfil']);
+        return $this->hasOne(Perfil::className(), ['id_user' => 'id_perfil']);
     }
 
     /**

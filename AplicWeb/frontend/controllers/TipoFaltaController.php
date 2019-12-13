@@ -1,18 +1,18 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\controllers;
 
 use Yii;
-use backend\models\Perfil;
-use backend\models\PerfilSearch;
+use frontend\models\TipoFalta;
+use frontend\models\TipoFaltaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PerfilController implements the CRUD actions for Perfil model.
+ * TipoFaltaController implements the CRUD actions for TipoFalta model.
  */
-class PerfilController extends Controller
+class TipofaltaController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class PerfilController extends Controller
     }
 
     /**
-     * Lists all Perfil models.
+     * Lists all TipoFalta models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PerfilSearch();
+        $searchModel = new TipoFaltaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class PerfilController extends Controller
     }
 
     /**
-     * Displays a single Perfil model.
+     * Displays a single TipoFalta model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,16 +58,16 @@ class PerfilController extends Controller
     }
 
     /**
-     * Creates a new Perfil model.
+     * Creates a new TipoFalta model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Perfil();
+        $model = new TipoFalta();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_user]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -76,7 +76,7 @@ class PerfilController extends Controller
     }
 
     /**
-     * Updates an existing Perfil model.
+     * Updates an existing TipoFalta model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -87,7 +87,7 @@ class PerfilController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_user]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -96,7 +96,7 @@ class PerfilController extends Controller
     }
 
     /**
-     * Deletes an existing Perfil model.
+     * Deletes an existing TipoFalta model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class PerfilController extends Controller
     }
 
     /**
-     * Finds the Perfil model based on its primary key value.
+     * Finds the TipoFalta model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Perfil the loaded model
+     * @return TipoFalta the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Perfil::findOne($id)) !== null) {
+        if (($model = TipoFalta::findOne($id)) !== null) {
             return $model;
         }
 

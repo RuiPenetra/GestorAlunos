@@ -1,109 +1,134 @@
 <?php
-/* @var $this yii\web\View */
+/* @var $this yii\web\View<a href="<?= Url::toRoute('disciplina/index') ?>">Disciplinas</a> */
 
 use yii\helpers\Url;
 
 $this->title = 'Home';
 ?>
-<a href="<?= Url::toRoute('disciplina/index') ?>">Disciplinas</a>
+
 <div class="row">
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-aqua">
+      <div class="inner">
+        <h3>12</h3>
 
-    <div class="col-xs-6 col-sm-3 Card_boddy">
-        <div class="card">
-            <div class="card__image-container">
-                <img class="card__image card_img" src="https://images.unsplash.com/photo-1519999482648-25049ddd37b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2126&q=80" alt="">
-            </div>
-
-            <svg class="card__svg" viewBox="0 0 800 500">
-
-            <path d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500" stroke="transparent" fill="#333"/>
-            <path class="card__line" d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink" stroke-width="3" fill="transparent"/>
-            </svg>
-
-            <div class="card__content">
-                <h3 class="card__title">Lorem ipsum</h3>
-                <!--<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta dolor praesentium at quod autem omnis, amet eaque unde perspiciatis adipisci possimus quam facere illo et quisquam quia earum nesciunt porro.</p>-->
-            </div>
-        </div>
+        <p>Professores</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-user"></i>
+      </div>
+      <a href="#" class="small-box-footer">Mais Informação <i class="fa fa-arrow-circle-right"></i></a>
     </div>
-    <div class="col-xs-6 col-sm-3 Card_boddy">
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-green">
+      <div class="inner">
+        <h3>5</h3>
 
-        <div class="card">
-            <div class="card__image-container">
-                <img class="card__image card_img" src="https://images.unsplash.com/photo-1519999482648-25049ddd37b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2126&q=80" alt="">
-            </div>
-
-            <svg class="card__svg" viewBox="0 0 800 500">
-
-            <path d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500" stroke="transparent" fill="#333"/>
-            <path class="card__line" d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink" stroke-width="3" fill="transparent"/>
-            </svg>
-
-            <div class="card__content">
-                <h3 class="card__title">Lorem ipsum</h3>
-                <!--<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta dolor praesentium at quod autem omnis, amet eaque unde perspiciatis adipisci possimus quam facere illo et quisquam quia earum nesciunt porro.</p>-->
-            </div>
-        </div>
-
+        <p>Testes</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <a href="#" class="small-box-footer">Mais Informação <i class="fa fa-arrow-circle-right"></i></a>
     </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-yellow">
+      <div class="inner">
+        <h3>6</h3>
 
-    <!-- Add the extra clearfix for only the required viewport -->
-    <div class="clearfix visible-xs-block">
-
-        <div class="card">
-            <div class="card__image-container">
-                <img class="card__image card_img" src="https://images.unsplash.com/photo-1519999482648-25049ddd37b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2126&q=80" alt="">
-            </div>
-
-            <svg class="card__svg" viewBox="0 0 800 500">
-
-            <path d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500" stroke="transparent" fill="#333"/>
-            <path class="card__line" d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink" stroke-width="3" fill="transparent"/>
-            </svg>
-
-            <div class="card__content">
-                <h3 class="card__title">Lorem ipsum</h3>
-                <!--<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta dolor praesentium at quod autem omnis, amet eaque unde perspiciatis adipisci possimus quam facere illo et quisquam quia earum nesciunt porro.</p>-->
-            </div>
-        </div>
+        <p>Disciplinas</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-th"></i>
+      </div>
+      <a href="#" class="small-box-footer">Mais Informação <i class="fa fa-arrow-circle-right"></i></a>
     </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-red">
+      <div class="inner">
+        <h3>3</h3>
 
-    <div class="col-xs-6 col-sm-3">
-
-        <div class="card">
-            <div class="card__image-container">
-                <img class="card__image card_img" src="https://images.unsplash.com/photo-1519999482648-25049ddd37b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2126&q=80" alt="">
-            </div>
-
-            <svg class="card__svg" viewBox="0 0 800 500">
-
-            <path d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500" stroke="transparent" fill="#333"/>
-            <path class="card__line" d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink" stroke-width="3" fill="transparent"/>
-            </svg>
-
-            <div class="card__content">
-                <h3 class="card__title">Lorem ipsum</h3>
-                <!--<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta dolor praesentium at quod autem omnis, amet eaque unde perspiciatis adipisci possimus quam facere illo et quisquam quia earum nesciunt porro.</p>-->
-            </div>
-        </div>
+        <p>teste</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-book"></i>
+      </div>
+      <a href="#" class="small-box-footer">Mais Informação <i class="fa fa-arrow-circle-right"></i></a>
     </div>
-    <div class="col-xs-6 col-sm-3">
+  </div>
+  <!-- ./col -->
+</div>
 
-        <div class="card">
-            <div class="card__image-container">
-                <img class="card__image card_img" src="https://images.unsplash.com/photo-1519999482648-25049ddd37b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2126&q=80" alt="">
-            </div>
+<div class="box box-info">
+  <div class="box-header with-border">
+    <h3 class="box-title">Pagamentos</h3>
 
-            <svg class="card__svg" viewBox="0 0 800 500">
-
-            <path d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500" stroke="transparent" fill="#333"/>
-            <path class="card__line" d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink" stroke-width="3" fill="transparent"/>
-            </svg>
-
-            <div class="card__content">
-                <h3 class="card__title">Lorem ipsum</h3>
-                <!--<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta dolor praesentium at quod autem omnis, amet eaque unde perspiciatis adipisci possimus quam facere illo et quisquam quia earum nesciunt porro.</p>-->
-            </div>
-        </div>
+    <div class="box-tools pull-right">
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+      </button>
+      <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
     </div>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <div class="table-responsive">
+      <table class="table no-margin">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Valor</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>85€</td>
+            <td><span class="label label-success">Pago</span></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>85€</td>
+            <td><span class="label label-success">Pago</span></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>85€</td>
+            <td><span class="label label-warning">Por pagar</span></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>85€</td>
+            <td><span class="label label-warning">Por pagar</span></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>85€</td>
+            <td><span class="label label-danger">Em dívida</span></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>85€</td>
+            <td><span class="label label-danger">Em dívida</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- /.table-responsive -->
+  </div>
+  <!-- /.box-body -->
+  <div class="box-footer clearfix">
+    <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">Ver todos</a>
+  </div>
+  <!-- /.box-footer -->
 </div>

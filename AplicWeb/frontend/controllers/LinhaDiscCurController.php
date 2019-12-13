@@ -1,18 +1,18 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\controllers;
 
 use Yii;
-use backend\models\Perfil;
-use backend\models\PerfilSearch;
+use frontend\models\LinhaDiscCur;
+use frontend\models\LinhaDiscCurSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PerfilController implements the CRUD actions for Perfil model.
+ * LinhaDiscCurController implements the CRUD actions for LinhaDiscCur model.
  */
-class PerfilController extends Controller
+class LinhadisccurController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class PerfilController extends Controller
     }
 
     /**
-     * Lists all Perfil models.
+     * Lists all LinhaDiscCur models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PerfilSearch();
+        $searchModel = new LinhaDiscCurSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,29 +45,30 @@ class PerfilController extends Controller
     }
 
     /**
-     * Displays a single Perfil model.
-     * @param integer $id
+     * Displays a single LinhaDiscCur model.
+     * @param integer $id_curso
+     * @param integer $id_disc
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id_curso, $id_disc)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($id_curso, $id_disc),
         ]);
     }
 
     /**
-     * Creates a new Perfil model.
+     * Creates a new LinhaDiscCur model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Perfil();
+        $model = new LinhaDiscCur();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_user]);
+            return $this->redirect(['view', 'id_curso' => $model->id_curso, 'id_disc' => $model->id_disc]);
         }
 
         return $this->render('create', [
@@ -76,18 +77,19 @@ class PerfilController extends Controller
     }
 
     /**
-     * Updates an existing Perfil model.
+     * Updates an existing LinhaDiscCur model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param integer $id_curso
+     * @param integer $id_disc
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id_curso, $id_disc)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($id_curso, $id_disc);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_user]);
+            return $this->redirect(['view', 'id_curso' => $model->id_curso, 'id_disc' => $model->id_disc]);
         }
 
         return $this->render('update', [
@@ -96,29 +98,31 @@ class PerfilController extends Controller
     }
 
     /**
-     * Deletes an existing Perfil model.
+     * Deletes an existing LinhaDiscCur model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param integer $id_curso
+     * @param integer $id_disc
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id_curso, $id_disc)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($id_curso, $id_disc)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Perfil model based on its primary key value.
+     * Finds the LinhaDiscCur model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Perfil the loaded model
+     * @param integer $id_curso
+     * @param integer $id_disc
+     * @return LinhaDiscCur the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($id_curso, $id_disc)
     {
-        if (($model = Perfil::findOne($id)) !== null) {
+        if (($model = LinhaDiscCur::findOne(['id_curso' => $id_curso, 'id_disc' => $id_disc])) !== null) {
             return $model;
         }
 

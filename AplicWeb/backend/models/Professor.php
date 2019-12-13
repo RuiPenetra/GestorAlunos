@@ -12,7 +12,7 @@ use Yii;
  * @property Aula[] $aulas
  * @property DiretorCurso $diretorCurso
  * @property Disciplina[] $disciplinas
- * @property Perfil $professor
+ * @property Perfil $perfil
  */
 class Professor extends \yii\db\ActiveRecord
 {
@@ -33,7 +33,7 @@ class Professor extends \yii\db\ActiveRecord
             [['id_perfil'], 'required'],
             [['id_perfil'], 'integer'],
             [['id_perfil'], 'unique'],
-            [['id_perfil'], 'exist', 'skipOnError' => true, 'targetClass' => Perfil::className(), 'targetAttribute' => ['id_perfil' => 'id']],
+            [['id_perfil'], 'exist', 'skipOnError' => true, 'targetClass' => Perfil::className(), 'targetAttribute' => ['id_perfil' => 'id_user']],
         ];
     }
 
@@ -43,7 +43,7 @@ class Professor extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_perfil' => 'Id Professor',
+            'id_perfil' => 'Id Perfil',
         ];
     }
 
@@ -52,7 +52,7 @@ class Professor extends \yii\db\ActiveRecord
      */
     public function getAulas()
     {
-        return $this->hasMany(Aula::className(), ['id_perfil' => 'id_perfil']);
+        return $this->hasMany(Aula::className(), ['id_professor' => 'id_perfil']);
     }
 
     /**
@@ -60,7 +60,7 @@ class Professor extends \yii\db\ActiveRecord
      */
     public function getDiretorCurso()
     {
-        return $this->hasOne(DiretorCurso::className(), ['id_perfil' => 'id_perfil']);
+        return $this->hasOne(DiretorCurso::className(), ['id_professor' => 'id_perfil']);
     }
 
     /**
@@ -68,14 +68,14 @@ class Professor extends \yii\db\ActiveRecord
      */
     public function getDisciplinas()
     {
-        return $this->hasMany(Disciplina::className(), ['id_perfil' => 'id_perfil']);
+        return $this->hasMany(Disciplina::className(), ['id_professor' => 'id_perfil']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProfessor()
+    public function getPerfil()
     {
-        return $this->hasOne(Perfil::className(), ['id' => 'id_perfil']);
+        return $this->hasOne(Perfil::className(), ['id_user' => 'id_perfil']);
     }
 }

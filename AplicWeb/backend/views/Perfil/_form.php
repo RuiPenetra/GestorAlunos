@@ -16,21 +16,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'morada')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'codigopostal')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'genero')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'estadocivil')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'telemovel')->textInput() ?>
 
     <?= $form->field($model, 'datanascimento')->textInput() ?>
-
-    <?= $form->field($model, 'iban')->textInput() ?>
-
-    <?= $form->field($model, 'numerocontribuinte')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
