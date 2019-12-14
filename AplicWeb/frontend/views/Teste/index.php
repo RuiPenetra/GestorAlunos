@@ -10,6 +10,7 @@ use yii\grid\GridView;
 $this->title = 'Testes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="teste-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -18,23 +19,12 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Teste', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'data',
-            'sala',
-            'duracao',
-            'id_disciplina',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-
+    <div class="box box-primary">
+      <div class="box-body no-padding">
+        <!-- THE CALENDAR -->
+        <div id="calendar"></div>
+      </div>
+    </div>
 
 </div>

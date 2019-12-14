@@ -40,7 +40,7 @@ AppAsset::register($this);
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="#">Calendário</a></li>
+                                    <li><a href="<?= Url::toRoute(['teste/index']) ?>">Calendário</a></li>
                                     <li><a href="#">Link</a></li>
                                     <li><a href="#">Link</a></li>
                                     <li class="dropdown">
@@ -77,7 +77,7 @@ AppAsset::register($this);
                                                         <a href="#">
                                                             <div class="pull-left">
                                                                 <!-- User Image -->
-                                                                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                                                <!-- <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"> -->
                                                             </div>
                                                             <!-- Message title and timestamp -->
                                                             <h4>
