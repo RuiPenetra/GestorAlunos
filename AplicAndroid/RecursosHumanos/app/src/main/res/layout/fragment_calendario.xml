@@ -3,32 +3,162 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/fundo"
     tools:context=".Views.CalendarioFragment"
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true">
 
-    <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+    <!--<LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/bg_calendario">
+        android:background="@android:color/white"
+        android:orientation="vertical">
 
-        <CalendarView
+        &lt;!&ndash; date toolbar &ndash;&gt;
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/calendarHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-             />
-    </LinearLayout>
+            android:background="@color/defaultColor">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="match_parent"
+            <ImageButton
+                android:id="@+id/previousButton"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="85dp"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_arrow_left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/forwardButton"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="85dp"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/currentDateLabel"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toRightOf="@id/previousButton"
+                app:layout_constraintRight_toLeftOf="@id/forwardButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        &lt;!&ndash; eventDays header &ndash;&gt;
+        <LinearLayout
+            android:id="@+id/abbreviationsBar"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/mondayLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/primeiro_dia_semana"/>
+
+
+            <TextView
+                android:id="@+id/tuesdayLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/segundo_dia_semana"/>
+
+
+            <TextView
+                android:id="@+id/wednesdayLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/terceiro_dia_semana"/>
+
+
+            <TextView
+                android:id="@+id/thursdayLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/quarto_dia_semana" />
+
+            <TextView
+                android:id="@+id/fridayLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/quinto_dia_semana"/>
+
+            <TextView
+                android:id="@+id/saturdayLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/sexto_dia_semana" />
+
+            <TextView
+                android:id="@+id/sundayLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/setimo_dia_semana" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.riontech.calendar.CustomCalendar
+                android:id = "@ + id / customCalendar"
+                android:layout_width = "match_parent"
+                android:layout_height = "match_parent"
+                app:endMonth = "07"
+                app:endYear = "2016"
+                app:startMonth = App = "01" :startYear = "2016"/>
+
+        </ScrollView>
+
+    </LinearLayout>-->
+
+   <!-- <com.applandeo.materialcalendarview.CalendarView
+        android:id="@+id/calendario"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:clickable="true"
-        android:src="@drawable/ic_add" />
+        app:headerColor="#1E2327"
+        app:todayLabelColor="#59B9FF"
+        app:daysLabelsColor="#1E2327"
+        app:selectionLabelColor="#59B9FF"
+        app:abbreviationsLabelsColor="#1E2327"
+        >
+
+
+    </com.applandeo.materialcalendarview.CalendarView>-->
+
+<CalendarView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:accessibilityHeading="true"/>
 
 
 </FrameLayout>

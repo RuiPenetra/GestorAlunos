@@ -28,6 +28,10 @@ android {
                 url 'https://maven.google.com/'
                 name 'Google'
             }
+
+            maven {
+                url "https://dl.bintray.com/riontech/maven"
+            }
         }
     }
 }
@@ -42,12 +46,13 @@ dependencies {
     //implementation 'com.etebarian:meow-bottom-navigation:1.0.4' // Botão redondo navigation bar
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
-    implementation 'androidx.cardview:cardview:1.0.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
-
+    implementation 'com.riontech:calendar:1.0'
+    implementation 'com.applandeo:material-calendar-view:1.4.0'
     //implementation 'com.github.florent37:expansionpanel:1.2.2' //Biblioteca para usar o widget Acordião https://github.com/florent37/ExpansionPanel
     //implementation 'com.riyagayasen.android:easyaccordion:1.0.3'//Biblioteca para usar o widget Acordião https://github.com/riyagayasen/Android_accordion_view
 

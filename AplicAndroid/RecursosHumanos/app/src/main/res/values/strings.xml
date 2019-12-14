@@ -28,13 +28,32 @@
     <string name="titulo_informacoes">Informações</string>
     <string name="nav_settings">Configuração</string>
     <string name="nav_notificacoes">Notificações</string>
-    <string name="nav_turno">Turno</string>
+    <string name="nav_turno">Turnos</string>
+    <string name="nav_unidadesCurriculares">Unidades Curriculares</string>
     <string name="nav_pagamentos">Pagamentos</string>
     <string name="nav_forum">Forum</string>
     <string name="nav_calendario">Calendário</string>
     <string name="nav_horario">Horario</string>
     <string name="nav_perfil">Perfil</string>
     <string name="nav_inicio">Inicio</string>
+
+    //Fragmento Calendario
+    <string name="primeiro_dia_semana">S</string>
+    <string name="segundo_dia_semana">T</string>
+    <string name="terceiro_dia_semana">Q</string>
+    <string name="quarto_dia_semana">Q</string>
+    <string name="quinto_dia_semana">S</string>
+    <string name="sexto_dia_semana">S</string>
+    <string name="setimo_dia_semana">D</string>
+
+
+    //Fragmento Pagamentos
+    <string name="tv_valor">Valor</string>
+    <string name="tv_dataLimite">Data Limite</string>
+    <string name="tv_status">Estado</string>
+    <string name="item_valor">valor</string>
+    <string name="item_dataLimite">data</string>
+    <string name="item_status">status</string>
 
 
 </resources>

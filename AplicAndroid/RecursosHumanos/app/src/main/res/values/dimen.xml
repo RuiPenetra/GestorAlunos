@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    //Fragment Pagamentos
+    <dimen name="header_texto">17sp</dimen>
+    <dimen name="item_texto">17sp</dimen>
+
+
+
+    ////
     <dimen name="get_width">56dp</dimen>
     <dimen name="center">5dp</dimen>
     <dimen name="btn_welcome_padding">30dp</dimen>
