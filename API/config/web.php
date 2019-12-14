@@ -15,6 +15,9 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'B5qnea5y34bl20e2DShmYNzarxlyWhNa',
+            'parsers' => [
+              'application/json' => 'yii\web\JsonParser',
+            ]
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -43,14 +46,38 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
+          'enablePrettyUrl' => true,
+          'showScriptName' => false,
+          'rules' => [
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Aluno', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Aula', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Comentario', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Curso', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Diasem', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Diretorcurso', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Disciplina', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Escola', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Feriado', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Horario', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Linhadisccur', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Notificacao', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Pagamento', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Perfil', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Presenca', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Professor', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Publicacao', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Registofalta', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Subcomentario', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Teste', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Tipocurso', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Tipofalta', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Tiponotificacao', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Tipoturno', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'Turno', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'User', 'pluralize' => 'false', 'except' => ['create', 'update', 'delete']],
+          ],
         ],
-        */
     ],
     'params' => $params,
 ];
