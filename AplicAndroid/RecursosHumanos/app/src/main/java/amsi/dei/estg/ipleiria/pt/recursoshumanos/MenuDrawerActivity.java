@@ -97,9 +97,11 @@ public class MenuDrawerActivity extends AppCompatActivity implements NavigationV
             case R.id.nav_unidades_curriculares:
                 fragment = new UnidadesCurricularesFragment();
                 setTitle(item.getTitle());
+                break;
             case R.id.nav_perfil:
                 fragment = new PerfilFragment();
                 setTitle(item.getTitle());
+                break;
             case R.id.nav_configuracoes:
                 fragment = new ConfiguracoesFragment();
                 setTitle(item.getTitle());

@@ -13,8 +13,9 @@
         android:orientation="horizontal"
         android:gravity="center">
 
-        <ImageView
-            android:layout_width="20dp"
+        <CheckBox
+            android:id="@+id/cb_status"
+            android:layout_width="35dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:src="@drawable/ic_seta_indicadora"/>
@@ -88,10 +89,10 @@
 
         <ImageView
             android:id="@+id/img_item_status"
-            android:layout_width="20dp"
+            android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_por_pagar_pag"/>
+            android:src="@drawable/img_divida"/>
 
     </LinearLayout>
 

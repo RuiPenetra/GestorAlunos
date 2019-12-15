@@ -7,16 +7,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Pagamento;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.PagamentosFragment;
 
+import static java.lang.System.out;
 
 
 public class ListaPagamentoAdaptador extends BaseAdapter {
@@ -74,44 +79,46 @@ public class ListaPagamentoAdaptador extends BaseAdapter {
         
         viewHolder.update(pagamentos.get(position));
 
+
+
         return convertView;
     }
 
-    private class ViewHolderLista{
+    public class ViewHolderLista{
 
+        private CheckBox status;
         private TextView valor;
         private TextView dataLimite;
-        private ImageView status;
+        private ImageView conf_status;
 
         public ViewHolderLista(View convertView){
+            status = convertView.findViewById(R.id.cb_status);
             valor = convertView.findViewById(R.id.tv_item_valor);
             dataLimite = convertView.findViewById(R.id.tv_item_dataLimite);
-            status = convertView.findViewById(R.id.img_item_status);
+            conf_status = convertView.findViewById(R.id.img_item_status);
+
         }
 
 
         public void update(Pagamento pagamento){
 
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
+            status.isChecked();
             valor.setText(pagamento.getValor() + "");
-            dataLimite.setText(pagamento.getDataLimit());
+
+            dataLimite.setText(pagamento.getDataLimit().toString());
 
             if(pagamento.getStatus()== false){
 
-                status.setImageResource(R.drawable.ic_nao_pag);
+                conf_status.setImageResource(R.drawable.img_divida);
 
             }else{
 
-                status.setImageResource(R.drawable.ic_pago_pag);
+                conf_status.setImageResource(R.drawable.img_pago);
 
             }
 
         }
 
-        public boolean verificarData()
-
     }
-
 
 }
