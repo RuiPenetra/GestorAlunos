@@ -76,13 +76,13 @@ AppAsset::register($this);
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'user-image']); ?>
-                                    <span class="hidden-xs"><?= \Yii::$app->user->identity->email ?>
+                                    <span class="hidden-xs"><?= \Yii::$app->user->identity->username ?>
                                         <ul class="dropdown-menu">
                                             <!-- User image -->
                                             <li class="user-header">
                                                 <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'img-circle']); ?>
                                                 <p>
-                                                    <?= \Yii::$app->user->identity->email ?>
+                                                    <?= \Yii::$app->user->identity->username ?>
 
                                                     <small>Administrador</small>
                                                 </p>
@@ -112,14 +112,14 @@ AppAsset::register($this);
                                                         <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'img-circle']); ?>
                                                     </div>
                                                     <div class="pull-left info">
-                                                        <p>Nome de Pessoa</p>
+                                                        <p> <?= \Yii::$app->user->identity->username ?></p>
                                                         <a href="#"><i class="fa fa-id-card text-success"></i> Administrador</a>
                                                     </div>
                                                 </div>
                                                 <!-- /.search form -->
                                                 <!-- sidebar menu: : style can be found in sidebar.less -->
                                                 <ul class="sidebar-menu" data-widget="tree">
-                                                    <li class="header">Nav</li>
+                                                    <li class="header"><strong style="color: white; align-content: center;">MENU</strong></li>
                                                     <li class="active">
                                                         <a href="<?= Url::toRoute(['site/index']) ?>">
                                                             <i class="fa fa-home"></i> <span>Home</span>
