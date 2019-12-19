@@ -35,12 +35,10 @@ class DisciplinaController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new DisciplinaSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $disciplinas = Disciplina::find()->all();
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'disciplinas' => $disciplinas,
         ]);
     }
 

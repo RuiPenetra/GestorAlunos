@@ -38,7 +38,7 @@ class Disciplina extends \yii\db\ActiveRecord
             [['id_professor'], 'integer'],
             [['nome'], 'string', 'max' => 255],
             [['abreviatura'], 'string', 'max' => 45],
-            [['id_professor'], 'exist', 'skipOnError' => true, 'targetClass' => Professor::className(), 'targetAttribute' => ['id_professor' => 'id_professor']],
+            [['id_professor'], 'exist', 'skipOnError' => true, 'targetClass' => Professor::className(), 'targetAttribute' => ['id_professor' => 'id_perfil']],
         ];
     }
 
@@ -60,7 +60,7 @@ class Disciplina extends \yii\db\ActiveRecord
      */
     public function getProfessor()
     {
-        return $this->hasOne(Professor::className(), ['id_professor' => 'id_professor']);
+        return $this->hasOne(Professor::className(), ['id_perfil' => 'id_professor']);
     }
 
     /**

@@ -14,6 +14,7 @@ use Yii;
  *
  * @property Professor $professor
  * @property LinhaDiscCur[] $linhaDiscCurs
+ * @property Curso[] $cursos
  * @property Teste[] $testes
  * @property Turno[] $turnos
  */
@@ -37,7 +38,7 @@ class Disciplina extends \yii\db\ActiveRecord
             [['id_professor'], 'integer'],
             [['nome'], 'string', 'max' => 255],
             [['abreviatura'], 'string', 'max' => 45],
-            [['id_professor'], 'exist', 'skipOnError' => true, 'targetClass' => Professor::className(), 'targetAttribute' => ['id_professor' => 'id_professor']],
+            [['id_professor'], 'exist', 'skipOnError' => true, 'targetClass' => Professor::className(), 'targetAttribute' => ['id_professor' => 'id_perfil']],
         ];
     }
 
@@ -59,7 +60,7 @@ class Disciplina extends \yii\db\ActiveRecord
      */
     public function getProfessor()
     {
-        return $this->hasOne(Professor::className(), ['id_professor' => 'id_professor']);
+        return $this->hasOne(Professor::className(), ['id_perfil' => 'id_professor']);
     }
 
     /**
@@ -68,6 +69,14 @@ class Disciplina extends \yii\db\ActiveRecord
     public function getLinhaDiscCurs()
     {
         return $this->hasMany(LinhaDiscCur::className(), ['id_disc' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCursos()
+    {
+        return $this->hasMany(Curso::className(), ['id' => 'id_curso'])->viaTable('linha_disc_cur', ['id_disc' => 'id']);
     }
 
     /**
