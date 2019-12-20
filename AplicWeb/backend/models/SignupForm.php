@@ -1,12 +1,14 @@
 <?php
-namespace backend\models;
+namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
-use backend\models\User;
+use common\models\User;
 
-
-class User extends Model
+/**
+ * Signup form
+ */
+class SignupForm extends Model
 {
     public $username;
     public $email;
@@ -21,14 +23,14 @@ class User extends Model
         return [
             ['username', 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\backend\models\User', 'message' => 'This username has already been taken.'],
+            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\backend\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
@@ -51,7 +53,7 @@ class User extends Model
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
-        $user->generateEmailVerificationToken();
+        $user->status = 10;
         return $user->save();
 
     }

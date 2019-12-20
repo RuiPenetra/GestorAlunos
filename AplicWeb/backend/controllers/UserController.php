@@ -8,8 +8,9 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use backend\models\User;
-use backend\models\UserSearch;
+use common\models\User;
+use common\models\UserSearch;
+use frontend\models\SignupForm;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -61,26 +62,18 @@ class UserController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate() {
-        $model = new User();
+     public function actionCreate()
+     {
+         $model = new SignupForm();
+         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+             Yii::$app->session->setFlash('success', 'Registo Efetuado com Sucesso!');
+             return $this->goHome();
+         }
 
-        if (!$this->validate()) {
-            return null;
-        }
-
-        $user = new User();
-        $user->username = $this->username;
-        $user->email = $this->email;
-        $user->setPassword($this->password);
-        $user->generateAuthKey();
-        $user->generateEmailVerificationToken();
-        return $user->save();
-
-
-        // return $this->render('create', [
-        //             'model' => $model,
-        // ]);
-    }
+         return $this->render('signup', [
+             'model' => $model,
+         ]);
+     }
 
     /**
      * Deletes an existing User model.
