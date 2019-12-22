@@ -103,6 +103,21 @@ class User extends ActiveRecord implements IdentityInterface
         ]);
     }
 
+
+    /**
+      * {@inheritdoc}
+      */
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'Nome',
+            'email' => 'Email',
+            'status' => 'Estado',
+            'created_at' => 'Criado a',
+            'updated_at' => 'Alterado a',
+        ];
+    }
+
     /**
      * Finds user by verification email token
      *
