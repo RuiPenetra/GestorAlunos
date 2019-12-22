@@ -14,10 +14,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="diretor-curso-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Criar Diretor Curso</h1>
 
     <?php $form = ActiveForm::begin(); ?>
-      <?= $form->field($model, 'id_professor')->dropDownList(ArrayHelper::map(Perfil::find()->all(), 'id','nome')) ?>
+      <?= $form->field($model, 'id_professor')->dropDownList(ArrayHelper::map(Perfil::find()->all(), 'id_user','nome'), ['prompt'=>'Selecione uma Opção']) ?>
       <?= Html::submitButton('Criar', ['class' => 'btn btn-primary']) ?>
     <?php ActiveForm::end(); ?>
 

@@ -19,7 +19,7 @@ $perfil = $_GET['id'];
 ?>
 <div class="aluno-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Atualizar Aluno</h1>
 
     <?php $form = ActiveForm::begin(); ?>
       <?= $form->field($model, 'id_perfil')->dropDownList(ArrayHelper::map(Perfil::find()->all(), 'id_user','nome')) ?>

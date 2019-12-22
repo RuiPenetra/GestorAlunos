@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="user-update">
 
-  <h1><?= Html::encode($this->title) ?></h1>
+  <h1>Atualizar Utilizador</h1>
 
   <p>Pode editar alterando os campos abaixo:</p>
 
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = 'Update';
           <?= $form->field($model, 'password_hash')->passwordInput() ?>
 
           <div class="form-group">
-              <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+              <?= Html::submitButton('Atualizar', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
           </div>
 
           <?php ActiveForm::end(); ?>

@@ -15,10 +15,10 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="diretor-curso-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Alterar Diretor Curso</h1>
 
     <?php $form = ActiveForm::begin(); ?>
-      <?= $form->field($model, 'id_professor')->dropDownList(ArrayHelper::map(Perfil::find()->all(), 'id','nome')) ?>
+      <?= $form->field($model, 'id_professor')->dropDownList(ArrayHelper::map(Perfil::find()->all(), 'id_user','nome')) ?>
       <?= Html::submitButton('Atualizar', ['class' => 'btn btn-primary']) ?>
     <?php ActiveForm::end(); ?>
 

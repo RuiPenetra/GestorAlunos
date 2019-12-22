@@ -12,10 +12,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="professor-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Professores</h1>
 
     <p>
-        <?= Html::a('Create Professor', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Criar Professor', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

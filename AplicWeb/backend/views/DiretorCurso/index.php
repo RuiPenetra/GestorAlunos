@@ -12,10 +12,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="diretor-curso-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Diretor Curso</h1>
 
     <p>
-        <?= Html::a('Create Diretor Curso', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Criar Diretor Curso', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'attribute' => 'id_professor',
-                'value' => 'perfil.nome',
+                'value' => 'professor.perfil.nome',
             ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
