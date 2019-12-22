@@ -1,8 +1,13 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos;
 
+import android.R.layout;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +29,8 @@ import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.TurnosFragment;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.UnidadesCurricularesFragment;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.WelcomeFragment;
 
+import static android.R.layout.simple_spinner_dropdown_item;
+
 public class MenuDrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private NavigationView navigationView;
@@ -32,6 +39,17 @@ public class MenuDrawerActivity extends AppCompatActivity implements NavigationV
     //public static final String CHAVE_EMAIL = "EMAIL";
     //private String email = "";
     private FragmentManager fragmentManager;
+    String[] cities = {
+            "Mumbai",
+            "Delhi",
+            "Bangalore",
+            "Hyderabad",
+            "Ahmedabad",
+            "Chennai",
+            "Kolkata",
+            "Pune",
+            "Jabalpur"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +68,7 @@ public class MenuDrawerActivity extends AppCompatActivity implements NavigationV
         fragmentManager = getSupportFragmentManager();
         navigationView.setNavigationItemSelectedListener(this);
         carregarFragmentoInicial();
+
     }
 
 /*    private void carregarCabecalho(){
@@ -137,4 +156,8 @@ public class MenuDrawerActivity extends AppCompatActivity implements NavigationV
         setTitle("Fórum");
         fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).commit();
     }
+
+
+
+
 }

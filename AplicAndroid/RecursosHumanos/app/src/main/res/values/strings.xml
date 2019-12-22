@@ -55,5 +55,50 @@
     <string name="item_dataLimite">data</string>
     <string name="item_status">status</string>
 
+    //Activity Dados Autenticacao
+    <string name="tv_password_existente">Password existente:</string>
+    <string name="tv_nova_password">Nova Password:</string>
+    <string name="tv_conf_nova_password">Conf nova password:</string>
+
+    //Activity Dados Academicos
+    <string name="tv_n_estudante">Nº : </string>
+    <string name="tv_curso">Curso : </string>
+    <string name="tv_coordenador">Coordenador : </string>
+    <string name="tv_n_unidades_curriculares">Nº Unidades Curriculares : </string>
+    <string name="tv_creditos">Nº Créditos : </string>
+    <string name="tv_ano_lectivo">Ano Lectivo : </string>
+
+    //Activity Dados Pessoais
+    <string name="tv_nome">Nome :</string>
+    <string name="tv_email">Email :</string>
+    <string name="tv_genero">Género :</string>
+    <string name="tv_telemovel">Telemovel :</string>
+    <string name="tv_data_nascimento">Data Nascimento :</string>
+
+
+    //Fragment Perfil
+    <string name="tv_dados_pessoais">Dados Pessoais</string>
+    <string name="tv_dados_academicos">Dados Académicos</string>
+    <string name="tv_dados_autenticacao">Dados Autenticação</string>
+
+
+    //Fragment Horario
+    <string name="tv_1_semana">Segunda-Feira</string>
+    <string name="tv_2_semana">Terça-Feira</string>
+    <string name="tv_3_semana">Quarta-Feira</string>
+    <string name="tv_4_semana">Quinta-Feira</string>
+    <string name="tv_5_semana">Sexta-Feira</string>
+    <string name="btn_cores">Cores</string>
+    <string name="btn_feedback">Ajuda e Feedback</string>
+    <string name="btn_traduzir">Traduzir</string>
+
+    <string-array name="dias_da_semana">
+        <item>Segunda-Feira</item>
+        <item>Terça-Feira</item>
+        <item>Quarta-Feira</item>
+        <item>Quinta-Feira</item>
+        <item>Sexta-Feira</item>
+    </string-array>
+
 
 </resources>

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
 
@@ -17,16 +18,32 @@ import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
 public class UnidadesCurricularesFragment extends Fragment {
 
 
-    public UnidadesCurricularesFragment() {
-        // Required empty public constructor
-    }
-
+    private View mViewGroup;
+    private Button mButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_unidades_curriculares, container, false);
+        View rootView= inflater.inflate(R.layout.fragment_unidades_curriculares, container, false);
+        mViewGroup = rootView.findViewById(R.id.viewsContainer);
+
+        mButton = rootView.findViewById(R.id.button);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View button) {
+
+                if (mViewGroup.getVisibility() == View.VISIBLE) {
+                    mViewGroup.setVisibility(View.GONE);
+                    mButton.setText("Show");
+                } else {
+                    mViewGroup.setVisibility(View.VISIBLE);
+                    mButton.setText("Hide");
+                }
+            }
+        });
+
+        return rootView;
     }
 
 }

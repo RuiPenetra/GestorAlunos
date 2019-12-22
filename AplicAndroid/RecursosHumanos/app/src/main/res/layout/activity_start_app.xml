@@ -1,76 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fundo_start"
+    android:background="#59B9FF"
     android:orientation="vertical"
+    app:layout_editor_absoluteX="25dp"
+    app:layout_editor_absoluteY="25dp"
     tools:context=".StartAppActivity">
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp">
-
-        <ImageView
-            android:id="@+id/btn_informacoes"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:background="@drawable/oval"
-            android:layout_marginRight="10dp"
-            android:onClick="onClickInformacao"
-            android:padding="10dp"
-            android:src="@drawable/informacao" />
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        >
 
 
-        <ImageView
-            android:id="@+id/img_ipl"
-            android:layout_width="280dp"
-            android:layout_height="120dp"
-            app:srcCompat="@drawable/lg_ipl" />
+    <ImageView
+        android:id="@+id/btn_informacoes"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/oval"
+        android:onClick="onClickInformacao"
+        android:padding="15dp"
+        android:src="@drawable/ic_informacao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btn_IrLogin"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/img_ipl"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="80dp"
-            android:background="@drawable/button_rectangle"
-            android:onClick="onClickIGoLogin"
-            android:text="Login"
-            android:textColor="#ffffff"
-            android:textSize="20sp" />
-    </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:src="@drawable/img_fundo_ipl"
+                android:layout_gravity="bottom"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        >
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/btn_contactos"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/oval"
-            android:onClick="onClickContactos"
-            android:padding="19dp"
-            android:src="@drawable/ic_contactos" />
+        <LinearLayout
+            android:id="@+id/container_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
 
+            <ImageView
+                android:id="@+id/img_ipl"
+                android:layout_width="280dp"
+                android:layout_height="120dp"
+                app:srcCompat="@drawable/lg_ipl" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/container_img"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_IrLogin"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_rectangle"
+                android:onClick="onClickIGoLogin"
+                android:text="Login"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+
+
+        </LinearLayout>
 
     </RelativeLayout>
 
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/btn_contactos"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/oval"
+        android:onClick="onClickContactos"
+        android:padding="19dp"
+        android:src="@drawable/ic_contactos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,12 +3,89 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#C0E0FF"
     tools:context=".Views.ConfiguracoesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout android:id="@+id/container_cores"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="50dp">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_geral"
+                        android:drawableLeft="@drawable/img_color"
+                        android:text="@string/btn_cores"
+                        android:textSize="20dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"/>
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/container_ajuda_feedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/container_cores"
+                android:layout_marginTop="25dp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_geral"
+                    android:drawableLeft="@drawable/ic_feedback"
+                    android:text="@string/btn_feedback"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"/>
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/container_traduzir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_below="@id/container_ajuda_feedback">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_geral"
+                    android:drawableLeft="@drawable/ic_translate"
+                    android:text="@string/btn_traduzir"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"/>
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/container_contacta-nos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_below="@id/container_traduzir">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_geral"
+                    android:drawableLeft="@drawable/ic_contacta_nos"
+                    android:text="@string/btn_traduzir"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
 
 </FrameLayout>

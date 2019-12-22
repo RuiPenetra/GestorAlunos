@@ -1,4 +1,4 @@
-package amsi.dei.estg.ipleiria.pt.recursoshumanos;
+package amsi.dei.estg.ipleiria.pt.recursoshumanos.Views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.StartAppActivity;
 
 public class InformacoesActivity extends AppCompatActivity {
 

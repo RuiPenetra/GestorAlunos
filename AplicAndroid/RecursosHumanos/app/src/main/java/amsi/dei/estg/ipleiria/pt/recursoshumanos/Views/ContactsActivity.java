@@ -1,4 +1,4 @@
-package amsi.dei.estg.ipleiria.pt.recursoshumanos;
+package amsi.dei.estg.ipleiria.pt.recursoshumanos.Views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.StartAppActivity;
 import amsi.ipleiria.pt.accordionview.AccordionView;
 
 

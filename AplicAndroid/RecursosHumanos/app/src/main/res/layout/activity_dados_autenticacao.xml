@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Views.DadosAutenticacaoActivity"
+    android:background="#C0E0FF">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|right">
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/img_protecao"
+            android:alpha="0.10"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout android:id="@+id/container_main"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="100dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout android:id="@+id/container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout android:id="@+id/container_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Email:"
+                    android:textSize="20sp"
+                    android:textColor="#000000" />
+
+                <EditText
+                    android:id="@+id/edt_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:background="@drawable/ic_content"
+                    android:drawableLeft="@drawable/ic_email"
+                    android:ems="10"
+                    android:inputType="textEmailAddress"
+                    android:textColor="#FFFFFF"
+                    android:enabled="false"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/container_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/container_email"
+                android:orientation="vertical"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp">
+
+                <TextView
+                    android:id="@+id/tv_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Password:"
+                    android:textSize="20sp"
+                    android:textColor="#000000"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/edt_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_content"
+                        android:ems="10"
+                        android:inputType="textEmailAddress"
+                        android:textColor="#000000"
+                        android:enabled="false"
+                        android:drawableLeft="@drawable/ic_password"/>
+
+
+                    <ImageView
+                        android:id="@+id/igV_editar_password"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/btn_retangular_actions"
+                        android:backgroundTint="#59B9FF"
+                        android:layout_marginLeft="5dp"
+                        android:src="@drawable/ic_editar"
+                        android:padding="5dp"
+                        android:onClick="OnClickNovaPassword"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -17,7 +17,6 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.riontech.calendar.CustomCalendar;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -34,7 +33,6 @@ public class CalendarioFragment extends Fragment {
 
     private Dialog MyDialog;
     private FloatingActionButton fab;
-    private CustomCalendar customCalendar;
 
 
 
