@@ -45,8 +45,8 @@ class Aluno extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_perfil' => 'Id Perfil',
-            'id_curso' => 'Id Curso',
+            'id_perfil' => 'Nome',
+            'id_curso' => 'Curso',
         ];
     }
 

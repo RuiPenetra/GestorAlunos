@@ -22,7 +22,7 @@ $perfil = $_GET['id'];
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php $form = ActiveForm::begin(); ?>
-      <?= $form->field($model, 'id_perfil')->dropDownList(ArrayHelper::map(Perfil::find()->all(), 'id','nome')) ?>
+      <?= $form->field($model, 'id_perfil')->dropDownList(ArrayHelper::map(Perfil::find()->all(), 'id_user','nome')) ?>
       <?= $form->field($model, 'id_curso')->dropDownList(ArrayHelper::map(Curso::find()->all(), 'id','nome')) ?>
       <?= Html::submitButton('Atualizar', ['class' => 'btn btn-primary']) ?>
     <?php ActiveForm::end(); ?>

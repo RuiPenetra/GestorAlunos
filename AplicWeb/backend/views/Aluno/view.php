@@ -16,56 +16,21 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?php
-        [
-            'class' => 'yii\grid\ActionColumn',
-            'header' => 'Actions',
-            'headerOptions' => ['style' => 'color:#337ab7'],
-            'template' => '{view}{update}{delete}',
-            'buttons' => [
-              'view' => function ($url, $model) {
-                  return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
-                              'title' => Yii::t('app', 'lead-view'),
-                  ]);
-              },
-  
-              'update' => function ($url, $model) {
-                  return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
-                              'title' => Yii::t('app', 'lead-update'),
-                  ]);
-              },
-              'delete' => function ($url, $model) {
-                  return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
-                              'title' => Yii::t('app', 'lead-delete'),
-                  ]);
-              }
-  
+        <?= Html::a('Atualizar', ['update', 'id' => $model->id_perfil], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Apagar', ['delete', 'id' => $model->id_perfil], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => 'Tem a certeza que pretende apagar o aluno?',
+                'method' => 'post',
             ],
-            'urlCreator' => function ($action, $model, $key, $index) {
-              if ($action === 'view') {
-                  $url ='index.php?r=client-login/lead-view&id='.$model->id;
-                  return $url;
-              }
-  
-              if ($action === 'update') {
-                  $url ='index.php?r=client-login/lead-update&id='.$model->id;
-                  return $url;
-              }
-              if ($action === 'delete') {
-                  $url ='index.php?r=client-login/lead-delete&id='.$model->id;
-                  return $url;
-              }
-  
-            }
-            ]
-        ?>
+        ]) ?>
     </p>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id_perfil',
-            'id_curso',
+            'perfil.nome',
+            'curso.nome',
         ],
     ]) ?>
 
