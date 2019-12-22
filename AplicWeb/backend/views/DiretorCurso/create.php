@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use backend\models\Perfil;
+use backend\models\Professor;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\DiretorCurso */
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1>Criar Diretor Curso</h1>
 
     <?php $form = ActiveForm::begin(); ?>
-      <?= $form->field($model, 'id_professor')->dropDownList(ArrayHelper::map(Perfil::find()->all(), 'id_user','nome'), ['prompt'=>'Selecione uma Opção']) ?>
+      <?= $form->field($model, 'id_professor')->dropDownList(ArrayHelper::map(Professor::find()->all(), 'id_perfil','perfil.nome'), ['prompt'=>'Selecione uma Opção']) ?>
       <?= Html::submitButton('Criar', ['class' => 'btn btn-primary']) ?>
     <?php ActiveForm::end(); ?>
 

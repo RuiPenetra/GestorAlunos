@@ -1,6 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
+use backend\models\Professor;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Disciplina */
@@ -13,8 +16,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <?php $form = ActiveForm::begin(); ?>
+      <?= $form->field($model, 'nome') ?>
+      <?= $form->field($model, 'abreviatura') ?>
+      <?= $form->field($model, 'semestre') ?>
+      <?= $form->field($model, 'id_professor')->dropDownList(ArrayHelper::map(Professor::find()->all(), 'id_perfil','perfil.nome'), ['prompt'=>'Selecione uma Opção']) ?>
+      <?= Html::submitButton('Criar', ['class' => 'btn btn-primary']) ?>
+    <?php ActiveForm::end(); ?>
 
 </div>

@@ -1,6 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
+use backend\models\Professor;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Disciplina */
@@ -12,10 +15,14 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="disciplina-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Atualizar Disciplina</h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <?php $form = ActiveForm::begin(); ?>
+      <?= $form->field($model, 'nome') ?>
+      <?= $form->field($model, 'abreviatura') ?>
+      <?= $form->field($model, 'semestre') ?>
+      <?= $form->field($model, 'id_professor')->dropDownList(ArrayHelper::map(Professor::find()->all(), 'id_perfil','perfil.nome')) ?>
+      <?= Html::submitButton('Atualizar', ['class' => 'btn btn-primary']) ?>
+    <?php ActiveForm::end(); ?>
 
 </div>

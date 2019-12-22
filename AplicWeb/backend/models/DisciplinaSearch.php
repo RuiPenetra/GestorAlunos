@@ -17,7 +17,7 @@ class DisciplinaSearch extends Disciplina
     public function rules()
     {
         return [
-            [['id', 'id_professor'], 'integer'],
+            [['id', 'semestre', 'id_professor'], 'integer'],
             [['nome', 'abreviatura'], 'safe'],
         ];
     }
@@ -59,6 +59,7 @@ class DisciplinaSearch extends Disciplina
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'semestre' => $this->semestre,
             'id_professor' => $this->id_professor,
         ]);
 

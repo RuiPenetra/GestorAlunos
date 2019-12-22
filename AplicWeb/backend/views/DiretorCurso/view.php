@@ -13,11 +13,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="diretor-curso-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id_professor], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id_professor], [
+        <?= Html::a('Atualizar', ['update', 'id' => $model->id_professor], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Apagar', ['delete', 'id' => $model->id_professor], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Tem a certeza que pretende eliminar?',
@@ -29,7 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id_professor',
+            'professor.perfil.nome',
+            'professor.perfil.email',
+            'professor.perfil.genero',
         ],
     ]) ?>
 
