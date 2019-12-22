@@ -74,35 +74,33 @@ AppAsset::register($this);
                             </li>
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                     <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'user-image']); ?>
-                                    <span class="hidden-xs"><?= \Yii::$app->user->identity->username ?>
-                                        <ul class="dropdown-menu">
-                                            <!-- User image -->
-                                            <li class="user-header">
-                                                <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'img-circle']); ?>
-                                                <p>
-                                                    <?= \Yii::$app->user->identity->username ?>
+                                    <span class="hidden-xs"><?= \Yii::$app->user->identity->username ?></span>
+                                  </a>
+                                  <ul class="dropdown-menu">
+                                    <!-- User image -->
+                                    <li class="user-header">
+                                      <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'img-circle']); ?>
 
-                                                    <small>Administrador</small>
-                                                </p>
-                                            </li>
-                                            <!-- Menu Body -->
-                                            <li class="user-body">
-                                                <div class="btn-group-vertical btn-block">
-                                                    <a href="" class="btn btn-info"><i class="fa fa-user"></i> Perfil</a>
-                                                    <a href="" class="btn btn-info"><i class="fa fa-gear fa-spin"></i> Configurações Conta</a>
-                                                    <a href="" class="btn btn-info"><i class="fa fa-user-cog"></i> Configurações Perfil</a>
-                                                    <a href="<?php echo Url::toRoute(['site/logout']) ?>" data-method="post" class="btn btn-info"><i class="fa fa-sign-out"></i> Sair</a>
-                                                </div>
-                                                <!-- /.row -->
-                                            </li>
-                                        </ul>
-                                        </li>
-                                        </ul>
-                                        </div>
-                                        </nav>
-                                        </header>
+                                      <p>
+                                        <?= \Yii::$app->user->identity->username ?>
+                                        <small>Administrador</small>
+                                      </p>
+                                    </li>
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                      <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat"><i class="fa fa-gear fa-spin"></i> Perfil</a>
+                                      </div>
+                                      <div class="pull-right">
+                                        <a href="<?php echo Url::toRoute(['site/logout']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-sign-out"></i> Sair</a>
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </li>
+
+                          </header>
                                         <aside class="main-sidebar">
                                             <!-- sidebar: style can be found in sidebar.less -->
                                             <section class="sidebar">
