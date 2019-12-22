@@ -57,7 +57,9 @@ class Curso extends \yii\db\ActiveRecord
             'abreviatura' => 'Abreviatura',
             'ano' => 'Ano',
             'tipo_curso' => 'Tipo Curso',
-            'id_escola' => 'Id Escola',
+            'tipoCurso.nome' => 'Tipo Curso',
+            'id_escola' => 'Escola',
+            'escola.nome' => 'Escola',
         ];
     }
 

@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="tipo-curso-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Atualizar Tipo Curso</h1>
 
     <?= $this->render('_form', [
         'model' => $model,
