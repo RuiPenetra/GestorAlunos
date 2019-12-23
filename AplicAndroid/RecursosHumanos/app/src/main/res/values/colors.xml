@@ -12,4 +12,10 @@
     <color name="btn_login">#05B594</color>//61A1DE
     <color name="fundo">#ffffff</color>//61A1DE
     <color name="colorPrimaryLight">#59B9FF</color>
+
+
+    //Fragment Horario
+    <color name="header_horario">#F86C6C</color>
+    <color name="texto_header_horario">#FFFFFF</color>
+    <color name="texto_horario">#000000</color>
 </resources>

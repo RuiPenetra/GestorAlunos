@@ -1,7 +1,6 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Views;
 
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -12,10 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Adaptadores.ListaHorarioAdaptador;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.CustomOnItemSelectedListener;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Horario;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorHorarios;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
 
 import static amsi.dei.estg.ipleiria.pt.recursoshumanos.R.layout.custom_spinner;
@@ -26,17 +31,9 @@ import static amsi.dei.estg.ipleiria.pt.recursoshumanos.R.layout.custom_spinner;
 public class HorarioFragment extends Fragment {
 
     Spinner spinnerDropDown;
-    String[] cities = {
-            "Mumbai",
-            "Delhi",
-            "Bangalore",
-            "Hyderabad",
-            "Ahmedabad",
-            "Chennai",
-            "Kolkata",
-            "Pune",
-            "Jabalpur"
-    };
+    private ArrayList<Horario> listaHorarios;
+    private ListView lvListaHorario;
+    private ListaHorarioAdaptador adaptador;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,10 +41,17 @@ public class HorarioFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView= inflater.inflate(R.layout.fragment_horario, container, false);
 
-        final Context context = rootView.getContext(); // Assign your rootView to context
+        // // <----- ListView ----->
+
+        //Vai buscar os pagamentos ao SIngleton
+        listaHorarios= SingletonGestorHorarios.getInstance().getHorarios();
+
+        lvListaHorario = rootView.findViewById(R.id.lvHorarios);
+        lvListaHorario.setAdapter(new ListaHorarioAdaptador(getContext(), listaHorarios));
 
 
-        String[] data = {"Java", "Python", "C++", "C#", "Angular", "Go"};
+
+        // // <----- Spinner ----->
 
         ArrayAdapter adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.dias_da_semana));
         adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);

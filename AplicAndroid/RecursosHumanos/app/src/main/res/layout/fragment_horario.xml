@@ -22,35 +22,35 @@
             android:alpha="0.10"/>
 
     </RelativeLayout>
+
     <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_width="210dp"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         android:background="@drawable/button_geral"
         android:layout_gravity="right"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
         >
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center">
+            android:orientation="vertical">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/img_calendario_event"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:layout_gravity="center">
+            android:gravity="center">
 
             <Spinner
                 android:id="@+id/spinner"
@@ -74,14 +74,44 @@
         </LinearLayout>
 
     </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp">
+        android:layout_marginTop="110dp" >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/header_horario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include
+                    layout="@layout/header_lista_horario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/lista_horaios"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/header_horario"
+                android:orientation="vertical">
+
+                <ListView
+                    android:id="@+id/lvHorarios"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </ListView>
+
+            </RelativeLayout>
+
 
         </RelativeLayout>
 
