@@ -24,6 +24,11 @@ class AppAsset extends AssetBundle
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic',
         'css/blue.css',
         'css/datepicker/datepicker.css',
+<<<<<<< Updated upstream
+=======
+        'css/timepicker/timepicker.min.css',
+        'css/pace.min.css',
+>>>>>>> Stashed changes
     ];
     public $js = [
       'js/jquery.min.js',
@@ -50,7 +55,11 @@ class AppAsset extends AssetBundle
       'js/dashboard.js',
       'js/site.js',
       'js/icheck.min.js',
+<<<<<<< Updated upstream
       'js/datepicker/datepicker.js',
+=======
+      'js/pace.min.js',
+>>>>>>> Stashed changes
     ];
     public $depends = [
         'yii\web\YiiAsset',

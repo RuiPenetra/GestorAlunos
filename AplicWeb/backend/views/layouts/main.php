@@ -42,6 +42,11 @@ AppAsset::register($this);
 
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
+                          <li class="dropdown messages-menu">
+                            <a type="button" class="ajax" data-toggle="dropdown">
+                                <i class="fa fa-spin fa-refresh"></i>
+                            </a>
+                          </li>
                             <!-- Messages: style can be found in dropdown.less-->
                             <li class="dropdown messages-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -207,7 +212,21 @@ AppAsset::register($this);
                                             </section>
                                         </div>
                                         </div>
+                                        <div class="ajax-content">
+                                        </div>
                                         <?php $this->endBody() ?>
                                         </body>
                                         </html>
                                         <?php $this->endPage() ?>
+                                        <script >
+                                        $(document).ajaxStart(function () {
+                                          Pace.restart()
+                                        })
+                                        $('.ajax').click(function () {
+                                          $.ajax({
+                                            url: '#', success: function (result) {
+                                              location.reload();
+                                            }
+                                          })
+                                        })
+                                        </script>
