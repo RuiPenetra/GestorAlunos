@@ -5,12 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import java.util.ArrayList;
 
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.HorarioBottomSheetDialog;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Horario;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
 
@@ -56,8 +59,30 @@ public class ListaHorarioAdaptador extends BaseAdapter {
         }
 
         if(convertView == null){
+
+
             convertView = inflater.inflate(R.layout.item_lista_horario, null);
+
+
         }
+
+/*        Button btn= (Button)  convertView  .findViewById(R.id.btn_item_detalhes);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(context,  String.valueOf(v.getId()), Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+// 2. Chain together various setter methods to set the dialog characteristics
+                builder.setMessage(R.string.dialog_message)
+                        .setTitle(R.string.dialog_title);
+
+// 3. Get the <code><a href="/reference/android/app/AlertDialog.html">AlertDialog</a></code> from <code><a href="/reference/android/app/AlertDialog.Builder.html#create()">create()</a></code>
+                AlertDialog dialog = builder.create();
+
+            }
+        });*/
 
 
         ViewHolderLista viewHolder = (ViewHolderLista) convertView.getTag();
@@ -70,10 +95,9 @@ public class ListaHorarioAdaptador extends BaseAdapter {
         
         viewHolder.update(horarios.get(position));
 
-
-
         return convertView;
     }
+
 
     public class ViewHolderLista{
 
@@ -81,25 +105,50 @@ public class ListaHorarioAdaptador extends BaseAdapter {
         private TextView hora_fim;
         private TextView unidade_curricular;
         private TextView sala;
+        private ImageButton btn;
 
         public ViewHolderLista(View convertView){
             hora_inicio = convertView.findViewById(R.id.tv_item_hora_inicio);
             hora_fim = convertView.findViewById(R.id.tv_item_hora_fim);
             unidade_curricular = convertView.findViewById(R.id.tv_item_uc);
-            sala = convertView.findViewById(R.id.tv_item_sala);
+            btn= convertView.findViewById(R.id.btn_item_detalhes);
+
+
+
+/*            btn= convertView.findViewById(R.id.btn_item_detalhes);
+            btn.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    Toast.makeText(context,  String.valueOf(v.getId()), Toast.LENGTH_SHORT).show();
+                }
+            });*/
+
 
         }
 
 
-        public void update(Horario horario){
+        public void update(final Horario horario){
 
             hora_inicio.setText(horario.getHora_inicio().toString());
             hora_fim.setText(horario.getHora_fim().toString());
             unidade_curricular.setText(horario.getUnidade_curricular().toString());
-            sala.setText(horario.getSala().toString());
 
+            btn.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    HorarioBottomSheetDialog bt= new HorarioBottomSheetDialog();
+
+                    FragmentManager fm = ((FragmentActivity)context).getSupportFragmentManager();
+                    bt.show(fm,"");
+                }
+            });
         }
 
     }
 
 }
+

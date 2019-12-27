@@ -13,7 +13,6 @@
     <color name="fundo">#ffffff</color>//61A1DE
     <color name="colorPrimaryLight">#59B9FF</color>
 
-
     //Fragment Horario
     <color name="header_horario">#F86C6C</color>
     <color name="texto_header_horario">#FFFFFF</color>

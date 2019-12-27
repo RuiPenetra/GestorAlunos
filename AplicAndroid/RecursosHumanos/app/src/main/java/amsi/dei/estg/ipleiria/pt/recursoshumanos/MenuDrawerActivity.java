@@ -101,18 +101,18 @@ public class MenuDrawerActivity extends AppCompatActivity implements NavigationV
                 fragment = new CalendarioFragment();
                 setTitle(item.getTitle());
                 break;
-            case R.id.nav_forum:
+/*            case R.id.nav_forum:
                 fragment = new ForumFragment();
                 setTitle(item.getTitle());
-                break;
+                break;*/
             case R.id.nav_pagamentos:
                 fragment = new PagamentosFragment();
                 setTitle(item.getTitle());
                 break;
-            case R.id.nav_turno:
+/*            case R.id.nav_turno:
                 fragment = new TurnosFragment();
                 setTitle(item.getTitle());
-                break;
+                break;*/
             case R.id.nav_unidades_curriculares:
                 fragment = new UnidadesCurricularesFragment();
                 setTitle(item.getTitle());

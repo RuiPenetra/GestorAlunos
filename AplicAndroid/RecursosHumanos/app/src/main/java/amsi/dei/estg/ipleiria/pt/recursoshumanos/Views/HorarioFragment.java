@@ -1,16 +1,21 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Views;
 
 
-import android.content.Context;
+import android.app.AlertDialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -18,12 +23,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Adaptadores.ListaHorarioAdaptador;
-import amsi.dei.estg.ipleiria.pt.recursoshumanos.CustomOnItemSelectedListener;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Horario;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorHorarios;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
-
-import static amsi.dei.estg.ipleiria.pt.recursoshumanos.R.layout.custom_spinner;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,24 +36,38 @@ public class HorarioFragment extends Fragment {
     private ArrayList<Horario> listaHorarios;
     private ListView lvListaHorario;
     private ListaHorarioAdaptador adaptador;
+    private Button btn;
+
+    public HorarioFragment() {
+        // Required empty public constructor
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        setHasOptionsMenu(true);
+
+
         // Inflate the layout for this fragment
         View rootView= inflater.inflate(R.layout.fragment_horario, container, false);
+
 
         // // <----- ListView ----->
 
         //Vai buscar os pagamentos ao SIngleton
         listaHorarios= SingletonGestorHorarios.getInstance().getHorarios();
-
         lvListaHorario = rootView.findViewById(R.id.lvHorarios);
         lvListaHorario.setAdapter(new ListaHorarioAdaptador(getContext(), listaHorarios));
 
 
+        lvListaHorario.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getContext(), "ola", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-        // // <----- Spinner ----->
 
         ArrayAdapter adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.dias_da_semana));
         adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
@@ -71,6 +87,39 @@ public class HorarioFragment extends Fragment {
         });
 
         return rootView;
+
     }
 
-}
+    // create an action bar button
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+
+        // Para carregar o menu usa-se o Inflater
+        inflater.inflate(R.menu.menu_notificacoes, menu);
+        // Vai buscar aquele item
+        MenuItem itemNotificacao = menu.findItem(R.id.itemNotificacao);
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    // handle button activities
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.itemNotificacao) {
+            // do something here
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void MyCustomAlertDialog(){
+
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
+                View mView = getLayoutInflater().inflate(R.layout.dialog_add_event,null);
+
+                mBuilder.setView(mView);
+                AlertDialog dialog = mBuilder.create();
+                dialog.show();
+            }
+
+    }

@@ -15,11 +15,14 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Adaptadores.ListaHorarioAdaptador;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Adaptadores.ListaPagamentoAdaptador;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Pagamento;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorHorarios;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorPagamentos;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
 
@@ -39,6 +42,8 @@ public class PagamentosFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
+
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_pagamentos, container, false);
 
@@ -51,11 +56,14 @@ public class PagamentosFragment extends Fragment {
         lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaPagamentos));
 
 
+
+
         confirmar = (CheckBox) rootView.findViewById(R.id.cb_status);
         imV_status= (ImageView) rootView.findViewById(R.id.img_item_status);
 
 
         return rootView;
     }
+
 
 }

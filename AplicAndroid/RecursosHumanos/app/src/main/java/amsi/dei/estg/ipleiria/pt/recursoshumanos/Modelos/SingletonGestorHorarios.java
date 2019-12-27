@@ -42,11 +42,16 @@ public class SingletonGestorHorarios implements Serializable {
 
     private void gerarFakeData() {
 
-        horarios.add(new Horario("8:00","9:00", "ucs","A.S.0.1"));
-        horarios.add(new Horario("8:00","9:00", "ucs","A.S.0.1"));
-        horarios.add(new Horario("8:00","9:00", "ucs","A.S.0.1"));
-        horarios.add(new Horario("8:00","9:00", "ucs","A.S.0.1"));
-        horarios.add(new Horario("8:00","9:00", "ucs","A.S.0.1"));
+        horarios.add(new Horario("8:00","9:00", "Integração na Profissão","A.S.0.1"));
+        horarios.add(new Horario("8:00","9:00", "Plataformas de Sistemas de Informação","A.S.0.1"));
+        horarios.add(new Horario("8:00","9:00", "Acesso Móvel a Sistemas de Informação","A.S.0.1"));
+        horarios.add(new Horario("8:00","9:00", "Projeto em Sistemas de Informação","A.S.0.1"));
+        horarios.add(new Horario("8:00","9:00", "Serviços e Interoperabilidade de Sistemas TeSP PSI(Lra + TV)","A.S.0.1"));
+        horarios.add(new Horario("8:00","9:00", "Integração na Profissão","A.S.0.1"));
+        horarios.add(new Horario("8:00","9:00", "Plataformas de Sistemas de Informação","A.S.0.1"));
+        horarios.add(new Horario("8:00","9:00", "Acesso Móvel a Sistemas de Informação","A.S.0.1"));
+        horarios.add(new Horario("8:00","9:00", "Projeto em Sistemas de Informação","A.S.0.1"));
+        horarios.add(new Horario("8:00","9:00", "Serviços e Interoperabilidade de Sistemas TeSP PSI(Lra + TV)","A.S.0.1"));
 
 
     }

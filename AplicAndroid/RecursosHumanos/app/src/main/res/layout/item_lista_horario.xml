@@ -7,10 +7,10 @@
 
     <LinearLayout
         android:id="@+id/col_data"
-        android:layout_width="250dp"
+        android:layout_width="150dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:gravity="center">
 
         <LinearLayout
@@ -69,22 +69,21 @@
 
     <LinearLayout
         android:id="@+id/col_status"
-        android:layout_width="250dp"
+        android:layout_width="150dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical"
         android:gravity="center">
 
-        <TextView
-            android:id="@+id/tv_item_sala"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:layout_gravity="center"
-            android:text="@string/item_sala"
-            android:textSize="@dimen/item_texto"
-            android:textColor="@color/texto_horario"/>
+            <ImageButton
+                android:id="@+id/btn_item_detalhes"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_mostrar"
+                android:layout_gravity="center"
+                android:onClick="onClickDetalhes"/>
 
     </LinearLayout>
+
 
 </LinearLayout>

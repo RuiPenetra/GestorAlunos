@@ -83,9 +83,16 @@
 
 
     //Fragment Horario
+    <string name="tv_1_semana">Segunda-Feira</string>
+    <string name="tv_2_semana">Terça-Feira</string>
+    <string name="tv_3_semana">Quarta-Feira</string>
+    <string name="tv_4_semana">Quinta-Feira</string>
+    <string name="tv_5_semana">Sexta-Feira</string>
     <string name="btn_cores">Cores</string>
     <string name="btn_feedback">Ajuda e Feedback</string>
     <string name="btn_traduzir">Traduzir</string>
+
+    //Fragment Horario
 
     <string-array name="dias_da_semana">
         <item>Segunda-Feira</item>
@@ -103,6 +110,4 @@
     <string name="item_hora_fim">Fim</string>
     <string name="item_uc">Unidade Curricular</string>
     <string name="item_sala">Sala</string>
-
-
 </resources>
