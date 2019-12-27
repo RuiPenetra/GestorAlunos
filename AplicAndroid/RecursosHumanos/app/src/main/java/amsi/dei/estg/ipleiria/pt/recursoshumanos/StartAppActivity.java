@@ -29,27 +29,6 @@ public class StartAppActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_app);
         btn_login=findViewById(R.id.btn_IrLogin);
-
-        String URL = "http://localhost/GestorAlunos/API/web/perfil";
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JsonObjectRequest objectRequest = new JsonObjectRequest(
-                Request.Method.GET,
-                URL,
-                null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Toast.makeText(StartAppActivity.this, "" + response, Toast.LENGTH_SHORT).show();
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(StartAppActivity.this, "" + error, Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
     }
 
     public void onClickIGoLogin(View view){
