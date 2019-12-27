@@ -1,20 +1,25 @@
 <?php
 
 use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
+use backend\models\Curso;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Horario */
 
-$this->title = 'Create Horario';
+$this->title = 'Criar Horario';
 $this->params['breadcrumbs'][] = ['label' => 'Horarios', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = 'Criar Horario';
 ?>
 <div class="horario-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Criar Horario</h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <?php $form = ActiveForm::begin(); ?>
+      <?= $form->field($model, 'nome') ?>
+      <?= $form->field($model, 'id_curso')->dropDownList(ArrayHelper::map(Curso::find()->all(), 'id','nome'), ['prompt'=>'Selecione uma Opção']) ?>
+      <?= Html::submitButton('Criar', ['class' => 'btn btn-primary']) ?>
+    <?php ActiveForm::end(); ?>
 
 </div>

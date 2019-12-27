@@ -1,21 +1,26 @@
 <?php
 
 use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
+use backend\models\Curso;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Horario */
 
-$this->title = 'Update Horario: ' . $model->id;
+$this->title = 'Atualizar Horario: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Horarios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Atualizar';
 ?>
 <div class="horario-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Atualizar Horario</h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <?php $form = ActiveForm::begin(); ?>
+      <?= $form->field($model, 'nome') ?>
+      <?= $form->field($model, 'id_curso')->dropDownList(ArrayHelper::map(Curso::find()->all(), 'id','nome')) ?>
+      <?= Html::submitButton('Criar', ['class' => 'btn btn-primary']) ?>
+    <?php ActiveForm::end(); ?>
 
 </div>
