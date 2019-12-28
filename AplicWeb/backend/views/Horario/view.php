@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use backend\models\Aula;
+use yii\helpers\VarDumper;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Horario */
@@ -34,32 +36,40 @@ $this->params['breadcrumbs'][] = $this->title;
             'curso.nome',
         ],
     ]) ?>
-
-    <div class="nav-tabs-custom">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="nav-tabs-custom col-md-6">
       <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">Segunda-Feira</a></li>
-        <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Terça-Feira</a></li>
-        <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Quarta-Feira</a></li>
-        <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Quinta-Feira</a></li>
-        <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Sexta-Feira</a></li>
+        <li class="active"><a href="#seg" data-toggle="tab" aria-expanded="true">Segunda-Feira</a></li>
+        <li class=""><a href="#ter" data-toggle="tab" aria-expanded="false">Terça-Feira</a></li>
+        <li class=""><a href="#qua" data-toggle="tab" aria-expanded="false">Quarta-Feira</a></li>
+        <li class=""><a href="#qui" data-toggle="tab" aria-expanded="false">Quinta-Feira</a></li>
+        <li class=""><a href="#sex" data-toggle="tab" aria-expanded="false">Sexta-Feira</a></li>
       </ul>
       <div class="tab-content">
-        <div class="tab-pane active" id="tab_1">
+        <div class="tab-pane active" id="seg">
           <ul class="timeline">
+            <?php
+            $aulas = Aula::find()->where(['horario_id' => $_GET['id']])->all();
+
+            foreach ($aulas as $aula):
+              if($aula->dia === "Segunda-Feira"):
+              ?>
             <li class="time-label">
               <span class="bg-red">
-                8:00 - 9:00
+                <i class="fa fa-clock-o fa-spin"></i>
+                <?= date("H:i", strtotime($aula->inicio)) ?> - <?= date("H:i", strtotime($aula->fim)) ?>
               </span>
             </li>
             <li>
               <i class="fa fa-book bg-blue"></i>
               <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o fa-spin"></i> algo</span>
+                <span class="time"></span>
 
-                <h3 class="timeline-header"><a href="#">Aula de Programacao</a> ...</h3>
+                <h3 class="timeline-header"><a href="#"><?= $aula->nome ?></a></h3>
 
                 <div class="timeline-body">
-                  Texto
+                  Sala: <?= $aula->sala ?>
                 </div>
 
                 <div class="timeline-footer">
@@ -67,39 +77,155 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
               </div>
             </li>
-
-            <li class="time-label">
-              <span class="bg-red">
-                9:00 - 10:00
-              </span>
-            </li>
-            <li>
-              <i class="fa fa-book bg-blue"></i>
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o fa-spin"></i> 8:00 - 9:00</span>
-
-                <h3 class="timeline-header"><a href="#">Aula de Programacao</a> ...</h3>
-
-                <div class="timeline-body">
-                  Texto
-                </div>
-
-                <div class="timeline-footer">
-                  <a class="btn btn-primary btn-xs">Detalhes</a>
-                </div>
-              </div>
-            </li>
+            <?php
+            endif;
+          endforeach; ?>
           </ul>
         </div>
         <!-- /.tab-pane -->
-        <div class="tab-pane" id="tab_2">
+        <div class="tab-pane" id="ter">
+          <ul class="timeline">
+            <?php
+
+            foreach ($aulas as $aula):
+              if($aula->dia === "Terça-Feira"):
+              ?>
+            <li class="time-label">
+              <span class="bg-red">
+                <i class="fa fa-clock-o fa-spin"></i>
+                <?= date("H:i", strtotime($aula->inicio)) ?> - <?= date("H:i", strtotime($aula->fim)) ?>
+              </span>
+            </li>
+            <li>
+              <i class="fa fa-book bg-blue"></i>
+              <div class="timeline-item">
+                <span class="time"></span>
+
+                <h3 class="timeline-header"><a href="#"><?= $aula->nome ?></a></h3>
+
+                <div class="timeline-body">
+                  Sala: <?= $aula->sala ?>
+                </div>
+
+                <div class="timeline-footer">
+                  <a class="btn btn-primary btn-xs">Detalhes</a>
+                </div>
+              </div>
+            </li>
+            <?php
+            endif;
+          endforeach; ?>
+          </ul>
         </div>
         <!-- /.tab-pane -->
-        <div class="tab-pane" id="tab_3">
+        <div class="tab-pane" id="qua">
+          <ul class="timeline">
+            <?php
+
+            foreach ($aulas as $aula):
+              if($aula->dia === "Quarta-Feira"):
+              ?>
+            <li class="time-label">
+              <span class="bg-red">
+                <i class="fa fa-clock-o fa-spin"></i>
+                <?= date("H:i", strtotime($aula->inicio)) ?> - <?= date("H:i", strtotime($aula->fim)) ?>
+              </span>
+            </li>
+            <li>
+              <i class="fa fa-book bg-blue"></i>
+              <div class="timeline-item">
+                <span class="time"></span>
+
+                <h3 class="timeline-header"><a href="#"><?= $aula->nome ?></a></h3>
+
+                <div class="timeline-body">
+                  Sala: <?= $aula->sala ?>
+                </div>
+
+                <div class="timeline-footer">
+                  <a class="btn btn-primary btn-xs">Detalhes</a>
+                </div>
+              </div>
+            </li>
+            <?php
+            endif;
+          endforeach; ?>
+          </ul>
+        </div>
+        <!-- /.tab-pane -->
+        <div class="tab-pane" id="qui">
+          <ul class="timeline">
+            <?php
+
+            foreach ($aulas as $aula):
+              if($aula->dia === "Quinta-Feira"):
+              ?>
+            <li class="time-label">
+              <span class="bg-red">
+                <i class="fa fa-clock-o fa-spin"></i>
+                <?= date("H:i", strtotime($aula->inicio)) ?> - <?= date("H:i", strtotime($aula->fim)) ?>
+              </span>
+            </li>
+            <li>
+              <i class="fa fa-book bg-blue"></i>
+              <div class="timeline-item">
+                <span class="time"></span>
+
+                <h3 class="timeline-header"><a href="#"><?= $aula->nome ?></a></h3>
+
+                <div class="timeline-body">
+                  Sala: <?= $aula->sala ?>
+                </div>
+
+                <div class="timeline-footer">
+                  <a class="btn btn-primary btn-xs">Detalhes</a>
+                </div>
+              </div>
+            </li>
+            <?php
+            endif;
+          endforeach; ?>
+          </ul>
+        </div>
+        <!-- /.tab-pane -->
+        <div class="tab-pane" id="sex">
+          <ul class="timeline">
+            <?php
+
+            foreach ($aulas as $aula):
+              if($aula->dia === "Sexta-Feira"):
+              ?>
+            <li class="time-label">
+              <span class="bg-red">
+                <i class="fa fa-clock-o fa-spin"></i>
+                <?= date("H:i", strtotime($aula->inicio)) ?> - <?= date("H:i", strtotime($aula->fim)) ?>
+              </span>
+            </li>
+            <li>
+              <i class="fa fa-book bg-blue"></i>
+              <div class="timeline-item">
+                <span class="time"></span>
+
+                <h3 class="timeline-header"><a href="#"><?= $aula->nome ?></a></h3>
+
+                <div class="timeline-body">
+                  Sala: <?= $aula->sala ?>
+                </div>
+
+                <div class="timeline-footer">
+                  <a class="btn btn-primary btn-xs">Detalhes</a>
+                </div>
+              </div>
+            </li>
+            <?php
+            endif;
+          endforeach; ?>
+          </ul>
         </div>
         <!-- /.tab-pane -->
       </div>
         <!-- /.tab-content -->
     </div>
+  </div>
 
 </div>
