@@ -36,7 +36,8 @@ public class HorarioFragment extends Fragment {
     private ArrayList<Horario> listaHorarios;
     private ListView lvListaHorario;
     private ListaHorarioAdaptador adaptador;
-    private Button btn;
+    private Horario r;
+    private Integer ValorRecebido;
 
     public HorarioFragment() {
         // Required empty public constructor
@@ -51,7 +52,6 @@ public class HorarioFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View rootView= inflater.inflate(R.layout.fragment_horario, container, false);
-
 
         // // <----- ListView ----->
 

@@ -15,9 +15,9 @@ public class Horario implements Serializable {
 
 
     // Construtor
-    public Horario(String hora_inicio, String hora_fim, String unidade_curricular, String sala){
+    public Horario(Integer id,String hora_inicio, String hora_fim, String unidade_curricular, String sala){
 
-        this.id = autoIncrementID++;
+        this.id = id;
         this.hora_inicio = hora_inicio;
         this.hora_fim = hora_fim;
         this.unidade_curricular = unidade_curricular;

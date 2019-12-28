@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -131,9 +132,9 @@ public class ListaHorarioAdaptador extends BaseAdapter {
 
         public void update(final Horario horario){
 
-            hora_inicio.setText(horario.getHora_inicio().toString());
-            hora_fim.setText(horario.getHora_fim().toString());
-            unidade_curricular.setText(horario.getUnidade_curricular().toString());
+            hora_inicio.setText(horario.getHora_inicio());
+            hora_fim.setText(horario.getHora_fim());
+            unidade_curricular.setText(horario.getUnidade_curricular());
 
             btn.setOnClickListener(new View.OnClickListener() {
 
@@ -143,7 +144,9 @@ public class ListaHorarioAdaptador extends BaseAdapter {
                     HorarioBottomSheetDialog bt= new HorarioBottomSheetDialog();
 
                     FragmentManager fm = ((FragmentActivity)context).getSupportFragmentManager();
-                    bt.show(fm,"");
+
+                    bt.show(fm,"" + horario.getId());
+
                 }
             });
         }
