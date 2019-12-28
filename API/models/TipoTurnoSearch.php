@@ -4,10 +4,10 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\TipoTurno;
+use backend\models\TipoTurno;
 
 /**
- * TipoTurnoSearch represents the model behind the search form of `app\models\TipoTurno`.
+ * TipoTurnoSearch represents the model behind the search form of `backend\models\TipoTurno`.
  */
 class TipoTurnoSearch extends TipoTurno
 {

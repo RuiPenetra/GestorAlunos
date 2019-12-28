@@ -4,10 +4,10 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\DiaSem;
+use backend\models\DiaSem;
 
 /**
- * DiaSemSearch represents the model behind the search form of `app\models\DiaSem`.
+ * DiaSemSearch represents the model behind the search form of `backend\models\DiaSem`.
  */
 class DiaSemSearch extends DiaSem
 {

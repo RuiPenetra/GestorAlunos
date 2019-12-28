@@ -4,10 +4,10 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\TipoCurso;
+use backend\models\TipoCurso;
 
 /**
- * TipoCursoSearch represents the model behind the search form of `app\models\TipoCurso`.
+ * TipoCursoSearch represents the model behind the search form of `backend\models\TipoCurso`.
  */
 class TipoCursoSearch extends TipoCurso
 {

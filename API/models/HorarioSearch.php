@@ -4,10 +4,10 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Horario;
+use backend\models\Horario;
 
 /**
- * HorarioSearch represents the model behind the search form of `app\models\Horario`.
+ * HorarioSearch represents the model behind the search form of `backend\models\Horario`.
  */
 class HorarioSearch extends Horario
 {

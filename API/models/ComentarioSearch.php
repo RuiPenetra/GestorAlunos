@@ -4,10 +4,10 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Comentario;
+use backend\models\Comentario;
 
 /**
- * ComentarioSearch represents the model behind the search form of `app\models\Comentario`.
+ * ComentarioSearch represents the model behind the search form of `backend\models\Comentario`.
  */
 class ComentarioSearch extends Comentario
 {

@@ -4,10 +4,10 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Publicacao;
+use backend\models\Publicacao;
 
 /**
- * PublicacaoSearch represents the model behind the search form of `app\models\Publicacao`.
+ * PublicacaoSearch represents the model behind the search form of `backend\models\Publicacao`.
  */
 class PublicacaoSearch extends Publicacao
 {

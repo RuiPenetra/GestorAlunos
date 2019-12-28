@@ -4,10 +4,10 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Pagamento;
+use backend\models\Pagamento;
 
 /**
- * PagamentoSearch represents the model behind the search form of `app\models\Pagamento`.
+ * PagamentoSearch represents the model behind the search form of `backend\models\Pagamento`.
  */
 class PagamentoSearch extends Pagamento
 {

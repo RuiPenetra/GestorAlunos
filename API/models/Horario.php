@@ -11,7 +11,7 @@ use Yii;
  * @property string $nome
  * @property int $id_curso
  *
- * @property DiaSem[] $diaSems
+ * @property Aula[] $aulas
  * @property Curso $curso
  */
 class Horario extends \yii\db\ActiveRecord
@@ -52,9 +52,9 @@ class Horario extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDiaSems()
+    public function getAulas()
     {
-        return $this->hasMany(DiaSem::className(), ['id_horario' => 'id']);
+        return $this->hasMany(Aula::className(), ['horario_id' => 'id']);
     }
 
     /**

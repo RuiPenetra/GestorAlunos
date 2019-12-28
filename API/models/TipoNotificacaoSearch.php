@@ -4,10 +4,10 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\TipoNotificacao;
+use backend\models\TipoNotificacao;
 
 /**
- * TipoNotificacaoSearch represents the model behind the search form of `app\models\TipoNotificacao`.
+ * TipoNotificacaoSearch represents the model behind the search form of `backend\models\TipoNotificacao`.
  */
 class TipoNotificacaoSearch extends TipoNotificacao
 {

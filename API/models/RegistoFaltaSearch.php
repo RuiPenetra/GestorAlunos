@@ -4,10 +4,10 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\RegistoFalta;
+use backend\models\RegistoFalta;
 
 /**
- * RegistoFaltaSearch represents the model behind the search form of `app\models\RegistoFalta`.
+ * RegistoFaltaSearch represents the model behind the search form of `backend\models\RegistoFalta`.
  */
 class RegistoFaltaSearch extends RegistoFalta
 {
