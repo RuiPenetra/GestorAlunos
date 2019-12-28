@@ -51,7 +51,7 @@ import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
  */
 public class PagamentosFragment extends Fragment {
 
-    private RequestQueue mqueue;
+
     private ListView lvPagamentos;
     private ArrayList<Pagamento> listaPagamentos;
     private ListView lvListaPagamentos;
