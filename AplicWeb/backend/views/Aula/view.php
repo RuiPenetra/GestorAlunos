@@ -34,9 +34,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'inicio',
             'fim',
             'sala',
-            'id_dia',
-            'id_turno',
-            'id_professor',
+            'dia',
+            'turno.tipo',
+            'professor.perfil.nome',
         ],
     ]) ?>
 

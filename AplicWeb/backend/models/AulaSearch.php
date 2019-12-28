@@ -17,8 +17,8 @@ class AulaSearch extends Aula
     public function rules()
     {
         return [
-            [['id', 'id_dia', 'id_turno', 'id_professor'], 'integer'],
-            [['nome', 'inicio', 'fim', 'sala'], 'safe'],
+            [['id', 'id_turno', 'id_professor', 'horario_id'], 'integer'],
+            [['nome', 'inicio', 'fim', 'sala', 'dia'], 'safe'],
         ];
     }
 
@@ -61,13 +61,14 @@ class AulaSearch extends Aula
             'id' => $this->id,
             'inicio' => $this->inicio,
             'fim' => $this->fim,
-            'id_dia' => $this->id_dia,
             'id_turno' => $this->id_turno,
             'id_professor' => $this->id_professor,
+            'horario_id' => $this->horario_id,
         ]);
 
         $query->andFilterWhere(['like', 'nome', $this->nome])
-            ->andFilterWhere(['like', 'sala', $this->sala]);
+            ->andFilterWhere(['like', 'sala', $this->sala])
+            ->andFilterWhere(['like', 'dia', $this->dia]);
 
         return $dataProvider;
     }

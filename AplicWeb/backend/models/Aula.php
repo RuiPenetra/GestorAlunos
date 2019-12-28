@@ -12,13 +12,14 @@ use Yii;
  * @property string $inicio
  * @property string $fim
  * @property string $sala
- * @property int $id_dia
+ * @property string $dia
  * @property int $id_turno
  * @property int $id_professor
+ * @property int $horario_id
  *
- * @property DiaSem $dia
  * @property Turno $turno
  * @property Professor $professor
+ * @property Horario $horario
  * @property Presenca[] $presencas
  */
 class Aula extends \yii\db\ActiveRecord
@@ -37,13 +38,14 @@ class Aula extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nome', 'inicio', 'fim', 'sala', 'id_dia', 'id_turno', 'id_professor'], 'required'],
+            [['nome', 'inicio', 'fim', 'sala', 'dia', 'id_turno', 'id_professor', 'horario_id'], 'required'],
             [['inicio', 'fim'], 'safe'],
-            [['id_dia', 'id_turno', 'id_professor'], 'integer'],
+            [['id_turno', 'id_professor', 'horario_id'], 'integer'],
             [['nome', 'sala'], 'string', 'max' => 255],
-            [['id_dia'], 'exist', 'skipOnError' => true, 'targetClass' => DiaSem::className(), 'targetAttribute' => ['id_dia' => 'id']],
+            [['dia'], 'string', 'max' => 45],
             [['id_turno'], 'exist', 'skipOnError' => true, 'targetClass' => Turno::className(), 'targetAttribute' => ['id_turno' => 'id']],
-            [['id_professor'], 'exist', 'skipOnError' => true, 'targetClass' => Professor::className(), 'targetAttribute' => ['id_professor' => 'id_professor']],
+            [['id_professor'], 'exist', 'skipOnError' => true, 'targetClass' => Professor::className(), 'targetAttribute' => ['id_professor' => 'id_perfil']],
+            [['horario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Horario::className(), 'targetAttribute' => ['horario_id' => 'id']],
         ];
     }
 
@@ -58,18 +60,11 @@ class Aula extends \yii\db\ActiveRecord
             'inicio' => 'Inicio',
             'fim' => 'Fim',
             'sala' => 'Sala',
-            'id_dia' => 'Id Dia',
-            'id_turno' => 'Id Turno',
-            'id_professor' => 'Id Professor',
+            'dia' => 'Dia',
+            'id_turno' => 'Turno',
+            'id_professor' => 'Professor',
+            'horario_id' => 'Horario',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getDia()
-    {
-        return $this->hasOne(DiaSem::className(), ['id' => 'id_dia']);
     }
 
     /**
@@ -85,7 +80,15 @@ class Aula extends \yii\db\ActiveRecord
      */
     public function getProfessor()
     {
-        return $this->hasOne(Professor::className(), ['id_professor' => 'id_professor']);
+        return $this->hasOne(Professor::className(), ['id_perfil' => 'id_professor']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getHorario()
+    {
+        return $this->hasOne(Horario::className(), ['id' => 'horario_id']);
     }
 
     /**
