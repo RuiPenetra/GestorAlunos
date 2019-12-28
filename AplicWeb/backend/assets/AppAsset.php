@@ -47,14 +47,13 @@ class AppAsset extends AssetBundle
       'js/demo.js',
       'js/fastclick.js',
       'js/moment.min.js',
-      'js/morris.min.js',
+      //'js/morris.min.js',
       'js/raphael.min.js',
-      'js/dashboard.js',
-      'js/site.js',
       'js/icheck.min.js',
       'js/datepicker/datepicker.js',
       'js/pace.min.js',
-      'js/pace.min.js',
+      'js/dashboard.js',
+      'js/site.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

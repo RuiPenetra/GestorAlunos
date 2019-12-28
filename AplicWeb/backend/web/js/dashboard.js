@@ -124,7 +124,7 @@ $(function () {
     height: '250px'
   });
 
-  /* Morris.js Charts */
+  /* Morris.js Charts
   // Sales chart
   var area = new Morris.Area({
     element   : 'revenue-chart',
@@ -189,7 +189,7 @@ $(function () {
     ],
     hideHover: 'auto'
   });
-
+*/
   // Fix for charts under tabs
   $('.box ul.nav a').on('shown.bs.tab', function () {
     area.redraw();
@@ -209,7 +209,9 @@ $(function () {
 
   //Date picker
   $('#datepicker').datepicker({
-    autoclose: true
+    autoclose: true,
+    format: 'yyyy/mm/dd',
+    startDate: '-3d'
   })
 
 });

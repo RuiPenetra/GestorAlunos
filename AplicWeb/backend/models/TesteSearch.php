@@ -17,7 +17,7 @@ class TesteSearch extends Teste
     public function rules()
     {
         return [
-            [['id', 'id_disciplina'], 'integer'],
+            [['id', 'percentagem', 'id_disciplina'], 'integer'],
             [['data', 'sala', 'duracao'], 'safe'],
         ];
     }
@@ -61,6 +61,7 @@ class TesteSearch extends Teste
             'id' => $this->id,
             'data' => $this->data,
             'duracao' => $this->duracao,
+            'percentagem' => $this->percentagem,
             'id_disciplina' => $this->id_disciplina,
         ]);
 

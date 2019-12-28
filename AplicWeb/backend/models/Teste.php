@@ -11,8 +11,11 @@ use Yii;
  * @property string $data
  * @property string $sala
  * @property string $duracao
+ * @property int $percentagem
  * @property int $id_disciplina
  *
+ * @property AlunoTeste[] $alunoTestes
+ * @property Aluno[] $alunoIdPerfils
  * @property Disciplina $disciplina
  */
 class Teste extends \yii\db\ActiveRecord
@@ -31,9 +34,9 @@ class Teste extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data', 'sala', 'duracao', 'id_disciplina'], 'required'],
+            [['data', 'sala', 'duracao', 'percentagem', 'id_disciplina'], 'required'],
             [['data', 'duracao'], 'safe'],
-            [['id_disciplina'], 'integer'],
+            [['percentagem', 'id_disciplina'], 'integer'],
             [['sala'], 'string', 'max' => 255],
             [['id_disciplina'], 'exist', 'skipOnError' => true, 'targetClass' => Disciplina::className(), 'targetAttribute' => ['id_disciplina' => 'id']],
         ];
@@ -49,8 +52,25 @@ class Teste extends \yii\db\ActiveRecord
             'data' => 'Data',
             'sala' => 'Sala',
             'duracao' => 'Duracao',
-            'id_disciplina' => 'Id Disciplina',
+            'percentagem' => 'Percentagem',
+            'id_disciplina' => 'Disciplina',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAlunoTestes()
+    {
+        return $this->hasMany(AlunoTeste::className(), ['teste_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAlunoIdPerfils()
+    {
+        return $this->hasMany(Aluno::className(), ['id_perfil' => 'aluno_id_perfil'])->viaTable('aluno_teste', ['teste_id' => 'id']);
     }
 
     /**
