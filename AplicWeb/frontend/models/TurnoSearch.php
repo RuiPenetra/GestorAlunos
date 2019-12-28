@@ -4,10 +4,10 @@ namespace frontend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Turno;
+use backend\models\Turno;
 
 /**
- * TurnoSearch represents the model behind the search form of `frontend\models\Turno`.
+ * TurnoSearch represents the model behind the search form of `backend\models\Turno`.
  */
 class TurnoSearch extends Turno
 {

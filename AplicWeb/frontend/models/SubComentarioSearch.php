@@ -4,10 +4,10 @@ namespace frontend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\SubComentario;
+use backend\models\SubComentario;
 
 /**
- * SubComentarioSearch represents the model behind the search form of `frontend\models\SubComentario`.
+ * SubComentarioSearch represents the model behind the search form of `backend\models\SubComentario`.
  */
 class SubComentarioSearch extends SubComentario
 {

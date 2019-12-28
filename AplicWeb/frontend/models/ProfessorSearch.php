@@ -4,10 +4,10 @@ namespace frontend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Professor;
+use backend\models\Professor;
 
 /**
- * ProfessorSearch represents the model behind the search form of `frontend\models\Professor`.
+ * ProfessorSearch represents the model behind the search form of `backend\models\Professor`.
  */
 class ProfessorSearch extends Professor
 {
@@ -17,7 +17,7 @@ class ProfessorSearch extends Professor
     public function rules()
     {
         return [
-            [['id_professor'], 'integer'],
+            [['id_perfil'], 'integer'],
         ];
     }
 
@@ -57,7 +57,7 @@ class ProfessorSearch extends Professor
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id_professor' => $this->id_professor,
+            'id_perfil' => $this->id_perfil,
         ]);
 
         return $dataProvider;

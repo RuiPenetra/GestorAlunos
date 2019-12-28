@@ -4,10 +4,10 @@ namespace frontend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\DiretorCurso;
+use backend\models\DiretorCurso;
 
 /**
- * DiretorCursoSearch represents the model behind the search form of `frontend\models\DiretorCurso`.
+ * DiretorCursoSearch represents the model behind the search form of `backend\models\DiretorCurso`.
  */
 class DiretorCursoSearch extends DiretorCurso
 {

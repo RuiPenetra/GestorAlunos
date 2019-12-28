@@ -4,10 +4,10 @@ namespace frontend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Escola;
+use backend\models\Escola;
 
 /**
- * EscolaSearch represents the model behind the search form of `frontend\models\Escola`.
+ * EscolaSearch represents the model behind the search form of `backend\models\Escola`.
  */
 class EscolaSearch extends Escola
 {

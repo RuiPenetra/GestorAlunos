@@ -4,10 +4,10 @@ namespace frontend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Teste;
+use backend\models\Teste;
 
 /**
- * TesteSearch represents the model behind the search form of `frontend\models\Teste`.
+ * TesteSearch represents the model behind the search form of `backend\models\Teste`.
  */
 class TesteSearch extends Teste
 {
@@ -17,7 +17,7 @@ class TesteSearch extends Teste
     public function rules()
     {
         return [
-            [['id', 'id_disciplina'], 'integer'],
+            [['id', 'percentagem', 'id_disciplina'], 'integer'],
             [['data', 'sala', 'duracao'], 'safe'],
         ];
     }
@@ -61,6 +61,7 @@ class TesteSearch extends Teste
             'id' => $this->id,
             'data' => $this->data,
             'duracao' => $this->duracao,
+            'percentagem' => $this->percentagem,
             'id_disciplina' => $this->id_disciplina,
         ]);
 
