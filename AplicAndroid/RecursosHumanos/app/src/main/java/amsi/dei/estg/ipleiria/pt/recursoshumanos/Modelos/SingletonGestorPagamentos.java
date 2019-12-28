@@ -1,5 +1,20 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos;
 
+import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -9,7 +24,7 @@ public class SingletonGestorPagamentos implements Serializable {
 
     private ArrayList<Pagamento> pagamentos;
     private static SingletonGestorPagamentos INSTANCE = null;
-
+    private  RequestQueue mQueue;
     public static synchronized SingletonGestorPagamentos getInstance(){
 
         if(INSTANCE == null){
@@ -21,9 +36,9 @@ public class SingletonGestorPagamentos implements Serializable {
 
     private SingletonGestorPagamentos(){
 
-        pagamentos= new ArrayList<>();
+        pagamentos = new ArrayList<>();
 
-        gerarFakeData();
+        jsonParse();
     }
 
     public ArrayList<Pagamento> getPagamentos(){
@@ -42,43 +57,38 @@ public class SingletonGestorPagamentos implements Serializable {
         return null;
     }
 
-    private void gerarFakeData() {
+    private void jsonParse() {
 
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", false));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", false));
-        pagamentos.add(new Pagamento(85,"2003-04-03", false));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", false));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", false));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", false));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", false));
-        pagamentos.add(new Pagamento(85,"2003-04-03", false));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", false));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", false));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", false));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", false));
-        pagamentos.add(new Pagamento(85,"2003-04-03", false));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", false));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
-        pagamentos.add(new Pagamento(85,"2003-04-03", false));
-        pagamentos.add(new Pagamento(85,"2003-04-03", true));
+        String URL = "https://jsonplaceholder.typicode.com/posts";
+
+        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                URL,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try{
+                            for (int i=0; i < response.length(); i++){
+                                JSONObject posts = response.getJSONObject(i);
+
+                                int id = posts.getInt("id");
+                                String title = posts.getString("title");
+                                String body = posts.getString("body");
+
+                                pagamentos.add(new Pagamento(id, title, true));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                }
+        );
+        //mQueue.add(jsonArrayRequest);
     }
 }
