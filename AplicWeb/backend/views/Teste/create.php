@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = 'Criar';
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php $form = ActiveForm::begin(); ?>
-        <?= $form->field($model, 'data',['inputOptions' => ['id' => 'datepicker', 'class' => 'form-control']]); ?>
+        <?= $form->field($model, 'data',['inputOptions' => ['id' => 'datepicker', 'class' => 'form-control','autocomplete' => 'off']]); ?>
         <?= $form->field($model, 'sala'); ?>
         <?= $form->field($model, 'duracao', ['inputOptions' => ['type' => 'time','class' => 'form-control']]); ?>
         <?= $form->field($model, 'percentagem', ['inputOptions' => ['type' => 'number','class' => 'form-control']]); ?>
