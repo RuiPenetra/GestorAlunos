@@ -8,11 +8,10 @@ use Yii;
  * This is the model class for table "turno".
  *
  * @property int $id
- * @property int $tipo
+ * @property string $tipo
  * @property int $id_disciplina
  *
  * @property Aula[] $aulas
- * @property TipoTurno $tipo0
  * @property Disciplina $disciplina
  */
 class Turno extends \yii\db\ActiveRecord
@@ -32,8 +31,8 @@ class Turno extends \yii\db\ActiveRecord
     {
         return [
             [['tipo', 'id_disciplina'], 'required'],
-            [['tipo', 'id_disciplina'], 'integer'],
-            [['tipo'], 'exist', 'skipOnError' => true, 'targetClass' => TipoTurno::className(), 'targetAttribute' => ['tipo' => 'id']],
+            [['id_disciplina'], 'integer'],
+            [['tipo'], 'string', 'max' => 45],
             [['id_disciplina'], 'exist', 'skipOnError' => true, 'targetClass' => Disciplina::className(), 'targetAttribute' => ['id_disciplina' => 'id']],
         ];
     }
@@ -45,8 +44,9 @@ class Turno extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'tipo' => 'Tipo',
-            'id_disciplina' => 'Id Disciplina',
+            'tipo' => 'Nome',
+            'id_disciplina' => 'Disciplina',
+            'disciplina.nome' => 'Disciplina',
         ];
     }
 
@@ -56,14 +56,6 @@ class Turno extends \yii\db\ActiveRecord
     public function getAulas()
     {
         return $this->hasMany(Aula::className(), ['id_turno' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTipo0()
-    {
-        return $this->hasOne(TipoTurno::className(), ['id' => 'tipo']);
     }
 
     /**

@@ -17,7 +17,7 @@ class CursoSearch extends Curso
     public function rules()
     {
         return [
-            [['id', 'ano', 'tipo_curso', 'id_escola'], 'integer'],
+            [['id', 'ano', 'tipo_curso', 'id_escola', 'diretor_curso'], 'integer'],
             [['nome', 'abreviatura'], 'safe'],
         ];
     }
@@ -62,6 +62,7 @@ class CursoSearch extends Curso
             'ano' => $this->ano,
             'tipo_curso' => $this->tipo_curso,
             'id_escola' => $this->id_escola,
+            'diretor_curso' => $this->diretor_curso,
         ]);
 
         $query->andFilterWhere(['like', 'nome', $this->nome])
