@@ -129,7 +129,7 @@ AppAsset::register($this);
                                                         </a>
                                                     </li>
                                                     <li class="treeview">
-                                                        <a href="#"><i class="fa fa-user"></i> <span>Pessoas</span>
+                                                        <a href="#"><i class="far fa-user"></i> <span>Pessoas</span>
                                                             <span class="pull-right-container">
                                                                 <i class="fa fa-angle-left pull-right"></i>
                                                             </span>
@@ -187,6 +187,30 @@ AppAsset::register($this);
                                                             <li class="">
                                                                 <a href="<?= Url::toRoute(['horario/index']) ?>">
                                                                     <i class="fa fa-user"></i> <span>Horários</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="treeview">
+                                                        <a href="#"><i class="fa fa-bookmark"></i> <span>Inscricoes</span>
+                                                            <span class="pull-right-container">
+                                                                <i class="fa fa-angle-left pull-right"></i>
+                                                            </span>
+                                                        </a>
+                                                        <ul class="treeview-menu">
+                                                            <li class="">
+                                                                <a href="<?= Url::toRoute(['alunocur/index']) ?>">
+                                                                    <i class="fa fa-user"></i> <span>Aluno Curso</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="">
+                                                                <a href="<?= Url::toRoute(['alunodisc/index']) ?>">
+                                                                    <i class="fa fa-th"></i> <span>Aluno Disciplina</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="">
+                                                                <a href="<?= Url::toRoute(['alunoteste/index']) ?>">
+                                                                    <i class="fa fa-book"></i> <span>Aluno Teste</span>
                                                                 </a>
                                                             </li>
                                                         </ul>

@@ -7,9 +7,9 @@ use yii\data\ActiveDataProvider;
 use backend\models\DiretorCurso;
 
 /**
- * DiretorCursoSearch represents the model behind the search form of `backend\models\DiretorCurso`.
+ * DiretorcursoSearch represents the model behind the search form of `backend\models\DiretorCurso`.
  */
-class DiretorCursoSearch extends DiretorCurso
+class DiretorcursoSearch extends DiretorCurso
 {
     /**
      * {@inheritdoc}

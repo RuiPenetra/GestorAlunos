@@ -48,7 +48,7 @@ $this->title = 'Home';
       <div class="icon">
         <i class="fa fa-th"></i>
       </div>
-      <a href="<?= Url::toRoute(['disciplina/index']) ?>" class="small-box-footer">Mais Informação <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="<?= Url::toRoute(['alunodisciplina/index']) ?>" class="small-box-footer">Mais Informação <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
