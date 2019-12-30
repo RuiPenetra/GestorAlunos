@@ -1,6 +1,7 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Adaptadores;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +19,14 @@ import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.HorarioBottomSheetDialog;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Horario;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
 
-
 public class ListaHorarioAdaptador extends BaseAdapter {
 
     private Context context;
     private LayoutInflater inflater;
     private ArrayList<Horario> horarios;
+    private String valor;
+    private Integer id;
+
 
     public ListaHorarioAdaptador(Context context, ArrayList<Horario> horarios){
 
@@ -93,7 +96,7 @@ public class ListaHorarioAdaptador extends BaseAdapter {
             viewHolder = new ViewHolderLista(convertView);
             convertView.setTag(viewHolder);
         }
-        
+
         viewHolder.update(horarios.get(position));
 
         return convertView;
@@ -145,7 +148,16 @@ public class ListaHorarioAdaptador extends BaseAdapter {
 
                     FragmentManager fm = ((FragmentActivity)context).getSupportFragmentManager();
 
-                    bt.show(fm,"" + horario.getId());
+                    Bundle teste= new Bundle();
+                    valor = String.valueOf(horario.getId());
+
+                    teste.putString("id",valor);
+
+                    bt.setArguments(teste);
+
+                    Toast.makeText(context, ""+id, Toast.LENGTH_SHORT).show();
+                    bt.show(fm,"");
+
 
                 }
             });

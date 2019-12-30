@@ -110,7 +110,7 @@
     <string name="item_hora_fim">Fim</string>
     <string name="item_uc">Unidade Curricular</string>
     <string name="item_sala">Sala</string>
-    <string name="tv_hora_inicio">Inicio</string>
-    <string name="tv_hora_fim">Fim</string>
+    <string name="tv_hora_inicio">Entrada</string>
+    <string name="tv_hora_fim">Saida</string>
     <string name="tv_professor">Professor</string>
 </resources>

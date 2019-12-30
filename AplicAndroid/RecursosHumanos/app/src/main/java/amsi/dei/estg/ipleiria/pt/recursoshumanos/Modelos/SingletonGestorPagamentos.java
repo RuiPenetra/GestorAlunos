@@ -1,6 +1,8 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -18,32 +20,88 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Adaptadores.ListaPagamentoAdaptador;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.PagamentosFragment;
 
 public class SingletonGestorPagamentos implements Serializable {
 
     private ArrayList<Pagamento> pagamentos;
     private static SingletonGestorPagamentos INSTANCE = null;
     private  RequestQueue mQueue;
-    public static synchronized SingletonGestorPagamentos getInstance(){
+    private Context mContext;
+    private JsonArrayRequest jsonArrayRequest;
+    Pagamento p;
+
+    public static synchronized SingletonGestorPagamentos getInstance(Context context){
 
         if(INSTANCE == null){
 
-            INSTANCE = new SingletonGestorPagamentos();
+            INSTANCE = new SingletonGestorPagamentos(context.getApplicationContext());
         }
         return INSTANCE;
     }
 
-    private SingletonGestorPagamentos(){
+    private SingletonGestorPagamentos(Context context){
 
+        mContext=context;
         pagamentos = new ArrayList<>();
 
-        jsonParse();
+
+        mQueue = Volley.newRequestQueue(mContext);
+
+
+//                String URL = "http://localhost/GestorAlunos/API/web/perfil";
+        String URL = "https://jsonplaceholder.typicode.com/posts";
+
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                URL,
+                null,
+                new Response.Listener<JSONArray>() {
+
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try{
+
+                            pagamentos = new ArrayList<>(response.length());
+
+                            for (int i=0; i < response.length(); i++){
+                                JSONObject posts = response.getJSONObject(i);
+
+                                int id = posts.getInt("id");
+                                String title = posts.getString("title");
+                                String body = posts.getString("body");
+
+                                Pagamento pp = new Pagamento(id,title,body);
+
+                                pagamentos.add(pp);
+
+                                //Log.i("-->","" + posts.getInt("id"));
+
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i("-->","erro");
+                    }
+                }
+        );
+        mQueue.add(jsonArrayRequest);
+
     }
 
     public ArrayList<Pagamento> getPagamentos(){
 
-        return pagamentos;
+        return getatualizar();
     }
 
     public Pagamento getPagamento(int idPagamento){
@@ -60,23 +118,29 @@ public class SingletonGestorPagamentos implements Serializable {
     private void jsonParse() {
 
         String URL = "https://jsonplaceholder.typicode.com/posts";
+        Log.i("->" , "1");
 
-        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+        jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
                 URL,
                 null,
                 new Response.Listener<JSONArray>() {
+
                     @Override
                     public void onResponse(JSONArray response) {
                         try{
                             for (int i=0; i < response.length(); i++){
                                 JSONObject posts = response.getJSONObject(i);
 
-                                int id = posts.getInt("id");
-                                String title = posts.getString("title");
-                                String body = posts.getString("body");
+//                                int id = posts.getInt("id");
+                               /* String title = posts.getString("title");
+                                String body = posts.getString("body");*/
 
-                                pagamentos.add(new Pagamento(id, title, true));
+                                Log.i("->" , "2");
+                                p.setId(posts.getInt("id"));
+                                p.setValor(posts.getString("title"));
+                                p.setStatus( posts.getString("body"));
+                                //pagamentos.add(new Pagamento(id, title, true));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -88,7 +152,17 @@ public class SingletonGestorPagamentos implements Serializable {
                     public void onErrorResponse(VolleyError error) {
                     }
                 }
+
         );
+        Log.i("->" , "3");
         //mQueue.add(jsonArrayRequest);
     }
+
+    public  ArrayList<Pagamento> getatualizar(){
+
+        return pagamentos;
+    }
+
+
+
 }

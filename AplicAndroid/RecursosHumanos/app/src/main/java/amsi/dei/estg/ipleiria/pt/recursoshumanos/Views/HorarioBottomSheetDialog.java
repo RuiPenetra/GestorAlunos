@@ -1,5 +1,6 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Views;
 
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,19 +43,28 @@ public class HorarioBottomSheetDialog extends BottomSheetDialogFragment {
         tv_hora_inicio = v.findViewById(R.id.tv_hora_inicio);
         tv_hora_fim = v.findViewById(R.id.tv_hora_fim);
         tv_sala = v.findViewById(R.id.tv_sala);
-        tv_uc = v.findViewById(R.id.tv_item_uc);
+        tv_uc = v.findViewById(R.id.tv_uc);
         tv_professor = v.findViewById(R.id.tv_professor);
 
-/*
-        *//*RECEBE O OBJETO DO RESULTADO DA PESQUISA FEITA NO ARRAY*//*
-        r= SingletonGestorHorarios.getInstance().getHorario(ValorRecebido);*/
+
+        Bundle dd= getArguments();
+
+        ValorRecebido=dd.getString("id");
+
+        id= Integer.parseInt(ValorRecebido);
+
+        //Toast.makeText(getContext(), "" + id, Toast.LENGTH_SHORT).show();
 
 
-/*        tv_hora_inicio.setText(r.getHora_inicio());
+        /*RECEBE O OBJETO DO RESULTADO DA PESQUISA FEITA NO ARRAY*/
+        r= SingletonGestorHorarios.getInstance().getHorario(id);
+
+
+        tv_hora_inicio.setText(r.getHora_inicio());
         tv_hora_fim.setText(r.getHora_fim());
         tv_sala.setText(r.getSala());
-        tv_uc.setText(r.getUnidade_curricular());*/
-        //tv_professor.setText(r.getHora_inicio());
+        tv_uc.setText(r.getUnidade_curricular());
+        tv_professor.setText(r.getProfessora());
 
         return v;
 

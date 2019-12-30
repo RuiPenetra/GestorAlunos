@@ -87,12 +87,16 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <ImageView
+        <TextView android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_status"/>
+        <!--<ImageView
             android:id="@+id/img_item_status"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_gravity="center"
-            android:src="@drawable/img_divida"/>
+            android:src="@drawable/img_divida"/>-->
 
     </LinearLayout>
 

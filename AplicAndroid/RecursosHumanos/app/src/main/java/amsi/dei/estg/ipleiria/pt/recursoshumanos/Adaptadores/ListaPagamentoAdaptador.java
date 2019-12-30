@@ -76,7 +76,7 @@ public class ListaPagamentoAdaptador extends BaseAdapter {
             viewHolder = new ViewHolderLista(convertView);
             convertView.setTag(viewHolder);
         }
-        
+
         viewHolder.update(pagamentos.get(position));
 
 
@@ -86,28 +86,28 @@ public class ListaPagamentoAdaptador extends BaseAdapter {
 
     public class ViewHolderLista{
 
-        private CheckBox status;
+        //private CheckBox status;
         private TextView valor;
-        private TextView dataLimite;
-        private ImageView conf_status;
+        //private TextView dataLimite;
+        private TextView status;
 
         public ViewHolderLista(View convertView){
-            status = convertView.findViewById(R.id.cb_status);
+            //status = convertView.findViewById(R.id.cb_status);
             valor = convertView.findViewById(R.id.tv_item_valor);
-            dataLimite = convertView.findViewById(R.id.tv_item_dataLimite);
-            conf_status = convertView.findViewById(R.id.img_item_status);
+            //dataLimite = convertView.findViewById(R.id.tv_item_dataLimite);
+            status = convertView.findViewById(R.id.tv_status);
 
         }
 
 
         public void update(Pagamento pagamento){
 
-            status.isChecked();
-            valor.setText(pagamento.getValor() + "");
+            //status.isChecked();
+            valor.setText(pagamento.getValor().toString());
+            status.setText(pagamento.getStatus().toString());
 
-            dataLimite.setText(pagamento.getDataLimit().toString());
 
-            if(pagamento.getStatus()== false){
+      /*      if(pagamento.getStatus()== false){
 
                 conf_status.setImageResource(R.drawable.img_divida);
 
@@ -115,7 +115,7 @@ public class ListaPagamentoAdaptador extends BaseAdapter {
 
                 conf_status.setImageResource(R.drawable.img_pago);
 
-            }
+            }*/
 
         }
 

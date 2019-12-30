@@ -10,18 +10,20 @@ public class Horario implements Serializable {
     private String hora_fim;
     private String unidade_curricular;
     private String sala;
+    private String professora;
     private static int autoIncrementID = 1;
 
 
 
     // Construtor
-    public Horario(Integer id,String hora_inicio, String hora_fim, String unidade_curricular, String sala){
+    public Horario(Integer id,String hora_inicio, String hora_fim, String unidade_curricular, String sala, String professora){
 
         this.id = id;
         this.hora_inicio = hora_inicio;
         this.hora_fim = hora_fim;
         this.unidade_curricular = unidade_curricular;
         this.sala = sala;
+        this.professora=professora;
 
     }
 
@@ -44,6 +46,9 @@ public class Horario implements Serializable {
         return sala;
     }
 
+    public String getProfessora() {
+        return professora;
+    }
 
     public void setHora_inicio(String hora_inicio) {
         this.hora_inicio = hora_inicio;

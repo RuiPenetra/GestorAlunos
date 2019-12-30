@@ -11,140 +11,142 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+        <LinearLayout android:id="@+id/container_horas"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="30dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="13dp"
+            android:background="@drawable/ic_content">
 
-            <LinearLayout android:id="@+id/container_horas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                android:background="@drawable/ic_content">
+            <LinearLayout android:id="@+id/container_hora_inicio"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:orientation="vertical">
 
-                <LinearLayout android:id="@+id/container_hora_inicio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="@string/tv_hora_inicio"
-                            android:textAlignment="center"
-                            android:textSize="30sp"
-                            android:textStyle="bold" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <TextView android:id="@+id/tv_hora_inicio"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="@string/tv_hora_inicio"
-                            android:gravity="center_vertical"
-                            android:textAlignment="center"
-                            android:textSize="25sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
+                        android:text="@string/tv_hora_inicio"
+                        android:textAlignment="center"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
 
-                <LinearLayout android:id="@+id/container_img"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <LinearLayout
+                    <TextView android:id="@+id/tv_hora_inicio"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
-                            android:src="@drawable/ic_seta"/>
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <LinearLayout android:id="@+id/container_hora_fim"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="@string/tv_hora_inicio"
-                            android:textAlignment="center"
-                            android:textSize="30sp"
-                            android:textStyle="bold" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView android:id="@+id/tv_hora_fim"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="@string/tv_hora_inicio"
-                            android:gravity="center_vertical"
-                            android:textAlignment="center"
-                            android:textSize="25sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
+                        android:layout_height="match_parent"
+                        android:text="@string/tv_hora_inicio"
+                        android:gravity="center_vertical"
+                        android:textAlignment="center"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
 
             </LinearLayout>
 
+            <LinearLayout android:id="@+id/container_img"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:src="@drawable/ic_seta"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/container_hora_fim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/tv_hora_fim"
+                        android:textAlignment="center"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView android:id="@+id/tv_hora_fim"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/tv_hora_inicio"
+                        android:gravity="center_vertical"
+                        android:textAlignment="center"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="30dp"
+            android:orientation="vertical">
+
+
             <LinearLayout android:id="@+id/container_sala"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:orientation="horizontal"
-                android:layout_marginTop="30dp">
+                android:background="@drawable/ic_content">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -152,10 +154,10 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="50dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_sala"
-                        android:layout_marginRight="10dp" />
+                        android:padding="8dp"
+                        android:src="@drawable/ic_sala" />
                 </LinearLayout>
 
                 <TextView android:id="@+id/tv_sala"
@@ -171,6 +173,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:background="@drawable/ic_content"
+                android:gravity="center"
                 android:layout_marginTop="20dp">
 
                 <LinearLayout
@@ -179,15 +183,15 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/ic_uc"
-                        android:layout_marginRight="10dp"/>
+                        android:layout_width="55dp"
+                        android:layout_height="match_parent"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_uc" />
                 </LinearLayout>
 
                 <TextView android:id="@+id/tv_uc"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="@string/tv_uc"
                     android:textSize="20sp" />
@@ -196,8 +200,9 @@
 
             <LinearLayout android:id="@+id/container_professor"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:orientation="horizontal"
+                android:background="@drawable/ic_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="50dp">
 
@@ -207,10 +212,10 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/ic_graduate"
-                        android:layout_marginRight="10dp"/>
+                        android:layout_width="55dp"
+                        android:layout_height="match_parent"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_graduate" />
                 </LinearLayout>
 
                 <TextView android:id="@+id/tv_professor"

@@ -53,7 +53,8 @@ public class PagamentosFragment extends Fragment {
 
 
     private ListView lvPagamentos;
-    private ArrayList<Pagamento> listaPagamentos;
+    private ArrayList<Pagamento> listarecebida;
+    private ArrayList<Pagamento> listaatualizada;
     private ListView lvListaPagamentos;
     private SearchView searchView;
     private CheckBox confirmar;
@@ -72,13 +73,71 @@ public class PagamentosFragment extends Fragment {
         if (isLigadoInternet()){
             mQueue = Volley.newRequestQueue(getContext());
             //Vai buscar os pagamentos ao SIngleton
-            listaPagamentos= SingletonGestorPagamentos.getInstance().getPagamentos();
+
+            Log.i( "-->","teste" );
+            listarecebida= SingletonGestorPagamentos.getInstance(getContext()).getPagamentos();
+            listaatualizada= SingletonGestorPagamentos.getInstance(getContext()).getatualizar();
+
 
             lvListaPagamentos = rootView.findViewById(R.id.lvPagamentos);
-            lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaPagamentos));
+            lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaatualizada));
 
-            confirmar = (CheckBox) rootView.findViewById(R.id.cb_status);
-            imV_status= (ImageView) rootView.findViewById(R.id.img_item_status);
+           /* if (isLigadoInternet()){
+//                String URL = "http://localhost/GestorAlunos/API/web/perfil";
+                String URL = "https://jsonplaceholder.typicode.com/posts";
+
+
+                JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                        Request.Method.GET,
+                        URL,
+                        null,
+                        new Response.Listener<JSONArray>() {
+
+                            @Override
+                            public void onResponse(JSONArray response) {
+                                try{
+                                    for (int i=0; i < response.length(); i++){
+                                        JSONObject posts = response.getJSONObject(i);
+
+//                                int id = posts.getInt("id");
+                                *//*String title = posts.getString("title");
+                                String body = posts.getString("body");*//*
+
+                                        Log.i("-->" , "" + posts.getInt("id"));
+                                        Log.i("-->","" + posts.getString("title"));
+                                        Log.i("-->","" + posts.getString("body"));
+                                        //pagamentos.add(new Pagamento(posts.getInt("id"), posts.getString("title"),posts.getString("body")));
+                              *//*  p.setId(posts.getInt("id"));
+                                p.setValor(posts.getString("title"));
+                                p.setStatus( posts.getString("body"));*//*
+                                        //pagamentos.add(new Pagamento(id, title, true));
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                            }
+                        }
+                           *//* public void onResponse(JSONArray response) {
+                                Toast.makeText(getContext(), "Array com " + response.length() + " elementos", Toast.LENGTH_SHORT).show();
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getContext(), "Erro ao fazer o pedido JSonArray!!", Toast.LENGTH_SHORT).show();
+                            }
+                        }*//*
+                );
+                mQueue.add(jsonArrayRequest);
+            }
+            else{
+                Toast.makeText(getContext(), "Erro de ligação! Não está ligado à internet", Toast.LENGTH_SHORT).show();
+            }*/
         }
         else{
             Toast.makeText(getContext(), "Erro de ligação! Não está ligado à internet", Toast.LENGTH_SHORT).show();
