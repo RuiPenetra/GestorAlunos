@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -149,8 +150,9 @@ public class ListaHorarioAdaptador extends BaseAdapter {
                     FragmentManager fm = ((FragmentActivity)context).getSupportFragmentManager();
 
                     Bundle teste= new Bundle();
-                    valor = String.valueOf(horario.getId());
 
+                    valor = String.valueOf(horario.getId());
+                    Toast.makeText(context, "" + valor, Toast.LENGTH_SHORT).show();
                     teste.putString("id",valor);
 
                     bt.setArguments(teste);

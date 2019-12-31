@@ -2,47 +2,32 @@ package amsi.dei.estg.ipleiria.pt.recursoshumanos.Views;
 
 
 import android.content.Context;
-import android.content.Intent;
+import android.content.IntentSender;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.provider.DocumentsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.List;
 
-import amsi.dei.estg.ipleiria.pt.recursoshumanos.Adaptadores.ListaHorarioAdaptador;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Adaptadores.ListaPagamentoAdaptador;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Pagamento;
-import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorHorarios;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorPagamentos;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
 
@@ -62,82 +47,34 @@ public class PagamentosFragment extends Fragment {
     private ListaPagamentoAdaptador adaptador;
     private  RequestQueue mQueue;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        SingletonGestorPagamentos.getInstance(getContext());
+
+    }
+
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
 
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_pagamentos, container, false);
+        lvListaPagamentos = rootView.findViewById(R.id.lvPagamentos);
 
         // // <----- ListView ----->
         if (isLigadoInternet()){
-            mQueue = Volley.newRequestQueue(getContext());
             //Vai buscar os pagamentos ao SIngleton
 
+
             Log.i( "-->","teste" );
-            listarecebida= SingletonGestorPagamentos.getInstance(getContext()).getPagamentos();
-            listaatualizada= SingletonGestorPagamentos.getInstance(getContext()).getatualizar();
 
-
-            lvListaPagamentos = rootView.findViewById(R.id.lvPagamentos);
+            listaatualizada= SingletonGestorPagamentos.getInstance(getContext()).getPagamentos();
             lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaatualizada));
 
-           /* if (isLigadoInternet()){
-//                String URL = "http://localhost/GestorAlunos/API/web/perfil";
-                String URL = "https://jsonplaceholder.typicode.com/posts";
+            onDestroy();
 
-
-                JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                        Request.Method.GET,
-                        URL,
-                        null,
-                        new Response.Listener<JSONArray>() {
-
-                            @Override
-                            public void onResponse(JSONArray response) {
-                                try{
-                                    for (int i=0; i < response.length(); i++){
-                                        JSONObject posts = response.getJSONObject(i);
-
-//                                int id = posts.getInt("id");
-                                *//*String title = posts.getString("title");
-                                String body = posts.getString("body");*//*
-
-                                        Log.i("-->" , "" + posts.getInt("id"));
-                                        Log.i("-->","" + posts.getString("title"));
-                                        Log.i("-->","" + posts.getString("body"));
-                                        //pagamentos.add(new Pagamento(posts.getInt("id"), posts.getString("title"),posts.getString("body")));
-                              *//*  p.setId(posts.getInt("id"));
-                                p.setValor(posts.getString("title"));
-                                p.setStatus( posts.getString("body"));*//*
-                                        //pagamentos.add(new Pagamento(id, title, true));
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                            }
-                        }
-                           *//* public void onResponse(JSONArray response) {
-                                Toast.makeText(getContext(), "Array com " + response.length() + " elementos", Toast.LENGTH_SHORT).show();
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getContext(), "Erro ao fazer o pedido JSonArray!!", Toast.LENGTH_SHORT).show();
-                            }
-                        }*//*
-                );
-                mQueue.add(jsonArrayRequest);
-            }
-            else{
-                Toast.makeText(getContext(), "Erro de ligação! Não está ligado à internet", Toast.LENGTH_SHORT).show();
-            }*/
         }
         else{
             Toast.makeText(getContext(), "Erro de ligação! Não está ligado à internet", Toast.LENGTH_SHORT).show();
@@ -147,6 +84,10 @@ public class PagamentosFragment extends Fragment {
     }
 
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
 
     private boolean isLigadoInternet(){
         ConnectivityManager cm = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -158,7 +99,13 @@ public class PagamentosFragment extends Fragment {
         return isLigado;
     }
 
-/*public void onClickJSonRequest(View view) {
+   public void Atualizar(){
+
+       listaatualizada= SingletonGestorPagamentos.getInstance(getContext()).getPagamentos();
+       lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaatualizada));
+   }
+
+    /*public void onClickJSonRequest(View view) {
         if (isLigadoInternet()){
             String URL = "http://localhost/GestorAlunos/API/web/perfil";
 

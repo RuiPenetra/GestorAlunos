@@ -1,10 +1,7 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos;
 
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -19,10 +16,6 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import amsi.dei.estg.ipleiria.pt.recursoshumanos.Adaptadores.ListaPagamentoAdaptador;
-import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
-import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.PagamentosFragment;
 
 public class SingletonGestorPagamentos implements Serializable {
 
@@ -45,13 +38,10 @@ public class SingletonGestorPagamentos implements Serializable {
     private SingletonGestorPagamentos(Context context){
 
         mContext=context;
-        pagamentos = new ArrayList<>();
-
-
+        pagamentos= new ArrayList<>();
         mQueue = Volley.newRequestQueue(mContext);
 
-
-//                String URL = "http://localhost/GestorAlunos/API/web/perfil";
+//      String URL = "http://localhost/GestorAlunos/API/web/perfil";
         String URL = "https://jsonplaceholder.typicode.com/posts";
 
 
@@ -82,7 +72,6 @@ public class SingletonGestorPagamentos implements Serializable {
 
                             }
 
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -101,7 +90,12 @@ public class SingletonGestorPagamentos implements Serializable {
 
     public ArrayList<Pagamento> getPagamentos(){
 
-        return getatualizar();
+        return pagamentos;
+    }
+
+    public ArrayList<Pagamento> getAtualizar(){
+
+        return pagamentos;
     }
 
     public Pagamento getPagamento(int idPagamento){
@@ -158,7 +152,8 @@ public class SingletonGestorPagamentos implements Serializable {
         //mQueue.add(jsonArrayRequest);
     }
 
-    public  ArrayList<Pagamento> getatualizar(){
+    private ArrayList<Pagamento> buscardados(){
+
 
         return pagamentos;
     }

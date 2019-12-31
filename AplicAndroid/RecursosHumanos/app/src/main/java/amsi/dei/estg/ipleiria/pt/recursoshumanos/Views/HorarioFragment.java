@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.sql.Array;
 import java.util.ArrayList;
 
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Adaptadores.ListaHorarioAdaptador;
@@ -37,6 +38,8 @@ public class HorarioFragment extends Fragment {
     private ListView lvListaHorario;
     private ListaHorarioAdaptador adaptador;
     private Horario r;
+    private ArrayList<Horario> listaEscolhida;
+    private ArrayAdapter adapter;
     private Integer ValorRecebido;
 
     public HorarioFragment() {
@@ -55,29 +58,30 @@ public class HorarioFragment extends Fragment {
 
         // // <----- ListView ----->
 
-        //Vai buscar os pagamentos ao SIngleton
-        listaHorarios= SingletonGestorHorarios.getInstance().getHorarios();
+
         lvListaHorario = rootView.findViewById(R.id.lvHorarios);
-        lvListaHorario.setAdapter(new ListaHorarioAdaptador(getContext(), listaHorarios));
 
 
-        lvListaHorario.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), "ola", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-        ArrayAdapter adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.dias_da_semana));
+        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.dias_da_semana));
         adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
 
         Spinner spinner = rootView.findViewById(R.id.spinner);
         spinner.setAdapter(adapter);
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(),parent.getItemAtPosition(position).toString(),Toast.LENGTH_LONG).show();
+
+                String selectedItemText= (String) adapter.getItem(position);
+
+                if(selectedItemText != "Nenhum")
+                {
+                    listaEscolhida = SingletonGestorHorarios.getInstance(getContext()).getHorarioSpinner(selectedItemText);
+                    lvListaHorario.setAdapter(new ListaHorarioAdaptador(getContext(), listaEscolhida));
+                    lvListaHorario.deferNotifyDataSetChanged();
+
+                }
+
             }
 
             @Override

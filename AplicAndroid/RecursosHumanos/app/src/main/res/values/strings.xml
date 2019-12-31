@@ -95,6 +95,7 @@
     //Fragment Horario
 
     <string-array name="dias_da_semana">
+        <item>Nenhum</item>
         <item>Segunda-Feira</item>
         <item>Terça-Feira</item>
         <item>Quarta-Feira</item>
