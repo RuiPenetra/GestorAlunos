@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\PagamentoSearch */
+/* @var $searchModel frontend\models\PagamentoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Pagamentos';
@@ -15,22 +15,24 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Pagamento', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Criar Pagamento', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'valor',
             'data_lim',
             'status',
-            'id_aluno',
+            //'id_aluno',
+            [
+                'attribute' => 'id_aluno',
+                'value' => 'aluno.perfil.nome',
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

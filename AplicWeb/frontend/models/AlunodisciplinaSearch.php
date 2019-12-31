@@ -1,15 +1,15 @@
 <?php
 
-namespace backend\models;
+namespace frontend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Pagamento;
+use frontend\models\AlunoDisciplina;
 
 /**
- * PagamentoSearch represents the model behind the search form of `backend\models\Pagamento`.
+ * AlunodisciplinaSearch represents the model behind the search form of `frontend\models\AlunoDisciplina`.
  */
-class PagamentoSearch extends Pagamento
+class AlunodisciplinaSearch extends AlunoDisciplina
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,7 @@ class PagamentoSearch extends Pagamento
     public function rules()
     {
         return [
-            [['id', 'status', 'id_aluno'], 'integer'],
-            [['valor'], 'number'],
-            [['data_lim'], 'safe'],
+            [['aluno_id_perfil', 'disciplina_id', 'nota'], 'integer'],
         ];
     }
 
@@ -41,7 +39,7 @@ class PagamentoSearch extends Pagamento
      */
     public function search($params)
     {
-        $query = Pagamento::find();
+        $query = AlunoDisciplina::find();
 
         // add conditions that should always apply here
 
@@ -59,11 +57,9 @@ class PagamentoSearch extends Pagamento
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'valor' => $this->valor,
-            'data_lim' => $this->data_lim,
-            'status' => $this->status,
-            'id_aluno' => $this->id_aluno,
+            'aluno_id_perfil' => $this->aluno_id_perfil,
+            'disciplina_id' => $this->disciplina_id,
+            'nota' => $this->nota,
         ]);
 
         return $dataProvider;

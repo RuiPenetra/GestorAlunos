@@ -4,10 +4,10 @@ namespace frontend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Pagamento;
+use frontend\models\Pagamento;
 
 /**
- * PagamentoSearch represents the model behind the search form of `backend\models\Pagamento`.
+ * PagamentoSearch represents the model behind the search form of `frontend\models\Pagamento`.
  */
 class PagamentoSearch extends Pagamento
 {
@@ -17,7 +17,8 @@ class PagamentoSearch extends Pagamento
     public function rules()
     {
         return [
-            [['id', 'valor', 'id_perfil'], 'integer'],
+            [['id', 'status', 'id_aluno'], 'integer'],
+            [['valor'], 'number'],
             [['data_lim'], 'safe'],
         ];
     }
@@ -61,7 +62,8 @@ class PagamentoSearch extends Pagamento
             'id' => $this->id,
             'valor' => $this->valor,
             'data_lim' => $this->data_lim,
-            'id_perfil' => $this->id_perfil,
+            'status' => $this->status,
+            'id_aluno' => $this->id_aluno,
         ]);
 
         return $dataProvider;

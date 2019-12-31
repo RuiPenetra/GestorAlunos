@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
 use frontend\models\AlunoDisciplina;
+use frontend\models\Disciplina;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\AlunodisciplinaSearch */
@@ -30,8 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="box-body">
       <div class="row">
         <?php
-          $disciplinas = AlunoDisciplina::find()->where(['aluno_id_perfil' => \Yii::$app->user->identity->id])->all();
-          foreach ($disciplinas as $disciplina){
+          $id_user = \Yii::$app->user->identity->id;
+          $alunodisciplinas = AlunoDisciplina::find()->where(['aluno_id_perfil' => $id_user])->all();
+          foreach ($alunodisciplinas as $alunodisciplina){
+
+            $disciplinas = Disciplina::find()->where(['id' => $alunodisciplina->disciplina_id])->all();
+            foreach ($disciplinas as $disciplina){
+              if ($disciplina->semestre == 1) {
         ?>
           <div class="col-lg-3 col-xs-6">
             <!-- small box -->
@@ -43,6 +49,8 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
           </div>
         <?php
+              }
+            }
           }
          ?>
       </div>
@@ -63,18 +71,26 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="box-body">
       <div class="row">
         <?php
-          foreach ($disciplinas as $disciplina){
+          $id_user = \Yii::$app->user->identity->id;
+          $alunodisciplinas = AlunoDisciplina::find()->where(['aluno_id_perfil' => $id_user])->all();
+          foreach ($alunodisciplinas as $alunodisciplina){
+
+            $disciplinas = Disciplina::find()->where(['id' => $alunodisciplina->disciplina_id])->all();
+            foreach ($disciplinas as $disciplina){
+              if ($disciplina->semestre == 2) {
         ?>
           <div class="col-lg-3 col-xs-6">
             <!-- small box -->
-            <div class="small-box bg-red">
+            <div class="small-box bg-blue">
               <div class="inner">
-                <p></p>
+                <p><?= $disciplina->nome ?></p>
               </div>
               <a href="<?= Url::toRoute(['disciplina/view', 'id' => $disciplina->id]) ?>" class="small-box-footer">Mais Informação <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
         <?php
+              }
+            }
           }
          ?>
       </div>

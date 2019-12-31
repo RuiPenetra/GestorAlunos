@@ -2,6 +2,7 @@
 /* @var $this yii\web\View<a href="<?= Url::toRoute('disciplina/index') ?>">Disciplinas</a> */
 
 use yii\helpers\Url;
+use frontend\models\Pagamento;
 
 $this->title = 'Home';
 ?>
@@ -28,7 +29,7 @@ $this->title = 'Home';
       <div class="inner">
         <h3>5</h3>
 
-        <p>Testes</p>
+        <p>Eventos</p>
       </div>
       <div class="icon">
         <i class="fa fa-calendar"></i>
@@ -85,42 +86,37 @@ $this->title = 'Home';
       <table class="table no-margin">
         <thead>
           <tr>
-            <th>#</th>
+            <th>Data Limite</th>
             <th>Valor</th>
             <th>Estado</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>85€</td>
-            <td><span class="label label-success">Pago</span></td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>85€</td>
-            <td><span class="label label-success">Pago</span></td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>85€</td>
-            <td><span class="label label-warning">Por pagar</span></td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>85€</td>
-            <td><span class="label label-warning">Por pagar</span></td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>85€</td>
-            <td><span class="label label-danger">Em dívida</span></td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>85€</td>
-            <td><span class="label label-danger">Em dívida</span></td>
-          </tr>
+        <?php
+          $id_user = \Yii::$app->user->identity->id;
+          $pagamentos = Pagamento::find()->orderBy(['data_lim' => SORT_ASC])->where(['id_aluno' => $id_user])->all();
+          foreach ($pagamentos as $pagamento):
+        ?>
+              <tr>
+                <td><?= $pagamento->data_lim ?></td>
+                <td><?= $pagamento->valor ?>€</td>
+                <?php
+                  if ($pagamento->status === 1) {
+                   echo '<td><span class="label label-success" title="Significa que o montante está pago!">Pago</span></td>';
+                  }
+                  else {
+                    if ($pagamento->data_lim < date("Y-m-d")) {
+                      echo '<td><span class="label label-danger" title="O montante ainda não está pago, mas ainda não passou a data limite!">Em dívida</span></td>';
+                    }
+                    else {
+                      echo '<td><span class="label label-warning" title="O montante ainda não está pago e já passou a data limite!">Por pagar</span></td>';
+                    }
+                  }
+                 ?>
+              </tr>
+        <?php
+          endforeach;
+        ?>
         </tbody>
       </table>
     </div>
@@ -128,7 +124,7 @@ $this->title = 'Home';
   </div>
   <!-- /.box-body -->
   <div class="box-footer clearfix">
-    <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">Ver todos</a>
+    <a href="<?= Url::toRoute(['pagamento/index']) ?>" class="btn btn-sm btn-default btn-flat pull-right">Ver todos</a>
   </div>
   <!-- /.box-footer -->
 </div>
