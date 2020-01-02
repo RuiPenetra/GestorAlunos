@@ -10,7 +10,7 @@ $this->title = 'Home';
         <!-- small box -->
         <div class="small-box bg-aqua">
             <div class="inner">
-                <h3>105</h3>
+                <h3><?= $alunos ?></h3>
 
                 <p>Alunos</p>
             </div>
@@ -25,12 +25,12 @@ $this->title = 'Home';
         <!-- small box -->
         <div class="small-box bg-green">
             <div class="inner">
-                <h3>50<sup style="font-size: 20px">%</sup></h3>
+                <h3><?= $escolas ?></h3>
 
-                <p>Horas Semanais</p>
+                <p>Escolas</p>
             </div>
             <div class="icon">
-                <i class="fa fa-calendar"></i>
+                <i class="fa fa-home"></i>
             </div>
             <a href="#" class="small-box-footer">Mais Informação <i class="fa fa-arrow-circle-right"></i></a>
         </div>
@@ -40,7 +40,7 @@ $this->title = 'Home';
         <!-- small box -->
         <div class="small-box bg-yellow">
             <div class="inner">
-                <h3>2</h3>
+                <h3><?= $cursos ?></h3>
 
                 <p>Cursos</p>
             </div>
@@ -55,7 +55,7 @@ $this->title = 'Home';
         <!-- small box -->
         <div class="small-box bg-red">
             <div class="inner">
-                <h3>3</h3>
+                <h3><?= $disciplinas ?></h3>
 
                 <p>Disciplinas</p>
             </div>

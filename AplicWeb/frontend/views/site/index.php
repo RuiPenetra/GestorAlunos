@@ -2,7 +2,6 @@
 /* @var $this yii\web\View<a href="<?= Url::toRoute('disciplina/index') ?>">Disciplinas</a> */
 
 use yii\helpers\Url;
-use frontend\models\Pagamento;
 
 $this->title = 'Home';
 ?>
@@ -27,14 +26,14 @@ $this->title = 'Home';
     <!-- small box -->
     <div class="small-box bg-green">
       <div class="inner">
-        <h3>5</h3>
+        <h3><?= $testes ?></h3>
 
         <p>Eventos</p>
       </div>
       <div class="icon">
         <i class="fa fa-calendar"></i>
       </div>
-      <a href="#" class="small-box-footer">Mais Informação <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="<?= Url::toRoute(['teste/index']) ?>" class="small-box-footer">Mais Informação <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
@@ -42,7 +41,7 @@ $this->title = 'Home';
     <!-- small box -->
     <div class="small-box bg-yellow">
       <div class="inner">
-        <h3>6</h3>
+        <h3><?= $disciplinas ?></h3>
 
         <p>Disciplinas</p>
       </div>
@@ -93,8 +92,6 @@ $this->title = 'Home';
         </thead>
         <tbody>
         <?php
-          $id_user = \Yii::$app->user->identity->id;
-          $pagamentos = Pagamento::find()->orderBy(['data_lim' => SORT_ASC])->where(['id_aluno' => $id_user])->all();
           foreach ($pagamentos as $pagamento):
         ?>
               <tr>

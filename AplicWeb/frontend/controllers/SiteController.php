@@ -11,10 +11,12 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
-use frontend\models\ContactForm;
+
+use frontend\models\Professor;
+use frontend\models\Disciplina;
+use frontend\models\AlunoDisciplina;
+use frontend\models\Teste;
+use frontend\models\Pagamento;
 
 /**
  * Site controller
@@ -70,7 +72,23 @@ class SiteController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        return $this->render('index');
+      $id_user = \Yii::$app->user->identity->id;
+      $pagamentos = Pagamento::find()->orderBy(['data_lim' => SORT_ASC])->where(['id_aluno' => $id_user])->all();
+      $testes = Teste::find()->all();
+      $alunodisciplinas = AlunoDisciplina::find()->where(['aluno_id_perfil' => $id_user])->all();
+      foreach ($alunodisciplinas as $alunodisciplina){
+        $disciplinas = Disciplina::find()->where(['id' => $alunodisciplina->disciplina_id])->all();
+      }
+      //$cursos = Curso::find()->all();
+      //$disciplinas = Disciplina::find()->all();
+      //$escolas = Escola::find()->all();
+
+      $testes = count($testes);
+      $disciplinas = count($disciplinas);
+      //$disciplinas = count($disciplinas);
+      //$escolas = count($escolas);
+
+      return $this->render('index', ['testes' => $testes, 'disciplinas' => $disciplinas, 'pagamentos' => $pagamentos, ]);
     }
 
     /**

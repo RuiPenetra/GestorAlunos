@@ -8,6 +8,7 @@ use frontend\models\AlunodisciplinaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\models\Disciplina;
 
 /**
  * AlunodisciplinaController implements the CRUD actions for AlunoDisciplina model.
@@ -35,12 +36,27 @@ class AlunodisciplinaController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new AlunodisciplinaSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $id_user = \Yii::$app->user->identity->id;
+        $alunodisciplinas = AlunoDisciplina::find()->where(['aluno_id_perfil' => $id_user])->all();
+        foreach ($alunodisciplinas as $alunodisciplina){
+
+          $disciplinas = Disciplina::find()->where(['id' => $alunodisciplina->disciplina_id])->all();
+          foreach ($disciplinas as $disciplina){
+            $semestre1 = array();
+            $semestre2 = array();
+            if ($disciplina->semestre == 1) {
+                array_push($semestre1, $disciplina);
+            }
+            else
+            {
+                array_push($semestre2, $disciplina);
+            }
+          }
+        }
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'semestre1' => $semestre1,
+            'semestre2' => $semestre2,
         ]);
     }
 

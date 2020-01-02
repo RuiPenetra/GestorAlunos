@@ -3,8 +3,6 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
-use frontend\models\AlunoDisciplina;
-use frontend\models\Disciplina;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\AlunodisciplinaSearch */
@@ -31,13 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="box-body">
       <div class="row">
         <?php
-          $id_user = \Yii::$app->user->identity->id;
-          $alunodisciplinas = AlunoDisciplina::find()->where(['aluno_id_perfil' => $id_user])->all();
-          foreach ($alunodisciplinas as $alunodisciplina){
-
-            $disciplinas = Disciplina::find()->where(['id' => $alunodisciplina->disciplina_id])->all();
-            foreach ($disciplinas as $disciplina){
-              if ($disciplina->semestre == 1) {
+            foreach ($semestre1 as $disciplina){
         ?>
           <div class="col-lg-3 col-xs-6">
             <!-- small box -->
@@ -49,9 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
           </div>
         <?php
-              }
             }
-          }
          ?>
       </div>
     </div>
@@ -71,13 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="box-body">
       <div class="row">
         <?php
-          $id_user = \Yii::$app->user->identity->id;
-          $alunodisciplinas = AlunoDisciplina::find()->where(['aluno_id_perfil' => $id_user])->all();
-          foreach ($alunodisciplinas as $alunodisciplina){
-
-            $disciplinas = Disciplina::find()->where(['id' => $alunodisciplina->disciplina_id])->all();
-            foreach ($disciplinas as $disciplina){
-              if ($disciplina->semestre == 2) {
+            foreach ($semestre2 as $disciplina){
         ?>
           <div class="col-lg-3 col-xs-6">
             <!-- small box -->
@@ -89,9 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
           </div>
         <?php
-              }
             }
-          }
          ?>
       </div>
     </div>
