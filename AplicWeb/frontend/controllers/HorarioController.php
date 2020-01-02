@@ -8,6 +8,8 @@ use frontend\models\HorarioSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\models\Aluno;
+use frontend\models\Aula;
 
 /**
  * HorarioController implements the CRUD actions for Horario model.
@@ -35,78 +37,18 @@ class HorarioController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new HorarioSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $id_user = \Yii::$app->user->identity->id;
+        $alunos = Aluno::find()->where(['id_perfil' => $id_user])->all();
+        foreach ($alunos as $aluno) {
+          $horarios = Horario::find()->where(['id_curso' => $aluno->id_curso])->all();
+        }
 
+        foreach ($horarios as $horario) {
+          $aulas = Aula::find()->orderBy(['inicio' => SORT_ASC])->where(['horario_id' => $horario->id])->all();
+        }
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+          'aulas' => $aulas,
         ]);
-    }
-
-    /**
-     * Displays a single Horario model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
-     * Creates a new Horario model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Horario();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Updates an existing Horario model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Deletes an existing Horario model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
     }
 
     /**

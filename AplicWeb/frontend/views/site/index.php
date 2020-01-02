@@ -18,7 +18,7 @@ $this->title = 'Home';
       <div class="icon">
         <i class="fa fa-user"></i>
       </div>
-      <a href="#" class="small-box-footer">Mais Informação <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="<?= Url::toRoute(['professor/index']) ?>" class="small-box-footer">Mais Informação <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
@@ -43,7 +43,7 @@ $this->title = 'Home';
       <div class="inner">
         <h3><?= $disciplinas ?></h3>
 
-        <p>Disciplinas</p>
+        <p>Unidades Curriculares</p>
       </div>
       <div class="icon">
         <i class="fa fa-th"></i>

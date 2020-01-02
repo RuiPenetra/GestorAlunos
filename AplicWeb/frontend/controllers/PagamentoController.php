@@ -35,12 +35,11 @@ class PagamentoController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new PagamentoSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $id_user = \Yii::$app->user->identity->id;
+        $pagamentos = Pagamento::find()->orderBy(['data_lim' => SORT_ASC])->where(['id_aluno' => $id_user])->all();
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'pagamentos' => $pagamentos,
         ]);
     }
 

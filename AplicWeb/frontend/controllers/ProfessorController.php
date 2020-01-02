@@ -8,6 +8,8 @@ use frontend\models\ProfessorSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\models\AlunoDisciplina;
+use frontend\models\Disciplina;
 
 /**
  * ProfessorController implements the CRUD actions for Professor model.
@@ -35,12 +37,13 @@ class ProfessorController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ProfessorSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $id_user = \Yii::$app->user->identity->id;
+        $alunodisciplinas = AlunoDisciplina::find()->where(['aluno_id_perfil' => $id_user])->all();
+        foreach ($alunodisciplinas as $alunodisciplina){
+          $disciplinas = Disciplina::find()->where(['id' => $alunodisciplina->disciplina_id])->all();
+        }
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+          'disciplinas' => $disciplinas,
         ]);
     }
 

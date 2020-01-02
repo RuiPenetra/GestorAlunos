@@ -11,13 +11,10 @@ $this->title = 'Testes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+
 <div class="teste-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Create Teste', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
 
     <div class="box box-primary">

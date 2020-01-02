@@ -18,25 +18,45 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Criar Pagamento', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        //'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            //'id',
-            'valor',
-            'data_lim',
-            'status',
-            //'id_aluno',
-            [
-                'attribute' => 'id_aluno',
-                'value' => 'aluno.perfil.nome',
-            ],
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+    <div class="box-body">
+      <div class="table-responsive">
+        <table class="table no-margin">
+          <thead>
+            <tr>
+              <th>Data Limite</th>
+              <th>Valor</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+          <?php
+            foreach ($pagamentos as $pagamento):
+          ?>
+                <tr>
+                  <td><?= $pagamento->data_lim ?></td>
+                  <td><?= $pagamento->valor ?>€</td>
+                  <?php
+                    if ($pagamento->status === 1) {
+                     echo '<td><span class="label label-success" title="Significa que o montante está pago!">Pago</span></td>';
+                    }
+                    else {
+                      if ($pagamento->data_lim < date("Y-m-d")) {
+                        echo '<td><span class="label label-danger" title="O montante ainda não está pago, mas ainda não passou a data limite!">Em dívida</span></td>';
+                      }
+                      else {
+                        echo '<td><span class="label label-warning" title="O montante ainda não está pago e já passou a data limite!">Por pagar</span></td>';
+                      }
+                    }
+                   ?>
+                </tr>
+          <?php
+            endforeach;
+          ?>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.table-responsive -->
+    </div>
 
 
 </div>

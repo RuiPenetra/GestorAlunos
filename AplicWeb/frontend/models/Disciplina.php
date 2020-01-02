@@ -58,6 +58,7 @@ class Disciplina extends \yii\db\ActiveRecord
             'semestre' => 'Semestre',
             'id_professor' => 'Professor',
             'curso_id' => 'Curso',
+            'professor.perfil.nome' => 'Professor',
         ];
     }
 

@@ -8,7 +8,7 @@ use yii\helpers\Url;
 /* @var $searchModel frontend\models\AlunodisciplinaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Disciplinas';
+$this->title = 'Unidades Curriculares';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="aluno-disciplina-index">
