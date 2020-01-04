@@ -43,8 +43,8 @@ AppAsset::register($this);
                                     <li><a href="<?= Url::toRoute(['horario/index']) ?>">Horário</a></li>
                                     <li><a href="<?= Url::toRoute(['teste/index']) ?>">Calendário</a></li>
                                     <li><a href="<?= Url::toRoute(['pagamento/index']) ?>">Pagamentos</a></li>
-                                    <li><a href="#">Link</a></li>
-                                    <li class="dropdown">
+                                    <li><a href="#">Turno</a></li>
+                                    <!-- <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">
                                             <li><a href="#">Action</a></li>
@@ -55,7 +55,7 @@ AppAsset::register($this);
                                             <li class="divider"></li>
                                             <li><a href="#">One more separated link</a></li>
                                         </ul>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                             <!-- /.navbar-collapse -->

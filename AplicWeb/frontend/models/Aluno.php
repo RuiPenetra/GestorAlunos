@@ -12,6 +12,12 @@ use Yii;
  *
  * @property Perfil $perfil
  * @property Curso $curso
+ * @property AlunoDisciplina[] $alunoDisciplinas
+ * @property Disciplina[] $disciplinas
+ * @property AlunoTeste[] $alunoTestes
+ * @property Teste[] $testes
+ * @property AlunoTurno[] $alunoTurnos
+ * @property Turno[] $turnos
  * @property Pagamento[] $pagamentos
  * @property Presenca[] $presencas
  */
@@ -69,9 +75,57 @@ class Aluno extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getAlunoDisciplinas()
+    {
+        return $this->hasMany(AlunoDisciplina::className(), ['aluno_id_perfil' => 'id_perfil']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDisciplinas()
+    {
+        return $this->hasMany(Disciplina::className(), ['id' => 'disciplina_id'])->viaTable('aluno_disciplina', ['aluno_id_perfil' => 'id_perfil']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAlunoTestes()
+    {
+        return $this->hasMany(AlunoTeste::className(), ['aluno_id_perfil' => 'id_perfil']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTestes()
+    {
+        return $this->hasMany(Teste::className(), ['id' => 'teste_id'])->viaTable('aluno_teste', ['aluno_id_perfil' => 'id_perfil']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAlunoTurnos()
+    {
+        return $this->hasMany(AlunoTurno::className(), ['aluno_id_perfil' => 'id_perfil']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTurnos()
+    {
+        return $this->hasMany(Turno::className(), ['id' => 'turno_id'])->viaTable('aluno_turno', ['aluno_id_perfil' => 'id_perfil']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getPagamentos()
     {
-        return $this->hasMany(Pagamento::className(), ['id_perfil' => 'id_perfil']);
+        return $this->hasMany(Pagamento::className(), ['id_aluno' => 'id_perfil']);
     }
 
     /**

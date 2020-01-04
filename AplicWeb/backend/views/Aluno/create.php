@@ -1,7 +1,7 @@
 <?php
 
-use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 use backend\models\Curso;
 use backend\models\Perfil;

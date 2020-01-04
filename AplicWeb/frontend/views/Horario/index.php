@@ -29,8 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <ul class="timeline">
               <?php
 
-              foreach ($aulas as $aula):
-                if($aula->dia === "Segunda-Feira"):
+              foreach ($aulas as $aula){
+                if($aula->dia == "Segunda-Feira"){
                 ?>
               <li class="time-label">
                 <span class="bg-red">
@@ -55,8 +55,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
               </li>
               <?php
-              endif;
-            endforeach; ?>
+                }
+              }
+            ?>
             </ul>
           </div>
           <!-- /.tab-pane -->
@@ -64,8 +65,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <ul class="timeline">
               <?php
 
-              foreach ($aulas as $aula):
-                if($aula->dia === "Terça-Feira"):
+              foreach ($aulas as $aula){
+                if($aula->dia == "Terça-Feira"){
                 ?>
               <li class="time-label">
                 <span class="bg-red">
@@ -90,8 +91,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
               </li>
               <?php
-              endif;
-            endforeach; ?>
+                }
+              }
+               ?>
             </ul>
           </div>
           <!-- /.tab-pane -->
@@ -99,8 +101,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <ul class="timeline">
               <?php
 
-              foreach ($aulas as $aula):
-                if($aula->dia === "Quarta-Feira"):
+              foreach ($aulas as $aula){
+                if($aula->dia == "Quarta-Feira"){
                 ?>
               <li class="time-label">
                 <span class="bg-red">
@@ -125,8 +127,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
               </li>
               <?php
-              endif;
-            endforeach; ?>
+                }
+              }
+              ?>
             </ul>
           </div>
           <!-- /.tab-pane -->
@@ -134,8 +137,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <ul class="timeline">
               <?php
 
-              foreach ($aulas as $aula):
-                if($aula->dia === "Quinta-Feira"):
+              foreach ($aulas as $aula){
+                if($aula->dia == "Quinta-Feira"){
                 ?>
               <li class="time-label">
                 <span class="bg-red">
@@ -160,8 +163,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
               </li>
               <?php
-              endif;
-            endforeach; ?>
+                }
+              }
+               ?>
             </ul>
           </div>
           <!-- /.tab-pane -->
@@ -169,8 +173,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <ul class="timeline">
               <?php
 
-              foreach ($aulas as $aula):
-                if($aula->dia === "Sexta-Feira"):
+              foreach ($aulas as $aula){
+                if($aula->dia == "Sexta-Feira"){
                 ?>
               <li class="time-label">
                 <span class="bg-red">
@@ -195,8 +199,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
               </li>
               <?php
-              endif;
-            endforeach; ?>
+              }
+            }
+               ?>
             </ul>
           </div>
           <!-- /.tab-pane -->

@@ -73,8 +73,9 @@ class SiteController extends Controller {
      */
     public function actionIndex() {
       $id_user = \Yii::$app->user->identity->id;
+
       $pagamentos = Pagamento::find()->orderBy(['data_lim' => SORT_ASC])->where(['id_aluno' => $id_user])->all();
-      $testes = Teste::find()->all();
+      $testess = Teste::find()->orderBy(['data' => SORT_ASC])->all();
       $alunodisciplinas = AlunoDisciplina::find()->where(['aluno_id_perfil' => $id_user])->all();
       foreach ($alunodisciplinas as $alunodisciplina){
         $disciplinas = Disciplina::find()->where(['id' => $alunodisciplina->disciplina_id])->all();
@@ -83,12 +84,10 @@ class SiteController extends Controller {
       //$disciplinas = Disciplina::find()->all();
       //$escolas = Escola::find()->all();
 
-      $testes = count($testes);
+      $testes = count($testess);
       $disciplinas = count($disciplinas);
-      //$disciplinas = count($disciplinas);
-      //$escolas = count($escolas);
 
-      return $this->render('index', ['testes' => $testes, 'disciplinas' => $disciplinas, 'pagamentos' => $pagamentos, ]);
+      return $this->render('index', ['testes' => $testes, 'testess' => $testess, 'disciplinas' => $disciplinas, 'pagamentos' => $pagamentos, ]);
     }
 
     /**

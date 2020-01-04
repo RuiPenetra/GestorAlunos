@@ -11,7 +11,7 @@ $this->title = 'Home';
     <!-- small box -->
     <div class="small-box bg-aqua">
       <div class="inner">
-        <h3>12</h3>
+        <h3><?= $disciplinas ?></h3>
 
         <p>Professores</p>
       </div>
@@ -56,9 +56,9 @@ $this->title = 'Home';
     <!-- small box -->
     <div class="small-box bg-red">
       <div class="inner">
-        <h3>3</h3>
+        <h3>0</h3>
 
-        <p>teste</p>
+        <p>Notas</p>
       </div>
       <div class="icon">
         <i class="fa fa-book"></i>
@@ -93,9 +93,10 @@ $this->title = 'Home';
         <tbody>
         <?php
           foreach ($pagamentos as $pagamento):
+          $date = date_create($pagamento->data_lim);
         ?>
               <tr>
-                <td><?= $pagamento->data_lim ?></td>
+                <td><?= date_format($date, 'd-m-Y') ?></td>
                 <td><?= $pagamento->valor ?>€</td>
                 <?php
                   if ($pagamento->status === 1) {
@@ -122,6 +123,75 @@ $this->title = 'Home';
   <!-- /.box-body -->
   <div class="box-footer clearfix">
     <a href="<?= Url::toRoute(['pagamento/index']) ?>" class="btn btn-sm btn-default btn-flat pull-right">Ver todos</a>
+  </div>
+  <!-- /.box-footer -->
+</div>
+
+
+<div class="box box-danger">
+  <div class="box-header with-border">
+    <h3 class="box-title">Avaliações Próximas</h3>
+
+    <div class="box-tools pull-right">
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+      </button>
+      <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+    </div>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <div class="table-responsive">
+      <table class="table no-margin">
+        <thead>
+          <tr>
+            <th>Data teste</th>
+            <th>Nota</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php
+          foreach ($testess as $teste):
+            $notasaiu = 0;
+            $date = date_create($teste->data);
+        ?>
+              <tr>
+                <td><?= date_format($date, 'd-m-Y H:i'); ?></td>
+
+                <?php
+                    foreach ($teste->alunoTestes as $testea):
+                      if($testea->nota != null){
+                        $notasaiu=1;
+                        echo '<td>'.$testea->nota.'</td>';
+                      }
+                      else{
+                        echo '<td></td>';
+                      }
+                    endforeach;
+                  if ($teste->data > date("Y-m-d H:i:s")) {
+                   echo '<td><span class="label label-danger" title="Ainda não chegou o diga do teste!">Por fazer</span></td>';
+                  }
+                  else {
+                    if ($notasaiu==0) {
+                      echo '<td><span class="label label-warning" title="A nota ainda não saiu!">A aguardar</span></td>';
+                    }
+                    else {
+                      echo '<td><span class="label label-success" title="A nota já saiu!">Nota Definitiva</span></td>';
+                    }
+                  }
+                 ?>
+              </tr>
+        <?php
+          endforeach;
+        ?>
+        </tbody>
+      </table>
+    </div>
+    <!-- /.table-responsive -->
+  </div>
+  <!-- /.box-body -->
+  <div class="box-footer clearfix">
+    <a href="<?= Url::toRoute(['teste/index']) ?>" class="btn btn-sm btn-default btn-flat pull-right">Ver todos</a>
   </div>
   <!-- /.box-footer -->
 </div>
