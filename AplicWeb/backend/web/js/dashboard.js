@@ -214,4 +214,8 @@ $(function () {
     startDate: '-3d'
   })
 
+  $('#datetimepicker').datetimepicker({
+      format : 'DD/MM/YYYY HH:mm',
+  });
+
 });

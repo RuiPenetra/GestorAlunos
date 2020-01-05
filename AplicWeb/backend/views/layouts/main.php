@@ -10,10 +10,15 @@ use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 use yii\web\View;
 use yii\helpers\Url;
+use backend\models\Perfil;
 
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
+<?php
+  $id_user = \Yii::$app->user->identity->id;
+  $perfil = Perfil::findOne(['id_user' => $id_user]);
+ ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
     <head>
@@ -81,7 +86,7 @@ AppAsset::register($this);
                             <li class="dropdown user user-menu">
                                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                     <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'user-image']); ?>
-                                    <span class="hidden-xs"><?= \Yii::$app->user->identity->username ?></span>
+                                    <span class="hidden-xs"><?= $perfil->nome ?></span>
                                   </a>
                                   <ul class="dropdown-menu">
                                     <!-- User image -->
@@ -89,7 +94,7 @@ AppAsset::register($this);
                                       <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'img-circle']); ?>
 
                                       <p>
-                                        <?= \Yii::$app->user->identity->username ?>
+                                        <?= $perfil->nome ?>
                                         <small>Administrador</small>
                                       </p>
                                     </li>

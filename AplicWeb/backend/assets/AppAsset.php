@@ -26,6 +26,8 @@ class AppAsset extends AssetBundle
         'css/datepicker/datepicker.css',
         'css/timepicker/timepicker.min.css',
         'css/pace.min.css',
+        'css/datetimepicker/datetimepicker-standalone.css',
+        'css/datetimepicker/datetimepicker.min.css',
     ];
     public $js = [
       'js/jquery.min.js',
@@ -54,6 +56,7 @@ class AppAsset extends AssetBundle
       'js/pace.min.js',
       'js/dashboard.js',
       'js/site.js',
+      'js/datetimepicker/datetimepicker.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
