@@ -56,7 +56,7 @@ class Perfil extends \yii\db\ActiveRecord
             'email' => 'Email',
             'genero' => 'Genero',
             'telemovel' => 'Telemovel',
-            'datanascimento' => 'Datanascimento',
+            'datanascimento' => 'Data Nascimento',
         ];
     }
 

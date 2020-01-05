@@ -1,21 +1,27 @@
 <?php
 
 use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
+use backend\models\Turno;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\AlunoTurno */
 
-$this->title = 'Update Aluno Turno: ' . $model->aluno_id_perfil;
+$this->title = 'Atualizar Turno';
 $this->params['breadcrumbs'][] = ['label' => 'Aluno Turnos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->aluno_id_perfil, 'url' => ['view', 'aluno_id_perfil' => $model->aluno_id_perfil, 'turno_id' => $model->turno_id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Atualizar';
+$id_user = \Yii::$app->user->identity->id;
 ?>
 <div class="aluno-turno-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <?php $form = ActiveForm::begin(); ?>
+        <?= $form->field($model, 'turno_id')->dropDownList(ArrayHelper::map(Turno::find()->all(), 'id','tipo','disciplina.nome')) ?>
+        <?= $form->field($model, 'aluno_id_perfil')->hiddenInput(['value'=> $id_user])->label(false) ?>
+        <?= Html::submitButton('Criar', ['class' => 'btn btn-primary']) ?>
+    <?php ActiveForm::end(); ?>
 
 </div>

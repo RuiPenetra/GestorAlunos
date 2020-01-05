@@ -13,15 +13,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="aluno-turno-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Inscrever no Turno', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <div class="box box-info">
       <div class="box-header with-border">
-        <h3 class="box-title">Pagamentos</h3>
+        <h3 class="box-title">Turnos</h3>
 
         <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -45,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ?>
                   <tr>
-                    <td><?= $turnoaluno->turno->tipo; ?></td>
+                    <td><a href="<?= Url::toRoute(['alunoturno/view', 'aluno_id_perfil' => $turnoaluno->aluno_id_perfil, 'turno_id' => $turnoaluno->turno_id]) ?>"><?= $turnoaluno->turno->tipo; ?></a></td>
                     <td><?= $turnoaluno->turno->disciplina->nome; ?></td>
                   </tr>
             <?php
@@ -55,10 +53,6 @@ $this->params['breadcrumbs'][] = $this->title;
           </table>
         </div>
         <!-- /.table-responsive -->
-      </div>
-      <!-- /.box-body -->
-      <div class="box-footer clearfix">
-        <a href="<?= Url::toRoute(['pagamento/index']) ?>" class="btn btn-sm btn-default btn-flat pull-right">Ver todos</a>
       </div>
       <!-- /.box-footer -->
     </div>

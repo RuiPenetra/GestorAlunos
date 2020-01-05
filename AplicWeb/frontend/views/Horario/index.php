@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\models\HorarioSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Horario';
+$this->title = 'Horário';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="horario-index">
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="seg">
-            <ul class="timeline">
+            <ul class="timeline timeline-inverse">
               <?php
 
               foreach ($aulas as $aula){

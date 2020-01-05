@@ -63,7 +63,7 @@ $this->title = 'Home';
       <div class="icon">
         <i class="fa fa-book"></i>
       </div>
-      <a href="#" class="small-box-footer">Mais Informação <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="<?= Url::toRoute(['alunoteste/index']) ?>" class="small-box-footer">Mais Informação <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
@@ -145,6 +145,7 @@ $this->title = 'Home';
         <thead>
           <tr>
             <th>Data teste</th>
+            <th>UC</th>
             <th>Nota</th>
             <th>Estado</th>
           </tr>
@@ -159,6 +160,7 @@ $this->title = 'Home';
                 <td><?= date_format($date, 'd-m-Y H:i'); ?></td>
 
                 <?php
+                echo '<td>'.$teste->disciplina->nome.'</td>';
                     foreach ($teste->alunoTestes as $testea):
                       if($testea->nota != null){
                         $notasaiu=1;
@@ -168,6 +170,7 @@ $this->title = 'Home';
                         echo '<td></td>';
                       }
                     endforeach;
+
                   if ($teste->data > date("Y-m-d H:i:s")) {
                    echo '<td><span class="label label-danger" title="Ainda não chegou o diga do teste!">Por fazer</span></td>';
                   }

@@ -45,7 +45,7 @@ class AlunoTeste extends \yii\db\ActiveRecord
     {
         return [
             'aluno_id_perfil' => 'Aluno Id Perfil',
-            'teste_id' => 'Teste ID',
+            'teste_id' => 'Teste',
             'nota' => 'Nota',
         ];
     }
@@ -63,6 +63,6 @@ class AlunoTeste extends \yii\db\ActiveRecord
      */
     public function getTeste()
     {
-        return $this->hasOne(Teste::className(), ['id' => 'teste_id']);
+        return $this->hasOne(Teste::className(), ['id' => 'teste_id'])->orderBy(['data' => SORT_ASC]);
     }
 }

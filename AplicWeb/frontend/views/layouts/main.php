@@ -10,10 +10,16 @@ use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 use yii\web\View;
 use yii\helpers\Url;
+use frontend\models\Perfil;
+
 
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
+<?php
+  $id_user = \Yii::$app->user->identity->id;
+  $perfil = Perfil::findOne(['id_user' => $id_user]);
+ ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
     <head>
@@ -41,21 +47,22 @@ AppAsset::register($this);
                             <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                                 <ul class="nav navbar-nav">
                                     <li><a href="<?= Url::toRoute(['horario/index']) ?>">Horário</a></li>
-                                    <li><a href="<?= Url::toRoute(['teste/index']) ?>">Calendário</a></li>
                                     <li><a href="<?= Url::toRoute(['pagamento/index']) ?>">Pagamentos</a></li>
-                                    <li><a href="#">Turno</a></li>
-                                    <!-- <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">UCs <span class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">One more separated link</a></li>
+                                            <li><a href="<?= Url::toRoute(['teste/index']) ?>">Testes</a></li>
+                                            <li><a href="<?= Url::toRoute(['alunoteste/index']) ?>">Notas</a></li>
+                                            <li><a href="<?= Url::toRoute(['alunodisciplina/index']) ?>">Unidades Curriculares</a></li>
+                                            <li><a href="<?= Url::toRoute(['professor/index']) ?>">Professores</a></li>
                                         </ul>
-                                    </li> -->
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Outros <span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="<?= Url::toRoute(['alunoturno/index']) ?>">Turnos</a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </div>
                             <!-- /.navbar-collapse -->
@@ -126,7 +133,7 @@ AppAsset::register($this);
                                     <li class="dropdown user user-menu">
                                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                         <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'user-image']); ?>
-                                        <span class="hidden-xs"><?= \Yii::$app->user->identity->username ?></span>
+                                        <span class="hidden-xs"><?= $perfil->nome ?></span>
                                       </a>
                                       <ul class="dropdown-menu">
                                         <!-- User image -->
@@ -134,14 +141,14 @@ AppAsset::register($this);
                                           <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'img-circle']); ?>
 
                                           <p>
-                                            <?= \Yii::$app->user->identity->username ?>
+                                            <?= $perfil->nome ?>
                                             <small>Aluno</small>
                                           </p>
                                         </li>
                                         <!-- Menu Footer-->
                                         <li class="user-footer">
                                           <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat"><i class="fa fa-gear fa-spin"></i> Perfil</a>
+                                            <a href="<?php echo Url::toRoute(['perfil/update', 'id' => $perfil->id_user]) ?>" class="btn btn-default btn-flat"><i class="fa fa-gear fa-spin"></i> Perfil</a>
                                           </div>
                                           <div class="pull-right">
                                             <a href="<?php echo Url::toRoute(['site/logout']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-sign-out"></i> Sair</a>

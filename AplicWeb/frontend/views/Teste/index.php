@@ -2,63 +2,80 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\TesteSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Testes';
+$this->title = 'Avaliações';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 
 <div class="teste-index">
+    <div class="box box-danger">
+      <div class="box-header with-border">
+        <h3 class="box-title">Avaliações Próximas</h3>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <div class="table-responsive">
+          <table class="table no-margin">
+            <thead>
+              <tr>
+                <th>Data teste</th>
+                <th>Nota</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php
 
+              foreach ($alunotestes as $teste):
+                $notasaiu = 0;
+                $date = date_create($teste->teste->data);
+            ?>
+                  <tr>
+                    <td><?= date_format($date, 'd-m-Y H:i'); ?></td>
 
-    <div class="box box-primary">
-      <div class="box-body no-padding">
-        <!-- THE CALENDAR -->
-        <div id="calendar"></div>
+                    <?php
+                        foreach ($teste->teste->alunoTestes as $testea):
+                          if($testea->nota != null){
+                            $notasaiu=1;
+                            echo '<td>'.$testea->nota.'</td>';
+                          }
+                          else{
+                            echo '<td></td>';
+                          }
+                        endforeach;
+                      if ($teste->teste->data > date("Y-m-d H:i:s")) {
+                       echo '<td><span class="label label-danger" title="Ainda não chegou o diga do teste!">Por fazer</span></td>';
+                      }
+                      else {
+                        if ($notasaiu==0) {
+                          echo '<td><span class="label label-warning" title="A nota ainda não saiu!">A aguardar</span></td>';
+                        }
+                        else {
+                          echo '<td><span class="label label-success" title="A nota já saiu!">Nota Definitiva</span></td>';
+                        }
+                      }
+                     ?>
+                  </tr>
+            <?php
+              endforeach;
+            ?>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
       </div>
     </div>
 
 </div>
-<script type="text/javascript">
-/* ADDING EVENTS */
- var currColor = '#3c8dbc' //Red by default
- //Color chooser button
- var colorChooser = $('#color-chooser-btn')
- $('#color-chooser > li > a').click(function (e) {
-   e.preventDefault()
-   //Save color
-   currColor = $(this).css('color')
-   //Add color effect to button
-   $('#add-new-event').css({ 'background-color': currColor, 'border-color': currColor })
- })
- $('#add-new-event').click(function (e) {
-   e.preventDefault()
-   //Get value and make sure it is not null
-   var val = $('#new-event').val()
-   if (val.length == 0) {
-     return
-   }
-
-   //Create events
-   var event = $('<div />')
-   event.css({
-     'background-color': currColor,
-     'border-color'    : currColor,
-     'color'           : '#fff'
-   }).addClass('external-event')
-   event.html(val)
-   $('#external-events').prepend(event)
-
-   //Add draggable funtionality
-   init_events(event)
-
-   //Remove event from text input
-   $('#new-event').val('')
- })
-</script>

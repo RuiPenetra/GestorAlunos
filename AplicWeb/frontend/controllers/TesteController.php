@@ -3,14 +3,14 @@
 namespace frontend\controllers;
 
 use Yii;
-use frontend\models\Teste;
-use frontend\models\TesteSearch;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\models\AlunoTeste;
 
 /**
- * TesteController implements the CRUD actions for Teste model.
+ * AlunodisciplinaController implements the CRUD actions for AlunoDisciplina model.
  */
 class TesteController extends Controller
 {
@@ -30,95 +30,45 @@ class TesteController extends Controller
     }
 
     /**
-     * Lists all Teste models.
+     * Lists all AlunoDisciplina models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TesteSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $id_user = \Yii::$app->user->identity->id;
+        $alunotestes = AlunoTeste::find()->where(['aluno_id_perfil' => $id_user])->all();
+
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'alunotestes' => $alunotestes,
         ]);
     }
 
     /**
-     * Displays a single Teste model.
-     * @param integer $id
+     * Displays a single AlunoDisciplina model.
+     * @param integer $aluno_id_perfil
+     * @param integer $disciplina_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($aluno_id_perfil, $disciplina_id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($aluno_id_perfil, $disciplina_id),
         ]);
     }
 
     /**
-     * Creates a new Teste model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Teste();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Updates an existing Teste model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Deletes an existing Teste model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the Teste model based on its primary key value.
+     * Finds the AlunoDisciplina model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Teste the loaded model
+     * @param integer $aluno_id_perfil
+     * @param integer $disciplina_id
+     * @return AlunoDisciplina the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($aluno_id_perfil, $disciplina_id)
     {
-        if (($model = Teste::findOne($id)) !== null) {
+        if (($model = AlunoDisciplina::findOne(['aluno_id_perfil' => $aluno_id_perfil, 'disciplina_id' => $disciplina_id])) !== null) {
             return $model;
         }
 
