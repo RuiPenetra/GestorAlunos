@@ -57,6 +57,7 @@ class AppAsset extends AssetBundle
       'js/dashboard.js',
       'js/site.js',
       'js/datetimepicker/datetimepicker.min.js',
+      'js/datetimepicker/moment-with-locales.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
