@@ -154,14 +154,14 @@ $this->title = 'Home';
         <?php
           foreach ($testess as $teste):
             $notasaiu = 0;
-            $date = date_create($teste->data);
+            $date = date_create($teste->teste->data);
         ?>
               <tr>
                 <td><?= date_format($date, 'd-m-Y H:i'); ?></td>
 
                 <?php
-                echo '<td>'.$teste->disciplina->nome.'</td>';
-                    foreach ($teste->alunoTestes as $testea):
+                echo '<td>'.$teste->teste->disciplina->nome.'</td>';
+                    foreach ($teste->teste->alunoTestes as $testea):
                       if($testea->nota != null){
                         $notasaiu=1;
                         echo '<td>'.$testea->nota.'</td>';
@@ -171,7 +171,7 @@ $this->title = 'Home';
                       }
                     endforeach;
 
-                  if ($teste->data > date("Y-m-d H:i:s")) {
+                  if ($teste->teste->data > date("Y-m-d H:i:s")) {
                    echo '<td><span class="label label-danger" title="Ainda não chegou o diga do teste!">Por fazer</span></td>';
                   }
                   else {

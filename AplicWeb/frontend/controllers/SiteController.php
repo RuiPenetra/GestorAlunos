@@ -15,7 +15,7 @@ use common\models\LoginForm;
 use frontend\models\Professor;
 use frontend\models\Disciplina;
 use frontend\models\AlunoDisciplina;
-use frontend\models\Teste;
+use frontend\models\AlunoTeste;
 use frontend\models\Pagamento;
 
 /**
@@ -74,14 +74,23 @@ class SiteController extends Controller {
     public function actionIndex() {
       $id_user = \Yii::$app->user->identity->id;
       $pagamentos = Pagamento::find()->orderBy(['data_lim' => SORT_ASC])->where(['id_aluno' => $id_user])->all();
-      $testess = Teste::find()->orderBy(['data' => SORT_ASC])->all();
-      $alunodisciplinas = AlunoDisciplina::find()->where(['aluno_id_perfil' => $id_user])->all();
-      foreach ($alunodisciplinas as $alunodisciplina){
-        $disciplinas = Disciplina::find()->where(['id' => $alunodisciplina->disciplina_id])->all();
+      $testess = AlunoTeste::find()->where(['aluno_id_perfil' => $id_user])->all();
+
+      $alunodisciplina = AlunoDisciplina::find()->where(['aluno_id_perfil' => $id_user])->all();
+
+
+      if(!$alunodisciplina){
+        $disciplinas = 0;
+      }else {
+        $disciplinas = count($alunodisciplina);
       }
 
-      $testes = count($testess);
-      $disciplinas = count($disciplinas);
+
+      if(!$testess){
+        $testes = 0;
+      }else {
+        $testes = count($testess);
+      }
 
       return $this->render('index', ['testes' => $testes, 'testess' => $testess, 'disciplinas' => $disciplinas, 'pagamentos' => $pagamentos,]);
     }

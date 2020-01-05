@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php
+    if ($disciplinas === 0){echo "Nao tem professores";}else{
       foreach ($disciplinas as $disciplina) {
      ?>
     <div class="col-md-4">
@@ -40,5 +41,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <?php
       }
+    }
      ?>
 </div>

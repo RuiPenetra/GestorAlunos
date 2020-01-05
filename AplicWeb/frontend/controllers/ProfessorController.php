@@ -39,12 +39,21 @@ class ProfessorController extends Controller
     {
         $id_user = \Yii::$app->user->identity->id;
         $alunodisciplinas = AlunoDisciplina::find()->where(['aluno_id_perfil' => $id_user])->all();
-        foreach ($alunodisciplinas as $alunodisciplina){
-          $disciplinas = Disciplina::find()->where(['id' => $alunodisciplina->disciplina_id])->all();
+        if ($alunodisciplinas) {
+          foreach ($alunodisciplinas as $alunodisciplina){
+            $disciplinas = Disciplina::find()->where(['id' => $alunodisciplina->disciplina_id])->all();
+          }
+          return $this->render('index', [
+            'disciplinas' => $disciplinas,
+          ]);
         }
-        return $this->render('index', [
-          'disciplinas' => $disciplinas,
-        ]);
+        else {
+          return $this->render('index', [
+            'disciplinas' => 0
+          ]);
+        }
+
+
     }
 
     /**

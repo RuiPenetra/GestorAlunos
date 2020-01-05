@@ -63,6 +63,6 @@ class AlunoTeste extends \yii\db\ActiveRecord
      */
     public function getTeste()
     {
-        return $this->hasOne(Teste::className(), ['id' => 'teste_id'])->orderBy(['data' => SORT_ASC]);
+        return $this->hasOne(Teste::className(), ['id' => 'teste_id'])->orderBy(['data' => SORT_DESC]);
     }
 }

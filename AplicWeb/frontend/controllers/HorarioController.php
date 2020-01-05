@@ -38,14 +38,10 @@ class HorarioController extends Controller
     public function actionIndex()
     {
         $id_user = \Yii::$app->user->identity->id;
-        $alunos = Aluno::find()->where(['id_perfil' => $id_user])->all();
-        foreach ($alunos as $aluno) {
-          $horarios = Horario::find()->where(['id_curso' => $aluno->id_curso])->all();
-        }
-
-        foreach ($horarios as $horario) {
-          $aulas = Aula::find()->orderBy(['inicio' => SORT_ASC])->where(['horario_id' => $horario->id])->all();
-        }
+        $aluno = Aluno::findOne(['id_perfil' => $id_user]);
+        $horario = Horario::findOne(['id_curso' => $aluno->id_curso]);
+        $aulas = Aula::find()->orderBy(['inicio' => SORT_ASC])->where(['horario_id' => $horario->id])->all();
+        
         return $this->render('index', [
           'aulas' => $aulas,
         ]);

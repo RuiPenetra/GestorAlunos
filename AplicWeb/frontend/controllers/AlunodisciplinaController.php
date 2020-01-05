@@ -38,25 +38,10 @@ class AlunodisciplinaController extends Controller
     {
         $id_user = \Yii::$app->user->identity->id;
         $alunodisciplinas = AlunoDisciplina::find()->where(['aluno_id_perfil' => $id_user])->all();
-        foreach ($alunodisciplinas as $alunodisciplina){
 
-          $disciplinas = Disciplina::find()->where(['id' => $alunodisciplina->disciplina_id])->all();
-          foreach ($disciplinas as $disciplina){
-            $semestre1 = array();
-            $semestre2 = array();
-            if ($disciplina->semestre == 1) {
-                array_push($semestre1, $disciplina);
-            }
-            else
-            {
-                array_push($semestre2, $disciplina);
-            }
-          }
-        }
 
         return $this->render('index', [
-            'semestre1' => $semestre1,
-            'semestre2' => $semestre2,
+            'alunodisciplinas' => $alunodisciplinas,
         ]);
     }
 
