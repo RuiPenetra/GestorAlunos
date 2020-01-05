@@ -20,14 +20,6 @@ AppAssetLogin::register($this);
         </div>
         <div class="login-content">
 
-            <!-- <?//php
-            $form = ActiveForm::begin([
-            'id' => 'login-form',
-            'class' => 'formClass',
-            'action' => Url::to(['/site/index'])
-            ]);
-            ?>-->
-
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
             <img src="img/ipl.png">
             <h2 class="title"></h2>
@@ -36,9 +28,8 @@ AppAssetLogin::register($this);
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="div">
-                    <h5>Email</h5>       
-                    <?= $form->field($model, 'username', ['options' => ['tag' => 'input', 'style' => 'display: none;']])->textInput(['class' => 'input'])->label(false) ?>     
-             <!--<?//= $form->field($model, 'username', ['options' => ['tag' => 'input', 'class' => 'input require']])->label('') ?>-->
+                    <h5>Email</h5>
+                    <?= $form->field($model, 'username', ['options' => ['tag' => 'input', 'style' => 'display: none;']])->textInput(['class' => 'input'])->label(false) ?>
                 </div>
             </div>
             <div class="input-div pass">
@@ -48,16 +39,12 @@ AppAssetLogin::register($this);
                 <div class="div">
                     <h5>Password</h5>
                     <?= $form->field($model, 'password', ['options' => ['tag' => 'input', 'style' => 'display: none;']])->textInput(['class' => 'input', 'type' => 'password'])->label(false) ?>
-                    <!--<?/= $form->field($model, 'password', ['options' => ['tag' => 'input', 'class' => 'input require'],])->passwordInput()->label('') ?>-->
                 </div>
             </div>
             <a href="#" class="aClass">Esqueceu a senha?</a>
             <div class="form-group">
                 <?= Html::submitButton('Login', ['class' => 'btnClass', 'name' => 'login-button']) ?>
             </div>
-                     <!--<?/= Html::submitButton('Entrar', ['class' => 'btnClass', 'name' => 'login-button']) ?>-->
-
-             <!--<?/php ActiveForm::end(); ?>-->
 
             <?php ActiveForm::end(); ?>
         </div>

@@ -120,7 +120,7 @@ AppAsset::register($this);
                                                         <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'img-circle']); ?>
                                                     </div>
                                                     <div class="pull-left info">
-                                                        <p> <?= \Yii::$app->user->identity->username ?></p>
+                                                        <p> <?= $perfil->nome ?></p>
                                                         <a href="#"><i class="fa fa-id-card text-success"></i> Administrador</a>
                                                     </div>
                                                 </div>
