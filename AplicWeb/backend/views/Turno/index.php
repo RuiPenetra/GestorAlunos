@@ -18,17 +18,17 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Turno', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'tipo',
-            'id_disciplina',
+            [
+                'attribute' => 'id_disciplina',
+                'value' => 'disciplina.nome',
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

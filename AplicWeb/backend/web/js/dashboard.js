@@ -207,10 +207,15 @@ $(function () {
     }
   });
 
+  //Date picker
+  $('#datepicker').datepicker({
+    autoclose: true,
+    format: 'yyyy/mm/dd',
+    startDate: '-3d'
+  })
 
-  $('#datepicker').datetimepicker({
-      //locale: 'pt',
-      format : 'DD/MM/YYYY',
+  $('#datetimepicker').datetimepicker({
+      format : 'YYYY/MM/DD HH:mm:ss',
   });
 
 });

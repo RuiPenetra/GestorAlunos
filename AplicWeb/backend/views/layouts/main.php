@@ -194,6 +194,11 @@ AppAsset::register($this);
                                                                     <i class="fa fa-user"></i> <span>Horários</span>
                                                                 </a>
                                                             </li>
+                                                            <li class="">
+                                                                <a href="<?= Url::toRoute(['turno/index']) ?>">
+                                                                    <i class="fa fa-user"></i> <span>Turno</span>
+                                                                </a>
+                                                            </li>
                                                         </ul>
                                                     </li>
                                                     <li class="treeview">
@@ -205,7 +210,7 @@ AppAsset::register($this);
                                                         <ul class="treeview-menu">
                                                             <li class="">
                                                                 <a href="<?= Url::toRoute(['alunocur/index']) ?>">
-                                                                    <i class="fa fa-user"></i> <span>Aluno Curso</span>
+                                                                    <i class="fa fa-user"></i> <span>Aluno Turno</span>
                                                                 </a>
                                                             </li>
                                                             <li class="">
