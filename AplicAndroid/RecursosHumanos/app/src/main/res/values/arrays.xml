@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    //Fragment Horario
+    <string-array name="dias_da_semana">
+        <item>Nenhum</item>
+        <item>Segunda-Feira</item>
+        <item>Terça-Feira</item>
+        <item>Quarta-Feira</item>
+        <item>Quinta-Feira</item>
+        <item>Sexta-Feira</item>
+    </string-array>
+
+    //Fragment Horario
+    <string-array name="array_semestres">
+        <item>Nenhum</item>
+        <item>1ºSemestre</item>
+        <item>2ºSemestre</item>
+    </string-array>
+
+
+</resources>

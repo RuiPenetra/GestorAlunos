@@ -20,7 +20,8 @@
         android:padding="15dp"
         android:src="@drawable/ic_informacao"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="20dp"/>
 
 
     <LinearLayout
@@ -115,7 +116,8 @@
         android:padding="19dp"
         android:src="@drawable/ic_contactos"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

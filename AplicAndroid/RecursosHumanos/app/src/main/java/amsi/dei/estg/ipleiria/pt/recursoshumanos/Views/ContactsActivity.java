@@ -1,6 +1,7 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Views;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,16 +10,13 @@ import android.widget.ImageView;
 
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.StartAppActivity;
-import amsi.ipleiria.pt.accordionview.AccordionView;
 
 
 public class ContactsActivity extends AppCompatActivity {
 
-/*    AccordionView btn_esecs = findViewById(R.id.btn_esecs);
-    AccordionView btn_estg=findViewById(R.id.btn_estg);
-    AccordionView btn_esslei=findViewById(R.id.btn_esslei);
-    AccordionView btn_esad=findViewById(R.id.btn_esad);*/
+
     private ImageView btn_retornar;
+    private CardView card_servicos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +24,11 @@ public class ContactsActivity extends AppCompatActivity {
 
         btn_retornar=findViewById(R.id.btn_retornar_inicio);
 
+    }
+
+    public void onClickServicos(View view) {
+        Intent next= new Intent(this, ContactosServicosActivity.class);
+        startActivity(next);
     }
 
     public void onClickRetornarInicio(View view) {

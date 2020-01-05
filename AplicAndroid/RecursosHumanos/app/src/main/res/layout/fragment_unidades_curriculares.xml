@@ -4,47 +4,129 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#C0E0FF"
+    android:background="#E0EEFF"
     tools:context=".Views.UnidadesCurricularesFragment">
 
 
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|right">
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/img_student"
+            android:alpha="0.10"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:layout_marginTop="30dp">
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:background="@drawable/button_geral"
+            android:layout_gravity="right"
+            android:layout_marginRight="20dp">
 
             <LinearLayout
-                android:id="@+id/viewsContainer"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="5dp" >
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextBox One" />
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/img_student"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="TextBox Two" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="TextBox Three" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/button"
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <Spinner
+                    android:id="@+id/spinner_semestre"
+                    style="@style/Widget.AppCompat.Spinner"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/dropdownListPreferredItemHeight"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:dropDownWidth="match_parent"
+                    android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
+                    android:paddingRight="14dp"
+                    android:popupBackground="@android:color/white"
+                    android:popupElevation="3dp"
+                    android:stateListAnimator="@drawable/spinner_sla"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:background="#A4FFFFFF">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/header_unidades_curriculares"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:text="Hide" />
+                android:layout_height="wrap_content">
+
+                <include
+                    layout="@layout/header_lista_unidades_curriculares"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/lista_unidades_curriculares"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/header_unidades_curriculares"
+                android:orientation="vertical">
+
+                <ListView
+                    android:id="@+id/lvUnidadesCurriculares"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </ListView>
+
+            </RelativeLayout>
+
 
         </RelativeLayout>
 
+    </RelativeLayout>
+
 </FrameLayout>
+

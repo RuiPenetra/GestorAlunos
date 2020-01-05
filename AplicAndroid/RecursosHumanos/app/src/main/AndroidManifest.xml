@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="amsi.dei.estg.ipleiria.pt.recursoshumanos">
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,58 +14,82 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Views.DadosAcademicosActivity"
-            android:usesCleartextTraffic="true"
+        <activity android:name=".Views.ContactosServicosActivity"
+            android:label="Serviços"
+            android:parentActivityName=".Views.ContactsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_bar"
+            android:usesCleartextTraffic="true" />
+
+        <activity android:name=".Views.ContactosApoioActivity"
+            android:label="Apoio"
+            android:parentActivityName=".Views.ContactsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_bar"
+            android:usesCleartextTraffic="true"/>
+
+        <activity android:name=".Views.ContactosNucleosActivity"
+            android:label="Núcleo"
+            android:parentActivityName=".Views.ContactsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_bar"
+            android:usesCleartextTraffic="true"/>
+        <activity
+            android:name=".Views.DadosAcademicosActivity"
             android:label="Dados Académicos"
-            android:screenOrientation="portrait"
             android:parentActivityName=".MenuDrawerActivity"
-            android:theme="@style/AppTheme_bar"/>
-        <activity android:name=".Views.DadosPessoaisActivity"
-            android:usesCleartextTraffic="true"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_bar"
+            android:usesCleartextTraffic="true" />
+        <activity
+            android:name=".Views.DadosPessoaisActivity"
             android:label="Dados Pessoais"
             android:parentActivityName=".MenuDrawerActivity"
-            android:theme="@style/AppTheme_bar"/>
-        <activity
-            android:usesCleartextTraffic="true"
-            android:name=".Views.NovaPasswordActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_bar"
+            android:usesCleartextTraffic="true" />
+        <activity
+            android:name=".Views.NovaPasswordActivity"
             android:label="Nova Password"
             android:parentActivityName=".Views.DadosAutenticacaoActivity"
-            android:theme="@style/AppTheme_bar" />
-        <activity
-            android:usesCleartextTraffic="true"
-            android:name=".Views.DadosAutenticacaoActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_bar"
+            android:usesCleartextTraffic="true" />
+        <activity
+            android:name=".Views.DadosAutenticacaoActivity"
             android:label="Dados de Autenticação"
             android:parentActivityName=".MenuDrawerActivity"
-            android:theme="@style/AppTheme_bar" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_bar"
+            android:usesCleartextTraffic="true" />
         <activity
-            android:usesCleartextTraffic="true"
             android:name=".Views.InformacoesActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:usesCleartextTraffic="true" />
         <activity
-            android:usesCleartextTraffic="true"
             android:name=".Views.ContactsActivity"
+            android:label="Contactos"
+            android:parentActivityName=".StartAppActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme_bar"
+            android:usesCleartextTraffic="true" />
         <activity
-            android:usesCleartextTraffic="true"
             android:name=".MenuDrawerActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:usesCleartextTraffic="true" />
         <activity
-            android:usesCleartextTraffic="true"
             android:name=".Views.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:usesCleartextTraffic="true" />
         <activity
-            android:usesCleartextTraffic="true"
             android:name=".StartAppActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:usesCleartextTraffic="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

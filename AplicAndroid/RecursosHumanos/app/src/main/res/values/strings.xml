@@ -92,16 +92,8 @@
     <string name="btn_feedback">Ajuda e Feedback</string>
     <string name="btn_traduzir">Traduzir</string>
 
-    //Fragment Horario
-
-    <string-array name="dias_da_semana">
-        <item>Nenhum</item>
-        <item>Segunda-Feira</item>
-        <item>Terça-Feira</item>
-        <item>Quarta-Feira</item>
-        <item>Quinta-Feira</item>
-        <item>Sexta-Feira</item>
-    </string-array>
+    //Fragment Unidades Curriculares
+    <string name="tv_detalhes">Detalhes</string>
 
     <string name="tv_hora">Hora</string>
     <string name="tv_uc">Unidade Curricular</string>

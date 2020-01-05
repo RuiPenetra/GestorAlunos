@@ -53,7 +53,7 @@ public class CalendarioFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
-                View mView = getLayoutInflater().inflate(R.layout.dialog_add_event,null);
+                View mView = getLayoutInflater().inflate(R.layout.erro_dialog,null);
 
                 mBuilder.setView(mView);
                 AlertDialog dialog = mBuilder.create();
@@ -82,7 +82,7 @@ public class CalendarioFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
-                View mView = getLayoutInflater().inflate(R.layout.dialog_add_event,null);
+                View mView = getLayoutInflater().inflate(R.layout.erro_dialog,null);
 
                 mBuilder.setView(mView);
                 AlertDialog dialog = mBuilder.create();
