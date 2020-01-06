@@ -9,9 +9,13 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -63,6 +67,7 @@ public class UnidadesCurricularesFragment extends Fragment {
                 String selectedItemText= (String) adapter.getItem(position);
 
                 if(isNetworkAvaliable()) {
+                    setHasOptionsMenu(false);
 
                     if (selectedItemText != "Nenhum") {
 
@@ -85,6 +90,7 @@ public class UnidadesCurricularesFragment extends Fragment {
 
                     }
                 }else{
+                    setHasOptionsMenu(true);
                     OpenDialog();
                 }
 
@@ -124,6 +130,27 @@ public class UnidadesCurricularesFragment extends Fragment {
         AlertDialog dialog = mBuilder.create();
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
+    }
+
+    // create an action bar button
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+
+        // Para carregar o menu usa-se o Inflater
+        inflater.inflate(R.menu.menu_erro, menu);
+        // Vai buscar aquele item
+        MenuItem itemErro = menu.findItem(R.id.itemErro);
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    // handle button activities
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.itemErro) {
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

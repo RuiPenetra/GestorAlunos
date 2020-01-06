@@ -8,8 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -86,36 +89,51 @@ public class ListaPagamentoAdaptador extends BaseAdapter {
 
     public class ViewHolderLista{
 
-        //private CheckBox status;
+        private CheckBox cb_status;
         private TextView valor;
-        //private TextView dataLimite;
-        private TextView status;
+        private TextView dataLimite;
+        private ImageView imgV_status;
 
         public ViewHolderLista(View convertView){
-            //status = convertView.findViewById(R.id.cb_status);
+            cb_status = convertView.findViewById(R.id.cb_status);
             valor = convertView.findViewById(R.id.tv_item_valor);
-            //dataLimite = convertView.findViewById(R.id.tv_item_dataLimite);
-            status = convertView.findViewById(R.id.tv_status);
+            dataLimite = convertView.findViewById(R.id.tv_item_dataLimite);
+            imgV_status = convertView.findViewById(R.id.img_item_status);
 
         }
 
 
         public void update(Pagamento pagamento){
 
-            //status.isChecked();
-            valor.setText(pagamento.getValor().toString());
-            status.setText(pagamento.getStatus().toString());
 
+            cb_status.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    // update your model (or other business logic) based on isChecked
 
-      /*      if(pagamento.getStatus()== false){
+                    if(cb_status.isChecked()){
 
-                conf_status.setImageResource(R.drawable.img_divida);
+                        imgV_status.setImageResource(R.drawable.img_pago);
+                    }else{
+
+                        imgV_status.setImageResource(R.drawable.img_divida);
+                    }
+
+                }
+            });
+
+            dataLimite.setText(pagamento.getDataLimite());
+            valor.setText(pagamento.getValor());
+
+            if(pagamento.getStatus()== false){
+
+                imgV_status.setImageResource(R.drawable.img_divida);
 
             }else{
 
-                conf_status.setImageResource(R.drawable.img_pago);
+                cb_status.setChecked(true);
 
-            }*/
+                imgV_status.setImageResource(R.drawable.img_pago);
+            }
 
         }
 

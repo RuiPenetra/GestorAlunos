@@ -1,6 +1,7 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Horario implements Serializable {
 

@@ -2,8 +2,8 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/itemErro"
-        android:icon="@drawable/ic_notificacion"
+        android:id="@+id/itemNotificacao"
+        android:icon="@drawable/ic_error"
         android:title="@string/nav_notificacoes"
         android:actionLayout="@layout/app_bar_top"
         app:showAsAction="always" />

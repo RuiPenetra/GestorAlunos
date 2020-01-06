@@ -3,22 +3,29 @@ package amsi.dei.estg.ipleiria.pt.recursoshumanos.Views;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -42,10 +49,6 @@ public class HorarioFragment extends Fragment {
     private TextView tv_dados;
     private Integer ValorRecebido;
     private Boolean estado;
-
-    public HorarioFragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,6 +78,8 @@ public class HorarioFragment extends Fragment {
                 /*Verificar Conecção a Internet*/
                 if(isNetworkAvaliable()){
 
+                    setHasOptionsMenu(false);
+
                     if(selectedItemText != "Nenhum")
                     {
                         listaEscolhida = SingletonGestorHorarios.getInstance(getContext()).getHorarioSpinner(selectedItemText);
@@ -89,6 +94,7 @@ public class HorarioFragment extends Fragment {
 
                 }else{
 
+                    setHasOptionsMenu(true);
                     OpenDialog();
                 }
 
@@ -129,6 +135,27 @@ public class HorarioFragment extends Fragment {
         AlertDialog dialog = mBuilder.create();
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
+    }
+
+    // create an action bar button
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+
+        // Para carregar o menu usa-se o Inflater
+        inflater.inflate(R.menu.menu_erro, menu);
+        // Vai buscar aquele item
+        MenuItem itemErro = menu.findItem(R.id.itemErro);
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    // handle button activities
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.itemErro) {
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#59B9FF</color>//Cor do focus
     <color name="colorPrimaryDark" >#59B9FF</color>//Cor da barra de notificações
-    <color name="colorAccent">#ffffff</color>
+    <color name="colorAccent">#000000</color>
 
     //Fragment Pagamentos
     <color name="header">#1E2327</color>

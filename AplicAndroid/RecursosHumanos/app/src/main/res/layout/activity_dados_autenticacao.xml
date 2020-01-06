@@ -50,7 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
                     android:background="@drawable/ic_content"
-                    android:drawableLeft="@drawable/ic_email"
+                    android:drawableLeft="@drawable/tv_aut_email"
                     android:ems="10"
                     android:inputType="textEmailAddress"
                     android:textColor="#FFFFFF"
@@ -92,7 +92,7 @@
                         android:inputType="textEmailAddress"
                         android:textColor="#000000"
                         android:enabled="false"
-                        android:drawableLeft="@drawable/ic_password"/>
+                        android:drawableLeft="@drawable/tv_aut_password"/>
 
 
                     <ImageView

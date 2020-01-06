@@ -8,21 +8,23 @@ public class Pagamento implements Serializable {
     // Atributos
     private int id;
     private String valor;
-    private String status;
-    private static int autoIncrementID = 1;
+    private String dataLimite;
+    private boolean status;
+    private int id_aluno;
 
 
 
     // Construtor
-    public Pagamento(Integer id, String valor, String status){
+    public Pagamento(Integer id, String valor, String dataLimite, Boolean status, Integer id_aluno){
 
         this.id = id;
         this.valor = valor;
+        this.dataLimite= dataLimite;
         this.status = status;
-
+        this.id_aluno = id_aluno;
     }
 
-    // Getters and Setters (não tem setId())
+    // GETS
     public int getId(){ return id;}
 
     public String getValor()
@@ -30,6 +32,19 @@ public class Pagamento implements Serializable {
         return valor;
     }
 
+    public String getDataLimite() {
+        return dataLimite;
+    }
+
+    public Boolean getStatus(){
+        return status;
+    }
+
+    public int getId_aluno() {
+        return id_aluno;
+    }
+
+    //SETs
     public void setId(int id) {
         this.id = id;
     }
@@ -38,22 +53,15 @@ public class Pagamento implements Serializable {
         this.valor = valor;
     }
 
-/*    public String getDataLimit() {
-
-        //String data = dataLimit.toString();
-
-        return dataLimit;
-    }*/
-
-/*    public void setDataLimit(String dataLimit) {
-        this.dataLimit = dataLimit;
-    }*/
-
-    public String getStatus(){
-        return status;
+    public void setDataLimite(String dataLimite) {
+        this.dataLimite = dataLimite;
     }
 
-    public void setStatus(String status){
+    public void setStatus(boolean status){
         this.status = status;
+    }
+
+    public void setId_aluno(int id_aluno) {
+        this.id_aluno = id_aluno;
     }
 }

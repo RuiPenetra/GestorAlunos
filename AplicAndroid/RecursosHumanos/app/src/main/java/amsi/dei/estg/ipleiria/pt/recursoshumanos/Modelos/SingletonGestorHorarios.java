@@ -1,7 +1,10 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -16,7 +19,14 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.CustomOnItemSelectedListener;
 
@@ -25,6 +35,8 @@ public class SingletonGestorHorarios implements Serializable {
     private RequestQueue mQueue;
     private Context mContext;
     private ArrayList<Horario> horarios;
+    final String NEW_FORMAT = " hh:mm";
+    final String OLD_FORMAT = "hh:mm:ss";
     private static SingletonGestorHorarios INSTANCE = null;
 
     public static synchronized SingletonGestorHorarios getInstance(Context context){
@@ -52,6 +64,7 @@ public class SingletonGestorHorarios implements Serializable {
                 null,
                 new Response.Listener<JSONArray>() {
 
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onResponse(JSONArray response) {
                         try{
@@ -64,8 +77,11 @@ public class SingletonGestorHorarios implements Serializable {
                                 int id=posts.getInt("id");
                                 String unidade_curricular = posts.getString("nome");
                                 Log.i("-->","" + unidade_curricular);
-                                String hora_inicio = posts.getString("inicio");
-                                String hora_fim = posts.getString("fim");
+
+                                String hora_inicio= formatTime(posts.getString("inicio"));
+
+                                String hora_fim = formatTime(posts.getString("fim"));
+
                                 String sala = posts.getString("sala");
                                 String dia_semana = posts.getString("dia");
                                 Integer id_turno = posts.getInt("id_turno");
@@ -144,4 +160,21 @@ public class SingletonGestorHorarios implements Serializable {
         horarios.add(new Horario(5,"16:00","18:00", "Serviços e Interoperabilidade de Sistemas TeSP PSI(Lra + TV)","A.S.0.1","Prof.Anabela Duarte"));
         horarios.add(new Horario(6,"19:00","20:00", "Integração na Profissão","A.S.0.1","Prof.Maria Anacleta"));
     }*/
+
+    public String formatTime(String time){
+
+        String formatDate;
+        SimpleDateFormat sdf = new SimpleDateFormat(OLD_FORMAT);
+        Date d = null;
+        try {
+            d = sdf.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        sdf.applyPattern(NEW_FORMAT);
+        formatDate=sdf.format(d);
+
+        return formatDate;
+
+    }
 }

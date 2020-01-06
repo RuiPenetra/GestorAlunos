@@ -19,6 +19,10 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Pagamento;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorPagamentos;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.CalendarioFragment;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.ConfiguracoesFragment;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.ForumFragment;
