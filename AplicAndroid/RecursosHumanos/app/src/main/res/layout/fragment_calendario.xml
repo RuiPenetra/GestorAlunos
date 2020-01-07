@@ -177,11 +177,19 @@
             android:layout_below="@id/container_calendario"
             android:gravity="center">
 
+            <TextView
+                android:id="@+id/tvdia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView" />
+
             <ImageView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:src="@drawable/img_calendario_event"
                 android:alpha="0.15"/>
+
         </LinearLayout>
     </RelativeLayout>
 
