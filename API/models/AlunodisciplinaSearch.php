@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Curso;
+use frontend\models\AlunoDisciplina;
 
 /**
- * CursoSearch represents the model behind the search form of `backend\models\Curso`.
+ * AlunodisciplinaSearch represents the model behind the search form of `frontend\models\AlunoDisciplina`.
  */
-class CursoSearch extends Curso
+class AlunodisciplinaSearch extends AlunoDisciplina
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,7 @@ class CursoSearch extends Curso
     public function rules()
     {
         return [
-            [['id', 'ano', 'tipo_curso', 'id_escola', 'diretor_curso'], 'integer'],
-            [['nome', 'abreviatura'], 'safe'],
+            [['aluno_id_perfil', 'disciplina_id', 'nota'], 'integer'],
         ];
     }
 
@@ -40,7 +39,7 @@ class CursoSearch extends Curso
      */
     public function search($params)
     {
-        $query = Curso::find();
+        $query = AlunoDisciplina::find();
 
         // add conditions that should always apply here
 
@@ -58,15 +57,10 @@ class CursoSearch extends Curso
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'ano' => $this->ano,
-            'tipo_curso' => $this->tipo_curso,
-            'id_escola' => $this->id_escola,
-            'diretor_curso' => $this->diretor_curso,
+            'aluno_id_perfil' => $this->aluno_id_perfil,
+            'disciplina_id' => $this->disciplina_id,
+            'nota' => $this->nota,
         ]);
-
-        $query->andFilterWhere(['like', 'nome', $this->nome])
-            ->andFilterWhere(['like', 'abreviatura', $this->abreviatura]);
 
         return $dataProvider;
     }

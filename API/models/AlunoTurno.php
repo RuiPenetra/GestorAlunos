@@ -45,6 +45,8 @@ class AlunoTurno extends \yii\db\ActiveRecord
         return [
             'aluno_id_perfil' => 'Nome',
             'turno_id' => 'Turno',
+            'turno.tipo' => 'Turno',
+            'turno.disciplina.nome' => 'Disciplina',
         ];
     }
 

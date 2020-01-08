@@ -5,23 +5,23 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "aluno_teste".
+ * This is the model class for table "aluno_disciplina".
  *
  * @property int $aluno_id_perfil
- * @property int $teste_id
+ * @property int $disciplina_id
  * @property int|null $nota
  *
  * @property Aluno $alunoIdPerfil
- * @property Teste $teste
+ * @property Disciplina $disciplina
  */
-class AlunoTeste extends \yii\db\ActiveRecord
+class AlunoDisciplina extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'aluno_teste';
+        return 'aluno_disciplina';
     }
 
     /**
@@ -30,11 +30,11 @@ class AlunoTeste extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['aluno_id_perfil', 'teste_id'], 'required'],
-            [['aluno_id_perfil', 'teste_id', 'nota'], 'integer'],
-            [['aluno_id_perfil', 'teste_id'], 'unique', 'targetAttribute' => ['aluno_id_perfil', 'teste_id']],
+            [['aluno_id_perfil', 'disciplina_id'], 'required'],
+            [['aluno_id_perfil', 'disciplina_id', 'nota'], 'integer'],
+            [['aluno_id_perfil', 'disciplina_id'], 'unique', 'targetAttribute' => ['aluno_id_perfil', 'disciplina_id']],
             [['aluno_id_perfil'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::className(), 'targetAttribute' => ['aluno_id_perfil' => 'id_perfil']],
-            [['teste_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teste::className(), 'targetAttribute' => ['teste_id' => 'id']],
+            [['disciplina_id'], 'exist', 'skipOnError' => true, 'targetClass' => Disciplina::className(), 'targetAttribute' => ['disciplina_id' => 'id']],
         ];
     }
 
@@ -45,7 +45,7 @@ class AlunoTeste extends \yii\db\ActiveRecord
     {
         return [
             'aluno_id_perfil' => 'Aluno Id Perfil',
-            'teste_id' => 'Teste',
+            'disciplina_id' => 'Disciplina',
             'nota' => 'Nota',
         ];
     }
@@ -61,8 +61,8 @@ class AlunoTeste extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTeste()
+    public function getDisciplina()
     {
-        return $this->hasOne(Teste::className(), ['id' => 'teste_id'])->orderBy(['data' => SORT_DESC]);
+        return $this->hasOne(Disciplina::className(), ['id' => 'disciplina_id']);
     }
 }

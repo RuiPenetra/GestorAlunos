@@ -12,12 +12,12 @@ use Yii;
  * @property string $abreviatura
  * @property int $semestre
  * @property int $id_professor
+ * @property int $curso_id
  *
  * @property AlunoDisciplina[] $alunoDisciplinas
  * @property Aluno[] $alunoIdPerfils
  * @property Professor $professor
- * @property LinhaDiscCur[] $linhaDiscCurs
- * @property Curso[] $cursos
+ * @property Curso $curso
  * @property Teste[] $testes
  * @property Turno[] $turnos
  */
@@ -37,11 +37,12 @@ class Disciplina extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nome', 'abreviatura', 'semestre', 'id_professor'], 'required'],
-            [['semestre', 'id_professor'], 'integer'],
+            [['nome', 'abreviatura', 'semestre', 'id_professor', 'curso_id'], 'required'],
+            [['semestre', 'id_professor', 'curso_id'], 'integer'],
             [['nome'], 'string', 'max' => 255],
             [['abreviatura'], 'string', 'max' => 45],
             [['id_professor'], 'exist', 'skipOnError' => true, 'targetClass' => Professor::className(), 'targetAttribute' => ['id_professor' => 'id_perfil']],
+            [['curso_id'], 'exist', 'skipOnError' => true, 'targetClass' => Curso::className(), 'targetAttribute' => ['curso_id' => 'id']],
         ];
     }
 
@@ -55,8 +56,9 @@ class Disciplina extends \yii\db\ActiveRecord
             'nome' => 'Nome',
             'abreviatura' => 'Abreviatura',
             'semestre' => 'Semestre',
-            'id_professor' => 'Nome do Professor',
-            'professor.perfil.nome' => 'Nome do Professor'
+            'id_professor' => 'Professor',
+            'curso_id' => 'Curso',
+            'professor.perfil.nome' => 'Professor',
         ];
     }
 
@@ -87,17 +89,9 @@ class Disciplina extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getLinhaDiscCurs()
+    public function getCurso()
     {
-        return $this->hasMany(LinhaDiscCur::className(), ['id_disc' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCursos()
-    {
-        return $this->hasMany(Curso::className(), ['id' => 'id_curso'])->viaTable('linha_disc_cur', ['id_disc' => 'id']);
+        return $this->hasOne(Curso::className(), ['id' => 'curso_id']);
     }
 
     /**

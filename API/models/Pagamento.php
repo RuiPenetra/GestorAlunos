@@ -8,11 +8,12 @@ use Yii;
  * This is the model class for table "pagamento".
  *
  * @property int $id
- * @property int $valor
+ * @property float $valor
  * @property string $data_lim
- * @property int $id_perfil
+ * @property int $status
+ * @property int $id_aluno
  *
- * @property Aluno $perfil
+ * @property Aluno $aluno
  */
 class Pagamento extends \yii\db\ActiveRecord
 {
@@ -30,10 +31,11 @@ class Pagamento extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['valor', 'data_lim', 'id_perfil'], 'required'],
-            [['valor', 'id_perfil'], 'integer'],
+            [['valor', 'data_lim', 'status', 'id_aluno'], 'required'],
+            [['valor'], 'number'],
             [['data_lim'], 'safe'],
-            [['id_perfil'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::className(), 'targetAttribute' => ['id_perfil' => 'id_perfil']],
+            [['status', 'id_aluno'], 'integer'],
+            [['id_aluno'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::className(), 'targetAttribute' => ['id_aluno' => 'id_perfil']],
         ];
     }
 
@@ -45,16 +47,17 @@ class Pagamento extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'valor' => 'Valor',
-            'data_lim' => 'Data Lim',
-            'id_perfil' => 'Id Perfil',
+            'data_lim' => 'Data Limite',
+            'status' => 'Estado',
+            'id_aluno' => 'Aluno',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPerfil()
+    public function getAluno()
     {
-        return $this->hasOne(Aluno::className(), ['id_perfil' => 'id_perfil']);
+        return $this->hasOne(Aluno::className(), ['id_perfil' => 'id_aluno']);
     }
 }
