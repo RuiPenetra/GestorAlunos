@@ -95,7 +95,11 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
 
                                         <p>
                                             <?= $perfil->nome ?>
-                                            <small>Administrador</small>
+                                            <?php if ($perfil->genero == 'm') { ?>
+                                                <small>Professor</small>
+                                            <?php } else { ?>
+                                                <small>Professora</small>                                                
+                                            <?php } ?>
                                         </p>
                                     </li>
                                     <!-- Menu Footer-->
@@ -121,7 +125,12 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                                         </div>
                                         <div class="pull-left info">
                                             <p> <?= $perfil->nome ?></p>
-                                            <a href="#"><i class="fa fa-id-card text-success"></i> Administrador</a>
+                                            <a href="#"><i class="fa fa-id-card text-success"></i> 
+                                                <?php if ($perfil->genero == 'm') { ?>
+                                                    <small>Professor</small>
+                                                <?php } else { ?>
+                                                    <small>Professora</small>                                                
+                                                <?php } ?></a>
                                         </div>
                                     </div>
                                     <!-- /.search form -->
@@ -132,74 +141,6 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                                             <a href="<?= Url::toRoute(['site/index']) ?>">
                                                 <i class="fa fa-home"></i> <span>Home</span>
                                             </a>
-                                        </li>
-                                        <li class="treeview">
-                                            <a href="#"><i class="far fa-user"></i> <span>Pessoas</span>
-                                                <span class="pull-right-container">
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </span>
-                                            </a>
-                                            <ul class="treeview-menu">
-                                                <li class="">
-                                                    <a href="<?= Url::toRoute(['user/index']) ?>">
-                                                        <i class="fa fa-users"></i> <span>Utilizadores</span>
-                                                    </a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="<?= Url::toRoute(['aluno/index']) ?>">
-                                                        <i class="fa fa-user"></i> <span>Alunos</span>
-                                                    </a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="<?= Url::toRoute(['professor/index']) ?>">
-                                                        <i class="fa fa-user"></i> <span>Professores</span>
-                                                    </a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="<?= Url::toRoute(['diretorcurso/index']) ?>">
-                                                        <i class="fa fa-user"></i> <span>Diretor Curso</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="treeview">
-                                            <a href="#"><i class="fa fa-th"></i> <span>Escola</span>
-                                                <span class="pull-right-container">
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </span>
-                                            </a>
-                                            <ul class="treeview-menu">
-                                                <li class="">
-                                                    <a href="<?= Url::toRoute(['escola/index']) ?>">
-                                                        <i class="fa fa-user"></i> <span>Escolas</span>
-                                                    </a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="<?= Url::toRoute(['tipocurso/index']) ?>">
-                                                        <i class="fa fa-th"></i> <span>Tipos Curso</span>
-                                                    </a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="<?= Url::toRoute(['curso/index']) ?>">
-                                                        <i class="fa fa-book"></i> <span>Cursos</span>
-                                                    </a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="<?= Url::toRoute(['disciplina/index']) ?>">
-                                                        <i class="fa fa-user"></i> <span>Disciplinas</span>
-                                                    </a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="<?= Url::toRoute(['horario/index']) ?>">
-                                                        <i class="fa fa-user"></i> <span>Horários</span>
-                                                    </a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="<?= Url::toRoute(['turno/index']) ?>">
-                                                        <i class="fa fa-user"></i> <span>Turno</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
                                         </li>
                                         <li class="treeview">
                                             <a href="#"><i class="fa fa-bookmark"></i> <span>Inscricoes</span>
