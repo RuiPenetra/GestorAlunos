@@ -1,31 +1,36 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
+
 import java.io.Serializable;
-import java.util.Date;
+import java.util.ArrayList;
 
 public class Pagamento implements Serializable {
 
     // Atributos
-    private int id;
+    private String id;
     private String valor;
     private String dataLimite;
-    private boolean status;
-    private int id_aluno;
+    private String status;
+    private String id_aluno;
 
 
-
-    // Construtor
-    public Pagamento(Integer id, String valor, String dataLimite, Boolean status, Integer id_aluno){
+    public Pagamento(String id, String valor, String dataLimite, String status, String id_aluno){
 
         this.id = id;
         this.valor = valor;
-        this.dataLimite= dataLimite;
+        this.dataLimite = dataLimite;
         this.status = status;
         this.id_aluno = id_aluno;
+
     }
 
     // GETS
-    public int getId(){ return id;}
+    public String getId(){ return id;}
 
     public String getValor()
     {
@@ -36,16 +41,16 @@ public class Pagamento implements Serializable {
         return dataLimite;
     }
 
-    public Boolean getStatus(){
+    public String getStatus(){
         return status;
     }
 
-    public int getId_aluno() {
+    public String getId_aluno() {
         return id_aluno;
     }
 
     //SETs
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -57,11 +62,12 @@ public class Pagamento implements Serializable {
         this.dataLimite = dataLimite;
     }
 
-    public void setStatus(boolean status){
+    public void setStatus(String status){
         this.status = status;
     }
 
-    public void setId_aluno(int id_aluno) {
+    public void setId_aluno(String id_aluno) {
         this.id_aluno = id_aluno;
     }
+
 }

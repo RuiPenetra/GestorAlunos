@@ -23,8 +23,8 @@ class AppAsset extends AssetBundle
         'css/morris.css',
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic',
         'css/blue.css',
-        'css/calendar/fullcalendar.min.css',
-        'css/calendar/fullcalendar.print.min.css',
+        // 'css/calendar/fullcalendar.min.css',
+        // 'css/calendar/fullcalendar.print.min.css',
     ];
     public $js = [
       'js/jquery/jquery.min.js',
@@ -42,8 +42,8 @@ class AppAsset extends AssetBundle
       'js/demo.js',
       'js/fastclick.js',
       'js/moment.min.js',
-      'js/calendar/fullcalendar.min.js',
-      'js/calendar/locale/pt.js',
+      // 'js/calendar/fullcalendar.min.js',
+      // 'js/calendar/locale/pt.js',
       'js/morris.min.js',
       'js/raphael.min.js',
       'js/site.js',

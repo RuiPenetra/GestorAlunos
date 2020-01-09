@@ -1,7 +1,9 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -28,27 +30,29 @@ public class SingletonGestorPagamentos implements Serializable {
     private static SingletonGestorPagamentos INSTANCE = null;
     private  RequestQueue mQueue;
     private Context mContext;
-    final String NEW_FORMAT = " hh:mm";
-    final String OLD_FORMAT = "hh:mm:ss";
+ /*   final String NEW_FORMAT = " hh:mm";
+    final String OLD_FORMAT = "hh:mm:ss";*/
     private JsonArrayRequest jsonArrayRequest;
+    private GestorAlunosHelper db;
     Pagamento p;
 
     public static synchronized SingletonGestorPagamentos getInstance(Context context){
 
         if(INSTANCE == null){
 
-            INSTANCE = new SingletonGestorPagamentos(context.getApplicationContext());
+            INSTANCE = new SingletonGestorPagamentos(context);
         }
         return INSTANCE;
     }
 
     private SingletonGestorPagamentos(Context context){
 
-        mContext=context;
-        pagamentos= new ArrayList<>();
-        mQueue = Volley.newRequestQueue(mContext);
+       /* mQueue = Volley.newRequestQueue(context);
+        db = new GestorAlunosHelper(context);
 
         String URL = "https://weunify.pt/API/web/pagamento";
+
+       db.removerAllLivrosBD();
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
@@ -58,35 +62,25 @@ public class SingletonGestorPagamentos implements Serializable {
                     @Override
                     public void onResponse(JSONArray response) {
                         try{
-                            pagamentos = new ArrayList<>(response.length());
 
+                            pagamentos = new ArrayList<>();
                             for (int i=0; i < response.length(); i++){
                                 JSONObject posts = response.getJSONObject(i);
 
-                                Log.i("-->","entrou");
 
-                                int id = posts.getInt("id");
+                                Log.i("-->","ciclo for:");
 
-                                Log.i("-->","" + id);
-                                String valor = posts.getString("valor");
-                                String dataLimit = posts.getString("data_lim");
-
-
-                                boolean status;
-                                if(posts.getString("status") == "0"){
-
-                                   status = false;
-
-                                }else{
-
-                                    status = true;
-                                }
+                                int id= posts.getInt("id");
+                                //Log.i("-->","ID:" + pp.getId());
+                                float valor= Float.parseFloat(posts.getString("valor"));
+                                String dataLimite =posts.getString("data_lim");
+                                int status =posts.getInt("status");
                                 int id_aluno = posts.getInt("id_aluno");
 
-                                Pagamento pp = new Pagamento(id,valor,dataLimit,status,id_aluno);
+                                Pagamento pagamento = new Pagamento(id,valor,dataLimite,status,id_aluno);
+                                Log.i("-->","api");
 
-                                pagamentos.add(pp);
-
+                                pagamentos.add(db.adicionarLivroBD(pagamento));
 
                             }
 
@@ -103,20 +97,25 @@ public class SingletonGestorPagamentos implements Serializable {
                 }
         );
         mQueue.add(jsonArrayRequest);
+*/
+
+       pagamentos= new ArrayList<>();
+
+        db = new GestorAlunosHelper(context);
 
     }
 
-    public ArrayList<Pagamento> getPagamentos(){
+    public ArrayList<Pagamento> getPagamentosBD(){
 
-        return pagamentos;
+        Log.i("-->","entrou no LISTAR");
+
+        Log.i("-->","array devolvido é preenchido ");
+
+         return db.getAllPagamentosBD();
+
     }
 
-    public ArrayList<Pagamento> getAtualizar(){
-
-        return pagamentos;
-    }
-
-    public Pagamento getPagamento(int idPagamento){
+    public Pagamento getPagamento(String idPagamento){
 
         for (Pagamento p: pagamentos){
             if(p.getId()== idPagamento){
@@ -127,10 +126,20 @@ public class SingletonGestorPagamentos implements Serializable {
         return null;
     }
 
-    private ArrayList<Pagamento> buscardados(){
+/*    public void gerarDados(){
 
+        Pagamento p1= new Pagamento(1,"12.00","23/02/2019",1,1);
+        adicionarPagamentoBD(p1);
+    }*/
 
-        return pagamentos;
+    public void adicionarPagamentoBD(Pagamento pagamento){
+
+        Pagamento auxPagamento = db.addPagamentoBD(pagamento);
+
+        if(auxPagamento != null){
+            pagamentos.add(auxPagamento);
+            System.out.println("--> ADICIONOU ");
+        }
     }
 
 }

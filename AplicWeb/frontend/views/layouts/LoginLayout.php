@@ -2,7 +2,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use backend\assets\AppAssetLogin;
+use frontend\assets\AppAssetLogin;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 //use yii\bootstrap\Nav;
