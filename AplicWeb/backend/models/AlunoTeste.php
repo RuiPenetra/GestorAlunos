@@ -5,22 +5,23 @@ namespace backend\models;
 use Yii;
 
 /**
- * This is the model class for table "aluno_turno".
+ * This is the model class for table "aluno_teste".
  *
  * @property int $aluno_id_perfil
- * @property int $turno_id
+ * @property int $teste_id
+ * @property int|null $nota
  *
  * @property Aluno $alunoIdPerfil
- * @property Turno $turno
+ * @property Teste $teste
  */
-class AlunoTurno extends \yii\db\ActiveRecord
+class AlunoTeste extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'aluno_turno';
+        return 'aluno_teste';
     }
 
     /**
@@ -29,11 +30,11 @@ class AlunoTurno extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['aluno_id_perfil', 'turno_id'], 'required'],
-            [['aluno_id_perfil', 'turno_id'], 'integer'],
-            [['aluno_id_perfil', 'turno_id'], 'unique', 'targetAttribute' => ['aluno_id_perfil', 'turno_id']],
+            [['aluno_id_perfil', 'teste_id'], 'required'],
+            [['aluno_id_perfil', 'teste_id', 'nota'], 'integer'],
+            [['aluno_id_perfil', 'teste_id'], 'unique', 'targetAttribute' => ['aluno_id_perfil', 'teste_id']],
             [['aluno_id_perfil'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::className(), 'targetAttribute' => ['aluno_id_perfil' => 'id_perfil']],
-            [['turno_id'], 'exist', 'skipOnError' => true, 'targetClass' => Turno::className(), 'targetAttribute' => ['turno_id' => 'id']],
+            [['teste_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teste::className(), 'targetAttribute' => ['teste_id' => 'id']],
         ];
     }
 
@@ -43,10 +44,9 @@ class AlunoTurno extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'aluno_id_perfil' => 'Nome',
-            'turno_id' => 'Turno',
-            'turno.tipo' => 'Turno',
-            'turno.disciplina.nome' => 'Disciplina',
+            'aluno_id_perfil' => 'Aluno Id Perfil',
+            'teste_id' => 'Teste',
+            'nota' => 'Nota',
         ];
     }
 
@@ -61,8 +61,8 @@ class AlunoTurno extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTurno()
+    public function getTeste()
     {
-        return $this->hasOne(Turno::className(), ['id' => 'turno_id']);
+        return $this->hasOne(Teste::className(), ['id' => 'teste_id'])->orderBy(['data' => SORT_DESC]);
     }
 }

@@ -4,12 +4,12 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\AlunoTurno;
+use frontend\models\AlunoDisciplina;
 
 /**
- * AlunoturnoSearch represents the model behind the search form of `frontend\models\AlunoTurno`.
+ * AlunodisciplinaSearch represents the model behind the search form of `frontend\models\AlunoDisciplina`.
  */
-class AlunoturnoSearch extends AlunoTurno
+class AlunodisciplinaSearch extends AlunoDisciplina
 {
     /**
      * {@inheritdoc}
@@ -17,7 +17,7 @@ class AlunoturnoSearch extends AlunoTurno
     public function rules()
     {
         return [
-            [['aluno_id_perfil', 'turno_id'], 'integer'],
+            [['aluno_id_perfil', 'disciplina_id', 'nota'], 'integer'],
         ];
     }
 
@@ -39,7 +39,7 @@ class AlunoturnoSearch extends AlunoTurno
      */
     public function search($params)
     {
-        $query = AlunoTurno::find();
+        $query = AlunoDisciplina::find();
 
         // add conditions that should always apply here
 
@@ -58,7 +58,8 @@ class AlunoturnoSearch extends AlunoTurno
         // grid filtering conditions
         $query->andFilterWhere([
             'aluno_id_perfil' => $this->aluno_id_perfil,
-            'turno_id' => $this->turno_id,
+            'disciplina_id' => $this->disciplina_id,
+            'nota' => $this->nota,
         ]);
 
         return $dataProvider;
