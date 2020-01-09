@@ -18,6 +18,10 @@ class AlunoController extends \yii\rest\ActiveController
    $behaviors = parent::behaviors();
    $behaviors['authenticator'] = [
      'class' => HttpBasicAuth::className(),
+'authMethods' => [
+       HttpBasicAuth::className(),
+       QueryParamAuth::className(),
+ ],
      'authMethods' => [
             HttpBasicAuth::className(),
             QueryParamAuth::className(),

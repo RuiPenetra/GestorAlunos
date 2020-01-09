@@ -18,6 +18,14 @@ class ComentarioController extends \yii\rest\ActiveController
    $behaviors = parent::behaviors();
    $behaviors['authenticator'] = [
      'class' => HttpBasicAuth::className(),
+'authMethods' => [
+       HttpBasicAuth::className(),
+       QueryParamAuth::className(),
+ ],
+     'authMethods' => [
+            HttpBasicAuth::className(),
+            QueryParamAuth::className(),
+      ],
      'auth' => function ($username, $password){
        $user = \app\models\User::findByUsername($username);
        if ($user && $user->validatePassword($password)){
