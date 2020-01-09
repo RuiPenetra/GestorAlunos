@@ -4,6 +4,7 @@ namespace app\modules\v1\controllers;
 
 use yii\web\Controller;
 use yii\filters\auth\HttpBasicAuth;
+use yii\filters\auth\QueryParamAuth;
 
 /**
  * AlunoController implements the CRUD actions for Aluno model.
@@ -17,6 +18,10 @@ class AlunoController extends \yii\rest\ActiveController
    $behaviors = parent::behaviors();
    $behaviors['authenticator'] = [
      'class' => HttpBasicAuth::className(),
+     'authMethods' => [
+            HttpBasicAuth::className(),
+            QueryParamAuth::className(),
+      ],
      'auth' => function ($username, $password){
        $user = \app\models\User::findByUsername($username);
        if ($user && $user->validatePassword($password)){

@@ -69,10 +69,10 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public static function findIdentityByAccessToken($token, $type = null)
-    {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
-    }
+     public static function findIdentityByAccessToken($token, $type = null)
+     {
+         return static::findOne(['access_token' => $token]);
+     }
 
     /**
      * Finds user by username

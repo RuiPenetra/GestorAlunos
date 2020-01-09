@@ -4,6 +4,7 @@ namespace app\modules\v1\controllers;
 
 use yii\web\Controller;
 use yii\filters\auth\HttpBasicAuth;
+use yii\filters\auth\QueryParamAuth;
 
 /**
  * TurnoController implements the CRUD actions for Turno model.

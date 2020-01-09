@@ -4,6 +4,7 @@ namespace app\modules\v1\controllers;
 
 use yii\web\Controller;
 use yii\filters\auth\HttpBasicAuth;
+use yii\filters\auth\QueryParamAuth;
 
 /**
  * PresencaController implements the CRUD actions for Presenca model.
