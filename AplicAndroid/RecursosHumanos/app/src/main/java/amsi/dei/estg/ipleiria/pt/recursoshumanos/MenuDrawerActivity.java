@@ -43,17 +43,6 @@ public class MenuDrawerActivity extends AppCompatActivity implements NavigationV
     //public static final String CHAVE_EMAIL = "EMAIL";
     //private String email = "";
     private FragmentManager fragmentManager;
-    String[] cities = {
-            "Mumbai",
-            "Delhi",
-            "Bangalore",
-            "Hyderabad",
-            "Ahmedabad",
-            "Chennai",
-            "Kolkata",
-            "Pune",
-            "Jabalpur"
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +79,7 @@ public class MenuDrawerActivity extends AppCompatActivity implements NavigationV
     }
 
     public boolean onNavigationItemSelected(MenuItem item) {
+
         // Handle navigation view item clicks here.
         Fragment fragment = null;
         switch (item.getItemId()) {

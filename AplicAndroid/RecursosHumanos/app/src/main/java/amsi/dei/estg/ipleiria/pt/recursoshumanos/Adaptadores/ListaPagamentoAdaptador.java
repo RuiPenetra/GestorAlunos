@@ -122,9 +122,9 @@ public class ListaPagamentoAdaptador extends BaseAdapter {
             });
 
             dataLimite.setText(pagamento.getDataLimite());
-            valor.setText(pagamento.getValor());
+            valor.setText(pagamento.getValor().toString());
 
-            if(pagamento.getStatus()== false){
+            if(pagamento.getStatus()== "0"){
 
                 imgV_status.setImageResource(R.drawable.img_divida);
 

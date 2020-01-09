@@ -35,6 +35,7 @@ import java.util.ArrayList;
 
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Adaptadores.ListaHorarioAdaptador;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Adaptadores.ListaPagamentoAdaptador;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.GestorAlunosHelper;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Pagamento;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorHorarios;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorPagamentos;
@@ -56,6 +57,11 @@ public class PagamentosFragment extends Fragment {
     private ListaPagamentoAdaptador adaptador;
     private  RequestQueue mQueue;
     private CheckBox cb_status;
+    private int valApagado;
+    private GestorAlunosHelper db;
+
+
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -72,9 +78,31 @@ public class PagamentosFragment extends Fragment {
 
             setHasOptionsMenu(false);
 
-            listaatualizada= SingletonGestorPagamentos.getInstance(getContext()).getPagamentos();
-            lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaatualizada));
-            lvListaPagamentos.deferNotifyDataSetChanged();
+            db = new GestorAlunosHelper(getContext());
+//            listaatualizada = db.getAllPagamentosBD();
+
+            SingletonGestorPagamentos.getInstance(getContext()).adicionarPagamentoBD(adicionarPagamento1());
+            SingletonGestorPagamentos.getInstance(getContext()).adicionarPagamentoBD(adicionarPagamento2());
+            SingletonGestorPagamentos.getInstance(getContext()).adicionarPagamentoBD(adicionarPagamento3());
+
+            listaatualizada = SingletonGestorPagamentos.getInstance(getContext()).getPagamentosBD();
+            System.out.println("TAMANHO =" );
+
+/*            lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaatualizada));
+            lvListaPagamentos.deferNotifyDataSetChanged();*/
+
+            if(listaatualizada== null){
+
+                Log.i("-->1","Está vazio");
+
+            }else{
+
+                Log.i("-->2","Está prienchido");
+/*
+               lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaatualizada));
+                 lvListaPagamentos.deferNotifyDataSetChanged();*/
+
+            }
 
         }else{
 
@@ -85,12 +113,6 @@ public class PagamentosFragment extends Fragment {
 
         return rootView;
     }
-
-   public void Atualizar(){
-
-       listaatualizada= SingletonGestorPagamentos.getInstance(getContext()).getPagamentos();
-       lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaatualizada));
-   }
 
     private boolean isNetworkAvaliable() {
 
@@ -137,6 +159,33 @@ public class PagamentosFragment extends Fragment {
         if (id == R.id.itemErro) {
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public Pagamento adicionarPagamento1(){
+
+        ArrayList<Pagamento> pagamentos= new ArrayList<>();
+
+        Pagamento pagamento = new Pagamento("1","2","3","4","5");
+
+        return pagamento;
+    }
+
+    public Pagamento adicionarPagamento2(){
+
+        ArrayList<Pagamento> pagamentos= new ArrayList<>();
+
+        Pagamento pagamento = new Pagamento("2","2","3","4","5");
+
+        return pagamento;
+    }
+
+    public Pagamento adicionarPagamento3(){
+
+        ArrayList<Pagamento> pagamentos= new ArrayList<>();
+
+        Pagamento pagamento = new Pagamento("3","2","3","4","5");
+
+        return pagamento;
     }
 
 }
