@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id_professor
  *
+ * @property Curso[] $cursos
  * @property Professor $professor
  */
 class DiretorCurso extends \yii\db\ActiveRecord
@@ -40,8 +41,16 @@ class DiretorCurso extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_professor' => 'Nome',
+            'id_professor' => 'Id Professor',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCursos()
+    {
+        return $this->hasMany(Curso::className(), ['diretor_curso' => 'id_professor']);
     }
 
     /**

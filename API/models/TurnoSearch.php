@@ -17,7 +17,8 @@ class TurnoSearch extends Turno
     public function rules()
     {
         return [
-            [['id', 'tipo', 'id_disciplina'], 'integer'],
+            [['id', 'id_disciplina'], 'integer'],
+            [['tipo'], 'safe'],
         ];
     }
 
@@ -58,9 +59,10 @@ class TurnoSearch extends Turno
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'tipo' => $this->tipo,
             'id_disciplina' => $this->id_disciplina,
         ]);
+
+        $query->andFilterWhere(['like', 'tipo', $this->tipo]);
 
         return $dataProvider;
     }

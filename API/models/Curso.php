@@ -13,13 +13,14 @@ use Yii;
  * @property int $ano
  * @property int $tipo_curso
  * @property int $id_escola
+ * @property int $diretor_curso
  *
  * @property Aluno[] $alunos
  * @property TipoCurso $tipoCurso
  * @property Escola $escola
+ * @property DiretorCurso $diretorCurso
+ * @property Disciplina[] $disciplinas
  * @property Horario[] $horarios
- * @property LinhaDiscCur[] $linhaDiscCurs
- * @property Disciplina[] $discs
  */
 class Curso extends \yii\db\ActiveRecord
 {
@@ -37,12 +38,13 @@ class Curso extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nome', 'abreviatura', 'ano', 'tipo_curso', 'id_escola'], 'required'],
-            [['ano', 'tipo_curso', 'id_escola'], 'integer'],
+            [['nome', 'abreviatura', 'ano', 'tipo_curso', 'id_escola', 'diretor_curso'], 'required'],
+            [['ano', 'tipo_curso', 'id_escola', 'diretor_curso'], 'integer'],
             [['nome'], 'string', 'max' => 255],
             [['abreviatura'], 'string', 'max' => 45],
             [['tipo_curso'], 'exist', 'skipOnError' => true, 'targetClass' => TipoCurso::className(), 'targetAttribute' => ['tipo_curso' => 'id']],
             [['id_escola'], 'exist', 'skipOnError' => true, 'targetClass' => Escola::className(), 'targetAttribute' => ['id_escola' => 'id']],
+            [['diretor_curso'], 'exist', 'skipOnError' => true, 'targetClass' => DiretorCurso::className(), 'targetAttribute' => ['diretor_curso' => 'id_professor']],
         ];
     }
 
@@ -57,8 +59,9 @@ class Curso extends \yii\db\ActiveRecord
             'abreviatura' => 'Abreviatura',
             'ano' => 'Ano',
             'tipo_curso' => 'Tipo Curso',
-            'tipoCurso.nome' => 'Tipo Curso',
-            'id_escola' => 'Escola',
+            'id_escola' => 'Id Escola',
+            'diretor_curso' => 'Diretor Curso',
+            'tipoCurso.nome' => 'Curso',
             'escola.nome' => 'Escola',
         ];
     }
@@ -90,24 +93,24 @@ class Curso extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getDiretorCurso()
+    {
+        return $this->hasOne(DiretorCurso::className(), ['id_professor' => 'diretor_curso']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDisciplinas()
+    {
+        return $this->hasMany(Disciplina::className(), ['curso_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getHorarios()
     {
         return $this->hasMany(Horario::className(), ['id_curso' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getLinhaDiscCurs()
-    {
-        return $this->hasMany(LinhaDiscCur::className(), ['id_curso' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getDiscs()
-    {
-        return $this->hasMany(Disciplina::className(), ['id' => 'id_disc'])->viaTable('linha_disc_cur', ['id_curso' => 'id']);
     }
 }

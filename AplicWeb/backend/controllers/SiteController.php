@@ -26,6 +26,7 @@ class SiteController extends Controller {
      * {@inheritdoc}
      */
     public function behaviors() {
+
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -71,6 +72,10 @@ class SiteController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
+        //CRIAR LAYOUTS PARA CADA TIPO DE UTILIZADOR (PROFESSORES, DIRETORES DE CURSO, ADMINISTRADORES)
+        //$this->layout = 'Professores';
+        //$this->layout = 'DiretorCurso';
+
         $alunos = Aluno::find()->all();
         $cursos = Curso::find()->all();
         $disciplinas = Disciplina::find()->all();
@@ -93,14 +98,16 @@ class SiteController extends Controller {
         $this->layout = 'LoginLayout';
 
         if (!Yii::$app->user->isGuest) {
-            $this->layout = 'main';
+            //$this->layout = 'main';
+            //$this->layout = 'Professores';
             return $this->goHome();
         }
 
         $model = new LoginForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            $this->layout = 'main';
+            //$this->layout = 'main';
+            //$this->layout = 'Professores';
             return $this->goBack();
         } else {
             $model->password = '';

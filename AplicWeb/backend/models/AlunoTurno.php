@@ -43,8 +43,10 @@ class AlunoTurno extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-          'aluno_id_perfil' => 'Nome',
-          'turno_id' => 'Turno',
+            'aluno_id_perfil' => 'Nome',
+            'turno_id' => 'Turno',
+            'turno.tipo' => 'Turno',
+            'turno.disciplina.nome' => 'Disciplina',
         ];
     }
 
