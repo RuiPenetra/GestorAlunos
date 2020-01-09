@@ -99,6 +99,7 @@ public class SingletonGestorPagamentos implements Serializable {
         mQueue.add(jsonArrayRequest);
 */
 
+       mContext=context;
        pagamentos= new ArrayList<>();
 
         db = new GestorAlunosHelper(context);
@@ -126,12 +127,6 @@ public class SingletonGestorPagamentos implements Serializable {
         return null;
     }
 
-/*    public void gerarDados(){
-
-        Pagamento p1= new Pagamento(1,"12.00","23/02/2019",1,1);
-        adicionarPagamentoBD(p1);
-    }*/
-
     public void adicionarPagamentoBD(Pagamento pagamento){
 
         Pagamento auxPagamento = db.addPagamentoBD(pagamento);
@@ -140,6 +135,60 @@ public class SingletonGestorPagamentos implements Serializable {
             pagamentos.add(auxPagamento);
             System.out.println("--> ADICIONOU ");
         }
+    }
+
+    public void carregarDadosAPI(){
+
+        mQueue = Volley.newRequestQueue(mContext);
+
+        String URL = "https://weunify.pt/API/web/pagamento";
+
+        //db.removerAllLivrosBD();
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                URL,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try{
+
+                            pagamentos = new ArrayList<>();
+                            for (int i=0; i < response.length(); i++){
+                                JSONObject posts = response.getJSONObject(i);
+
+
+                                Log.i("-->","ciclo for:");
+
+                                String id= posts.getString("id");
+                                //Log.i("-->","ID:" + pp.getId());
+                                String valor= posts.getString("valor");
+                                String dataLimite =posts.getString("data_lim");
+                                String status =posts.getString("status");
+                                String id_aluno = posts.getString("id_aluno");
+
+                                Pagamento pagamento = new Pagamento(id,valor,dataLimite,status,id_aluno);
+
+                                adicionarPagamentoBD(pagamento);
+
+
+                                Log.i("-->","api");
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i("-->","erro");
+                    }
+                }
+        );
+        mQueue.add(jsonArrayRequest);
     }
 
 }

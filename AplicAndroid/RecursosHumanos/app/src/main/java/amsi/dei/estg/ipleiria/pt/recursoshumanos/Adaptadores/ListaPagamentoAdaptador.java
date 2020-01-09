@@ -3,6 +3,7 @@ package amsi.dei.estg.ipleiria.pt.recursoshumanos.Adaptadores;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Pagamento;
@@ -32,6 +35,8 @@ public class ListaPagamentoAdaptador extends BaseAdapter {
     private Context context;
     private LayoutInflater inflater;
     private ArrayList<Pagamento> pagamentos;
+    final String NEW_FORMAT = " dd/mm/YYYY";
+    final String OLD_FORMAT = "hh:mm:ss";
 
     public ListaPagamentoAdaptador(Context context, ArrayList<Pagamento> pagamentos){
 
@@ -87,14 +92,14 @@ public class ListaPagamentoAdaptador extends BaseAdapter {
         return convertView;
     }
 
-    public class ViewHolderLista{
+    public class ViewHolderLista {
 
         private CheckBox cb_status;
         private TextView valor;
         private TextView dataLimite;
         private ImageView imgV_status;
 
-        public ViewHolderLista(View convertView){
+        public ViewHolderLista(View convertView) {
             cb_status = convertView.findViewById(R.id.cb_status);
             valor = convertView.findViewById(R.id.tv_item_valor);
             dataLimite = convertView.findViewById(R.id.tv_item_dataLimite);
@@ -103,19 +108,19 @@ public class ListaPagamentoAdaptador extends BaseAdapter {
         }
 
 
-        public void update(Pagamento pagamento){
+        public void update(final Pagamento pagamento) {
 
 
             cb_status.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     // update your model (or other business logic) based on isChecked
 
-                    if(cb_status.isChecked()){
+                    if (cb_status.isChecked()) {
 
                         imgV_status.setImageResource(R.drawable.img_pago);
-                    }else{
+                    } else {
 
-                        imgV_status.setImageResource(R.drawable.img_divida);
+                       validarData(pagamento.getDataLimite());
                     }
 
                 }
@@ -124,19 +129,60 @@ public class ListaPagamentoAdaptador extends BaseAdapter {
             dataLimite.setText(pagamento.getDataLimite());
             valor.setText(pagamento.getValor().toString());
 
-            if(pagamento.getStatus()== "0"){
+            if (pagamento.getStatus().equals("1")) {
 
-                imgV_status.setImageResource(R.drawable.img_divida);
-
-            }else{
-
-                cb_status.setChecked(true);
-
+                //cb_status.setChecked(true);
                 imgV_status.setImageResource(R.drawable.img_pago);
+
+            } else {
+                Log.i("-->", pagamento.getStatus());
+                imgV_status.setImageResource(R.drawable.img_divida);
             }
 
         }
 
+        public Date formatFormatar(String data) {
+
+            String formatDate;
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+            Date d = null;
+            try {
+                d = sdf.parse(data);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            return d;
+        }
+
+        public void validarData(String dataRecb){
+
+            SimpleDateFormat formataData = new SimpleDateFormat("dd-MM-yyyy");
+            Date data = Calendar.getInstance().getTime();
+
+            Date dataFormt = formatFormatar(dataRecb);
+
+            //# SE FOR MAIOR ,A "Data" É DEPOIS DA "dataFormt"
+          /*  if (data.compareTo(dataFormt) > 0 && estado) {
+
+                cb_status.setChecked(false);
+
+                imgV_status.setImageResource(R.drawable.img_divida);
+
+                //# SE FOR MENOR ,A "Data" É ANTES DA "dataFormt"
+            } else*/ if (data.compareTo(dataFormt) < 0) {
+
+                cb_status.setChecked(true);
+                imgV_status.setImageResource(R.drawable.img_por_pagar);
+
+
+            } else {
+
+
+                imgV_status.setImageResource(R.drawable.img_divida);
+            }
+
+        }
     }
 
 }

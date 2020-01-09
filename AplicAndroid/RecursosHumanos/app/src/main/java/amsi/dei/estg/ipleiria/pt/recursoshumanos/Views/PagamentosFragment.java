@@ -81,33 +81,31 @@ public class PagamentosFragment extends Fragment {
             db = new GestorAlunosHelper(getContext());
 //            listaatualizada = db.getAllPagamentosBD();
 
-            SingletonGestorPagamentos.getInstance(getContext()).adicionarPagamentoBD(adicionarPagamento1());
-            SingletonGestorPagamentos.getInstance(getContext()).adicionarPagamentoBD(adicionarPagamento2());
-            SingletonGestorPagamentos.getInstance(getContext()).adicionarPagamentoBD(adicionarPagamento3());
+            SingletonGestorPagamentos.getInstance(getContext()).carregarDadosAPI();
 
             listaatualizada = SingletonGestorPagamentos.getInstance(getContext()).getPagamentosBD();
             System.out.println("TAMANHO =" );
 
-/*            lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaatualizada));
-            lvListaPagamentos.deferNotifyDataSetChanged();*/
+            lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaatualizada));
+            lvListaPagamentos.deferNotifyDataSetChanged();
 
             if(listaatualizada== null){
 
-                Log.i("-->1","Está vazio");
+                System.out.println("-------> ESTÁ VAZIOOOOOOOO");
 
             }else{
 
-                Log.i("-->2","Está prienchido");
-/*
-               lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaatualizada));
-                 lvListaPagamentos.deferNotifyDataSetChanged();*/
 
             }
 
         }else{
 
+
             setHasOptionsMenu(true);
             OpenDialog();
+            listaatualizada = SingletonGestorPagamentos.getInstance(getContext()).getPagamentosBD();
+            lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaatualizada));
+            lvListaPagamentos.deferNotifyDataSetChanged();
 
         }
 

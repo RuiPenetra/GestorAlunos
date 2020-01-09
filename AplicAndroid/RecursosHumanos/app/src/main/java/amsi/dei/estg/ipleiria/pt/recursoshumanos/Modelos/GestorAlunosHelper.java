@@ -66,8 +66,6 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
     // # Para Devolver todos os livros da Base de Dados local
     public ArrayList<Pagamento> getAllPagamentosBD(){
 
-        Log.e("-->","Função todos pagamentos ");
-
         ArrayList<Pagamento> pagamentos = new ArrayList<>();
 
         Cursor cursor = this.database.query(TABLE_NAME, new String[]{
@@ -76,8 +74,15 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()){
             do{
-                Log.i("-->","TENTA ADICIONAR");
-                Pagamento auxPagamento = new Pagamento(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
+                Log.i("-->","TENTA ADICIONAR" + cursor.getCount());
+                Pagamento auxPagamento = new Pagamento(
+                        cursor.getString(cursor.getColumnIndex(COL_1)),
+                        cursor.getString(cursor.getColumnIndex(COL_2)),
+                        cursor.getString(cursor.getColumnIndex(COL_3)),
+                        cursor.getString(cursor.getColumnIndex(COL_4)),
+                        cursor.getString(cursor.getColumnIndex(COL_5))
+                );
+
                 pagamentos.add(auxPagamento);
                 Log.i("-->","ADICIONOU");
 
