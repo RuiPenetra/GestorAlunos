@@ -3,6 +3,7 @@
 namespace app\modules\v1\controllers;
 
 use yii\web\Controller;
+use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBasicAuth;
 use yii\filters\auth\QueryParamAuth;
 
@@ -17,18 +18,21 @@ class DisciplinaController extends \yii\rest\ActiveController
   {
    $behaviors = parent::behaviors();
    $behaviors['authenticator'] = [
-     'class' => HttpBasicAuth::className(),
-'authMethods' => [
-       HttpBasicAuth::className(),
-       QueryParamAuth::className(),
- ],
-     'auth' => function ($username, $password){
-       $user = \app\models\User::findByUsername($username);
-       if ($user && $user->validatePassword($password)){
-         return $user;
-       }
-       return null;
-     }
+      'class' => CompositeAuth::className(),
+      'authMethods' => [
+        [
+          'class' => HttpBasicAuth::className(),
+          'auth' => function ($username, $password){
+            $user = \app\models\User::findByUsername($username);
+            if ($user && $user->validatePassword($password)){
+              return $user;
+            }
+            return null;
+          }
+        ],
+        QueryParamAuth::className(),
+      ],
+
 
    ];
    return $behaviors;

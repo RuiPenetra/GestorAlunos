@@ -3,6 +3,7 @@
 namespace app\modules\v1\controllers;
 
 use yii\web\Controller;
+use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBasicAuth;
 use yii\filters\auth\QueryParamAuth;
 
@@ -17,7 +18,7 @@ class FeriadoController extends \yii\rest\ActiveController
   {
    $behaviors = parent::behaviors();
    $behaviors['authenticator'] = [
-     'class' => HttpBasicAuth::className(),
+     'class' => CompositeAuth::className(),
 'authMethods' => [
        HttpBasicAuth::className(),
        QueryParamAuth::className(),
