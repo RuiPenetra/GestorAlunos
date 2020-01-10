@@ -13,7 +13,7 @@ use yii\filters\auth\QueryParamAuth;
 class PagamentoController extends \yii\rest\ActiveController
 {
   public $modelClass = 'app\models\Pagamento';
-  
+
   public function behaviors()
   {
    $behaviors = parent::behaviors();
@@ -31,9 +31,7 @@ class PagamentoController extends \yii\rest\ActiveController
           }
         ],
         QueryParamAuth::className(),
-      ],
-
-
+      ]
    ];
    return $behaviors;
   }

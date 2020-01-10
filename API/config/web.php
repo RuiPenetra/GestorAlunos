@@ -56,7 +56,7 @@ $config = [
           'showScriptName' => false,
           'rules' => [
             //,
-            ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/default', 'pluralize' => 'false','except' => ['create', 'update', 'delete']],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/pagamento', 'pluralize' => 'false','except' => ['update', 'delete']],
           ],
         ],
     ],
