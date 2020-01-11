@@ -10,7 +10,7 @@ use yii\rest\ActiveController;
  * Time: 01:05
  */
 
-class HorarioController extends ActiveController
+class UserController extends ActiveController
 {
-    public $modelClass = 'app\models\Horario';
+    public $modelClass = 'app\models\User';
 }

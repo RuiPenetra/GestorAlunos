@@ -47,9 +47,9 @@ class Pagamento extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'valor' => 'Valor',
-            'data_lim' => 'Data Limite',
-            'status' => 'Estado',
-            'id_aluno' => 'Aluno',
+            'data_lim' => 'Data Lim',
+            'status' => 'Status',
+            'id_aluno' => 'Id Aluno',
         ];
     }
 

@@ -61,9 +61,9 @@ class Aula extends \yii\db\ActiveRecord
             'fim' => 'Fim',
             'sala' => 'Sala',
             'dia' => 'Dia',
-            'id_turno' => 'Turno',
-            'id_professor' => 'Professor',
-            'horario_id' => 'Horario',
+            'id_turno' => 'Id Turno',
+            'id_professor' => 'Id Professor',
+            'horario_id' => 'Horario ID',
         ];
     }
 

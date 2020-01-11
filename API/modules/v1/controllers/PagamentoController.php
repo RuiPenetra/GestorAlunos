@@ -1,38 +1,16 @@
 <?php
-
 namespace app\modules\v1\controllers;
 
-use yii\web\Controller;
-use yii\filters\auth\CompositeAuth;
-use yii\filters\auth\HttpBasicAuth;
-use yii\filters\auth\QueryParamAuth;
+use yii\rest\ActiveController;
 
 /**
- * PagamentoController implements the CRUD actions for Pagamento model.
+ * Created by PhpStorm.
+ * User: Simão Marques
+ * Date: 02/01/2020
+ * Time: 00:05
  */
-class PagamentoController extends \yii\rest\ActiveController
-{
-  public $modelClass = 'app\models\Pagamento';
 
-  public function behaviors()
-  {
-   $behaviors = parent::behaviors();
-   $behaviors['authenticator'] = [
-      'class' => CompositeAuth::className(),
-      'authMethods' => [
-        [
-          'class' => HttpBasicAuth::className(),
-          'auth' => function ($username, $password){
-            $user = \app\models\User::findByUsername($username);
-            if ($user && $user->validatePassword($password)){
-              return $user;
-            }
-            return null;
-          }
-        ],
-        QueryParamAuth::className(),
-      ]
-   ];
-   return $behaviors;
-  }
+class PagamentoController extends ActiveController
+{
+    public $modelClass = 'app\models\Pagamento';
 }

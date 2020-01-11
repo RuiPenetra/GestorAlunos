@@ -53,7 +53,7 @@ class Teste extends \yii\db\ActiveRecord
             'sala' => 'Sala',
             'duracao' => 'Duracao',
             'percentagem' => 'Percentagem',
-            'id_disciplina' => 'Disciplina',
+            'id_disciplina' => 'Id Disciplina',
         ];
     }
 
