@@ -50,5 +50,50 @@ class PagamentoController extends ActiveController
         return $behaviors;
     }
 
+    public function actions()
+    {
+        $actions = parent::actions();
+
+        unset($actions['index']);
+        return $actions;
+    }
+
+
+    public function actionIndex()
+    {
+        $iduser = \Yii::$app->user->identity->id;
+        $modelClass = $this->modelClass;
+        $model = $modelClass::find()->where(['id_aluno' => $iduser])->all();
+
+        if ($model === null)
+            throw new \yii\web\NotFoundHttpException("O pagamento nao existe!");
+
+        return $model;
+    }
+
+    public function actionPago()
+    {
+        $iduser = \Yii::$app->user->identity->id;
+        $modelClass = $this->modelClass;
+        $model = $modelClass::find()->where(['id_aluno' => $iduser, 'status' => 1])->all();
+
+        if ($model === null)
+            throw new \yii\web\NotFoundHttpException("O pagamento nao existe!");
+
+        return $model;
+    }
+
+    public function actionDivida()
+    {
+        $iduser = \Yii::$app->user->identity->id;
+        $modelClass = $this->modelClass;
+        $model = $modelClass::find()->where(['id_aluno' => $iduser, 'status' => 0])->all();
+
+        if ($model === null)
+            throw new \yii\web\NotFoundHttpException("O pagamento nao existe!");
+
+        return $model;
+    }
+
 
 }
