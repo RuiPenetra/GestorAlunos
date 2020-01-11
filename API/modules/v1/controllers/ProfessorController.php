@@ -38,23 +38,4 @@ class ProfessorController extends ActiveController
         ];
         return $behaviors;
     }
-
-    public function actions()
-    {
-        $actions = parent::actions();
-
-        unset($actions['index']);
-        return $actions;
-    }
-
-
-    public function actionIndex()
-    {
-
-    }
-
-    public function actionCustom()
-    {
-
-    }
 }

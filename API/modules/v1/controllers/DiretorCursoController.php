@@ -10,7 +10,7 @@ use yii\rest\ActiveController;
  * Created by PhpStorm.
  * User: Simão Marques
  * Date: 02/01/2020
- * Time: 01:05
+ * Time: 02:10
  */
 
 class DiretorcursoController extends ActiveController
@@ -39,22 +39,4 @@ class DiretorcursoController extends ActiveController
         return $behaviors;
     }
 
-    public function actions()
-    {
-        $actions = parent::actions();
-
-        unset($actions['index']);
-        return $actions;
-    }
-
-
-    public function actionIndex()
-    {
-
-    }
-
-    public function actionCustom()
-    {
-
-    }
 }

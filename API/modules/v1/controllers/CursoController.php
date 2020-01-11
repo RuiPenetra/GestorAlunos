@@ -1,7 +1,6 @@
 <?php
 namespace app\modules\v1\controllers;
 
-use app\models\Curso;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBasicAuth;
 use yii\filters\auth\QueryParamAuth;
@@ -14,9 +13,9 @@ use yii\rest\ActiveController;
  * Time: 01:05
  */
 
-class PerfilController extends ActiveController
+class CursoController extends ActiveController
 {
-    public $modelClass = 'app\models\Perfil';
+    public $modelClass = 'app\models\Curso';
 
     public function behaviors()
     {
@@ -40,29 +39,4 @@ class PerfilController extends ActiveController
         return $behaviors;
     }
 
-    public function actions()
-    {
-        $actions = parent::actions();
-
-        unset($actions['index']);
-        return $actions;
-    }
-
-
-    public function actionIndex()
-    {
-        $iduser = \Yii::$app->user->identity->id;
-        $modelClass = $this->modelClass;
-        $model = $modelClass::find()->where(['id_user' => $iduser])->one();
-
-        if ($model === null)
-            throw new \yii\web\NotFoundHttpException("O perfil nao existe!");
-
-        return $model;
-    }
-
-    public function actionCustom()
-    {
-
-    }
 }

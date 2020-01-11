@@ -50,11 +50,13 @@ class AlunoDisciplinaController extends ActiveController
 
     public function actionIndex()
     {
+        $iduser = \Yii::$app->user->identity->id;
+        $modelClass = $this->modelClass;
+        $model = $modelClass::find()->where(['id_user' => $iduser])->one();
 
-    }
+        if ($model === null)
+            throw new \yii\web\NotFoundHttpException("O perfil nao existe!");
 
-    public function actionCustom()
-    {
-
+        return $model;
     }
 }
