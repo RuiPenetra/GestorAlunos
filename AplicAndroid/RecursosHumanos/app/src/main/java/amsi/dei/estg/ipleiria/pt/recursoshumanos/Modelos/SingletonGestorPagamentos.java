@@ -112,11 +112,11 @@ public class SingletonGestorPagamentos implements Serializable {
 
         Log.i("-->","array devolvido é preenchido ");
 
-         return db.getAllPagamentosBD();
+         return db.mostrarTodosPagamentosBD();
 
     }
 
-    public Pagamento getPagamento(String idPagamento){
+    /*public Pagamento getPagamento(String idPagamento){
 
         for (Pagamento p: pagamentos){
             if(p.getId()== idPagamento){
@@ -125,16 +125,21 @@ public class SingletonGestorPagamentos implements Serializable {
         }
 
         return null;
-    }
+    }*/
 
     public void adicionarPagamentoBD(Pagamento pagamento){
 
-        Pagamento auxPagamento = db.addPagamentoBD(pagamento);
+        Pagamento auxPagamento = db.adicionarPagamentoBD(pagamento);
 
         if(auxPagamento != null){
             pagamentos.add(auxPagamento);
             System.out.println("--> ADICIONOU ");
         }
+    }
+
+    public void removerPagamentosBD(){
+
+        db.removerTodosPagamentosBD();
     }
 
     public void carregarDadosAPI(){
@@ -161,12 +166,13 @@ public class SingletonGestorPagamentos implements Serializable {
 
                                 Log.i("-->","ciclo for:");
 
-                                String id= posts.getString("id");
+                                int id= posts.getInt("id");
                                 //Log.i("-->","ID:" + pp.getId());
-                                String valor= posts.getString("valor");
+                                float valor= Float.valueOf(posts.getString("valor"));
                                 String dataLimite =posts.getString("data_lim");
-                                String status =posts.getString("status");
-                                String id_aluno = posts.getString("id_aluno");
+                                int status =posts.getInt("status");
+                                int id_aluno = posts.getInt("id_aluno");
+
 
                                 Pagamento pagamento = new Pagamento(id,valor,dataLimite,status,id_aluno);
 

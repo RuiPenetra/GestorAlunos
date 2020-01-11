@@ -1,6 +1,9 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos;
 
 import android.R.layout;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,6 +47,7 @@ public class MenuDrawerActivity extends AppCompatActivity implements NavigationV
     //private String email = "";
     private FragmentManager fragmentManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +65,12 @@ public class MenuDrawerActivity extends AppCompatActivity implements NavigationV
         fragmentManager = getSupportFragmentManager();
         navigationView.setNavigationItemSelectedListener(this);
         carregarFragmentoInicial();
+
+        if(isNetworkAvaliable()){
+
+
+            carregarDadosAPI();
+        }
 
     }
 
@@ -151,6 +161,26 @@ public class MenuDrawerActivity extends AppCompatActivity implements NavigationV
         fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).commit();
     }
 
+
+    public void carregarDadosAPI(){
+
+        SingletonGestorPagamentos.getInstance(getApplicationContext()).removerPagamentosBD();
+        SingletonGestorPagamentos.getInstance(getApplicationContext()).carregarDadosAPI();
+    }
+
+    private boolean isNetworkAvaliable() {
+
+        boolean estado;
+
+        ConnectivityManager cm = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        //necessita de permissões de acesso à internet e acesso ao estado da ligação
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        estado = activeNetwork != null && activeNetwork.isConnected();
+
+        return estado;
+    }
 
 
 

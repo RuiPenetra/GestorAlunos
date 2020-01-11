@@ -14,13 +14,13 @@ public class Horario implements Serializable {
     private String dia_semana;
     private Integer id_turno;
     private Integer id_professor;
-    private Integer horario_id;
+//    private Integer horario_id;
 
 
 
 
     // Construtor
-    public Horario(Integer id,String unidade_curricular, String hora_inicio, String hora_fim, String sala, String dia_semana, Integer id_turno, Integer id_professor, Integer horario_id){
+    public Horario(Integer id,String unidade_curricular, String hora_inicio, String hora_fim, String sala, String dia_semana, Integer id_turno, Integer id_professor){
 
         this.id = id;
         this.unidade_curricular = unidade_curricular;
@@ -30,7 +30,7 @@ public class Horario implements Serializable {
         this.dia_semana=dia_semana;
         this.id_turno=id_turno;
         this.id_professor=id_professor;
-        this.horario_id=horario_id;
+//        this.horario_id=horario_id;
 
     }
 
@@ -69,9 +69,9 @@ public class Horario implements Serializable {
         return id_professor;
     }
 
-    public Integer getHorario_id() {
-        return horario_id;
-    }
+//    public Integer getHorario_id() {
+//        return horario_id;
+//    }
 
 
     public void setId(int id) {
@@ -106,7 +106,7 @@ public class Horario implements Serializable {
         this.id_professor = id_professor;
     }
 
-    public void setHorario_id(Integer horario_id) {
-        this.horario_id = horario_id;
-    }
+//    public void setHorario_id(Integer horario_id) {
+//        this.horario_id = horario_id;
+//    }
 }

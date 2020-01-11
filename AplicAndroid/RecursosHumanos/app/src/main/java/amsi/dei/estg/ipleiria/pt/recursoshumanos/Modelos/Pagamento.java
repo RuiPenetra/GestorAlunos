@@ -8,18 +8,19 @@ import android.util.Log;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Pagamento implements Serializable {
 
     // Atributos
-    private String id;
-    private String valor;
+    private int id;
+    private float valor;
     private String dataLimite;
-    private String status;
-    private String id_aluno;
+    private int status;
+    private int id_aluno;
 
 
-    public Pagamento(String id, String valor, String dataLimite, String status, String id_aluno){
+    public Pagamento(int id, float valor, String dataLimite, int status, int id_aluno){
 
         this.id = id;
         this.valor = valor;
@@ -30,9 +31,9 @@ public class Pagamento implements Serializable {
     }
 
     // GETS
-    public String getId(){ return id;}
+    public int getId(){ return id;}
 
-    public String getValor()
+    public float getValor()
     {
         return valor;
     }
@@ -41,20 +42,20 @@ public class Pagamento implements Serializable {
         return dataLimite;
     }
 
-    public String getStatus(){
+    public int getStatus(){
         return status;
     }
 
-    public String getId_aluno() {
+    public int getId_aluno() {
         return id_aluno;
     }
 
     //SETs
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public void setValor(String valor){
+    public void setValor(float valor){
         this.valor = valor;
     }
 
@@ -62,11 +63,11 @@ public class Pagamento implements Serializable {
         this.dataLimite = dataLimite;
     }
 
-    public void setStatus(String status){
+    public void setStatus(int status){
         this.status = status;
     }
 
-    public void setId_aluno(String id_aluno) {
+    public void setId_aluno(int id_aluno) {
         this.id_aluno = id_aluno;
     }
 

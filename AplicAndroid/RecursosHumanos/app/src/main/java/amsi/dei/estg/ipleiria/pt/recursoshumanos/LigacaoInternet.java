@@ -10,41 +10,24 @@ import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorPagament
 
 public class LigacaoInternet {
 
-    private Context mcontext;
-    private Boolean estado;
-    private static LigacaoInternet INSTANCE = null;
+    private Context context;
 
+    public LigacaoInternet(Context context){
 
-    public static synchronized LigacaoInternet getInstance(Context context) {
+        this.context=context;
 
-        if (INSTANCE == null) {
-
-            INSTANCE = new LigacaoInternet(context.getApplicationContext());
-        }
-        return INSTANCE;
 
     }
+    private boolean isNetworkAvaliable() {
 
-    private LigacaoInternet(Context context){
+        boolean estado;
 
-        mcontext= context;
-
-        verificarInternet(mcontext);
-
-    }
-
-    private boolean verificarInternet(Context context){
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         //necessita de permissões de acesso à internet e acesso ao estado da ligação
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 
-        boolean isLigado = activeNetwork != null && activeNetwork.isConnected();
-
-        return isLigado;
-    }
-
-    public Boolean Result(){
+        estado = activeNetwork != null && activeNetwork.isConnected();
 
         return estado;
     }

@@ -117,7 +117,8 @@ public class ListaPagamentoAdaptador extends BaseAdapter {
 
                     if (cb_status.isChecked()) {
 
-                        imgV_status.setImageResource(R.drawable.img_pago);
+
+                        validarData(pagamento.getDataLimite());
                     } else {
 
                        validarData(pagamento.getDataLimite());
@@ -127,15 +128,15 @@ public class ListaPagamentoAdaptador extends BaseAdapter {
             });
 
             dataLimite.setText(pagamento.getDataLimite());
-            valor.setText(pagamento.getValor().toString());
+            valor.setText(String.valueOf(pagamento.getValor()));
 
-            if (pagamento.getStatus().equals("1")) {
+            if (pagamento.getStatus()==1) {
 
                 //cb_status.setChecked(true);
                 imgV_status.setImageResource(R.drawable.img_pago);
 
             } else {
-                Log.i("-->", pagamento.getStatus());
+
                 imgV_status.setImageResource(R.drawable.img_divida);
             }
 
@@ -163,23 +164,18 @@ public class ListaPagamentoAdaptador extends BaseAdapter {
             Date dataFormt = formatFormatar(dataRecb);
 
             //# SE FOR MAIOR ,A "Data" É DEPOIS DA "dataFormt"
-          /*  if (data.compareTo(dataFormt) > 0 && estado) {
-
-                cb_status.setChecked(false);
+            if (data.compareTo(dataFormt) > 0) {
 
                 imgV_status.setImageResource(R.drawable.img_divida);
 
                 //# SE FOR MENOR ,A "Data" É ANTES DA "dataFormt"
-            } else*/ if (data.compareTo(dataFormt) < 0) {
+            } else if (data.compareTo(dataFormt) < 0) {
 
-                cb_status.setChecked(true);
                 imgV_status.setImageResource(R.drawable.img_por_pagar);
-
 
             } else {
 
-
-                imgV_status.setImageResource(R.drawable.img_divida);
+                imgV_status.setImageResource(R.drawable.img_pago);
             }
 
         }

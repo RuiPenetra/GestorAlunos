@@ -81,22 +81,9 @@ public class PagamentosFragment extends Fragment {
             db = new GestorAlunosHelper(getContext());
 //            listaatualizada = db.getAllPagamentosBD();
 
-            SingletonGestorPagamentos.getInstance(getContext()).carregarDadosAPI();
-
             listaatualizada = SingletonGestorPagamentos.getInstance(getContext()).getPagamentosBD();
-            System.out.println("TAMANHO =" );
-
             lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaatualizada));
             lvListaPagamentos.deferNotifyDataSetChanged();
-
-            if(listaatualizada== null){
-
-                System.out.println("-------> ESTÁ VAZIOOOOOOOO");
-
-            }else{
-
-
-            }
 
         }else{
 
