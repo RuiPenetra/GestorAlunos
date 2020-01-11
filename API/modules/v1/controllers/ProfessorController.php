@@ -1,40 +1,16 @@
 <?php
-
 namespace app\modules\v1\controllers;
 
-use yii\web\Controller;
-use yii\filters\auth\CompositeAuth;
-use yii\filters\auth\HttpBasicAuth;
-use yii\filters\auth\QueryParamAuth;
+use yii\rest\ActiveController;
 
 /**
- * ProfessorController implements the CRUD actions for Professor model.
+ * Created by PhpStorm.
+ * User: Simão Marques
+ * Date: 02/01/2020
+ * Time: 01:05
  */
-class ProfessorController extends \yii\rest\ActiveController
+
+class ProfessorController extends ActiveController
 {
-  public $modelClass = 'app\models\Professor';
-
-  public function behaviors()
-  {
-   $behaviors = parent::behaviors();
-   $behaviors['authenticator'] = [
-      'class' => CompositeAuth::className(),
-      'authMethods' => [
-        [
-          'class' => HttpBasicAuth::className(),
-          'auth' => function ($username, $password){
-            $user = \app\models\User::findByUsername($username);
-            if ($user && $user->validatePassword($password)){
-              return $user;
-            }
-            return null;
-          }
-        ],
-        QueryParamAuth::className(),
-      ],
-
-
-   ];
-   return $behaviors;
-  }
+    public $modelClass = 'app\models\Professor';
 }

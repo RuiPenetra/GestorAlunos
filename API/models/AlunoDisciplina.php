@@ -45,7 +45,7 @@ class AlunoDisciplina extends \yii\db\ActiveRecord
     {
         return [
             'aluno_id_perfil' => 'Aluno Id Perfil',
-            'disciplina_id' => 'Disciplina',
+            'disciplina_id' => 'Disciplina ID',
             'nota' => 'Nota',
         ];
     }

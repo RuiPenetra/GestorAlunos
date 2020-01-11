@@ -12,24 +12,21 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'modules' => [
-      'v1' => [
-        'class' => 'app\modules\v1\Module',
-      ],
+        'v1' => [
+          'class' => 'app\modules\v1\Restv1'
+        ],
     ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'B5qnea5y34bl20e2DShmYNzarxlyWhNa',
-            'parsers' => [
-              'application/json' => 'yii\web\JsonParser',
-            ],
+            'cookieValidationKey' => 'yQ5ZvunkdhdHUYNCoFoQ8ZUnbqKchjXE',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-          'identityClass' => 'app\models\User', //<= this
-          'enableAutoLogin' => false,
+            'identityClass' => 'app\models\User',
+            'enableAutoLogin' => true,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -52,13 +49,18 @@ $config = [
         ],
         'db' => $db,
         'urlManager' => [
-          'enablePrettyUrl' => true,
-          'showScriptName' => false,
-          'rules' => [
-            //,
-            ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/default', 'pluralize' => 'false','except' => ['create', 'update', 'delete']],
-          ],
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => ['v1/pagamento', 'v1/user', 'v1/horario', 'v1/aula', 'v1/teste', 'v1/perfil', 'v1/aluno', 'v1/professor', 'v1/diretorcurso', 'v1/disciplina', 'v1/alunodisciplina'],
+                    'pluralize' => false,
+                ],
+
+            ],
         ],
+
     ],
     'params' => $params,
 ];

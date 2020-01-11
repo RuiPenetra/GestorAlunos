@@ -45,8 +45,7 @@ class Horario extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nome' => 'Nome',
-            'id_curso' => 'Curso',
-            'curso.nome' => 'Curso',
+            'id_curso' => 'Id Curso',
         ];
     }
 
