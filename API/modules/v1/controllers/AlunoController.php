@@ -5,6 +5,7 @@ use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBasicAuth;
 use yii\filters\auth\QueryParamAuth;
 use yii\rest\ActiveController;
+use yii\web\Response;
 
 /**
  * Created by PhpStorm.
@@ -20,6 +21,16 @@ class AlunoController extends ActiveController
     public function behaviors()
     {
         $behaviors = parent::behaviors();
+        $behaviors['contentNegotiator'] = [
+
+            'class' => 'yii\filters\ContentNegotiator',
+
+            'formats' => [
+
+                'application/json' => Response::FORMAT_JSON,
+
+            ]
+        ];
         $behaviors['authenticator'] = [
             'class' => CompositeAuth::className(),
             'authMethods' => [
