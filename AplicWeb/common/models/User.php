@@ -115,6 +115,7 @@ class User extends ActiveRecord implements IdentityInterface
             'status' => 'Estado',
             'created_at' => 'Criado a',
             'updated_at' => 'Alterado a',
+            'password_hash' => 'Password',
         ];
     }
 
