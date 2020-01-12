@@ -8,9 +8,9 @@ use backend\models\Disciplina;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Turno */
 
-$this->title = 'Atualizar Turno: ' . $model->id;
+$this->title = 'Atualizar Turno: ' . $model->tipo;
 $this->params['breadcrumbs'][] = ['label' => 'Turnos', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->tipo, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Atualizar';
 ?>
 <div class="turno-update">
@@ -19,8 +19,8 @@ $this->params['breadcrumbs'][] = 'Atualizar';
 
     <?php $form = ActiveForm::begin(); ?>
         <?= $form->field($model, 'tipo') ?>
-        <?= $form->field($model, 'id_disciplina')->dropDownList(ArrayHelper::map(Disciplina::find()->all(), 'id','nome')) ?>
-        <?= Html::submitButton('Criar', ['class' => 'btn btn-primary']) ?>
+        <?= $form->field($model, 'id_disciplina')->dropDownList(ArrayHelper::map($disciplinas, 'id','nome')) ?>
+        <?= Html::submitButton('Atualizar', ['class' => 'btn btn-primary']) ?>
     <?php ActiveForm::end(); ?>
 
 </div>

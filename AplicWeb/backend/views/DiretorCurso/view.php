@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\DiretorCurso */
 
-$this->title = $model->id_professor;
+$this->title = $model->professor->perfil->nome;
 $this->params['breadcrumbs'][] = ['label' => 'Diretor Cursos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);

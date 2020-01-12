@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
-use backend\models\Curso;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Horario */
@@ -18,7 +17,7 @@ $this->params['breadcrumbs'][] = 'Criar Horario';
 
     <?php $form = ActiveForm::begin(); ?>
       <?= $form->field($model, 'nome') ?>
-      <?= $form->field($model, 'id_curso')->dropDownList(ArrayHelper::map(Curso::find()->all(), 'id','nome'), ['prompt'=>'Selecione uma Opção']) ?>
+      <?= $form->field($model, 'id_curso')->dropDownList(ArrayHelper::map($curso, 'id','nome'), ['prompt'=>'Selecione uma Opção']) ?>
       <?= Html::submitButton('Criar', ['class' => 'btn btn-primary']) ?>
     <?php ActiveForm::end(); ?>
 

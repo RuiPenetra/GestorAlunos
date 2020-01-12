@@ -6,22 +6,42 @@
 /* @var $exception Exception */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title = $name;
 ?>
-<div class="site-error">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Erro 404
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="<?= Url::toRoute(['site/index']) ?>"><i class="fa fa-home"></i> Home</a></li>
+            <li class="active">404 error</li>
+        </ol>
+    </section>
 
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
-    </div>
+    <!-- Main content -->
+    <section class="content">
+        <div class="error-page">
+            <h2 class="headline text-yellow"> 404</h2>
 
-    <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
+            <div class="error-content">
+                <h3><i class="fa fa-warning text-yellow"></i> Oops! Página não encontrada.</h3>
 
-</div>
+                <p>
+                    Não conseguimos encontrar a página que procura.<br>
+                    No entanto clique no botão abaixo para voltar à página inicial!
+                </p>
+
+                <form class="search-form">
+                        <a href="<?= Url::toRoute(['site/index']) ?>" class="btn btn-warning btn-flat pull-right"><i class="fa fa-home"></i></a>
+                    <!-- /.input-group -->
+                </form>
+            </div>
+            <!-- /.error-content -->
+        </div>
+        <!-- /.error-page -->
+    </section>
+    <!-- /.content -->
