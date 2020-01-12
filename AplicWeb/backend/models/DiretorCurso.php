@@ -41,7 +41,7 @@ class DiretorCurso extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_professor' => 'Id Professor',
+            'id_professor' => 'Professor',
         ];
     }
 
