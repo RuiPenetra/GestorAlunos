@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\Professor;
 use Yii;
 use backend\models\DiretorCurso;
 use backend\models\DiretorcursoSearch;
@@ -65,6 +66,7 @@ class DiretorcursoController extends Controller
     public function actionCreate()
     {
         $model = new DiretorCurso();
+        $professores = Professor::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_professor]);
@@ -72,6 +74,7 @@ class DiretorcursoController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'professores' => $professores,
         ]);
     }
 
@@ -85,6 +88,7 @@ class DiretorcursoController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $professores = Professor::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_professor]);
@@ -92,6 +96,7 @@ class DiretorcursoController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'professores' => $professores,
         ]);
     }
 

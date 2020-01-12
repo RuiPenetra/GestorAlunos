@@ -2,6 +2,9 @@
 
 namespace backend\controllers;
 
+use backend\models\DiretorCurso;
+use backend\models\Escola;
+use backend\models\TipoCurso;
 use Yii;
 use backend\models\Curso;
 use backend\models\CursoSearch;
@@ -65,6 +68,9 @@ class CursoController extends Controller
     public function actionCreate()
     {
         $model = new Curso();
+        $tiposcurso = TipoCurso::find()->all();
+        $escolas = Escola::find()->all();
+        $diretorescurso = DiretorCurso::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,6 +78,9 @@ class CursoController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'tiposcurso' => $tiposcurso,
+            'escolas' => $escolas,
+            'diretorescurso' => $diretorescurso,
         ]);
     }
 
@@ -85,6 +94,9 @@ class CursoController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $tiposcurso = TipoCurso::find()->all();
+        $escolas = Escola::find()->all();
+        $diretorescurso = DiretorCurso::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -92,6 +104,9 @@ class CursoController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'tiposcurso' => $tiposcurso,
+            'escolas' => $escolas,
+            'diretorescurso' => $diretorescurso,
         ]);
     }
 

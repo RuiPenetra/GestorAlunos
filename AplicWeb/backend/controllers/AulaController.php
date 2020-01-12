@@ -2,6 +2,10 @@
 
 namespace backend\controllers;
 
+use backend\models\Disciplina;
+use backend\models\Horario;
+use backend\models\Professor;
+use backend\models\Turno;
 use Yii;
 use backend\models\Aula;
 use backend\models\AulaSearch;
@@ -65,6 +69,10 @@ class AulaController extends Controller
     public function actionCreate()
     {
         $model = new Aula();
+        $disciplinas = Disciplina::find()->all();
+        $turnos = Turno::find()->all();
+        $professores = Professor::find()->all();
+        $horarios = Horario::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,6 +80,10 @@ class AulaController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'disciplinas' => $disciplinas,
+            'turnos' => $turnos,
+            'professores' => $professores,
+            'horarios' => $horarios,
         ]);
     }
 
@@ -85,6 +97,10 @@ class AulaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $disciplinas = Disciplina::find()->all();
+        $turnos = Turno::find()->all();
+        $professores = Professor::find()->all();
+        $horarios = Horario::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -92,6 +108,10 @@ class AulaController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'disciplinas' => $disciplinas,
+            'turnos' => $turnos,
+            'professores' => $professores,
+            'horarios' => $horarios,
         ]);
     }
 

@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\Disciplina;
 use Yii;
 use backend\models\Teste;
 use backend\models\TesteSearch;
@@ -65,6 +66,7 @@ class TesteController extends Controller
     public function actionCreate()
     {
         $model = new Teste();
+        $disciplinas = Disciplina::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,6 +74,7 @@ class TesteController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'disciplinas' => $disciplinas,
         ]);
     }
 
@@ -85,6 +88,7 @@ class TesteController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $disciplinas = Disciplina::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -92,6 +96,7 @@ class TesteController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'disciplinas' => $disciplinas,
         ]);
     }
 

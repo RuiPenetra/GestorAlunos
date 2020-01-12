@@ -2,6 +2,8 @@
 
 namespace backend\controllers;
 
+use backend\models\Aluno;
+use backend\models\Turno;
 use Yii;
 use backend\models\AlunoTurno;
 use backend\models\AlunoturnoSearch;
@@ -66,6 +68,8 @@ class AlunoturnoController extends Controller
     public function actionCreate()
     {
         $model = new AlunoTurno();
+        $alunos = Aluno::find()->all();
+        $turnos = Turno::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'aluno_id_perfil' => $model->aluno_id_perfil, 'turno_id' => $model->turno_id]);
@@ -73,6 +77,8 @@ class AlunoturnoController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'alunos' => $alunos,
+            'turnos' => $turnos,
         ]);
     }
 
@@ -87,6 +93,8 @@ class AlunoturnoController extends Controller
     public function actionUpdate($aluno_id_perfil, $turno_id)
     {
         $model = $this->findModel($aluno_id_perfil, $turno_id);
+        $alunos = Aluno::find()->all();
+        $turnos = Turno::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'aluno_id_perfil' => $model->aluno_id_perfil, 'turno_id' => $model->turno_id]);
@@ -94,6 +102,8 @@ class AlunoturnoController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'alunos' => $alunos,
+            'turnos' => $turnos,
         ]);
     }
 

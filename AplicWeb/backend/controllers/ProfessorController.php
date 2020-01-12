@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\Perfil;
 use Yii;
 use backend\models\Professor;
 use backend\models\ProfessorSearch;
@@ -65,6 +66,7 @@ class ProfessorController extends Controller
     public function actionCreate()
     {
         $model = new Professor();
+        $perfis = Perfil::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_perfil]);
@@ -72,6 +74,7 @@ class ProfessorController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'perfis' => $perfis,
         ]);
     }
 
@@ -85,6 +88,7 @@ class ProfessorController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $perfis = Perfil::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_perfil]);
@@ -92,6 +96,7 @@ class ProfessorController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'perfis' => $perfis,
         ]);
     }
 

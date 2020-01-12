@@ -2,6 +2,8 @@
 
 namespace backend\controllers;
 
+use backend\models\DiretorCurso;
+use backend\models\Professor;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
@@ -72,9 +74,22 @@ class SiteController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        //CRIAR LAYOUTS PARA CADA TIPO DE UTILIZADOR (PROFESSORES, DIRETORES DE CURSO, ADMINISTRADORES)
-        //$this->layout = 'Professores';
-        //$this->layout = 'DiretorCurso';
+        $id_user = \Yii::$app->user->identity->id;
+
+        if(Aluno::find()->where(['id_perfil' => $id_user])->one()){
+            $this->actionLogout();
+        }
+        elseif (Professor::find()->where(['id_perfil' => $id_user])->one()){
+            if(DiretorCurso::find()->where(['id_professor' => $id_user])->one()){
+                $this->layout = 'DiretorCurso';
+            }
+            else{
+                $this->layout = 'Professores';
+            }
+        }
+        else{
+            $this->layout = 'main';
+        }
 
         $alunos = Aluno::find()->all();
         $cursos = Curso::find()->all();
@@ -98,16 +113,12 @@ class SiteController extends Controller {
         $this->layout = 'LoginLayout';
 
         if (!Yii::$app->user->isGuest) {
-            //$this->layout = 'main';
-            //$this->layout = 'Professores';
             return $this->goHome();
         }
 
         $model = new LoginForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            //$this->layout = 'main';
-            //$this->layout = 'Professores';
             return $this->goBack();
         } else {
             $model->password = '';

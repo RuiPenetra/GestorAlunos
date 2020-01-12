@@ -2,6 +2,8 @@
 
 namespace backend\controllers;
 
+use backend\models\Curso;
+use backend\models\Professor;
 use Yii;
 use backend\models\Disciplina;
 use backend\models\DisciplinaSearch;
@@ -65,6 +67,8 @@ class DisciplinaController extends Controller
     public function actionCreate()
     {
         $model = new Disciplina();
+        $professores = Professor::find()->all();
+        $cursos = Curso::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,6 +76,8 @@ class DisciplinaController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'professores' => $professores,
+            'cursos' => $cursos,
         ]);
     }
 
@@ -85,6 +91,8 @@ class DisciplinaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $professores = Professor::find()->all();
+        $cursos = Curso::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -92,6 +100,8 @@ class DisciplinaController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'professores' => $professores,
+            'cursos' => $cursos,
         ]);
     }
 
