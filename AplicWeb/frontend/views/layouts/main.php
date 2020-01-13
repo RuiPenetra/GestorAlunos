@@ -11,6 +11,8 @@ use common\widgets\Alert;
 use yii\web\View;
 use yii\helpers\Url;
 use frontend\models\Perfil;
+use frontend\models\Notificacao;
+
 
 
 AppAsset::register($this);
@@ -76,22 +78,44 @@ AppAsset::register($this);
                                         <!-- Menu toggle button -->
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                             <i class="fa fa-bell-o"></i>
-                                            <span class="label label-warning">10</span>
+                                            <?php
+                                            $notificacoes= Notificacao::find()->all();
+                                            $noti_total = count($notificacoes);
+                                              ?>
+                                            <span class="label label-warning"><?= $noti_total ?></span>
                                         </a>
                                         <ul class="dropdown-menu">
-                                            <li class="header">You have 10 notifications</li>
+                                            <li class="header">Existem <?=$noti_total?> notifications</li>
                                             <li>
                                                 <!-- Inner Menu: contains the notifications -->
                                                 <ul class="menu">
-                                                    <li><!-- start notification -->
-                                                        <a href="#">
-                                                            <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                                    <!-- start notification -->
+                                                    <li>
+                                                      <?php
+
+                                                        foreach ($notificacoes as  $nofi) {
+                                                      ?>
+                                                        <a href="<?= Url::toRoute(['notificacao/view','id'=>$nofi->id]) ?>">
+                                                            <?php
+                                                              if($nofi->tipo->nome == "Avaliação"){
+                                                            ?>
+                                                              <i class="fa fa-book fa-2x text-primary" style="margin-right: 20px"></i><?= $nofi->nome ?>
+                                                            <?php
+                                                              }else{
+                                                            ?>
+                                                              <i class="fa fa-calendar fa-2x text-info" style="margin-right: 20px"></i><?= $nofi->nome ?>
+                                                            <?php
+                                                              }
+                                                            ?>
                                                         </a>
+                                                      <?php
+                                                      }
+                                                     ?>
                                                     </li>
                                                     <!-- end notification -->
                                                 </ul>
                                             </li>
-                                            <li class="footer"><a href="#">View all</a></li>
+                                            <li class="footer"><a href="<?= Url::toRoute(['notificacao/index']) ?>">Ver todos</a></li>
                                         </ul>
                                     </li>
                                     <!-- Tasks Menu -->
