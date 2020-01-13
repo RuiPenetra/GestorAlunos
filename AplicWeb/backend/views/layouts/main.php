@@ -226,7 +226,7 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
             }
             else{
     ?>
-        <body class="hold-transition skin-green fixed hold-transition login-page">
+        <body class="hold-transition skin-yellow fixed hold-transition login-page">
         <?php $this->beginBody() ?>
         <div class="wrapper">
             <header class="main-header">

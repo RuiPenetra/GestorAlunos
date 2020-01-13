@@ -75,25 +75,7 @@ class SiteController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        $id_user = \Yii::$app->user->identity->id;
 
-        if(Yii::$app->user->can('visualizar')){
-            $this->actionLogout();
-        }
-        elseif (Yii::$app->user->can('permissoesProf')){
-            if(Yii::$app->user->can('permissoesDiretor')){
-                $this->layout = 'DiretorCurso';
-            }
-            else{
-                $this->layout = 'Professores';
-            }
-        }
-        elseif(Yii::$app->user->can('gerirPermissoes')){
-            $this->layout = 'main';
-        }
-        else{
-            throw new ForbiddenHttpException;
-        }
 
         $alunos = Aluno::find()->all();
         $cursos = Curso::find()->all();
