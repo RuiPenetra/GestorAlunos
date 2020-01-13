@@ -17,7 +17,7 @@ class AlunoturnoSearch extends AlunoTurno
     public function rules()
     {
         return [
-            [['aluno_id_perfil', 'turno_id'], 'integer'],
+            [['aluno_id', 'turno_id'], 'integer'],
         ];
     }
 
@@ -57,7 +57,7 @@ class AlunoturnoSearch extends AlunoTurno
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'aluno_id_perfil' => $this->aluno_id_perfil,
+            'aluno_id' => $this->aluno_id,
             'turno_id' => $this->turno_id,
         ]);
 

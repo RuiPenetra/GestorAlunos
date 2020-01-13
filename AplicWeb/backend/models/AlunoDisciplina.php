@@ -7,11 +7,11 @@ use Yii;
 /**
  * This is the model class for table "aluno_disciplina".
  *
- * @property int $aluno_id_perfil
+ * @property int $aluno_id
  * @property int $disciplina_id
  * @property int|null $nota
  *
- * @property Aluno $alunoIdPerfil
+ * @property Aluno $aluno
  * @property Disciplina $disciplina
  */
 class AlunoDisciplina extends \yii\db\ActiveRecord
@@ -30,10 +30,10 @@ class AlunoDisciplina extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['aluno_id_perfil', 'disciplina_id'], 'required'],
-            [['aluno_id_perfil', 'disciplina_id', 'nota'], 'integer'],
-            [['aluno_id_perfil', 'disciplina_id'], 'unique', 'targetAttribute' => ['aluno_id_perfil', 'disciplina_id']],
-            [['aluno_id_perfil'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::className(), 'targetAttribute' => ['aluno_id_perfil' => 'id_perfil']],
+            [['aluno_id', 'disciplina_id'], 'required'],
+            [['aluno_id', 'disciplina_id', 'nota'], 'integer'],
+            [['aluno_id', 'disciplina_id'], 'unique', 'targetAttribute' => ['aluno_id', 'disciplina_id']],
+            [['aluno_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::className(), 'targetAttribute' => ['aluno_id' => 'id_perfil']],
             [['disciplina_id'], 'exist', 'skipOnError' => true, 'targetClass' => Disciplina::className(), 'targetAttribute' => ['disciplina_id' => 'id']],
         ];
     }
@@ -44,8 +44,8 @@ class AlunoDisciplina extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'aluno_id_perfil' => 'Aluno Id Perfil',
-            'disciplina_id' => 'Disciplina',
+            'aluno_id' => 'Aluno ID',
+            'disciplina_id' => 'Disciplina ID',
             'nota' => 'Nota',
         ];
     }
@@ -53,9 +53,9 @@ class AlunoDisciplina extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAlunoIdPerfil()
+    public function getAluno()
     {
-        return $this->hasOne(Aluno::className(), ['id_perfil' => 'aluno_id_perfil']);
+        return $this->hasOne(Aluno::className(), ['id_perfil' => 'aluno_id']);
     }
 
     /**
