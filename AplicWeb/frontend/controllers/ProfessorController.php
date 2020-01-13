@@ -38,7 +38,7 @@ class ProfessorController extends Controller
     public function actionIndex()
     {
         $id_user = \Yii::$app->user->identity->id;
-        $alunodisciplinas = AlunoDisciplina::find()->where(['aluno_id_perfil' => $id_user])->all();
+        $alunodisciplinas = AlunoDisciplina::find()->where(['aluno_id' => $id_user])->all();
         if ($alunodisciplinas) {
           foreach ($alunodisciplinas as $alunodisciplina){
             $disciplinas = Disciplina::find()->where(['id' => $alunodisciplina->disciplina_id])->all();
