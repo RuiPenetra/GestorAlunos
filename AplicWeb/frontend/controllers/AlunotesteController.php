@@ -37,8 +37,8 @@ class AlunotesteController extends Controller
     public function actionIndex()
     {
         $id_user = \Yii::$app->user->identity->id;
-        $alunotestes = AlunoTeste::find()->where(['aluno_id_perfil' => $id_user])->all();
-        $alunodisciplinas = AlunoDisciplina::find()->where(['aluno_id_perfil' => $id_user])->all();
+        $alunotestes = AlunoTeste::find()->where(['aluno_id' => $id_user])->all();
+        $alunodisciplinas = AlunoDisciplina::find()->where(['aluno_id' => $id_user])->all();
 
         return $this->render('index', [
             'alunotestes' => $alunotestes,

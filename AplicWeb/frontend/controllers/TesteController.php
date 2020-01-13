@@ -36,7 +36,7 @@ class TesteController extends Controller
     public function actionIndex()
     {
         $id_user = \Yii::$app->user->identity->id;
-        $alunotestes = AlunoTeste::find()->where(['aluno_id_perfil' => $id_user])->all();
+        $alunotestes = AlunoTeste::find()->where(['aluno_id' => $id_user])->all();
 
 
         return $this->render('index', [
@@ -46,29 +46,29 @@ class TesteController extends Controller
 
     /**
      * Displays a single AlunoDisciplina model.
-     * @param integer $aluno_id_perfil
+     * @param integer $aluno_id
      * @param integer $disciplina_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($aluno_id_perfil, $disciplina_id)
+    public function actionView($aluno_id, $disciplina_id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($aluno_id_perfil, $disciplina_id),
+            'model' => $this->findModel($aluno_id, $disciplina_id),
         ]);
     }
 
     /**
      * Finds the AlunoDisciplina model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $aluno_id_perfil
+     * @param integer $aluno_id
      * @param integer $disciplina_id
      * @return AlunoDisciplina the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($aluno_id_perfil, $disciplina_id)
+    protected function findModel($aluno_id, $disciplina_id)
     {
-        if (($model = AlunoDisciplina::findOne(['aluno_id_perfil' => $aluno_id_perfil, 'disciplina_id' => $disciplina_id])) !== null) {
+        if (($model = AlunoDisciplina::findOne(['aluno_id' => $aluno_id, 'disciplina_id' => $disciplina_id])) !== null) {
             return $model;
         }
 
