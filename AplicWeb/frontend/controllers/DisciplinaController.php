@@ -33,6 +33,7 @@ class DisciplinaController extends Controller
      * Lists all Disciplina models.
      * @return mixed
      */
+
     public function actionIndex()
     {
         $disciplinas = Disciplina::find()->all();
