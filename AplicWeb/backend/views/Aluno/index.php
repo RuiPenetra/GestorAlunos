@@ -58,11 +58,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'urlCreator' => function ($action, $model, $key, $index) {
               if ($action === 'view') {
-                  $url ='index.php?r=aluno/view&id='.$model->id_perfil;
+                  $url ='index.php?r=aluno%2Fview&id='.$model->id_perfil;
                   return $url;
               }
               if ($action === 'delete') {
-                  $url ='index.php?r=aluno/delete&id='.$model->id_perfil;
+                  $url ='index.php?r=aluno%2Fdelete&id='.$model->id_perfil;
                   return $url;
               }
 

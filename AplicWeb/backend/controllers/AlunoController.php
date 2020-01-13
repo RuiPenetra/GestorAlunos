@@ -2,12 +2,14 @@
 
 namespace backend\controllers;
 
+use backend\models\AuthAssignment;
 use backend\models\Curso;
 use backend\models\Perfil;
 use Yii;
 use backend\models\Aluno;
 use backend\models\AlunoSearch;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -54,9 +56,9 @@ class AlunoController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
     }
 
     /**
@@ -66,13 +68,20 @@ class AlunoController extends Controller
      */
     public function actionCreate()
     {
-        if(Yii::$app->user->can('createBranches')){
+        $id_user = \Yii::$app->user->identity->id;
+
+        if(Yii::$app->user->can('gerirPermissoes')){
             $model = new Aluno();
+            $modelB = new AuthAssignment();
             $perfis = Perfil::find()->all();
             $cursos = Curso::find()->all();
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id_perfil]);
+                $modelB->item_name = 'aluno';
+                $modelB->id_user = $id_user;
+                if ($modelB->save()){
+                    return $this->redirect(['view', 'id' => $model->id_perfil]);
+                }
             }
 
             return $this->render('create', [
@@ -82,7 +91,7 @@ class AlunoController extends Controller
             ]);
         }
         else{
-            return Yii::$app->runAction('site', 'error');
+            throw new ForbiddenHttpException;
         }
     }
 
@@ -95,13 +104,13 @@ class AlunoController extends Controller
      */
     public function actionDelete($id)
     {
-        if(Yii::$app->user->can('createBranches')){
+        if(Yii::$app->user->can('gerirPermissoes')){
             $this->findModel($id)->delete();
 
             return $this->redirect(['index']);
         }
         else{
-            return Yii::$app->runAction('site', 'Error');
+            throw new ForbiddenHttpException;
         }
     }
 
@@ -118,6 +127,6 @@ class AlunoController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException;
     }
 }

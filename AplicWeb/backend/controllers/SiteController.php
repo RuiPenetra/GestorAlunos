@@ -18,6 +18,7 @@ use backend\models\Aluno;
 use backend\models\Curso;
 use backend\models\Disciplina;
 use backend\models\Escola;
+use yii\web\ForbiddenHttpException;
 
 /**
  * Site controller
@@ -76,19 +77,22 @@ class SiteController extends Controller {
     public function actionIndex() {
         $id_user = \Yii::$app->user->identity->id;
 
-        if(Aluno::find()->where(['id_perfil' => $id_user])->one()){
+        if(Yii::$app->user->can('visualizar')){
             $this->actionLogout();
         }
-        elseif (Professor::find()->where(['id_perfil' => $id_user])->one()){
-            if(DiretorCurso::find()->where(['id_professor' => $id_user])->one()){
+        elseif (Yii::$app->user->can('permissoesProf')){
+            if(Yii::$app->user->can('permissoesDiretor')){
                 $this->layout = 'DiretorCurso';
             }
             else{
                 $this->layout = 'Professores';
             }
         }
-        else{
+        elseif(Yii::$app->user->can('gerirPermissoes')){
             $this->layout = 'main';
+        }
+        else{
+            throw new ForbiddenHttpException;
         }
 
         $alunos = Aluno::find()->all();
