@@ -4,10 +4,10 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\AlunoTurno;
+use backend\models\AlunoTurno;
 
 /**
- * AlunoturnoSearch represents the model behind the search form of `frontend\models\AlunoTurno`.
+ * AlunoturnoSearch represents the model behind the search form of `backend\models\AlunoTurno`.
  */
 class AlunoturnoSearch extends AlunoTurno
 {

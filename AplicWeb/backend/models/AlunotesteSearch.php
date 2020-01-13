@@ -4,10 +4,10 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\AlunoTeste;
+use backend\models\AlunoTeste;
 
 /**
- * AlunotesteSearch represents the model behind the search form of `frontend\models\AlunoTeste`.
+ * AlunotesteSearch represents the model behind the search form of `backend\models\AlunoTeste`.
  */
 class AlunotesteSearch extends AlunoTeste
 {
