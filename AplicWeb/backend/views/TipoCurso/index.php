@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\TipoCursoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Tipo Cursos';
+$this->title = 'Tipos Curso';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tipo-curso-index">
@@ -18,11 +18,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Criar Tipo Curso', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 

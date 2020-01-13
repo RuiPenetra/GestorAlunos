@@ -2,11 +2,10 @@
 
 namespace backend\controllers;
 
+use backend\models\Aluno;
+use backend\models\Turno;
 use Yii;
 use backend\models\AlunoTurno;
-use backend\models\Perfil;
-use backend\models\Turno;
-use backend\models\Aluno;
 use backend\models\AlunoturnoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -15,12 +14,13 @@ use yii\filters\VerbFilter;
 /**
  * AlunoturnoController implements the CRUD actions for AlunoTurno model.
  */
-class AlunoturnoController extends Controller {
-
+class AlunoturnoController extends Controller
+{
     /**
      * {@inheritdoc}
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -35,13 +35,14 @@ class AlunoturnoController extends Controller {
      * Lists all AlunoTurno models.
      * @return mixed
      */
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $searchModel = new AlunoturnoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -52,9 +53,10 @@ class AlunoturnoController extends Controller {
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($aluno_id_perfil, $turno_id) {
+    public function actionView($aluno_id_perfil, $turno_id)
+    {
         return $this->render('view', [
-                    'model' => $this->findModel($aluno_id_perfil, $turno_id),
+            'model' => $this->findModel($aluno_id_perfil, $turno_id),
         ]);
     }
 
@@ -63,21 +65,20 @@ class AlunoturnoController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate() {
+    public function actionCreate()
+    {
         $model = new AlunoTurno();
-
-        // $perfis = Perfil::find()->where(['id_user','aluno.id_perfil'])->all(); //, 'id_user', 'nome');
-        $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
-        $turno = Turno::find()->all(); //, 'id_user', 'nome');
+        $alunos = Aluno::find()->all();
+        $turnos = Turno::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'aluno_id_perfil' => $model->aluno_id_perfil, 'turno_id' => $model->turno_id]);
         }
 
         return $this->render('create', [
-                    'model' => $model,
-                    'perfis' => $perfis,
-                    'turno' => $turno,
+            'model' => $model,
+            'alunos' => $alunos,
+            'turnos' => $turnos,
         ]);
     }
 
@@ -89,20 +90,20 @@ class AlunoturnoController extends Controller {
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($aluno_id_perfil, $turno_id) {
+    public function actionUpdate($aluno_id_perfil, $turno_id)
+    {
         $model = $this->findModel($aluno_id_perfil, $turno_id);
-
-        $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
-        $turno = Turno::find()->all(); //, 'id_user', 'nome');
+        $alunos = Aluno::find()->all();
+        $turnos = Turno::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'aluno_id_perfil' => $model->aluno_id_perfil, 'turno_id' => $model->turno_id]);
         }
 
         return $this->render('update', [
-                    'model' => $model,
-                    'perfis' => $perfis,
-                    'turno' => $turno,
+            'model' => $model,
+            'alunos' => $alunos,
+            'turnos' => $turnos,
         ]);
     }
 
@@ -114,7 +115,8 @@ class AlunoturnoController extends Controller {
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($aluno_id_perfil, $turno_id) {
+    public function actionDelete($aluno_id_perfil, $turno_id)
+    {
         $this->findModel($aluno_id_perfil, $turno_id)->delete();
 
         return $this->redirect(['index']);
@@ -128,12 +130,12 @@ class AlunoturnoController extends Controller {
      * @return AlunoTurno the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($aluno_id_perfil, $turno_id) {
+    protected function findModel($aluno_id_perfil, $turno_id)
+    {
         if (($model = AlunoTurno::findOne(['aluno_id_perfil' => $aluno_id_perfil, 'turno_id' => $turno_id])) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
 }

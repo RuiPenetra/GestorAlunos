@@ -41,11 +41,27 @@ class HorarioController extends Controller
         $aluno = Aluno::findOne(['id_perfil' => $id_user]);
         $horario = Horario::findOne(['id_curso' => $aluno->id_curso]);
         $aulas = Aula::find()->orderBy(['inicio' => SORT_ASC])->where(['horario_id' => $horario->id])->all();
-        
+
         return $this->render('index', [
           'aulas' => $aulas,
         ]);
     }
+
+    /**
+     * Lists detalhes aula models.
+     * @return mixed
+     */
+    public function actionDetalhes($id)
+    {
+
+        $aula = Aula::find()->where(['id' => $id])->one();
+
+        return $this->render('auladetalhes', [
+          'aula' => $aula,
+        ]);
+    }
+
+
 
     /**
      * Finds the Horario model based on its primary key value.

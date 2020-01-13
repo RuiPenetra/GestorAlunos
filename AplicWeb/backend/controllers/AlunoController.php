@@ -2,22 +2,27 @@
 
 namespace backend\controllers;
 
+use backend\models\AuthAssignment;
+use backend\models\Curso;
+use backend\models\Perfil;
 use Yii;
 use backend\models\Aluno;
 use backend\models\AlunoSearch;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * AlunoController implements the CRUD actions for Aluno model.
  */
-class AlunoController extends Controller {
-
+class AlunoController extends Controller
+{
     /**
      * {@inheritdoc}
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -32,13 +37,14 @@ class AlunoController extends Controller {
      * Lists all Aluno models.
      * @return mixed
      */
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $searchModel = new AlunoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -48,10 +54,11 @@ class AlunoController extends Controller {
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id) {
-        return $this->render('view', [
-                    'model' => $this->findModel($id),
-        ]);
+    public function actionView($id)
+    {
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
     }
 
     /**
@@ -59,35 +66,33 @@ class AlunoController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate() {
-        $model = new Aluno();
+    public function actionCreate()
+    {
+        $id_user = \Yii::$app->user->identity->id;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_perfil]);
+        if(Yii::$app->user->can('gerirPermissoes')){
+            $model = new Aluno();
+            $modelB = new AuthAssignment();
+            $perfis = Perfil::find()->all();
+            $cursos = Curso::find()->all();
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                $modelB->item_name = 'aluno';
+                $modelB->id_user = $id_user;
+                if ($modelB->save()){
+                    return $this->redirect(['view', 'id' => $model->id_perfil]);
+                }
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+                'perfis' => $perfis,
+                'cursos' => $cursos,
+            ]);
         }
-
-        return $this->render('create', [
-                    'model' => $model,
-        ]);
-    }
-
-    /**
-     * Updates an existing Aluno model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id) {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_perfil]);
+        else{
+            throw new ForbiddenHttpException;
         }
-
-        return $this->render('update', [
-                    'model' => $model,
-        ]);
     }
 
     /**
@@ -97,10 +102,16 @@ class AlunoController extends Controller {
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id) {
-        $this->findModel($id)->delete();
+    public function actionDelete($id)
+    {
+        if(Yii::$app->user->can('gerirPermissoes')){
+            $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
+        }
+        else{
+            throw new ForbiddenHttpException;
+        }
     }
 
     /**
@@ -110,12 +121,12 @@ class AlunoController extends Controller {
      * @return Aluno the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id) {
+    protected function findModel($id)
+    {
         if (($model = Aluno::findOne($id)) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException;
     }
-
 }

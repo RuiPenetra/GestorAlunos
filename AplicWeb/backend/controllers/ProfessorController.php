@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\Perfil;
 use Yii;
 use backend\models\Professor;
 use backend\models\ProfessorSearch;
@@ -65,6 +66,7 @@ class ProfessorController extends Controller
     public function actionCreate()
     {
         $model = new Professor();
+        $perfis = Perfil::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_perfil]);
@@ -72,26 +74,7 @@ class ProfessorController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-        ]);
-    }
-
-    /**
-     * Updates an existing Professor model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_perfil]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
+            'perfis' => $perfis,
         ]);
     }
 

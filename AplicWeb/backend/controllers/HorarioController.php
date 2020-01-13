@@ -2,6 +2,8 @@
 
 namespace backend\controllers;
 
+use backend\models\Aula;
+use backend\models\Curso;
 use Yii;
 use backend\models\Horario;
 use backend\models\HorarioSearch;
@@ -52,8 +54,11 @@ class HorarioController extends Controller
      */
     public function actionView($id)
     {
+        $aulas = Aula::find()->where(['horario_id' => $id])->all();
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'aulas' => $aulas,
         ]);
     }
 
@@ -65,6 +70,7 @@ class HorarioController extends Controller
     public function actionCreate()
     {
         $model = new Horario();
+        $curso = Curso::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,6 +78,7 @@ class HorarioController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'curso' => $curso,
         ]);
     }
 
@@ -85,6 +92,7 @@ class HorarioController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $curso = Curso::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -92,6 +100,7 @@ class HorarioController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'curso' => $curso,
         ]);
     }
 

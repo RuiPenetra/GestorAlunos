@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\HorarioSearch */
@@ -43,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="timeline-item">
                   <span class="time"></span>
 
-                  <h3 class="timeline-header"><a href="#"><?= $aula->nome ?></a></h3>
+                  <h3 class="timeline-header"><a href="<?= Url::toRoute(['horario/detalhes', 'id' => $aula->id])?>"><?= $aula->nome ?></a></h3>
 
                   <div class="timeline-body">
                     Sala: <?= $aula->sala ?>

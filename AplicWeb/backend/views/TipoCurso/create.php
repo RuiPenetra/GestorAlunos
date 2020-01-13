@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\TipoCurso */
 
-$this->title = 'Create Tipo Curso';
+$this->title = 'Criar Tipo Curso';
 $this->params['breadcrumbs'][] = ['label' => 'Tipo Cursos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

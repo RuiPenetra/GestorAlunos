@@ -6,14 +6,14 @@ use yii\bootstrap\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model backend\models\User */
 
-$this->title = 'Update User: ' . $model->id;
+$this->title = 'Atualizar Utilizador ';
 $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = ['label' => $model->username, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'Atualizar';
 ?>
 <div class="user-update">
 
-  <h1>Atualizar Utilizador</h1>
+    <h1><?= Html::encode($this->title) ?></h1>
 
   <p>Pode editar alterando os campos abaixo:</p>
 

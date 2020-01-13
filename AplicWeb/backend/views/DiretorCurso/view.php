@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\DiretorCurso */
 
-$this->title = $model->id_professor;
+$this->title = $model->professor->perfil->nome;
 $this->params['breadcrumbs'][] = ['label' => 'Diretor Cursos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -16,7 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <p>
-        <?= Html::a('Atualizar', ['update', 'id' => $model->id_professor], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Apagar', ['delete', 'id' => $model->id_professor], [
             'class' => 'btn btn-danger',
             'data' => [

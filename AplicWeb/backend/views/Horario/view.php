@@ -1,14 +1,13 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
-use backend\models\Aula;
-use yii\helpers\VarDumper;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Horario */
 
-$this->title = $model->id;
+$this->title = $model->nome;
 $this->params['breadcrumbs'][] = ['label' => 'Horarios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -37,20 +36,19 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
   <div class="row">
-    <div class="col-md-3"></div>
-    <div class="nav-tabs-custom col-md-6">
+    <div class="nav-tabs-custom col-md-12">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#seg" data-toggle="tab" aria-expanded="true">Segunda-Feira</a></li>
         <li class=""><a href="#ter" data-toggle="tab" aria-expanded="false">Terça-Feira</a></li>
         <li class=""><a href="#qua" data-toggle="tab" aria-expanded="false">Quarta-Feira</a></li>
         <li class=""><a href="#qui" data-toggle="tab" aria-expanded="false">Quinta-Feira</a></li>
         <li class=""><a href="#sex" data-toggle="tab" aria-expanded="false">Sexta-Feira</a></li>
+        <a href="<?= Url::toRoute('aula/index') ?>" class="pull-right btn btn-info" style="margin-top: 5px">Adicionar Aula</a>
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="seg">
           <ul class="timeline">
             <?php
-            $aulas = Aula::find()->where(['horario_id' => $_GET['id']])->all();
 
             foreach ($aulas as $aula):
               if($aula->dia === "Segunda-Feira"):

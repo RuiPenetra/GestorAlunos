@@ -17,7 +17,7 @@ class AlunodisciplinaSearch extends AlunoDisciplina
     public function rules()
     {
         return [
-            [['aluno_id_perfil', 'disciplina_id', 'nota'], 'integer'],
+            [['aluno_id', 'disciplina_id', 'nota'], 'integer'],
         ];
     }
 
@@ -57,7 +57,7 @@ class AlunodisciplinaSearch extends AlunoDisciplina
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'aluno_id_perfil' => $this->aluno_id_perfil,
+            'aluno_id' => $this->aluno_id,
             'disciplina_id' => $this->disciplina_id,
             'nota' => $this->nota,
         ]);

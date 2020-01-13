@@ -3,18 +3,13 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
-use backend\models\TipoCurso;
-use backend\models\Turno;
-use backend\models\Professor;
-use backend\models\Horario;
-use backend\models\Disciplina;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Aula */
 
-$this->title = 'Atualizar Aula: ' . $model->id;
+$this->title = 'Atualizar Aula: ' . $model->nome;
 $this->params['breadcrumbs'][] = ['label' => 'Aulas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->nome, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Atualizar';
 ?>
 <div class="aula-update">
@@ -22,15 +17,15 @@ $this->params['breadcrumbs'][] = 'Atualizar';
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php $form = ActiveForm::begin(); ?>
-      <?= $form->field($model, 'nome')->dropDownList(ArrayHelper::map(Disciplina::find()->all(), 'nome','nome')) ?>
+      <?= $form->field($model, 'nome')->dropDownList(ArrayHelper::map($disciplinas, 'nome','nome')) ?>
       <?= $form->field($model, 'inicio') ?>
       <?= $form->field($model, 'fim') ?>
       <?= $form->field($model, 'sala') ?>
-      <?= $form->field($model, 'dia') ?>
-      <?= $form->field($model, 'id_turno')->dropDownList(ArrayHelper::map(Turno::find()->all(), 'id','tipo')) ?>
-      <?= $form->field($model, 'id_professor')->dropDownList(ArrayHelper::map(Professor::find()->all(), 'id_perfil','perfil.nome')) ?>
-      <?= $form->field($model, 'horario_id')->dropDownList(ArrayHelper::map(Horario::find()->all(), 'id','nome')) ?>
-      <?= Html::submitButton('Criar', ['class' => 'btn btn-primary']) ?>
+      <?= $form->field($model, 'dia')->dropDownList(['Segunda-Feira' => 'Segunda-Feira', 'Terça-Feira' => 'Terça-Feira', 'Quarta-Feira' => 'Quarta-Feira', 'Quinta-Feira' => 'Quinta-Feira', 'Sexta-Feira' => 'Sexta-Feira']) ?>
+      <?= $form->field($model, 'id_turno')->dropDownList(ArrayHelper::map($turnos, 'id','tipo','disciplina.nome')) ?>
+      <?= $form->field($model, 'id_professor')->dropDownList(ArrayHelper::map($professores, 'id_perfil','perfil.nome')) ?>
+      <?= $form->field($model, 'horario_id')->dropDownList(ArrayHelper::map($horarios, 'id','nome')) ?>
+      <?= Html::submitButton('Atualizar', ['class' => 'btn btn-primary']) ?>
     <?php ActiveForm::end(); ?>
 
 </div>

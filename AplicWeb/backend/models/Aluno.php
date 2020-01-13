@@ -53,6 +53,7 @@ class Aluno extends \yii\db\ActiveRecord
         return [
             'id_perfil' => 'Nome',
             'id_curso' => 'Curso',
+            'curso.nome' => 'Curso',
         ];
     }
 

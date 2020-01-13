@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Aluno */
 
-$this->title = $model->id_perfil;
+$this->title = $model->perfil->nome;
 $this->params['breadcrumbs'][] = ['label' => 'Alunos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -16,7 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Atualizar', ['update', 'id' => $model->id_perfil], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Apagar', ['delete', 'id' => $model->id_perfil], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -31,6 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'perfil.nome',
             'curso.nome',
+            'perfil.email',
+            'perfil.genero',
         ],
     ]) ?>
 

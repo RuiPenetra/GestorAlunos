@@ -7,10 +7,10 @@ use Yii;
 /**
  * This is the model class for table "aluno_turno".
  *
- * @property int $aluno_id_perfil
+ * @property int $aluno_id
  * @property int $turno_id
  *
- * @property Aluno $alunoIdPerfil
+ * @property Aluno $aluno
  * @property Turno $turno
  */
 class AlunoTurno extends \yii\db\ActiveRecord
@@ -29,10 +29,10 @@ class AlunoTurno extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['aluno_id_perfil', 'turno_id'], 'required'],
-            [['aluno_id_perfil', 'turno_id'], 'integer'],
-            [['aluno_id_perfil', 'turno_id'], 'unique', 'targetAttribute' => ['aluno_id_perfil', 'turno_id']],
-            [['aluno_id_perfil'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::className(), 'targetAttribute' => ['aluno_id_perfil' => 'id_perfil']],
+            [['aluno_id', 'turno_id'], 'required'],
+            [['aluno_id', 'turno_id'], 'integer'],
+            [['aluno_id', 'turno_id'], 'unique', 'targetAttribute' => ['aluno_id', 'turno_id']],
+            [['aluno_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::className(), 'targetAttribute' => ['aluno_id' => 'id_perfil']],
             [['turno_id'], 'exist', 'skipOnError' => true, 'targetClass' => Turno::className(), 'targetAttribute' => ['turno_id' => 'id']],
         ];
     }
@@ -43,19 +43,17 @@ class AlunoTurno extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'aluno_id_perfil' => 'Nome',
-            'turno_id' => 'Turno',
-            'turno.tipo' => 'Turno',
-            'turno.disciplina.nome' => 'Disciplina',
+            'aluno_id' => 'Aluno ID',
+            'turno_id' => 'Turno ID',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAlunoIdPerfil()
+    public function getAluno()
     {
-        return $this->hasOne(Aluno::className(), ['id_perfil' => 'aluno_id_perfil']);
+        return $this->hasOne(Aluno::className(), ['id_perfil' => 'aluno_id']);
     }
 
     /**

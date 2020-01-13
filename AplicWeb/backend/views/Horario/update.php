@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
-use backend\models\Curso;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Horario */
@@ -19,7 +18,7 @@ $this->params['breadcrumbs'][] = 'Atualizar';
 
     <?php $form = ActiveForm::begin(); ?>
       <?= $form->field($model, 'nome') ?>
-      <?= $form->field($model, 'id_curso')->dropDownList(ArrayHelper::map(Curso::find()->all(), 'id','nome')) ?>
+      <?= $form->field($model, 'id_curso')->dropDownList(ArrayHelper::map($curso, 'id','nome')) ?>
       <?= Html::submitButton('Criar', ['class' => 'btn btn-primary']) ?>
     <?php ActiveForm::end(); ?>
 

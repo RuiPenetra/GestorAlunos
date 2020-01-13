@@ -85,7 +85,6 @@ class SiteController extends Controller {
         $disciplinas = count($alunodisciplina);
       }
 
-
       if(!$testess){
         $testes = 0;
       }else {

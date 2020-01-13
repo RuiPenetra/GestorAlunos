@@ -17,7 +17,7 @@ class AlunotesteSearch extends AlunoTeste
     public function rules()
     {
         return [
-            [['aluno_id_perfil', 'teste_id', 'nota'], 'integer'],
+            [['aluno_id', 'teste_id', 'nota'], 'integer'],
         ];
     }
 
@@ -57,7 +57,7 @@ class AlunotesteSearch extends AlunoTeste
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'aluno_id_perfil' => $this->aluno_id_perfil,
+            'aluno_id' => $this->aluno_id,
             'teste_id' => $this->teste_id,
             'nota' => $this->nota,
         ]);

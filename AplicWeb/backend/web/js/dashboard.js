@@ -207,15 +207,19 @@ $(function () {
     }
   });
 
-  //Date picker
-  $('#datepicker').datepicker({
-    autoclose: true,
-    format: 'yyyy/mm/dd',
-    startDate: '-3d'
-  })
+
 
   $('#datetimepicker').datetimepicker({
       format : 'YYYY/MM/DD HH:mm:ss',
+  });
+  $('#datepicker').datetimepicker({
+      format : 'YYYY/MM/DD',
+  });
+  $('#timepicker').datetimepicker({
+      format : 'HH:mm:ss',
+  });
+  $('#timepicker1').datetimepicker({
+      format : 'HH:mm:ss',
   });
 
 });
