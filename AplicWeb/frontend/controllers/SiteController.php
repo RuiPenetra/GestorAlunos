@@ -73,8 +73,8 @@ class SiteController extends Controller {
      */
     public function actionIndex() {
       $id_user = \Yii::$app->user->identity->id;
-      $pagamentos = Pagamento::find()->orderBy(['data_lim' => SORT_ASC])->where(['id_aluno' => $id_user])->all();
-      $testess = AlunoTeste::find()->where(['aluno_id' => $id_user])->all();
+      $pagamentos = Pagamento::find()->where(['id_aluno' => $id_user])->orderBy('data_lim DESC')->all();
+      $testess = AlunoTeste::find()->innerJoin('teste', 'teste.id = aluno_teste.teste_id')->where(['aluno_id' => $id_user])->orderBy('data DESC')->all();
 
       $alunodisciplina = AlunoDisciplina::find()->where(['aluno_id' => $id_user])->all();
 

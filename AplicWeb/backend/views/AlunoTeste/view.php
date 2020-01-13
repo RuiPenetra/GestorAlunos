@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\AlunoTeste */
 
-$this->title = $model->aluno_id_perfil;
+$this->title = $model->aluno->perfil->nome;
 $this->params['breadcrumbs'][] = ['label' => 'Aluno Testes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -16,23 +16,33 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'aluno_id_perfil' => $model->aluno_id_perfil, 'teste_id' => $model->teste_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'aluno_id_perfil' => $model->aluno_id_perfil, 'teste_id' => $model->teste_id], [
+        <?= Html::a('Update', ['update', 'aluno_id' => $model->aluno_id, 'teste_id' => $model->teste_id], ['class' => 'btn btn-primary']) ?>
+        <?=
+        Html::a('Delete', ['delete', 'aluno_id' => $model->aluno_id, 'teste_id' => $model->teste_id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
-        ]) ?>
+        ])
+        ?>
     </p>
 
-    <?= DetailView::widget([
+    <?=
+    DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'aluno_id_perfil',
-            'teste_id',
+            [
+                'label' => 'Nome: ',
+                'value' => $model->aluno->perfil->nome,
+            ],
+            [
+                'label' => 'Disciplina: ',
+                'value' => $model->teste->disciplina->nome,
+            ],
             'nota',
         ],
-    ]) ?>
+    ])
+    ?>
 
 </div>

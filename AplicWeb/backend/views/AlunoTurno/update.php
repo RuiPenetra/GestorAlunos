@@ -7,7 +7,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model backend\models\AlunoTurno */
 
-$this->title = 'Atualizar Turno do Aluno';
+$this->title = 'Atualizar o turno do aluno: '. $model->aluno->perfil->nome;;
 $this->params['breadcrumbs'][] = ['label' => 'Aluno Turnos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->aluno_id, 'url' => ['view', 'aluno_id' => $model->aluno_id, 'turno_id' => $model->turno_id]];
 $this->params['breadcrumbs'][] = 'Update';

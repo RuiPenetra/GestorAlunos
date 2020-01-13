@@ -27,7 +27,6 @@ class AlunoController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
                 ],
             ],
         ];
@@ -68,7 +67,6 @@ class AlunoController extends Controller
      */
     public function actionCreate()
     {
-        $id_user = \Yii::$app->user->identity->id;
 
         if(Yii::$app->user->can('gerirPermissoes')){
             $model = new Aluno();
@@ -78,9 +76,13 @@ class AlunoController extends Controller
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 $modelB->item_name = 'aluno';
-                $modelB->id_user = $id_user;
-                if ($modelB->save()){
+                $modelB->user_id = $model->id_perfil;
+                $modelB->created_at = date("Y-m-d h:m:s");
+                if ($modelB->save(false)){
                     return $this->redirect(['view', 'id' => $model->id_perfil]);
+                }
+                else{
+                    throw new NotFoundHttpException;
                 }
             }
 
@@ -105,7 +107,9 @@ class AlunoController extends Controller
     public function actionDelete($id)
     {
         if(Yii::$app->user->can('gerirPermissoes')){
-            $this->findModel($id)->delete();
+            if($this->findModelAuth($id)->delete()){
+                $this->findModel($id)->delete();
+            }
 
             return $this->redirect(['index']);
         }
@@ -124,6 +128,22 @@ class AlunoController extends Controller
     protected function findModel($id)
     {
         if (($model = Aluno::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException;
+    }
+
+    /**
+     * Finds the Aluno model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $user_id
+     * @return AuthAssignment the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModelAuth($user_id)
+    {
+        if (($model = AuthAssignment::findOne(['user_id' => $user_id])) !== null) {
             return $model;
         }
 

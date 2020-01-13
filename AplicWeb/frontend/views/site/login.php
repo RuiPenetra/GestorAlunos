@@ -41,7 +41,6 @@ AppAssetLogin::register($this);
                     <?= $form->field($model, 'password', ['options' => ['tag' => 'input', 'style' => 'display: none;']])->textInput(['class' => 'input', 'type' => 'password'])->label(false) ?>
                 </div>
             </div>
-            <a href="#" class="aClass">Esqueceu a senha?</a>
             <div class="form-group">
                 <?= Html::submitButton('Login', ['class' => 'btnClass', 'name' => 'login-button']) ?>
             </div>

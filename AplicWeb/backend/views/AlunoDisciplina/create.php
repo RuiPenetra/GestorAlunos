@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
      ])
      ?>-->
     <?php $form = ActiveForm::begin(); ?>
-    <?= $form->field($model, 'aluno_id_perfil')->dropDownList(ArrayHelper::map($perfis, 'id_user', 'nome'), ['prompt' => 'Selecione uma Opção']) ?>
+    <?= $form->field($model, 'aluno_id')->dropDownList(ArrayHelper::map($perfis, 'id_user', 'nome'), ['prompt' => 'Selecione uma Opção']) ?>
     <?= $form->field($model, 'disciplina_id')->dropDownList(ArrayHelper::map($disciplina, 'id', 'abreviatura', 'nome'), ['prompt' => 'Selecione uma Opção']) ?>
     <?= $form->field($model, 'nota'); ?>
     <?= Html::submitButton('Criar', ['class' => 'btn btn-primary']) ?>

@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
     ]) ?>-->
     <?php $form = ActiveForm::begin(); ?>
-    <?= $form->field($model, 'aluno_id_perfil')->dropDownList(ArrayHelper::map($perfis, 'id_user', 'nome'), ['prompt' => 'Selecione uma Opção']) ?>
+    <?= $form->field($model, 'aluno_id')->dropDownList(ArrayHelper::map($perfis, 'id_user', 'nome'), ['prompt' => 'Selecione uma Opção']) ?>
     <?=
     $form->field($model, 'teste_id')->dropDownList(ArrayHelper::map($teste, 'id', /* ['disciplina.nome', 'teste.data'] */ function($element) {
                 return $element['data'] . ' --> ' . $element['sala'];

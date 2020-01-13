@@ -2,11 +2,13 @@
 
 namespace backend\controllers;
 
+use backend\models\AuthAssignment;
 use backend\models\Professor;
 use Yii;
 use backend\models\DiretorCurso;
 use backend\models\DiretorcursoSearch;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -24,7 +26,6 @@ class DiretorcursoController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
                 ],
             ],
         ];
@@ -65,12 +66,22 @@ class DiretorcursoController extends Controller
      */
     public function actionCreate()
     {
-        if(Yii::$app->user->can('createBranches')){
+        if(Yii::$app->user->can('gerirPermissoes')){
             $model = new DiretorCurso();
+            $modelB = new AuthAssignment();
             $professores = Professor::find()->all();
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id_professor]);
+                $modelB->item_name = 'diretorCurso';
+                $modelB->user_id = $model->id_professor;
+                $modelB->created_at = date("Y-m-d h:m:s");
+                if ($modelB->save(false)){
+                    return $this->redirect(['view', 'id' => $model->id_professor]);
+                }
+                else{
+                    throw new NotFoundHttpException;
+                }
+
             }
 
             return $this->render('create', [
@@ -79,7 +90,7 @@ class DiretorcursoController extends Controller
             ]);
         }
         else{
-            return Yii::$app->runAction('site', 'error');
+            throw new ForbiddenHttpException;
         }
     }
 
@@ -93,9 +104,16 @@ class DiretorcursoController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if(Yii::$app->user->can('gerirPermissoes')){
+            if($this->findModelAuth($id)->delete()){
+                $this->findModel($id)->delete();
+            }
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
+        }
+        else{
+            throw new ForbiddenHttpException;
+        }
     }
 
     /**
@@ -112,5 +130,21 @@ class DiretorcursoController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * Finds the Aluno model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $user_id
+     * @return AuthAssignment the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModelAuth($user_id)
+    {
+        if (($model = AuthAssignment::findOne(['user_id' => $user_id])) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException;
     }
 }

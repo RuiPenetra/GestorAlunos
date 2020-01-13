@@ -2,11 +2,13 @@
 
 namespace backend\controllers;
 
+use backend\models\AuthAssignment;
 use backend\models\Perfil;
 use Yii;
 use backend\models\Professor;
 use backend\models\ProfessorSearch;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -24,7 +26,6 @@ class ProfessorController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
                 ],
             ],
         ];
@@ -65,17 +66,31 @@ class ProfessorController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Professor();
-        $perfis = Perfil::find()->all();
+        if(Yii::$app->user->can('gerirPermissoes')){
+            $model = new Professor();
+            $modelB = new AuthAssignment();
+            $perfis = Perfil::find()->all();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_perfil]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                $modelB->item_name = 'professor';
+                $modelB->user_id = $model->id_perfil;
+                $modelB->created_at = date("Y-m-d h:m:s");
+                if ($modelB->save(false)){
+                    return $this->redirect(['view', 'id' => $model->id_perfil]);
+                }
+                else{
+                    throw new NotFoundHttpException;
+                }
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+                'perfis' => $perfis,
+            ]);
         }
-
-        return $this->render('create', [
-            'model' => $model,
-            'perfis' => $perfis,
-        ]);
+        else{
+            throw new ForbiddenHttpException;
+        }
     }
 
     /**
@@ -87,9 +102,15 @@ class ProfessorController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        if(Yii::$app->user->can('gerirPermissoes')){
+            if($this->findModelAuth($id)->delete()){
+                $this->findModel($id)->delete();
+            }
+            return $this->redirect(['index']);
+        }
+        else{
+            throw new ForbiddenHttpException;
+        }
     }
 
     /**
@@ -106,5 +127,21 @@ class ProfessorController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * Finds the Aluno model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $user_id
+     * @return AuthAssignment the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModelAuth($user_id)
+    {
+        if (($model = AuthAssignment::findOne(['user_id' => $user_id])) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException;
     }
 }
