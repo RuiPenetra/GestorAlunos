@@ -49,6 +49,17 @@ class AulaController extends Controller
     }
 
     /**
+     * Displays Aula model Where id_horario like $id.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+
+    public function actionHorario($id){
+
+    }
+
+    /**
      * Displays a single Aula model.
      * @param integer $id
      * @return mixed
