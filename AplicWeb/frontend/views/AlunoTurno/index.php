@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ?>
                   <tr>
-                    <td><a href="<?= Url::toRoute(['alunoturno/view', 'aluno_id_perfil' => $turnoaluno->aluno_id_perfil, 'turno_id' => $turnoaluno->turno_id]) ?>"><?= $turnoaluno->turno->tipo; ?></a></td>
+                    <td><a href="<?= Url::toRoute(['alunoturno/view', 'aluno_id' => $turnoaluno->aluno_id, 'turno_id' => $turnoaluno->turno_id]) ?>"><?= $turnoaluno->turno->tipo; ?></a></td>
                     <td><?= $turnoaluno->turno->disciplina->nome; ?></td>
                   </tr>
             <?php

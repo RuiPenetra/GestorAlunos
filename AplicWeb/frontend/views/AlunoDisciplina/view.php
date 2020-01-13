@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\AlunoDisciplina */
 
-$this->title = $model->aluno_id_perfil;
+$this->title = $model->aluno_id;
 $this->params['breadcrumbs'][] = ['label' => 'Aluno Disciplinas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -16,8 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'aluno_id_perfil' => $model->aluno_id_perfil, 'disciplina_id' => $model->disciplina_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'aluno_id_perfil' => $model->aluno_id_perfil, 'disciplina_id' => $model->disciplina_id], [
+        <?= Html::a('Update', ['update', 'aluno_id' => $model->aluno_id, 'disciplina_id' => $model->disciplina_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'aluno_id' => $model->aluno_id, 'disciplina_id' => $model->disciplina_id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'aluno_id_perfil',
+            'aluno_id',
             'disciplina_id',
             'nota',
         ],

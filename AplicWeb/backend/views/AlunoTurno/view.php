@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\AlunoTurno */
 
-$this->title = $model->aluno_id_perfil;
+$this->title = $model->aluno_id;
 $this->params['breadcrumbs'][] = ['label' => 'Aluno Turnos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -16,8 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Atualizar', ['update', 'aluno_id_perfil' => $model->aluno_id_perfil, 'turno_id' => $model->turno_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Apagar', ['delete', 'aluno_id_perfil' => $model->aluno_id_perfil, 'turno_id' => $model->turno_id], [
+        <?= Html::a('Atualizar', ['update', 'aluno_id' => $model->aluno_id, 'turno_id' => $model->turno_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Apagar', ['delete', 'aluno_id' => $model->aluno_id, 'turno_id' => $model->turno_id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Tem a certeza que pretende apagar?',
@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'aluno_id_perfil.perfil.nome',
+            'aluno_id.perfil.nome',
             'turno.tipo',
         ],
     ]) ?>

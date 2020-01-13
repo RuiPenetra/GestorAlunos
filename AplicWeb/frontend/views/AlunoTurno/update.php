@@ -10,7 +10,7 @@ use backend\models\Turno;
 
 $this->title = 'Atualizar Turno';
 $this->params['breadcrumbs'][] = ['label' => 'Aluno Turnos', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->aluno_id_perfil, 'url' => ['view', 'aluno_id_perfil' => $model->aluno_id_perfil, 'turno_id' => $model->turno_id]];
+$this->params['breadcrumbs'][] = ['label' => $model->aluno_id, 'url' => ['view', 'aluno_id' => $model->aluno_id, 'turno_id' => $model->turno_id]];
 $this->params['breadcrumbs'][] = 'Atualizar';
 $id_user = \Yii::$app->user->identity->id;
 ?>
@@ -20,7 +20,7 @@ $id_user = \Yii::$app->user->identity->id;
 
     <?php $form = ActiveForm::begin(); ?>
         <?= $form->field($model, 'turno_id')->dropDownList(ArrayHelper::map(Turno::find()->all(), 'id','tipo','disciplina.nome')) ?>
-        <?= $form->field($model, 'aluno_id_perfil')->hiddenInput(['value'=> $id_user])->label(false) ?>
+        <?= $form->field($model, 'aluno_id')->hiddenInput(['value'=> $id_user])->label(false) ?>
         <?= Html::submitButton('Criar', ['class' => 'btn btn-primary']) ?>
     <?php ActiveForm::end(); ?>
 

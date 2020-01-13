@@ -48,15 +48,15 @@ class AlunoturnoController extends Controller
 
     /**
      * Displays a single AlunoTurno model.
-     * @param integer $aluno_id_perfil
+     * @param integer $aluno_id
      * @param integer $turno_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($aluno_id_perfil, $turno_id)
+    public function actionView($aluno_id, $turno_id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($aluno_id_perfil, $turno_id),
+            'model' => $this->findModel($aluno_id, $turno_id),
         ]);
     }
 
@@ -72,7 +72,7 @@ class AlunoturnoController extends Controller
         $turnos = Turno::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'aluno_id_perfil' => $model->aluno_id_perfil, 'turno_id' => $model->turno_id]);
+            return $this->redirect(['view', 'aluno_id' => $model->aluno_id, 'turno_id' => $model->turno_id]);
         }
 
         return $this->render('create', [
@@ -85,19 +85,19 @@ class AlunoturnoController extends Controller
     /**
      * Updates an existing AlunoTurno model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $aluno_id_perfil
+     * @param integer $aluno_id
      * @param integer $turno_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($aluno_id_perfil, $turno_id)
+    public function actionUpdate($aluno_id, $turno_id)
     {
-        $model = $this->findModel($aluno_id_perfil, $turno_id);
+        $model = $this->findModel($aluno_id, $turno_id);
         $alunos = Aluno::find()->all();
         $turnos = Turno::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'aluno_id_perfil' => $model->aluno_id_perfil, 'turno_id' => $model->turno_id]);
+            return $this->redirect(['view', 'aluno_id' => $model->aluno_id, 'turno_id' => $model->turno_id]);
         }
 
         return $this->render('update', [
@@ -110,14 +110,14 @@ class AlunoturnoController extends Controller
     /**
      * Deletes an existing AlunoTurno model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $aluno_id_perfil
+     * @param integer $aluno_id
      * @param integer $turno_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($aluno_id_perfil, $turno_id)
+    public function actionDelete($aluno_id, $turno_id)
     {
-        $this->findModel($aluno_id_perfil, $turno_id)->delete();
+        $this->findModel($aluno_id, $turno_id)->delete();
 
         return $this->redirect(['index']);
     }
@@ -125,14 +125,14 @@ class AlunoturnoController extends Controller
     /**
      * Finds the AlunoTurno model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $aluno_id_perfil
+     * @param integer $aluno_id
      * @param integer $turno_id
      * @return AlunoTurno the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($aluno_id_perfil, $turno_id)
+    protected function findModel($aluno_id, $turno_id)
     {
-        if (($model = AlunoTurno::findOne(['aluno_id_perfil' => $aluno_id_perfil, 'turno_id' => $turno_id])) !== null) {
+        if (($model = AlunoTurno::findOne(['aluno_id' => $aluno_id, 'turno_id' => $turno_id])) !== null) {
             return $model;
         }
 
