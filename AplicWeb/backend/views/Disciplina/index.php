@@ -33,6 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'id_professor',
                 'value' => 'professor.perfil.nome',
             ],
+            [
+                'attribute' => 'curso_id',
+                'value' => 'curso.nome',
+            ],
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
