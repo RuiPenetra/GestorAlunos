@@ -66,43 +66,24 @@ class AlunoController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Aluno();
-        $perfis = Perfil::find()->all();
-        $cursos = Curso::find()->all();
+        if(Yii::$app->user->can('createBranches')){
+            $model = new Aluno();
+            $perfis = Perfil::find()->all();
+            $cursos = Curso::find()->all();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_perfil]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id_perfil]);
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+                'perfis' => $perfis,
+                'cursos' => $cursos,
+            ]);
         }
-
-        return $this->render('create', [
-            'model' => $model,
-            'perfis' => $perfis,
-            'cursos' => $cursos,
-        ]);
-    }
-
-    /**
-     * Updates an existing Aluno model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-        $perfis = Perfil::find()->all();
-        $cursos = Curso::find()->all();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_perfil]);
+        else{
+            return Yii::$app->runAction('site', 'error');
         }
-
-        return $this->render('update', [
-            'model' => $model,
-            'perfis' => $perfis,
-            'cursos' => $cursos,
-        ]);
     }
 
     /**
@@ -114,9 +95,14 @@ class AlunoController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if(Yii::$app->user->can('createBranches')){
+            $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
+        }
+        else{
+            return Yii::$app->runAction('site', 'Error');
+        }
     }
 
     /**

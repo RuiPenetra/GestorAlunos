@@ -65,40 +65,24 @@ class DiretorcursoController extends Controller
      */
     public function actionCreate()
     {
-        $model = new DiretorCurso();
-        $professores = Professor::find()->all();
+        if(Yii::$app->user->can('createBranches')){
+            $model = new DiretorCurso();
+            $professores = Professor::find()->all();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_professor]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id_professor]);
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+                'professores' => $professores,
+            ]);
         }
-
-        return $this->render('create', [
-            'model' => $model,
-            'professores' => $professores,
-        ]);
+        else{
+            return Yii::$app->runAction('site', 'error');
+        }
     }
 
-    /**
-     * Updates an existing DiretorCurso model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-        $professores = Professor::find()->all();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_professor]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-            'professores' => $professores,
-        ]);
-    }
 
     /**
      * Deletes an existing DiretorCurso model.

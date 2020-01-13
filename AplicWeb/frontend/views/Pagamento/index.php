@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="alert alert-warning alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <h4><i class="icon fa fa-warning"></i> Atenção !</h4>
-        Esta pagina nao mostra a informacao verdadeira do estado da propina serve apenas para o estudante gerir ele mesmo a informacao.
+        Esta página não mostra a informação verdadeira do estado da propina, serve apenas para o estudante gerir ele mesmo a informação.
     </div>
     <div class="box box-info">
       <div class="box-header with-border">
