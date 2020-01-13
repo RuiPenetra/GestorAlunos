@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'attribute' => 'aluno_id',
-                'value' => 'aluno_id.perfil.nome',
+                'value' => 'aluno.perfil.nome',
             ],
             [
                 'attribute' => 'turno_id',

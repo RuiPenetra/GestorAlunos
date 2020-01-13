@@ -181,12 +181,12 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                                     </a>
                                     <ul class="treeview-menu">
                                         <li class="">
-                                            <a href="<?= Url::toRoute(['alunocur/index']) ?>">
+                                            <a href="<?= Url::toRoute(['alunoturno/index']) ?>">
                                                 <i class="fa fa-user"></i> <span>Aluno Turno</span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="<?= Url::toRoute(['alunodisc/index']) ?>">
+                                            <a href="<?= Url::toRoute(['alunodisciplina/index']) ?>">
                                                 <i class="fa fa-th"></i> <span>Aluno Disciplina</span>
                                             </a>
                                         </li>
@@ -578,7 +578,7 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                                 </a>
                             </li>
                             <li class="">
-                                <a href="<?= Url::toRoute(['alunodisc/index']) ?>">
+                                <a href="<?= Url::toRoute(['alunodisciplina/index']) ?>">
                                     <i class="fa fa-th"></i> <span>Aluno Disciplina</span>
                                 </a>
                             </li>
