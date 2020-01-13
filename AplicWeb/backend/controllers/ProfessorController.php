@@ -79,28 +79,6 @@ class ProfessorController extends Controller
     }
 
     /**
-     * Updates an existing Professor model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-        $perfis = Perfil::find()->all();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_perfil]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-            'perfis' => $perfis,
-        ]);
-    }
-
-    /**
      * Deletes an existing Professor model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id

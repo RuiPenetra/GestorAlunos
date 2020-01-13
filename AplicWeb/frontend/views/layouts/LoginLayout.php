@@ -26,6 +26,7 @@ $this->title = 'Login'
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?php $this->registerCsrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
+        <link rel="shortcut icon" href="<?php echo Yii::$app->request->baseUrl; ?>/favicon.png" style="height: 32px" type="image/x-icon" />
         <?php $this->head() ?>
     </head>
     <?php $this->beginBody() ?>

@@ -36,8 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
   <div class="row">
-    <div class="col-md-3"></div>
-    <div class="nav-tabs-custom col-md-6">
+    <div class="nav-tabs-custom col-md-12">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#seg" data-toggle="tab" aria-expanded="true">Segunda-Feira</a></li>
         <li class=""><a href="#ter" data-toggle="tab" aria-expanded="false">Terça-Feira</a></li>
