@@ -3,19 +3,18 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\AlunoTurno;
-use backend\models\Perfil;
-use backend\models\Turno;
-use backend\models\Aluno;
-use backend\models\AlunoturnoSearch;
+use backend\models\AlunoDisciplina;
+use backend\models\AlunodisciplinaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\models\Perfil;
+use backend\models\Disciplina;
 
 /**
- * AlunoturnoController implements the CRUD actions for AlunoTurno model.
+ * AlunodisciplinaController implements the CRUD actions for AlunoDisciplina model.
  */
-class AlunoturnoController extends Controller {
+class AlunodisciplinaController extends Controller {
 
     /**
      * {@inheritdoc}
@@ -32,11 +31,11 @@ class AlunoturnoController extends Controller {
     }
 
     /**
-     * Lists all AlunoTurno models.
+     * Lists all AlunoDisciplina models.
      * @return mixed
      */
     public function actionIndex() {
-        $searchModel = new AlunoturnoSearch();
+        $searchModel = new AlunodisciplinaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,90 +45,89 @@ class AlunoturnoController extends Controller {
     }
 
     /**
-     * Displays a single AlunoTurno model.
+     * Displays a single AlunoDisciplina model.
      * @param integer $aluno_id_perfil
-     * @param integer $turno_id
+     * @param integer $disciplina_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($aluno_id_perfil, $turno_id) {
+    public function actionView($aluno_id_perfil, $disciplina_id) {
         return $this->render('view', [
-                    'model' => $this->findModel($aluno_id_perfil, $turno_id),
+                    'model' => $this->findModel($aluno_id_perfil, $disciplina_id),
         ]);
     }
 
     /**
-     * Creates a new AlunoTurno model.
+     * Creates a new AlunoDisciplina model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate() {
-        $model = new AlunoTurno();
+        $model = new AlunoDisciplina();
 
-        // $perfis = Perfil::find()->where(['id_user','aluno.id_perfil'])->all(); //, 'id_user', 'nome');
         $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
-        $turno = Turno::find()->all(); //, 'id_user', 'nome');
+        $disciplina = Disciplina::find()->all(); //, 'id_user', 'nome');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'aluno_id_perfil' => $model->aluno_id_perfil, 'turno_id' => $model->turno_id]);
+            return $this->redirect(['view', 'aluno_id_perfil' => $model->aluno_id_perfil, 'disciplina_id' => $model->disciplina_id]);
         }
 
         return $this->render('create', [
                     'model' => $model,
                     'perfis' => $perfis,
-                    'turno' => $turno,
+                    'disciplina' => $disciplina,
         ]);
     }
 
     /**
-     * Updates an existing AlunoTurno model.
+     * Updates an existing AlunoDisciplina model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $aluno_id_perfil
-     * @param integer $turno_id
+     * @param integer $disciplina_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($aluno_id_perfil, $turno_id) {
-        $model = $this->findModel($aluno_id_perfil, $turno_id);
+    public function actionUpdate($aluno_id_perfil, $disciplina_id) {
+        $model = $this->findModel($aluno_id_perfil, $disciplina_id);
 
         $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
-        $turno = Turno::find()->all(); //, 'id_user', 'nome');
+        $disciplina = Disciplina::find()->all(); //, 'id_user', 'nome');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'aluno_id_perfil' => $model->aluno_id_perfil, 'turno_id' => $model->turno_id]);
+            return $this->redirect(['view', 'aluno_id_perfil' => $model->aluno_id_perfil, 'disciplina_id' => $model->disciplina_id]);
         }
 
         return $this->render('update', [
                     'model' => $model,
                     'perfis' => $perfis,
-                    'turno' => $turno,
+                    'disciplina' => $disciplina,
         ]);
     }
 
     /**
-     * Deletes an existing AlunoTurno model.
+     * Deletes an existing AlunoDisciplina model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $aluno_id_perfil
-     * @param integer $turno_id
+     * @param integer $disciplina_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($aluno_id_perfil, $turno_id) {
-        $this->findModel($aluno_id_perfil, $turno_id)->delete();
+    public function actionDelete($aluno_id_perfil, $disciplina_id) {
+        $this->findModel($aluno_id_perfil, $disciplina_id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the AlunoTurno model based on its primary key value.
+     * Finds the AlunoDisciplina model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $aluno_id_perfil
-     * @param integer $turno_id
-     * @return AlunoTurno the loaded model
+     * @param integer $disciplina_id
+     * @return AlunoDisciplina the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($aluno_id_perfil, $turno_id) {
-        if (($model = AlunoTurno::findOne(['aluno_id_perfil' => $aluno_id_perfil, 'turno_id' => $turno_id])) !== null) {
+    protected function findModel($aluno_id_perfil, $disciplina_id) {
+        if (($model = AlunoDisciplina::findOne(['aluno_id_perfil' => $aluno_id_perfil, 'disciplina_id' => $disciplina_id])) !== null) {
             return $model;
         }
 

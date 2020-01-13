@@ -2,25 +2,23 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use backend\models\Perfil;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\AlunoturnoSearch */
+/* @var $searchModel backend\models\AlunodisciplinaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Aluno Turnos';
+$this->title = 'Aluno Disciplinas';
 $this->params['breadcrumbs'][] = $this->title;
-$perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
 ?>
-<div class="aluno-turno-index">
+<div class="aluno-disciplina-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Aluno Turno', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Aluno Disciplina', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?=
     GridView::widget([
@@ -30,18 +28,16 @@ $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')
             ['class' => 'yii\grid\SerialColumn'],
             [
                 'attribute' => 'aluno_id_perfil',
-               // 'value' => 'aluno_id_perfil.perfil.user_id',
-                //'value' => $perfis[0]->nome ,
             ],
             [
-                'attribute' => 'turno_id',
-                'value' => 'turno.tipo',
+                'attribute' => 'disciplina_id',
+                'value' => 'disciplina.nome',
             ],
+            'nota',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]);
     ?>
-
 
 
 </div>

@@ -18,43 +18,42 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <div class="box box-info">
-      <div class="box-header with-border">
-        <h3 class="box-title">Turnos</h3>
+        <div class="box-header with-border">
+            <h3 class="box-title">Turnos</h3>
 
-        <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-          </button>
-          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
         </div>
-      </div>
-      <!-- /.box-header -->
-      <div class="box-body">
-        <div class="table-responsive">
-          <table class="table no-margin">
-            <thead>
-              <tr>
-                <th>Nome Turno</th>
-                <th>Disciplina</th>
-              </tr>
-            </thead>
-            <tbody>
-            <?php
-              foreach ($dataProvider as $turnoaluno):
-
-            ?>
-                  <tr>
-                    <td><a href="<?= Url::toRoute(['alunoturno/view', 'aluno_id_perfil' => $turnoaluno->aluno_id_perfil, 'turno_id' => $turnoaluno->turno_id]) ?>"><?= $turnoaluno->turno->tipo; ?></a></td>
-                    <td><?= $turnoaluno->turno->disciplina->nome; ?></td>
-                  </tr>
-            <?php
-              endforeach;
-            ?>
-            </tbody>
-          </table>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="table-responsive">
+                <table class="table no-margin">
+                    <thead>
+                        <tr>
+                            <th>Nome Turno</th>
+                            <th>Disciplina</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($dataProvider as $turnoaluno):
+                            ?>
+                            <tr>
+                                <td><a href="<?= Url::toRoute(['alunoturno/view', 'aluno_id_perfil' => $turnoaluno->aluno_id_perfil, 'turno_id' => $turnoaluno->turno_id]) ?>"><?= $turnoaluno->turno->tipo; ?></a></td>
+                                <td><?= $turnoaluno->turno->disciplina->nome; ?></td>
+                            </tr>
+                            <?php
+                        endforeach;
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.table-responsive -->
         </div>
-        <!-- /.table-responsive -->
-      </div>
-      <!-- /.box-footer -->
+        <!-- /.box-footer -->
     </div>
 
 
