@@ -7,7 +7,7 @@ use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model backend\models\AlunoTeste */
 
-$this->title = 'Update Aluno Teste: ' . $model->aluno_id;
+$this->title = 'Update o aluno do teste: ' . $model->aluno->perfil->nome;
 $this->params['breadcrumbs'][] = ['label' => 'Aluno Testes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->aluno_id, 'url' => ['view', 'aluno_id' => $model->aluno_id, 'teste_id' => $model->teste_id]];
 $this->params['breadcrumbs'][] = 'Update';

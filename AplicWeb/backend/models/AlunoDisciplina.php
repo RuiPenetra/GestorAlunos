@@ -44,9 +44,9 @@ class AlunoDisciplina extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'aluno_id' => 'Aluno ID',
-            'disciplina_id' => 'Disciplina ID',
-            'nota' => 'Nota',
+            'aluno_id' => 'Nome:',
+            'disciplina_id' => 'Disciplina:',
+            'nota' => 'Nota:',
         ];
     }
 

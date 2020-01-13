@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\AlunotesteSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Aluno Testes';
+$this->title = 'Alunos nos testes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="aluno-teste-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Aluno Teste', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('criar o aluno no teste', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -27,14 +27,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
-                'attribute' => 'aluno_id',
+                'attribute' => 'Nome:',
                 'value' => 'aluno.perfil.nome'
             ],
             [
-                'attribute' => 'teste_id',
+                'attribute' => 'Disciplina:',
                 'value' => 'teste.disciplina.nome',
             ],
-            'nota',
+            [
+                'attribute' => 'Nota:',
+                'value' => 'nota',
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]);

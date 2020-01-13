@@ -44,9 +44,9 @@ class AlunoTeste extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'aluno_id' => 'Aluno ID',
-            'teste_id' => 'Teste ID',
-            'nota' => 'Nota',
+            'aluno_id' => 'Nome:',
+            'teste_id' => 'Disciplina:',
+            'nota' => 'Nota:',
         ];
     }
 

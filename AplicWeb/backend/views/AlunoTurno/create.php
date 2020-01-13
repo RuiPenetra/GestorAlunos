@@ -7,7 +7,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model backend\models\AlunoTurno */
 
-$this->title = 'Inscrever Aluno no Turno';
+$this->title = 'Inscrever o aluno no turno';
 $this->params['breadcrumbs'][] = ['label' => 'Inscricoes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
