@@ -46,9 +46,10 @@ class Presenca extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_aula' => 'Id Aula',
+            'id_aula' => 'Aula',
             'data' => 'Data',
-            'id_perfil' => 'Id Perfil',
+            'id_perfil' => 'Aluno',
+            'perfil.perfil.nome' => 'Aluno',
         ];
     }
 

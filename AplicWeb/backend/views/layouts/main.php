@@ -35,7 +35,7 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
         <?php $this->head() ?>
     </head>
     <?php
-    $notificacoes= Notificacao::find()->all();
+      $notificacoes= Notificacao::find()->all();
     if (Yii::$app->user->can('permissoesProf')){
         if(Yii::$app->user->can('permissoesDiretor')){
             ?>
@@ -425,6 +425,11 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                                                 <i class="fa fa-book"></i> <span>Teste</span>
                                             </a>
                                         </li>
+                                        <li class="">
+                                            <a href="<?= Url::toRoute(['presenca/index']) ?>">
+                                                <i class="fa fa-pencil fa-fw"></i> <span>Faltas</span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </section>
                                 <!-- /.sidebar -->
@@ -650,8 +655,9 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                         <a href="<?= Url::toRoute(['teste/index']) ?>">
                             <i class="fa fa-book"></i> <span>Testes</span>
                         </a>
-                    </li><li class="">
-                        <a href="<?= Url::toRoute(['feriados/index']) ?>">
+                    </li>
+                    <li class="">
+                        <a href="<?= Url::toRoute(['feriado/index']) ?>">
                             <i class="fa fa-calendar"></i> <span>Feriados</span>
                         </a>
                     </li>
