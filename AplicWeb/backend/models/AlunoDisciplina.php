@@ -65,4 +65,54 @@ class AlunoDisciplina extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Disciplina::className(), ['id' => 'disciplina_id']);
     }
+
+    /**
+     * @return int
+     */
+    public function getAlunoId()
+    {
+        return $this->aluno_id;
+    }
+
+    /**
+     * @param int $aluno_id
+     */
+    public function setAlunoId($aluno_id)
+    {
+        $this->aluno_id = $aluno_id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDisciplinaId()
+    {
+        return $this->disciplina_id;
+    }
+
+    /**
+     * @param int $disciplina_id
+     */
+    public function setDisciplinaId($disciplina_id)
+    {
+        $this->disciplina_id = $disciplina_id;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getNota()
+    {
+        return $this->nota;
+    }
+
+    /**
+     * @param int|null $nota
+     */
+    public function setNota($nota)
+    {
+        $this->nota = $nota;
+    }
+
+
 }

@@ -43,7 +43,7 @@ class Professor extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_perfil' => 'Nome',
+            'id_perfil' => 'Id Perfil',
         ];
     }
 
@@ -78,4 +78,6 @@ class Professor extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Perfil::className(), ['id_user' => 'id_perfil']);
     }
+
+
 }
