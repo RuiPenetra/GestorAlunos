@@ -107,4 +107,22 @@ class Perfil extends \yii\db\ActiveRecord
     {
         return $this->hasMany(RegistoFalta::className(), ['id_perfil' => 'id_user']);
     }
+
+    /**
+     * @return string
+     */
+    public function getNome()
+    {
+        return $this->nome;
+    }
+
+    /**
+     * @param string $nome
+     */
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
+    }
+
+
 }

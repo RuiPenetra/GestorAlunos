@@ -39,7 +39,11 @@ $notificacoes= Notificacao::find()->all();
         if (Yii::$app->user->can('permissoesProf')){
             if(Yii::$app->user->can('permissoesDiretor')){
                 ?>
+<<<<<<< HEAD
               <body class="hold-transition skin-green fixed hold-transition login-page">
+=======
+             <body class="hold-transition skin-purple fixed hold-transition login-page">
+>>>>>>> b38ec63f307463a021ea170b118cd6f2e5c9f82e
                 <?php $this->beginBody() ?>
                 <div class="wrapper">
                     <header class="main-header">

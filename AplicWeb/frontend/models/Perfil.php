@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use common\models\User;
+use DateTime;
 use Yii;
 
 /**
@@ -22,25 +23,31 @@ use Yii;
  * @property Publicacao[] $publicacaos
  * @property RegistoFalta[] $registoFaltas
  */
-class Perfil extends \yii\db\ActiveRecord
-{
+class Perfil extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'perfil';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
+
+        //Data minima para a verificação do ano de nascimento
+        $birthdayLimit = date('Y') - 17;
+
         return [
-            [['nome', 'email', 'genero', 'telemovel', 'datanascimento'], 'required'],
-            [['telemovel'], 'integer'],
+            [['nome', 'email', 'genero', 'telemovel', 'datanascimento'], 'required', 'message' => 'Este campo é obrigatório.'],
+            //[['telemovel'], 'number', 'message' => 'O número de telemóvel tem 9 digitos.'],
+            [['telemovel'], 'compare', 'compareValue' => 1000000000, 'operator' => '<', 'message' => 'O número de telemóvel tem 9 digitos.'],
+            [['telemovel'], 'compare', 'compareValue' => 10000000, 'operator' => '>', 'message' => 'O número de telemóvel tem 9 digitos.'],
+            [['datanascimento'], 'compare', 'compareValue' => $birthdayLimit, 'operator' => '<', 'message' => 'A data de nascimento deve ser inferior a ' . $birthdayLimit . '.'],
             [['datanascimento'], 'safe'],
+            [['email'], 'unique', 'message' => 'Este email ja está inserido.'],
             [['nome', 'email', 'genero'], 'string', 'max' => 255],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
         ];
@@ -49,8 +56,7 @@ class Perfil extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id_user' => 'Id User',
             'nome' => 'Nome',
@@ -64,48 +70,43 @@ class Perfil extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAluno()
-    {
+    public function getAluno() {
         return $this->hasOne(Aluno::className(), ['id_perfil' => 'id_user']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getComentarios()
-    {
+    public function getComentarios() {
         return $this->hasMany(Comentario::className(), ['id_perfil' => 'id_user']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'id_user']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProfessor()
-    {
+    public function getProfessor() {
         return $this->hasOne(Professor::className(), ['id_perfil' => 'id_user']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPublicacaos()
-    {
+    public function getPublicacaos() {
         return $this->hasMany(Publicacao::className(), ['id_perfil' => 'id_user']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRegistoFaltas()
-    {
+    public function getRegistoFaltas() {
         return $this->hasMany(RegistoFalta::className(), ['id_perfil' => 'id_user']);
     }
+
 }
