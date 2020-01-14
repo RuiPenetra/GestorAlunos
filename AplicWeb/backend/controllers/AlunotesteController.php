@@ -65,24 +65,22 @@ class AlunotesteController extends Controller {
     public function actionCreate() {
         $id_user = \Yii::$app->user->identity->id;
 
-        if (Yii::$app->user->can('permissoesProf')) {
+        if (Yii::$app->user->can('gerirPermissoes')) {
             $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
-            $teste = Teste::find()
-                    ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
-                    ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
-                    ->all(); //, 'id_user', 'nome');
+            $teste = Teste::find()->all();
         } elseif (Yii::$app->user->can('permissoesDiretor')) {
             $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
             $teste = Teste::find()
                     ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
+                    ->innerJoin('curso', 'disciplina.curso_id = curso.id AND curso.diretor_curso = ' . $id_user)
                     ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
-                    ->all(); //, 'id_user', 'nome');
-        } elseif (Yii::$app->user->can('gerirPermissoes')) {
+                    ->all();
+        } elseif (Yii::$app->user->can('permissoesProf')) {
             $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
             $teste = Teste::find()
-                    // ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
-                    //->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
-                    ->all(); //, 'id_user', 'nome');
+                    ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
+                    ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
+                    ->all();
         } else {
             throw new ForbiddenHttpException;
         }
@@ -111,24 +109,22 @@ class AlunotesteController extends Controller {
     public function actionUpdate($aluno_id, $teste_id) {
         $id_user = \Yii::$app->user->identity->id;
 
-        if (Yii::$app->user->can('permissoesProf')) {
+        if (Yii::$app->user->can('gerirPermissoes')) {
             $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
-            $teste = Teste::find()
-                    ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
-                    ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
-                    ->all(); //, 'id_user', 'nome');
+            $teste = Teste::find()->all();
         } elseif (Yii::$app->user->can('permissoesDiretor')) {
             $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
             $teste = Teste::find()
                     ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
+                    ->innerJoin('curso', 'disciplina.curso_id = curso.id AND curso.diretor_curso = ' . $id_user)
                     ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
-                    ->all(); //, 'id_user', 'nome');
-        } elseif (Yii::$app->user->can('gerirPermissoes')) {
+                    ->all();
+        } elseif (Yii::$app->user->can('permissoesProf')) {
             $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
             $teste = Teste::find()
-                    // ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
-                    //->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
-                    ->all(); //, 'id_user', 'nome');
+                    ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
+                    ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
+                    ->all();
         } else {
             throw new ForbiddenHttpException;
         }

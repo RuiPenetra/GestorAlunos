@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\AlunoTeste;
+use yii\web\NotFoundHttpException;
 
 /**
  * AlunotesteSearch represents the model behind the search form of `backend\models\AlunoTeste`.
@@ -39,18 +40,18 @@ class AlunotesteSearch extends AlunoTeste {
     public function search($params) {
         $id_user = \Yii::$app->user->identity->id;
 
-        if (Yii::$app->user->can('permissoesProf')) {
-            $query = AlunoTeste::find()
-                    ->innerJoin('teste', 'teste.id = aluno_teste.teste_id')
-                    ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
-                    ->innerJoin('professor', 'professor.id_perfil = disciplina.id_professor AND professor.id_perfil =' . $id_user);
+        if (Yii::$app->user->can('gerirPermissoes')) {
+            $query = AlunoTeste::find();
         } elseif (Yii::$app->user->can('permissoesDiretor')) {
             $query = AlunoTeste::find()
                     ->innerJoin('teste', 'teste.id = aluno_teste.teste_id')
                     ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
+                    ->innerJoin('curso', 'curso.id = disciplina.curso_id AND curso.diretor_curso =' . $id_user);
+        } elseif (Yii::$app->user->can('permissoesProf')) {
+            $query = AlunoTeste::find()
+                    ->innerJoin('teste', 'teste.id = aluno_teste.teste_id')
+                    ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
                     ->innerJoin('professor', 'professor.id_perfil = disciplina.id_professor AND professor.id_perfil =' . $id_user);
-        } elseif (Yii::$app->user->can('gerirPermissoes')) {
-            $query = AlunoTeste::find();
         } else {
             throw new ForbiddenHttpException;
         }
