@@ -54,7 +54,6 @@ $this->params['breadcrumbs'][] = $this->title;
                               'title' => Yii::t('app', 'Apagar'),
                   ]);
               }
-
             ],
             'urlCreator' => function ($action, $model, $key, $index) {
               if ($action === 'view') {
@@ -70,6 +69,5 @@ $this->params['breadcrumbs'][] = $this->title;
           ],
         ],
     ]); ?>
-
 
 </div>

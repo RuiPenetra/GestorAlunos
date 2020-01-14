@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Notificacao;
 use backend\models\NotificacaoSearch;
+use backend\models\TipoNotificacao;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -23,7 +24,6 @@ class NotificacaoController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
                 ],
             ],
         ];
@@ -39,7 +39,6 @@ class NotificacaoController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -65,6 +64,7 @@ class NotificacaoController extends Controller
     public function actionCreate()
     {
         $model = new Notificacao();
+        $tipo_notificacao= TipoNotificacao::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,6 +72,7 @@ class NotificacaoController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'notificacoes'=>$tipo_notificacao,
         ]);
     }
 
@@ -85,6 +86,7 @@ class NotificacaoController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $tipo_notificacao= TipoNotificacao::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -92,6 +94,7 @@ class NotificacaoController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'notificacoes' => $tipo_notificacao,
         ]);
     }
 

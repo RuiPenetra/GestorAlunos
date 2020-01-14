@@ -212,6 +212,9 @@ $(function () {
   $('#datetimepicker').datetimepicker({
       format : 'YYYY/MM/DD HH:mm:ss',
   });
+  $('#datetimepicker1').datetimepicker({
+      format : 'YYYY/MM/DD HH:mm:ss',
+  });
   $('#datepicker').datetimepicker({
       format : 'YYYY/MM/DD',
   });

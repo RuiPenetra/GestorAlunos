@@ -48,10 +48,11 @@ class Notificacao extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nome' => 'Nome',
-            'descricao' => 'Descricao',
+            'descricao' => 'Descrição',
             'data_inicio' => 'Data Inicio',
             'data_fim' => 'Data Fim',
-            'id_tipo' => 'Id Tipo',
+            'id_tipo' => 'Tipo',
+            'tipo.nome' => 'Tipo',
         ];
     }
 

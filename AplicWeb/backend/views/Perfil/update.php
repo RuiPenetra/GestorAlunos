@@ -10,6 +10,7 @@ use yii\helpers\ArrayHelper;
 $this->title = 'Atualizar Perfil ';
 $this->params['breadcrumbs'][] = 'Perfil';
 ?>
+
 <div class="perfil-update">
 
     <div class="row">
@@ -20,9 +21,25 @@ $this->params['breadcrumbs'][] = 'Perfil';
             <div class="box-body box-profile">
               <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'profile-user-img img-responsive img-circle']); ?>
               <h3 class="profile-username text-center"><?= $model->nome ?></h3>
+              <?php
 
-              <p class="text-muted text-center">Administrador</p>
-
+                  if (Yii::$app->user->can('permissoesProf')){
+                      if(Yii::$app->user->can('permissoesDiretor')){
+                ?>
+                  <p class="text-muted text-center">Diretor</p>
+                <?php
+                  }else{
+                ?>
+                  <p class="text-muted text-center">Professor</p>
+                  <?php
+                          }
+                      }
+                      elseif(Yii::$app->user->can('gerirPermissoes')){
+                  ?>
+                  <p class="text-muted text-center">Diretor</p>
+                <?php
+                  }
+                ?>
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
                   <b>Numero</b><a class="pull-right">2180635</a>

@@ -12,6 +12,9 @@ use common\widgets\Alert;
 use yii\web\View;
 use yii\helpers\Url;
 use backend\models\Perfil;
+use backend\models\Notificacao;
+use backend\models\Teste;
+use backend\models\Disciplina;
 
 AppAsset::register($this);
 ?>
@@ -32,11 +35,11 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
         <?php $this->head() ?>
     </head>
     <?php
-
+$notificacoes= Notificacao::find()->all();
         if (Yii::$app->user->can('permissoesProf')){
             if(Yii::$app->user->can('permissoesDiretor')){
                 ?>
-                    <body class="hold-transition skin-green fixed hold-transition login-page">
+              <body class="hold-transition skin-green fixed hold-transition login-page">
                 <?php $this->beginBody() ?>
                 <div class="wrapper">
                     <header class="main-header">
@@ -66,7 +69,37 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                                             <span class="label label-success">0</span>
                                         </a>
                                         <ul class="dropdown-menu">
+                                          <li class="header">Existem <?= count($notificacoes) ?> notifications</li>
+                                          <li>
+                                              <!-- Inner Menu: contains the notifications -->
+                                              <ul class="menu">
+                                                  <!-- start notification -->
+                                                  <li>
+                                                    <?php
 
+                                                      foreach ($notificacoes as  $test) {
+                                                    ?>
+                                                      <a href="<?= Url::toRoute(['notificacao/view','id'=>$test->id]) ?>">
+                                                          <?php
+                                                            if($test->tipo->nome == "Avaliação"){
+                                                          ?>
+                                                            <i class="fa fa-book fa-2x text-primary" style="margin-right: 20px"></i><?= $test->nome ?>
+                                                          <?php
+                                                            }else{
+                                                          ?>
+                                                            <i class="fa fa-calendar fa-2x text-info" style="margin-right: 20px"></i><?= $test->nome ?>
+                                                          <?php
+                                                            }
+                                                          ?>
+                                                      </a>
+                                                    <?php
+                                                    }
+                                                   ?>
+                                                  </li>
+                                                  <!-- end notification -->
+                                              </ul>
+                                          </li>
+                                          <li class="footer"><a href="<?= Url::toRoute(['notificacao/index']) ?>">Ver todos</a></li>
                                         </ul>
                                     </li>
                                     <!-- Notifications: style can be found in dropdown.less -->
@@ -255,28 +288,82 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                                     <i class="fa fa-envelope-o"></i>
                                     <span class="label label-success">0</span>
                                 </a>
-                                <ul class="dropdown-menu">
-
-                                </ul>
                             </li>
                             <!-- Notifications: style can be found in dropdown.less -->
                             <li class="dropdown notifications-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-bell-o"></i>
-                                    <span class="label label-warning">0</span>
+                                    <?php
+
+                                    $noti_total = count($notificacoes);
+                                      ?>
+                                    <span class="label label-success"><?= $noti_total ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
+                                  <li class="header">Existem
+                                    <?php
+                                      if($noti_total<1){
+                                    ?>
+                                        notificatições
+                                    <?php
+                                      }else{
+                                    ?>
+                                        notificação
+                                    <?php
+                                      }
+                                    ?>
+                                    </li>
+                                  <li>
+                                      <!-- Inner Menu: contains the notifications -->
+                                      <ul class="menu">
+                                          <!-- start notification -->
+                                          <li>
+                                            <?php
 
+                                              foreach ($notificacoes as  $noti) {
+                                            ?>
+                                              <a href="<?= Url::toRoute(['notificacao/view','id'=>$noti->id]) ?>">
+                                                  <?php
+                                                    if($noti->tipo->nome == "Avaliação"){
+                                                  ?>
+                                                    <i class="fa fa-book fa-2x text-yellow" style="margin-right: 20px"></i><?= $noti->nome ?>
+                                                  <?php
+                                                    }else{
+                                                  ?>
+                                                    <i class="fa fa-calendar fa-2x text-yellow" style="margin-right: 20px"></i><?= $noti->nome ?>
+                                                  <?php
+                                                    }
+                                                  ?>
+                                              </a>
+                                            <?php
+                                            }
+                                           ?>
+                                          </li>
+                                          <!-- end notification -->
+                                      </ul>
+                                  </li>
+                                  <li class="footer"><a href="<?= Url::toRoute(['notificacao/index']) ?>">Ver todos</a></li>
                                 </ul>
                             </li>
                             <!-- Tasks: style can be found in dropdown.less -->
                             <li class="dropdown tasks-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-flag-o"></i>
-                                    <span class="label label-danger">0</span>
-                                </a>
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                  <i class="far fa-bookmark"></i>
+                                  <span class="label label-danger"><?//= $testes_total ?></span>
+                              </a>
                                 <ul class="dropdown-menu">
-
+                                  <li class="header">Existem 0 testes</li>
+                                  <li>
+                                      <!-- Inner Menu: contains the tests -->
+                                      <ul class="menu">
+                                          <!-- start tests -->
+                                            <li>
+                                              <a href="#"></a>
+                                            </li>
+                                          <!-- end notification -->
+                                      </ul>
+                                  </li>
+                                  <li class="footer"><a href="<?= Url::toRoute(['teste/index']) ?>">Ver todos</a></li>
                                 </ul>
                             </li>
                             <!-- User Account: style can be found in dropdown.less -->
@@ -302,7 +389,7 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat"><i class="fa fa-gear fa-spin"></i> Perfil</a>
+                                            <a href="<?php echo Url::toRoute(['perfil/update', 'id' => $perfil->id_user]) ?>" class="btn btn-default btn-flat"><i class="fa fa-gear fa-spin"></i> Perfil</a>
                                         </div>
                                         <div class="pull-right">
                                             <a href="<?php echo Url::toRoute(['site/logout']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-sign-out"></i> Sair</a>
