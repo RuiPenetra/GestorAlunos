@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = 'Update';
     <?=
     $form->field($model, 'teste_id')->dropDownList(ArrayHelper::map($teste, 'id', /* ['disciplina.nome', 'teste.data'] */ function($element) {
                 return $element['data'] . ' --> ' . $element['sala'];
-            })
+            }, 'disciplina.nome')
             , ['prompt' => 'Selecione uma Opção'])
     ?>
     <?= $form->field($model, 'nota'); ?>

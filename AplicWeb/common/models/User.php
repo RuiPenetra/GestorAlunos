@@ -52,9 +52,11 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function rules()
     {
+        var_dump('211212122121');
         return [
-            [['username', 'password', 'email'], 'required'],
+            [['username', 'email'], 'required', 'message' => 'Este campo é obrigatório.'],
             [['email'], 'email'],
+            //[['email'], 'unique', 'message' => 'Este email já se encontra registado.'],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_ACTIVE, self::STATUS_DELETED]],
         ];

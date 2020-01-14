@@ -16,9 +16,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php $form = ActiveForm::begin(); ?>
-        <?= $form->field($model, 'tipo') ?>
-        <?= $form->field($model, 'id_disciplina')->dropDownList(ArrayHelper::map($disciplinas, 'id','nome'), ['prompt'=>'Selecione uma Opção']) ?>
-        <?= Html::submitButton('Criar', ['class' => 'btn btn-primary']) ?>
+    <?= $form->field($model, 'tipo') ?>
+    <?= $form->field($model, 'id_disciplina')->dropDownList(ArrayHelper::map($disciplinas, 'id', 'nome', 'curso.nome'), ['prompt' => 'Selecione uma Opção']) ?>
+    <?= Html::submitButton('Criar', ['class' => 'btn btn-primary']) ?>
     <?php ActiveForm::end(); ?>
 
 </div>

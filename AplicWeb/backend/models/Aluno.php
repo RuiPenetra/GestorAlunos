@@ -136,4 +136,38 @@ class Aluno extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Presenca::className(), ['id_perfil' => 'id_perfil']);
     }
+
+    /**
+     * @return int
+     */
+    public function getIdPerfil()
+    {
+        return $this->id_perfil;
+    }
+
+    /**
+     * @param int $id_perfil
+     */
+    public function setIdPerfil($id_perfil)
+    {
+        $this->id_perfil = $id_perfil;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdCurso()
+    {
+        return $this->id_curso;
+    }
+
+    /**
+     * @param int $id_curso
+     */
+    public function setIdCurso($id_curso)
+    {
+        $this->id_curso = $id_curso;
+    }
+
+
 }

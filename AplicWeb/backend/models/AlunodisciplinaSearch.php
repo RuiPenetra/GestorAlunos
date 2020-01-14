@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\AlunoDisciplina;
@@ -9,13 +10,12 @@ use backend\models\AlunoDisciplina;
 /**
  * AlunodisciplinaSearch represents the model behind the search form of `backend\models\AlunoDisciplina`.
  */
-class AlunodisciplinaSearch extends AlunoDisciplina
-{
+class AlunodisciplinaSearch extends AlunoDisciplina {
+
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['aluno_id', 'disciplina_id', 'nota'], 'integer'],
         ];
@@ -24,8 +24,7 @@ class AlunodisciplinaSearch extends AlunoDisciplina
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -37,10 +36,27 @@ class AlunodisciplinaSearch extends AlunoDisciplina
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
-        $query = AlunoDisciplina::find();
+    public function search($params) {
+        $id_user = \Yii::$app->user->identity->id;
 
+        if (Yii::$app->user->can('gerirPermissoes')) {
+            $query = AlunoDisciplina::find();
+        } elseif (Yii::$app->user->can('permissoesDiretor')) {
+            $query = AlunoDisciplina::find()
+                    ->innerJoin('disciplina', 'disciplina.id = aluno_disciplina.disciplina_id')
+                    ->innerJoin('curso', 'disciplina.curso_id = curso.id AND curso.diretor_curso = ' . $id_user);
+            //->innerJoin('professor', 'disciplina.id_professor = ' . $id_user);
+            //->all();
+        } elseif (Yii::$app->user->can('permissoesProf')) {
+            $query = AlunoDisciplina::find()
+                    ->innerJoin('disciplina', 'disciplina.id = aluno_disciplina.disciplina_id')
+                    ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user);
+            //->all();
+        } else {
+            throw new ForbiddenHttpException;
+        }
+
+        //$query = AlunoDisciplina::find();
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -64,4 +80,5 @@ class AlunodisciplinaSearch extends AlunoDisciplina
 
         return $dataProvider;
     }
+
 }

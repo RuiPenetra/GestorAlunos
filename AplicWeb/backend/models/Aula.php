@@ -98,4 +98,134 @@ class Aula extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Presenca::className(), ['id_aula' => 'id']);
     }
+
+    /**
+     * @return string
+     */
+    public function getNome()
+    {
+        return $this->nome;
+    }
+
+    /**
+     * @param string $nome
+     */
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInicio()
+    {
+        return $this->inicio;
+    }
+
+    /**
+     * @param string $inicio
+     */
+    public function setInicio($inicio)
+    {
+        $this->inicio = $inicio;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFim()
+    {
+        return $this->fim;
+    }
+
+    /**
+     * @param string $fim
+     */
+    public function setFim($fim)
+    {
+        $this->fim = $fim;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSala()
+    {
+        return $this->sala;
+    }
+
+    /**
+     * @param string $sala
+     */
+    public function setSala($sala)
+    {
+        $this->sala = $sala;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDia()
+    {
+        return $this->dia;
+    }
+
+    /**
+     * @param string $dia
+     */
+    public function setDia($dia)
+    {
+        $this->dia = $dia;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdTurno()
+    {
+        return $this->id_turno;
+    }
+
+    /**
+     * @param int $id_turno
+     */
+    public function setIdTurno($id_turno)
+    {
+        $this->id_turno = $id_turno;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdProfessor()
+    {
+        return $this->id_professor;
+    }
+
+    /**
+     * @param int $id_professor
+     */
+    public function setIdProfessor($id_professor)
+    {
+        $this->id_professor = $id_professor;
+    }
+
+    /**
+     * @return int
+     */
+    public function getHorarioId()
+    {
+        return $this->horario_id;
+    }
+
+    /**
+     * @param int $horario_id
+     */
+    public function setHorarioId($horario_id)
+    {
+        $this->horario_id = $horario_id;
+    }
+
+
 }
