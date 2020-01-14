@@ -66,7 +66,9 @@ class AlunotesteController extends Controller {
         $model = new AlunoTeste();
 
         $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
-        $teste = Teste::find()->all(); //, 'id_user', 'nome');
+        $teste = Teste::find()
+                ->innerJoin('disciplina','disciplina.id = teste.id_disciplina')
+                ->all(); //, 'id_user', 'nome');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'aluno_id' => $model->aluno_id, 'teste_id' => $model->teste_id]);
