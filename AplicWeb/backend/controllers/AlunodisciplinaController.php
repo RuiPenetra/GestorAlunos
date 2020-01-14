@@ -35,7 +35,7 @@ class AlunodisciplinaController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-       
+
         $searchModel = new AlunodisciplinaSearch();
         //var_dump($searchModel);die;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -65,21 +65,19 @@ class AlunodisciplinaController extends Controller {
      * @return mixed
      */
     public function actionCreate() {
+        $id_user = \Yii::$app->user->identity->id;
 
-        if (Yii::$app->user->can('permissoesProf')) {
-            $id_user = \Yii::$app->user->identity->id;
+        if (Yii::$app->user->can('gerirPermissoes')) {
             $disciplina = Disciplina::find()
-                    ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
-                    ->all(); //, 'id_user', 'nome');
+                    ->all();
         } elseif (Yii::$app->user->can('permissoesDiretor')) {
-            $id_user = \Yii::$app->user->identity->id;
+            $disciplina = Disciplina::find()
+                    ->innerJoin('curso', 'disciplina.curso_id = curso.id AND curso.diretor_curso =' . $id_user)
+                    ->all();
+        } elseif (Yii::$app->user->can('permissoesProf')) {
             $disciplina = Disciplina::find()
                     ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
-                    ->all(); //, 'id_user', 'nome');
-        } elseif (Yii::$app->user->can('gerirPermissoes')) {
-            $disciplina = Disciplina::find()
-                    // ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
-                    ->all(); //, 'id_user', 'nome');
+                    ->all();
         } else {
             throw new ForbiddenHttpException;
         }
@@ -111,20 +109,19 @@ class AlunodisciplinaController extends Controller {
      */
     public function actionUpdate($aluno_id, $disciplina_id) {
 
-        if (Yii::$app->user->can('permissoesProf')) {
-            $id_user = \Yii::$app->user->identity->id;
+        $id_user = \Yii::$app->user->identity->id;
+
+        if (Yii::$app->user->can('gerirPermissoes')) {
             $disciplina = Disciplina::find()
-                    ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
-                    ->all(); //, 'id_user', 'nome');
+                    ->all();
         } elseif (Yii::$app->user->can('permissoesDiretor')) {
-            $id_user = \Yii::$app->user->identity->id;
+            $disciplina = Disciplina::find()
+                    ->innerJoin('curso', 'disciplina.curso_id = curso.id AND curso.diretor_curso =' . $id_user)
+                    ->all();
+        } elseif (Yii::$app->user->can('permissoesProf')) {
             $disciplina = Disciplina::find()
                     ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
-                    ->all(); //, 'id_user', 'nome');
-        } elseif (Yii::$app->user->can('gerirPermissoes')) {
-            $disciplina = Disciplina::find()
-                    // ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
-                    ->all(); //, 'id_user', 'nome');
+                    ->all();
         } else {
             throw new ForbiddenHttpException;
         }

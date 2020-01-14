@@ -39,19 +39,19 @@ class AlunodisciplinaSearch extends AlunoDisciplina {
     public function search($params) {
         $id_user = \Yii::$app->user->identity->id;
 
-        if (Yii::$app->user->can('permissoesProf')) {
-            $query = AlunoDisciplina::find()
-                    ->innerJoin('disciplina', 'disciplina.id = aluno_disciplina.disciplina_id')
-                    ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user);
-            //->all();
+        if (Yii::$app->user->can('gerirPermissoes')) {
+            $query = AlunoDisciplina::find();
         } elseif (Yii::$app->user->can('permissoesDiretor')) {
             $query = AlunoDisciplina::find()
-                    //->innerJoin('turno', 'turno.id = aluno_disciplina.turno_id')
+                    ->innerJoin('disciplina', 'disciplina.id = aluno_disciplina.disciplina_id')
+                    ->innerJoin('curso', 'disciplina.curso_id = curso.id AND curso.diretor_curso = ' . $id_user);
+            //->innerJoin('professor', 'disciplina.id_professor = ' . $id_user);
+            //->all();
+        } elseif (Yii::$app->user->can('permissoesProf')) {
+            $query = AlunoDisciplina::find()
                     ->innerJoin('disciplina', 'disciplina.id = aluno_disciplina.disciplina_id')
                     ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user);
             //->all();
-        } elseif (Yii::$app->user->can('gerirPermissoes')) {
-            $query = AlunoDisciplina::find();
         } else {
             throw new ForbiddenHttpException;
         }

@@ -14,25 +14,23 @@ use Yii;
  * @property Aluno $aluno
  * @property Disciplina $disciplina
  */
-class AlunoDisciplina extends \yii\db\ActiveRecord
-{
+class AlunoDisciplina extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'aluno_disciplina';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['aluno_id', 'disciplina_id'], 'required'],
-            [['aluno_id', 'disciplina_id', 'nota'], 'integer'],
-            [['aluno_id', 'disciplina_id'], 'unique', 'targetAttribute' => ['aluno_id', 'disciplina_id']],
+            [['aluno_id', 'disciplina_id'], 'required', 'message' => 'Este campo é obrigatório.'],
+            [['aluno_id', 'disciplina_id', 'nota'], 'integer', 'message' => 'Este valor tem de ser inteiro.'],
+            [['aluno_id', 'disciplina_id'], 'unique', 'targetAttribute' => ['aluno_id', 'disciplina_id'], 'message' => 'Este tipo de combinação já foi introduzida.'],
             [['aluno_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::className(), 'targetAttribute' => ['aluno_id' => 'id_perfil']],
             [['disciplina_id'], 'exist', 'skipOnError' => true, 'targetClass' => Disciplina::className(), 'targetAttribute' => ['disciplina_id' => 'id']],
         ];
@@ -41,8 +39,7 @@ class AlunoDisciplina extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'aluno_id' => 'Nome:',
             'disciplina_id' => 'Disciplina:',
@@ -53,66 +50,57 @@ class AlunoDisciplina extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAluno()
-    {
+    public function getAluno() {
         return $this->hasOne(Aluno::className(), ['id_perfil' => 'aluno_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDisciplina()
-    {
+    public function getDisciplina() {
         return $this->hasOne(Disciplina::className(), ['id' => 'disciplina_id']);
     }
 
     /**
      * @return int
      */
-    public function getAlunoId()
-    {
+    public function getAlunoId() {
         return $this->aluno_id;
     }
 
     /**
      * @param int $aluno_id
      */
-    public function setAlunoId($aluno_id)
-    {
+    public function setAlunoId($aluno_id) {
         $this->aluno_id = $aluno_id;
     }
 
     /**
      * @return int
      */
-    public function getDisciplinaId()
-    {
+    public function getDisciplinaId() {
         return $this->disciplina_id;
     }
 
     /**
      * @param int $disciplina_id
      */
-    public function setDisciplinaId($disciplina_id)
-    {
+    public function setDisciplinaId($disciplina_id) {
         $this->disciplina_id = $disciplina_id;
     }
 
     /**
      * @return int|null
      */
-    public function getNota()
-    {
+    public function getNota() {
         return $this->nota;
     }
 
     /**
      * @param int|null $nota
      */
-    public function setNota($nota)
-    {
+    public function setNota($nota) {
         $this->nota = $nota;
     }
-
 
 }
