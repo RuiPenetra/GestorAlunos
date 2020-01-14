@@ -6,7 +6,6 @@ use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\AlunoDisciplina */
-
 $this->title = 'Atualizar o aluno na disciplina: ' . $model->aluno->perfil->nome;
 $this->params['breadcrumbs'][] = ['label' => 'Aluno Disciplinas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->aluno_id, 'url' => ['view', 'aluno_id_perfil' => $model->aluno_id, 'disciplina_id' => $model->disciplina_id]];

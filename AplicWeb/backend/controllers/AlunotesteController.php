@@ -63,11 +63,13 @@ class AlunotesteController extends Controller {
      * @return mixed
      */
     public function actionCreate() {
+        $id_user = \Yii::$app->user->identity->id;
         $model = new AlunoTeste();
 
         $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
         $teste = Teste::find()
-                ->innerJoin('disciplina','disciplina.id = teste.id_disciplina')
+                ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
+                ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
                 ->all(); //, 'id_user', 'nome');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -90,10 +92,14 @@ class AlunotesteController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate($aluno_id, $teste_id) {
+        $id_user = \Yii::$app->user->identity->id;
         $model = $this->findModel($aluno_id, $teste_id);
 
         $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
-        $teste = Teste::find()->all(); //, 'id_user', 'nome');
+        $teste = Teste::find()
+                ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
+                ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
+                ->all(); //, 'id_user', 'nome');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'aluno_id' => $model->aluno_id, 'teste_id' => $model->teste_id]);

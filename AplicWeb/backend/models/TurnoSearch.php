@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\Turno;
@@ -40,7 +41,24 @@ class TurnoSearch extends Turno
      */
     public function search($params)
     {
-        $query = Turno::find();
+        
+        
+        $id_user = \Yii::$app->user->identity->id;
+
+        if (Yii::$app->user->can('permissoesDiretor')) {
+            $query = Turno::find()
+                    ->innerJoin('disciplina', 'disciplina.id = turno.id_disciplina')
+                    ->innerJoin('curso', 'disciplina.curso_id = curso.id')
+                    ->innerJoin('diretor_curso a', 'curso.diretor_curso = ' . $id_user);//a.id_professor = 
+                    //->innerJoin('professor', 'professor.id_perfil = ' . $id_user)
+                   // ->all();
+        } elseif (Yii::$app->user->can('gerirPermissoes')) {
+            $query = Turno::find();
+        } else {
+            throw new ForbiddenHttpException;
+        }
+        
+        //$query = Turno::find();
 
         // add conditions that should always apply here
 
