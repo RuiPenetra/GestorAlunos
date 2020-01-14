@@ -35,234 +35,200 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
         <?php $this->head() ?>
     </head>
     <?php
-$notificacoes= Notificacao::find()->all();
-        if (Yii::$app->user->can('permissoesProf')){
-            if(Yii::$app->user->can('permissoesDiretor')){
-                ?>
-<<<<<<< HEAD
-              <body class="hold-transition skin-green fixed hold-transition login-page">
-=======
-             <body class="hold-transition skin-purple fixed hold-transition login-page">
->>>>>>> b38ec63f307463a021ea170b118cd6f2e5c9f82e
-                <?php $this->beginBody() ?>
-                <div class="wrapper">
-                    <header class="main-header">
-                        <!-- Logo -->
-                        <a href="<?= Url::toRoute('site/index') ?>" class="logo">
-                            <!-- logo for regular state and mobile devices -->
-                            <span class="logo-lg">GestorAlunos</span>
+    $notificacoes= Notificacao::find()->all();
+    if (Yii::$app->user->can('permissoesProf')){
+        if(Yii::$app->user->can('permissoesDiretor')){
+            ?>
+         <body class="hold-transition skin-purple fixed hold-transition login-page">
+            <?php $this->beginBody() ?>
+            <div class="wrapper">
+                <header class="main-header">
+                    <!-- Logo -->
+                    <a href="<?= Url::toRoute('site/index') ?>" class="logo">
+                        <!-- logo for regular state and mobile devices -->
+                        <span class="logo-lg">GestorAlunos</span>
+                    </a>
+                    <!-- Header Navbar: style can be found in header.less -->
+                    <nav class="navbar navbar-static-top">
+                        <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                            <span class="sr-only">Toggle navigation</span>
                         </a>
-                        <!-- Header Navbar: style can be found in header.less -->
-                        <nav class="navbar navbar-static-top">
-                            <!-- Sidebar toggle button-->
-                            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                                <span class="sr-only">Toggle navigation</span>
-                            </a>
 
-                            <div class="navbar-custom-menu">
-                                <ul class="nav navbar-nav">
-                                    <li class="dropdown messages-menu">
-                                        <a type="button" class="ajax" data-toggle="dropdown">
-                                            <i class="fa fa-spin fa-refresh"></i>
-                                        </a>
-                                    </li>
-                                    <!-- Messages: style can be found in dropdown.less-->
-                                    <li class="dropdown messages-menu">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                            <i class="fa fa-envelope-o"></i>
-                                            <span class="label label-success">0</span>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                          <li class="header">Existem <?= count($notificacoes) ?> notifications</li>
-                                          <li>
-                                              <!-- Inner Menu: contains the notifications -->
-                                              <ul class="menu">
-                                                  <!-- start notification -->
-                                                  <li>
-                                                    <?php
+                        <div class="navbar-custom-menu">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown messages-menu">
+                                    <a type="button" class="ajax" data-toggle="dropdown">
+                                        <i class="fa fa-spin fa-refresh"></i>
+                                    </a>
+                                </li>
+                                <!-- Messages: style can be found in dropdown.less-->
+                                <li class="dropdown messages-menu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-envelope-o"></i>
+                                        <span class="label label-success">0</span>
+                                    </a>
+                                    <ul class="dropdown-menu">
 
-                                                      foreach ($notificacoes as  $test) {
-                                                    ?>
-                                                      <a href="<?= Url::toRoute(['notificacao/view','id'=>$test->id]) ?>">
-                                                          <?php
-                                                            if($test->tipo->nome == "Avaliação"){
-                                                          ?>
-                                                            <i class="fa fa-book fa-2x text-primary" style="margin-right: 20px"></i><?= $test->nome ?>
-                                                          <?php
-                                                            }else{
-                                                          ?>
-                                                            <i class="fa fa-calendar fa-2x text-info" style="margin-right: 20px"></i><?= $test->nome ?>
-                                                          <?php
-                                                            }
-                                                          ?>
-                                                      </a>
-                                                    <?php
-                                                    }
-                                                   ?>
-                                                  </li>
-                                                  <!-- end notification -->
-                                              </ul>
-                                          </li>
-                                          <li class="footer"><a href="<?= Url::toRoute(['notificacao/index']) ?>">Ver todos</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- Notifications: style can be found in dropdown.less -->
-                                    <li class="dropdown notifications-menu">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                            <i class="fa fa-bell-o"></i>
-                                            <span class="label label-warning">0</span>
-                                        </a>
-                                        <ul class="dropdown-menu">
+                                    </ul>
+                                </li>
+                                <!-- Notifications: style can be found in dropdown.less -->
+                                <li class="dropdown notifications-menu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-bell-o"></i>
+                                        <span class="label label-warning">0</span>
+                                    </a>
+                                    <ul class="dropdown-menu">
 
-                                        </ul>
-                                    </li>
-                                    <!-- Tasks: style can be found in dropdown.less -->
-                                    <li class="dropdown tasks-menu">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                            <i class="fa fa-flag-o"></i>
-                                            <span class="label label-danger">0</span>
-                                        </a>
-                                        <ul class="dropdown-menu">
+                                    </ul>
+                                </li>
+                                <!-- Tasks: style can be found in dropdown.less -->
+                                <li class="dropdown tasks-menu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-flag-o"></i>
+                                        <span class="label label-danger">0</span>
+                                    </a>
+                                    <ul class="dropdown-menu">
 
-                                        </ul>
-                                    </li>
-                                    <!-- User Account: style can be found in dropdown.less -->
-                                    <li class="dropdown user user-menu">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                            <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'user-image']); ?>
-                                            <span class="hidden-xs"><?= $perfil->nome ?></span>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <!-- User image -->
-                                            <li class="user-header">
-                                                <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'img-circle']); ?>
+                                    </ul>
+                                </li>
+                                <!-- User Account: style can be found in dropdown.less -->
+                                <li class="dropdown user user-menu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                        <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'user-image']); ?>
+                                        <span class="hidden-xs"><?= $perfil->nome ?></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <!-- User image -->
+                                        <li class="user-header">
+                                            <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'img-circle']); ?>
 
-                                                <p>
-                                                    <?= $perfil->nome ?>
-                                                    <?php if ($perfil->genero == 'm') { ?>
-                                                        <small>Diretor de curso</small>
-                                                    <?php } else { ?>
-                                                        <small>Diretora de curso</small>
-                                                    <?php } ?>
-                                                </p>
-                                            </li>
-                                            <!-- Menu Footer-->
-                                            <li class="user-footer">
-                                                <div class="pull-left">
-                                                    <a href="<?php echo Url::toRoute(['perfil/update', 'id' => $perfil->id_user]) ?>" class="btn btn-default btn-flat"><i class="fa fa-gear fa-spin"></i> Perfil</a>
-                                                </div>
-                                                <div class="pull-right">
-                                                    <a href="<?php echo Url::toRoute(['site/logout']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-sign-out"></i> Sair</a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                            <p>
+                                                <?= $perfil->nome ?>
+                                                <?php if ($perfil->genero == 'm') { ?>
+                                                    <small>Diretor de curso</small>
+                                                <?php } else { ?>
+                                                    <small>Diretora de curso</small>
+                                                <?php } ?>
+                                            </p>
+                                        </li>
+                                        <!-- Menu Footer-->
+                                        <li class="user-footer">
+                                            <div class="pull-left">
+                                                <a href="<?php echo Url::toRoute(['perfil/update', 'id' => $perfil->id_user]) ?>" class="btn btn-default btn-flat"><i class="fa fa-gear fa-spin"></i> Perfil</a>
+                                            </div>
+                                            <div class="pull-right">
+                                                <a href="<?php echo Url::toRoute(['site/logout']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-sign-out"></i> Sair</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
 
-                    </header>
-                    <aside class="main-sidebar">
-                        <!-- sidebar: style can be found in sidebar.less -->
-                        <section class="sidebar">
-                            <!-- Sidebar user panel -->
-                            <div class="user-panel">
-                                <div class="pull-left image">
-                                    <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'img-circle']); ?>
-                                </div>
-                                <div class="pull-left info">
-                                    <p> <?= $perfil->nome ?></p>
-                                    <a href="#"><i class="fa fa-id-card text-success"></i>
-                                        <?php if ($perfil->genero == 'm') { ?>
-                                            <small>Diretor de curso</small>
-                                        <?php } else { ?>
-                                            <small>Diretora de curso</small>
-                                        <?php } ?></a>
-                                </div>
+                </header>
+                <aside class="main-sidebar">
+                    <!-- sidebar: style can be found in sidebar.less -->
+                    <section class="sidebar">
+                        <!-- Sidebar user panel -->
+                        <div class="user-panel">
+                            <div class="pull-left image">
+                                <?= Html::img('@web/img/businessman.png', ['alt' => 'imgPerfil', 'class' => 'img-circle']); ?>
                             </div>
-                            <!-- /.search form -->
-                            <!-- sidebar menu: : style can be found in sidebar.less -->
-                            <ul class="sidebar-menu" data-widget="tree">
-                                <li class="header"><strong style="color: white; align-content: center;">MENU</strong></li>
-                                <li class="active">
-                                    <a href="<?= Url::toRoute(['site/index']) ?>">
-                                        <i class="fa fa-home"></i> <span>Home</span>
-                                    </a>
-                                </li>
-                                <li class="treeview">
-                                    <a href="#"><i class="fa fa-th"></i> <span>Escola</span>
-                                        <span class="pull-right-container">
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </span>
-                                    </a>
-                                    <ul class="treeview-menu">
-                                        <li class="">
-                                            <a href="<?= Url::toRoute(['disciplina/index']) ?>">
-                                                <i class="fa fa-user"></i> <span>Disciplinas</span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?= Url::toRoute(['horario/index']) ?>">
-                                                <i class="fa fa-user"></i> <span>Horários</span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?= Url::toRoute(['turno/index']) ?>">
-                                                <i class="fa fa-user"></i> <span>Turno</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="treeview">
-                                    <a href="#"><i class="fa fa-bookmark"></i> <span>Inscricoes</span>
-                                        <span class="pull-right-container">
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </span>
-                                    </a>
-                                    <ul class="treeview-menu">
-                                        <li class="">
-                                            <a href="<?= Url::toRoute(['alunoturno/index']) ?>">
-                                                <i class="fa fa-user"></i> <span>Aluno Turno</span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?= Url::toRoute(['alunodisciplina/index']) ?>">
-                                                <i class="fa fa-th"></i> <span>Aluno Disciplina</span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?= Url::toRoute(['alunoteste/index']) ?>">
-                                                <i class="fa fa-book"></i> <span>Aluno Teste</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="">
-                                    <a href="<?= Url::toRoute(['teste/index']) ?>">
-                                        <i class="fa fa-book"></i> <span>Teste</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </section>
-                        <!-- /.sidebar -->
-                    </aside>
-                    <div class="content-wrapper">
-                        <section class="content">
-                            <?=
-                            Breadcrumbs::widget([
-                                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                            ])
-                            ?>
-                            <?= Alert::widget() ?>
-                            <?= $content ?>
-                        </section>
-                    </div>
+                            <div class="pull-left info">
+                                <p> <?= $perfil->nome ?></p>
+                                <a href="#"><i class="fa fa-id-card text-success"></i>
+                                    <?php if ($perfil->genero == 'm') { ?>
+                                        <small>Diretor de curso</small>
+                                    <?php } else { ?>
+                                        <small>Diretora de curso</small>
+                                    <?php } ?></a>
+                            </div>
+                        </div>
+                        <!-- /.search form -->
+                        <!-- sidebar menu: : style can be found in sidebar.less -->
+                        <ul class="sidebar-menu" data-widget="tree">
+                            <li class="header"><strong style="color: white; align-content: center;">MENU</strong></li>
+                            <li class="active">
+                                <a href="<?= Url::toRoute(['site/index']) ?>">
+                                    <i class="fa fa-home"></i> <span>Home</span>
+                                </a>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><i class="fa fa-th"></i> <span>Escola</span>
+                                    <span class="pull-right-container">
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li class="">
+                                        <a href="<?= Url::toRoute(['disciplina/index']) ?>">
+                                            <i class="fa fa-user"></i> <span>Disciplinas</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="<?= Url::toRoute(['horario/index']) ?>">
+                                            <i class="fa fa-user"></i> <span>Horários</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="<?= Url::toRoute(['turno/index']) ?>">
+                                            <i class="fa fa-user"></i> <span>Turno</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><i class="fa fa-bookmark"></i> <span>Inscricoes</span>
+                                    <span class="pull-right-container">
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li class="">
+                                        <a href="<?= Url::toRoute(['alunoturno/index']) ?>">
+                                            <i class="fa fa-user"></i> <span>Aluno Turno</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="<?= Url::toRoute(['alunodisciplina/index']) ?>">
+                                            <i class="fa fa-th"></i> <span>Aluno Disciplina</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="<?= Url::toRoute(['alunoteste/index']) ?>">
+                                            <i class="fa fa-book"></i> <span>Aluno Teste</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="">
+                                <a href="<?= Url::toRoute(['teste/index']) ?>">
+                                    <i class="fa fa-book"></i> <span>Teste</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                    <!-- /.sidebar -->
+                </aside>
+                <div class="content-wrapper">
+                    <section class="content">
+                        <?=
+                        Breadcrumbs::widget([
+                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                        ])
+                        ?>
+                        <?= Alert::widget() ?>
+                        <?= $content ?>
+                    </section>
                 </div>
-                <div class="ajax-content">
-                </div>
-                <?php $this->endBody() ?>
-                </body>
-                <?php
-            }
-            else{
-    ?>
+            </div>
+            <div class="ajax-content">
+            </div>
+            <?php $this->endBody() ?>
+            </body>
+            <?php
+        }
+        else{
+?>
         <body class="hold-transition skin-yellow fixed hold-transition login-page">
         <?php $this->beginBody() ?>
         <div class="wrapper">
