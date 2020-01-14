@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\AlunoTeste;
@@ -9,13 +10,12 @@ use backend\models\AlunoTeste;
 /**
  * AlunotesteSearch represents the model behind the search form of `backend\models\AlunoTeste`.
  */
-class AlunotesteSearch extends AlunoTeste
-{
+class AlunotesteSearch extends AlunoTeste {
+
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['aluno_id', 'teste_id', 'nota'], 'integer'],
         ];
@@ -24,8 +24,7 @@ class AlunotesteSearch extends AlunoTeste
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -37,10 +36,26 @@ class AlunotesteSearch extends AlunoTeste
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
-        $query = AlunoTeste::find();
+    public function search($params) {
+        $id_user = \Yii::$app->user->identity->id;
 
+        if (Yii::$app->user->can('permissoesProf')) {
+            $query = AlunoTeste::find()
+                    ->innerJoin('teste', 'teste.id = aluno_teste.teste_id')
+                    ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
+                    ->innerJoin('professor', 'professor.id_perfil = disciplina.id_professor AND professor.id_perfil =' . $id_user);
+        } elseif (Yii::$app->user->can('permissoesDiretor')) {
+            $query = AlunoTeste::find()
+                    ->innerJoin('teste', 'teste.id = aluno_teste.teste_id')
+                    ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
+                    ->innerJoin('professor', 'professor.id_perfil = disciplina.id_professor AND professor.id_perfil =' . $id_user);
+        } elseif (Yii::$app->user->can('gerirPermissoes')) {
+            $query = AlunoTeste::find();
+        } else {
+            throw new ForbiddenHttpException;
+        }
+
+        //$query = AlunoTeste::find();
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -64,4 +79,5 @@ class AlunotesteSearch extends AlunoTeste
 
         return $dataProvider;
     }
+
 }

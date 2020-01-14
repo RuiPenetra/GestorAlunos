@@ -64,13 +64,30 @@ class AlunotesteController extends Controller {
      */
     public function actionCreate() {
         $id_user = \Yii::$app->user->identity->id;
-        $model = new AlunoTeste();
 
-        $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
-        $teste = Teste::find()
-                ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
-                ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
-                ->all(); //, 'id_user', 'nome');
+        if (Yii::$app->user->can('permissoesProf')) {
+            $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
+            $teste = Teste::find()
+                    ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
+                    ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
+                    ->all(); //, 'id_user', 'nome');
+        } elseif (Yii::$app->user->can('permissoesDiretor')) {
+            $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
+            $teste = Teste::find()
+                    ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
+                    ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
+                    ->all(); //, 'id_user', 'nome');
+        } elseif (Yii::$app->user->can('gerirPermissoes')) {
+            $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
+            $teste = Teste::find()
+                    // ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
+                    //->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
+                    ->all(); //, 'id_user', 'nome');
+        } else {
+            throw new ForbiddenHttpException;
+        }
+
+        $model = new AlunoTeste();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'aluno_id' => $model->aluno_id, 'teste_id' => $model->teste_id]);
@@ -93,13 +110,29 @@ class AlunotesteController extends Controller {
      */
     public function actionUpdate($aluno_id, $teste_id) {
         $id_user = \Yii::$app->user->identity->id;
-        $model = $this->findModel($aluno_id, $teste_id);
 
-        $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
-        $teste = Teste::find()
-                ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
-                ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
-                ->all(); //, 'id_user', 'nome');
+        if (Yii::$app->user->can('permissoesProf')) {
+            $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
+            $teste = Teste::find()
+                    ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
+                    ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
+                    ->all(); //, 'id_user', 'nome');
+        } elseif (Yii::$app->user->can('permissoesDiretor')) {
+            $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
+            $teste = Teste::find()
+                    ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
+                    ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
+                    ->all(); //, 'id_user', 'nome');
+        } elseif (Yii::$app->user->can('gerirPermissoes')) {
+            $perfis = Perfil::find()->innerJoin('aluno', 'aluno.id_perfil = perfil.id_user')->all();
+            $teste = Teste::find()
+                    // ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
+                    //->innerJoin('professor', 'disciplina.id_professor = ' . $id_user)
+                    ->all(); //, 'id_user', 'nome');
+        } else {
+            throw new ForbiddenHttpException;
+        }
+        $model = $this->findModel($aluno_id, $teste_id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'aluno_id' => $model->aluno_id, 'teste_id' => $model->teste_id]);
