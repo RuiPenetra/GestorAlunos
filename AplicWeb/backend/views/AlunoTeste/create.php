@@ -16,15 +16,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <!--</?= $this->render('_form', [
-        'model' => $model,
+        'model' => $model,'disciplina.nome'
     ]) ?>-->
     <?php $form = ActiveForm::begin(); ?>
     <?= $form->field($model, 'aluno_id')->dropDownList(ArrayHelper::map($perfis, 'id_user', 'nome'), ['prompt' => 'Selecione uma Opção']) ?>
     <?=
-    $form->field($model, 'teste_id')->dropDownList(ArrayHelper::map($teste, 'id', /* ['disciplina.nome', 'teste.data'] */ function($element) {
-                return $element['data'] . ' --> ' . $element['sala'];
-            })
-            , ['prompt' => 'Selecione uma Opção'])
+    $form->field($model, 'teste_id')->dropDownList(ArrayHelper::map($teste, 'id', ['data'], ['disciplina.nome']), ['prompt' => 'Selecione uma Opção'])
     ?>
     <?= $form->field($model, 'nota'); ?>
     <?= Html::submitButton('Criar', ['class' => 'btn btn-primary']) ?>

@@ -18,9 +18,11 @@ $id_user = \Yii::$app->user->identity->id;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php $form = ActiveForm::begin(); ?>
-        <?= $form->field($model, 'turno_id')->dropDownList(ArrayHelper::map(Turno::find()->all(), 'id','tipo','disciplina.nome'), ['prompt'=>'Selecione uma Opção']) ?>
-        <?= $form->field($model, 'aluno_id')->hiddenInput(['value'=> $id_user])->label(false) ?>
-        <?= Html::submitButton('Criar', ['class' => 'btn btn-primary']) ?>
+    <?= $form->field($model, 'turno_id')->dropDownList(ArrayHelper::map($turno, 'id', 'tipo', 'disciplina.nome'), ['prompt' => 'Selecione uma Opção']) ?>
+    <div style="display: none;">
+        <?= $form->field($model, 'aluno_id')->hiddenInput(['value' => $id_user])->label(false) ?>
+    </div>
+    <?= Html::submitButton('Criar', ['class' => 'btn btn-primary']) ?>
     <?php ActiveForm::end(); ?>
 
 </div>

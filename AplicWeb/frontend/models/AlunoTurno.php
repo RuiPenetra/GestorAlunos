@@ -13,25 +13,25 @@ use Yii;
  * @property Aluno $aluno
  * @property Turno $turno
  */
-class AlunoTurno extends \yii\db\ActiveRecord
-{
+class AlunoTurno extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'aluno_turno';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['aluno_id', 'turno_id'], 'required'],
             [['aluno_id', 'turno_id'], 'integer'],
-            [['aluno_id', 'turno_id'], 'unique', 'targetAttribute' => ['aluno_id', 'turno_id']],
+            [['aluno_id', 'turno_id'], 'unique', 'targetAttribute' => ['aluno_id', 'turno_id'], 'message' => 'Já se encontra inserido neste turno.'],
+            //[['aluno_id'], 'unique', 'targetAttribute' => ['aluno_id'], 'message' => ' Já pertence a um turno.'],
+            //[['turno_id'], 'unique', 'targetAttribute' => ['turno_id'], 'message' => 'Já pertence a este turno.'],
             [['aluno_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::className(), 'targetAttribute' => ['aluno_id' => 'id_perfil']],
             [['turno_id'], 'exist', 'skipOnError' => true, 'targetClass' => Turno::className(), 'targetAttribute' => ['turno_id' => 'id']],
         ];
@@ -40,27 +40,25 @@ class AlunoTurno extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
-            'aluno_id' => 'Aluno ID',
-            'turno_id' => 'Turno ID',
+            'aluno_id' => 'Aluno: ',
+            'turno_id' => 'Escolha o turno: ',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAluno()
-    {
+    public function getAluno() {
         return $this->hasOne(Aluno::className(), ['id_perfil' => 'aluno_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTurno()
-    {
+    public function getTurno() {
         return $this->hasOne(Turno::className(), ['id' => 'turno_id']);
     }
+
 }

@@ -15,24 +15,22 @@ use Yii;
  *
  * @property Aluno $aluno
  */
-class Pagamento extends \yii\db\ActiveRecord
-{
+class Pagamento extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'pagamento';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['valor', 'data_lim', 'status', 'id_aluno'], 'required'],
-            [['valor'], 'number'],
+            [['valor', 'data_lim', 'status', 'id_aluno'], 'required', 'message' => 'Este valor é obrigatório.'],
+            [['valor'], 'integer', 'message' => 'O valor tem que ser inteiro.'],
             [['data_lim'], 'safe'],
             [['status', 'id_aluno'], 'integer'],
             [['id_aluno'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::className(), 'targetAttribute' => ['id_aluno' => 'id_perfil']],
@@ -42,22 +40,21 @@ class Pagamento extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
-            'id' => 'ID',
-            'valor' => 'Valor',
-            'data_lim' => 'Data Limite',
-            'status' => 'Estado',
-            'id_aluno' => 'Aluno',
+            'id' => 'ID:',
+            'valor' => 'Valor inteiro:',
+            'data_lim' => 'Data Limite:',
+            'status' => 'Estado:',
+            'id_aluno' => 'Aluno:',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAluno()
-    {
+    public function getAluno() {
         return $this->hasOne(Aluno::className(), ['id_perfil' => 'id_aluno']);
     }
+
 }
