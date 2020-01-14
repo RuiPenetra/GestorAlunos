@@ -54,4 +54,38 @@ class Escola extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Curso::className(), ['id_escola' => 'id']);
     }
+
+    /**
+     * @return string
+     */
+    public function getNome()
+    {
+        return $this->nome;
+    }
+
+    /**
+     * @param string $nome
+     */
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAbreviatura()
+    {
+        return $this->abreviatura;
+    }
+
+    /**
+     * @param string $abreviatura
+     */
+    public function setAbreviatura($abreviatura)
+    {
+        $this->abreviatura = $abreviatura;
+    }
+
+
 }

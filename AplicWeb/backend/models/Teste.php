@@ -80,4 +80,86 @@ class Teste extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Disciplina::className(), ['id' => 'id_disciplina']);
     }
+
+    /**
+     * @return string
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * @param string $data
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSala()
+    {
+        return $this->sala;
+    }
+
+    /**
+     * @param string $sala
+     */
+    public function setSala($sala)
+    {
+        $this->sala = $sala;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDuracao()
+    {
+        return $this->duracao;
+    }
+
+    /**
+     * @param string $duracao
+     */
+    public function setDuracao($duracao)
+    {
+        $this->duracao = $duracao;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPercentagem()
+    {
+        return $this->percentagem;
+    }
+
+    /**
+     * @param int $percentagem
+     */
+    public function setPercentagem($percentagem)
+    {
+        $this->percentagem = $percentagem;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdDisciplina()
+    {
+        return $this->id_disciplina;
+    }
+
+    /**
+     * @param int $id_disciplina
+     */
+    public function setIdDisciplina($id_disciplina)
+    {
+        $this->id_disciplina = $id_disciplina;
+    }
+
+
 }
