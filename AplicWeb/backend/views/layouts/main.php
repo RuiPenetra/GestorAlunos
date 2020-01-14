@@ -36,7 +36,7 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
         if (Yii::$app->user->can('permissoesProf')){
             if(Yii::$app->user->can('permissoesDiretor')){
                 ?>
-                    <body class="hold-transition skin-green fixed hold-transition login-page">
+             <body class="hold-transition skin-purple fixed hold-transition login-page">
                 <?php $this->beginBody() ?>
                 <div class="wrapper">
                     <header class="main-header">
