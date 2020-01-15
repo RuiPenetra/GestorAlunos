@@ -205,6 +205,11 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                                     <i class="fa fa-book"></i> <span>Teste</span>
                                 </a>
                             </li>
+                            <li class="">
+                                <a href="<?= Url::toRoute(['horario/horariosprofessor']) ?>">
+                                    <i class="fa fa-calendar"></i> <span>Horário</span>
+                                </a>
+                            </li>
                         </ul>
                     </section>
                     <!-- /.sidebar -->
@@ -430,6 +435,11 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                                                 <i class="fa fa-pencil fa-fw"></i> <span>Faltas</span>
                                             </a>
                                         </li>
+                                        <li class="">
+                                            <a href="<?= Url::toRoute(['horario/horariosprofessor']) ?>">
+                                                <i class="fa fa-calendar"></i> <span>Horário</span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </section>
                                 <!-- /.sidebar -->
@@ -527,7 +537,7 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="<?php echo Url::toRoute(['perfil/update', 'id' => $perfil->id_user]) ?>" class="btn btn-default btn-flat"><i class="fa fa-gear fa-spin"></i> Perfil</a>
+                                        <a href="<?php echo Url::toRoute(['perfil/update', 'id' => $perfil->id_user]) ?>" class="btn btn-default btn-flat perfil"><i class="fa fa-gear fa-spin"></i> Perfil</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="<?php echo Url::toRoute(['site/logout']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-sign-out"></i> Sair</a>
@@ -567,7 +577,7 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                         </a>
                         <ul class="treeview-menu">
                             <li class="">
-                                <a href="<?= Url::toRoute(['user/index']) ?>">
+                                <a href="<?= Url::toRoute(['user/index']) ?>" class="users">
                                     <i class="fa fa-users"></i> <span>Utilizadores</span>
                                 </a>
                             </li>
@@ -596,7 +606,7 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                         </a>
                         <ul class="treeview-menu">
                             <li class="">
-                                <a href="<?= Url::toRoute(['escola/index']) ?>">
+                                <a href="<?= Url::toRoute(['escola/index']) ?>" class="escolas">
                                     <i class="fa fa-user"></i> <span>Escolas</span>
                                 </a>
                             </li>
@@ -652,7 +662,7 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                         </ul>
                     </li>
                     <li class="">
-                        <a href="<?= Url::toRoute(['teste/index']) ?>">
+                        <a href="<?= Url::toRoute(['teste/index']) ?>" class="testes">
                             <i class="fa fa-book"></i> <span>Testes</span>
                         </a>
                     </li>

@@ -4,3 +4,5 @@ modules:
     enabled:
         - Yii2:
               configFile: 'config/test.php'
+              environment: 'test'
+              cleanup: false

@@ -51,7 +51,6 @@ $this->params['breadcrumbs'][] = $this->title;
                   </div>
 
                   <div class="timeline-footer">
-                    <a href="<?= Url::toRoute(['horario/detalhes', 'id' => $aula->id])?>" class="btn btn-primary btn-xs">Detalhes</a>
                   </div>
                 </div>
               </li>
@@ -195,7 +194,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   </div>
 
                   <div class="timeline-footer">
-                    <a class="btn btn-primary btn-xs"><a href="#">Detalhes</a></a>
+                    <a class="btn btn-primary btn-xs">Detalhes</a>
                   </div>
                 </div>
               </li>
