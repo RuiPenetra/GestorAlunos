@@ -45,6 +45,33 @@ class HorarioController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+    /**
+     * Lists detalhes aula models.
+     * @return mixed
+     */
+    public function actionDetalhes($id)
+    {
+
+        $aula = Aula::find()->where(['id' => $id])->one();
+
+        return $this->render('auladetalhes', [
+          'aula' => $aula,
+        ]);
+    }
+
+    /**
+     * Lists Professor Horario models.
+     * @return mixed
+     */
+    public function actionHorariosprofessor()
+    {
+      $id_user = \Yii::$app->user->identity->id;
+      $aulas = Aula::find()->orderBy(['inicio' => SORT_ASC])->where(['id_professor' => $id_user])->all();
+
+      return $this->render('horarioprofessor', [
+        'aulas' => $aulas,
+      ]);
+    }
 
     /**
      * Displays a single Horario model.

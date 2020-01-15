@@ -205,6 +205,11 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                                     <i class="fa fa-book"></i> <span>Teste</span>
                                 </a>
                             </li>
+                            <li class="">
+                                <a href="<?= Url::toRoute(['horario/horariosprofessor']) ?>">
+                                    <i class="fa fa-calendar"></i> <span>Horário</span>
+                                </a>
+                            </li>
                         </ul>
                     </section>
                     <!-- /.sidebar -->
@@ -428,6 +433,11 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                                         <li class="">
                                             <a href="<?= Url::toRoute(['presenca/index']) ?>">
                                                 <i class="fa fa-pencil fa-fw"></i> <span>Faltas</span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="<?= Url::toRoute(['horario/horariosprofessor']) ?>">
+                                                <i class="fa fa-calendar"></i> <span>Horário</span>
                                             </a>
                                         </li>
                                     </ul>
