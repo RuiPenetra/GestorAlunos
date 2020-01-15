@@ -63,9 +63,26 @@ class AlunoturnoController extends Controller {
      * @return mixed
      */
     public function actionCreate() {
+        $id_user = \Yii::$app->user->identity->id;
+
+        if (Yii::$app->user->can('gerirPermissoes')) {
+            $turnos = Turno::find()->all();
+        } elseif (Yii::$app->user->can('permissoesDiretor')) {
+            $turnos = Turno::find()
+                    ->innerJoin('disciplina', 'disciplina.id = turno.id_disciplina AND disciplina.id_professor = ' . $id_user)
+                    //->innerJoin('curso', 'curso.id = disciplina.curso_id AND curso.diretor_curso = ' . $id_user)
+                    ->all();
+        } elseif (Yii::$app->user->can('permissoesProf')) {
+            $turnos = Turno::find()
+                    ->innerJoin('disciplina', 'disciplina.id = turno.id_disciplina AND disciplina.id_professor = ' . $id_user)
+                    //->innerJoin('curso', 'curso.id = disciplina.curso_id AND curso.diretor_curso = ' . $id_user)
+                    ->all();
+        } else {
+            throw new ForbiddenHttpException;
+        }
+
         $model = new AlunoTurno();
         $alunos = Aluno::find()->all();
-        $turnos = Turno::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'aluno_id' => $model->aluno_id, 'turno_id' => $model->turno_id]);
@@ -87,15 +104,34 @@ class AlunoturnoController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate($aluno_id, $turno_id) {
+
+        $id_user = \Yii::$app->user->identity->id;
+
+        if (Yii::$app->user->can('gerirPermissoes')) {
+            $turnos = Turno::find()->all();
+        } elseif (Yii::$app->user->can('permissoesDiretor')) {
+            $turnos = Turno::find()
+                    ->innerJoin('disciplina', 'disciplina.id = turno.id_disciplina AND disciplina.id_professor = ' . $id_user)
+                    //->innerJoin('curso', 'curso.id = disciplina.curso_id AND curso.diretor_curso = ' . $id_user)
+                    ->all();
+        } elseif (Yii::$app->user->can('permissoesProf')) {
+            $turnos = Turno::find()
+                    ->innerJoin('disciplina', 'disciplina.id = turno.id_disciplina AND disciplina.id_professor = ' . $id_user)
+                    //->innerJoin('curso', 'curso.id = disciplina.curso_id AND curso.diretor_curso = ' . $id_user)
+                    ->all();
+        } else {
+            throw new ForbiddenHttpException;
+        }
+
         $model = $this->findModel($aluno_id, $turno_id);
         $alunos = Aluno::find()->all();
-        $turnos = Turno::find()->all();
+        //$turnos = Turno::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'aluno_id' => $model->aluno_id, 'turno_id' => $model->turno_id]);
         }
-       /*var_dump($model->aluno);
-        die;*/
+        /* var_dump($model->aluno);
+          die; */
         return $this->render('update', [
                     'model' => $model,
                     'alunos' => $alunos,
