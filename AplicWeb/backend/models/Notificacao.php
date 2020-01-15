@@ -32,7 +32,11 @@ class Notificacao extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nome', 'descricao', 'data_inicio', 'data_fim', 'id_tipo'], 'required'],
+            [['nome'], 'required','message' => 'Introduza um nome!'],
+            [['descricao'], 'required','message' => 'Introduza uma descrição!'],
+            [['data_inicio'], 'required','message' => 'Tem de escolher uma data de inicio!'],
+            [['data_fim'], 'required','message' => 'Tem de escolher uma data de fim!'],
+            [['id_tipo'], 'required','message' => 'Tem de selecionar um tipo de notificação!'],
             [['data_inicio', 'data_fim'], 'safe'],
             [['id_tipo'], 'integer'],
             [['nome', 'descricao'], 'string', 'max' => 255],
