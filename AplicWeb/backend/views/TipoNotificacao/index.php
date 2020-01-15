@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\TipoNotificacaoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Tipo Notificacaos';
+$this->title = 'Tipos de notificação';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tipo-notificacao-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Tipo Notificacao', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Criar tipo de notificação', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

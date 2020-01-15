@@ -28,7 +28,7 @@ class TipoNotificacao extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nome'], 'required'],
+            [['nome'], 'required','message' => 'Introduza um nome!'],
             [['nome'], 'string', 'max' => 255],
         ];
     }

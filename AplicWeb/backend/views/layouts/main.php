@@ -440,6 +440,11 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                                                 <i class="fa fa-calendar"></i> <span>Horário</span>
                                             </a>
                                         </li>
+                                        <li class="">
+                                            <a href="<?= Url::toRoute(['notificacao/index']) ?>">
+                                                <i class="fa fa-bell-o"></i> <span>Notificação</span>
+                                          </a>
+                                        </li>
                                     </ul>
                                 </section>
                                 <!-- /.sidebar -->
@@ -670,6 +675,25 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                         <a href="<?= Url::toRoute(['feriado/index']) ?>">
                             <i class="fa fa-calendar"></i> <span>Feriados</span>
                         </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-bell"></i> <span>Notificações</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                             </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="">
+                                <a href="<?= Url::toRoute(['notificacao/index']) ?>">
+                                    <i class="fa fa-bell-o"></i> <span>Notificação</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="<?= Url::toRoute(['tiponotificacao/index']) ?>">
+                                    <i class="fa fa-certificate"></i> <span>Tipo Notificação</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </section>
