@@ -14,25 +14,23 @@ use Yii;
  * @property Aluno $aluno
  * @property Teste $teste
  */
-class AlunoTeste extends \yii\db\ActiveRecord
-{
+class AlunoTeste extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'aluno_teste';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['aluno_id', 'teste_id'], 'required'],
-            [['aluno_id', 'teste_id', 'nota'], 'integer'],
-            [['aluno_id', 'teste_id'], 'unique', 'targetAttribute' => ['aluno_id', 'teste_id']],
+            [['aluno_id', 'teste_id'], 'required', 'message' => 'Este campo é obrigatório.'],
+            [['aluno_id', 'teste_id', 'nota'], 'integer', 'message' => 'Este campo tem que ser um valor inteiro.'],
+            [['aluno_id', 'teste_id'], 'unique', 'targetAttribute' => ['aluno_id', 'teste_id'], 'message' => 'Esta combinação já foi utilizada.'],
             [['aluno_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::className(), 'targetAttribute' => ['aluno_id' => 'id_perfil']],
             [['teste_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teste::className(), 'targetAttribute' => ['teste_id' => 'id']],
         ];
@@ -41,8 +39,7 @@ class AlunoTeste extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'aluno_id' => 'Nome:',
             'teste_id' => 'Disciplina:',
@@ -53,16 +50,15 @@ class AlunoTeste extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAluno()
-    {
+    public function getAluno() {
         return $this->hasOne(Aluno::className(), ['id_perfil' => 'aluno_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTeste()
-    {
+    public function getTeste() {
         return $this->hasOne(Teste::className(), ['id' => 'teste_id']);
     }
+
 }
