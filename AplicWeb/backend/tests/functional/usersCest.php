@@ -16,8 +16,8 @@ class usersCest
         $I->click('login-button');
         $I->click(['class' => 'users']);
         $I->click(['class' => 'btn-success']);
-        $I->fillField('SignupForm[username]', 'testefuncional1');
-        $I->fillField('SignupForm[email]', 'teste1@teste.pt');
+        $I->fillField('SignupForm[username]', 'teste11f1uncional11');
+        $I->fillField('SignupForm[email]', 'teste1111@teste.pt1');
         $I->fillField('SignupForm[password]', '123456');
         $I->click(['class' => 'btn-primary']);
         $I->see('Registo Efetuado com Sucesso!');

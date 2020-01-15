@@ -14,7 +14,7 @@ class logoutCest
         $I->fillField('LoginForm[username]', 'simao');
         $I->fillField('LoginForm[password]', '123456');
         $I->click('login-button');
-        $I->click(['class' => 'logout']);
+        $I->click(['class' => 'sair']);
         $I->see('Email');
     }
 }

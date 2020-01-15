@@ -545,7 +545,7 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                                         <a href="<?php echo Url::toRoute(['perfil/update', 'id' => $perfil->id_user]) ?>" class="btn btn-default btn-flat perfil"><i class="fa fa-gear fa-spin"></i> Perfil</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="<?php echo Url::toRoute(['site/logout']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-sign-out"></i> Sair</a>
+                                        <a href="<?php echo Url::toRoute(['site/logout']) ?>" class="btn btn-danger btn-flat sair"><i class="fa fa-sign-out"></i> Sair</a>
                                     </div>
                                 </li>
                             </ul>
