@@ -13,13 +13,12 @@ use yii\filters\VerbFilter;
 /**
  * TurnoController implements the CRUD actions for Turno model.
  */
-class TurnoController extends Controller
-{
+class TurnoController extends Controller {
+
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -34,14 +33,13 @@ class TurnoController extends Controller
      * Lists all Turno models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $searchModel = new TurnoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -51,10 +49,9 @@ class TurnoController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -63,18 +60,36 @@ class TurnoController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
+        $id_user = \Yii::$app->user->identity->id;
+
+        /* if (Yii::$app->user->can('permissoesProf')) {
+          throw new ForbiddenHttpException;
+          } else */if (Yii::$app->user->can('permissoesDiretor')) {
+            $disciplinas = Disciplina::find()
+                    ->innerJoin('curso', 'disciplina.curso_id = curso.id')
+                    ->innerJoin('diretor_curso a', 'curso.diretor_curso = ' . $id_user)//a.id_professor = 
+                    //->innerJoin('professor', 'professor.id_perfil = ' . $id_user)
+                    ->all();
+        } elseif (Yii::$app->user->can('gerirPermissoes')) {
+            $disciplinas = Disciplina::find()
+                    //->innerJoin('turno', 'disciplina.id = turno.id_disciplina')
+                    //->innerJoin('professor', 'professor.id_perfil = ' . $id_user)
+                    ->all();
+        } else {
+            throw new ForbiddenHttpException;
+        }
+
         $model = new Turno();
-        $disciplinas = Disciplina::find()->all();
+        // $disciplinas = Disciplina::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
-            'model' => $model,
-            'disciplinas' => $disciplinas,
+                    'model' => $model,
+                    'disciplinas' => $disciplinas,
         ]);
     }
 
@@ -85,18 +100,36 @@ class TurnoController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
+        $id_user = \Yii::$app->user->identity->id;
+
+        /* if (Yii::$app->user->can('permissoesProf')) {
+          throw new ForbiddenHttpException;
+          } else */if (Yii::$app->user->can('permissoesDiretor')) {
+            $disciplinas = Disciplina::find()
+                    ->innerJoin('curso', 'disciplina.curso_id = curso.id')
+                    ->innerJoin('diretor_curso a', 'curso.diretor_curso = ' . $id_user)//a.id_professor = 
+                    //->innerJoin('professor', 'professor.id_perfil = ' . $id_user)
+                    ->all();
+        } elseif (Yii::$app->user->can('gerirPermissoes')) {
+            $disciplinas = Disciplina::find()
+                    //->innerJoin('turno', 'disciplina.id = turno.id_disciplina')
+                    //->innerJoin('professor', 'professor.id_perfil = ' . $id_user)
+                    ->all();
+        } else {
+            throw new ForbiddenHttpException;
+        }
+
         $model = $this->findModel($id);
-        $disciplinas = Disciplina::find()->all();
+        //$disciplinas = Disciplina::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
-            'model' => $model,
-            'disciplinas' => $disciplinas,
+                    'model' => $model,
+                    'disciplinas' => $disciplinas,
         ]);
     }
 
@@ -107,8 +140,7 @@ class TurnoController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -121,12 +153,12 @@ class TurnoController extends Controller
      * @return Turno the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = Turno::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
 }

@@ -6,9 +6,10 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Presenca */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Presencas', 'url' => ['index']];
+$this->title = $model->perfil->perfil->nome;
+$this->params['breadcrumbs'][] = ['label' => 'Faltas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$id_user = \Yii::$app->user->identity->id;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="presenca-view">
@@ -16,23 +17,25 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Atualizar', ['update', 'id' => $model->id, 'id_user'=>$id_user], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Apagar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Tem a certeza que pretende eliminar?',
                 'method' => 'post',
             ],
         ]) ?>
+        <?= Html::a('Ver faltas do aluno', ['listar', 'id' => $model->id_perfil], ['class' => 'btn btn-warning']) ?>
+
     </p>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'id_aula',
+            //'id',
+            'aula.nome',
             'data',
-            'id_perfil',
+            'perfil.perfil.nome',
         ],
     ]) ?>
 

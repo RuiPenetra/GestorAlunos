@@ -21,6 +21,6 @@ $this->params['breadcrumbs'][] = 'Criar';
         <?= $form->field($model, 'sala'); ?>
         <?= $form->field($model, 'duracao', ['inputOptions' => ['type' => 'time','class' => 'form-control']]); ?>
         <?= $form->field($model, 'percentagem', ['inputOptions' => ['type' => 'number','class' => 'form-control']]); ?>
-        <?= $form->field($model, 'id_disciplina')->dropDownList(ArrayHelper::map($disciplinas, 'id','nome'), ['prompt'=>'Selecione']) ?>
+        <?= $form->field($model, 'id_disciplina')->dropDownList(ArrayHelper::map($disciplinas, 'id','nome','curso.nome'), ['prompt'=>'Selecione']) ?>
         <?= Html::submitButton('Criar', ['class' => 'btn btn-primary']) ?>
     <?php ActiveForm::end(); ?>

@@ -4,6 +4,9 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Presenca;
+use backend\models\Aula;
+use backend\models\Aluno;
+use backend\models\Perfil;
 use backend\models\PresencaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -23,7 +26,6 @@ class PresencaController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
                 ],
             ],
         ];
@@ -45,6 +47,22 @@ class PresencaController extends Controller
     }
 
     /**
+     * Lists all Faltas Aluno models.
+     * @return mixed
+     */
+    public function actionListar($id)
+    {
+        $faltas = Presenca::find()->where(['id_perfil'=>$id])->all();
+        $aluno = Perfil::find()->where(['id_user'=>$id])->one();
+
+        return $this->render('faltasaluno', [
+            //'searchModel' => $searchModel,
+            'faltas' => $faltas,
+            'aluno' => $aluno,
+        ]);
+    }
+
+    /**
      * Displays a single Presenca model.
      * @param integer $id
      * @return mixed
@@ -62,9 +80,12 @@ class PresencaController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id)
     {
+        $id_user=$id;
         $model = new Presenca();
+        $alunos = Aluno::find()->all();
+        $aulas = Aula::find()->where(['id_professor'=>$id])->All();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,6 +93,8 @@ class PresencaController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'aulas' => $aulas,
+            'alunos' => $alunos,
         ]);
     }
 
@@ -84,7 +107,10 @@ class PresencaController extends Controller
      */
     public function actionUpdate($id)
     {
+        $id_user=\Yii::$app->user->identity->id;
         $model = $this->findModel($id);
+        $alunos = Aluno::find()->all();
+        $aulas = Aula::find()->where(['id_professor'=>$id_user])->All();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -92,6 +118,8 @@ class PresencaController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'aulas' => $aulas,
+            'alunos' => $alunos,
         ]);
     }
 

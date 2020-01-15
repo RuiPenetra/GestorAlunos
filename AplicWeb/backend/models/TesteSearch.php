@@ -1,7 +1,7 @@
 <?php
 
 namespace backend\models;
-
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\Teste;
@@ -9,13 +9,12 @@ use backend\models\Teste;
 /**
  * TesteSearch represents the model behind the search form of `backend\models\Teste`.
  */
-class TesteSearch extends Teste
-{
+class TesteSearch extends Teste {
+
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['id', 'percentagem', 'id_disciplina'], 'integer'],
             [['data', 'sala', 'duracao'], 'safe'],
@@ -25,8 +24,7 @@ class TesteSearch extends Teste
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -38,10 +36,27 @@ class TesteSearch extends Teste
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
-        $query = Teste::find();
+    public function search($params) {
 
+        if (Yii::$app->user->can('permissoesProf')) {
+            $id_user = \Yii::$app->user->identity->id;
+            $query = Teste::find()
+                    ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
+                    ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user);
+            //->all();
+        } elseif (Yii::$app->user->can('permissoesDiretor')) {
+            $id_user = \Yii::$app->user->identity->id;
+            $query = Teste::find()
+                    ->innerJoin('disciplina', 'disciplina.id = teste.id_disciplina')
+                    ->innerJoin('professor', 'disciplina.id_professor = ' . $id_user);
+            //->all();
+        } elseif (Yii::$app->user->can('gerirPermissoes')) {
+            $query = Teste::find();
+        } else {
+            throw new ForbiddenHttpException;
+        }
+
+        //$query = Teste::find();
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -69,4 +84,5 @@ class TesteSearch extends Teste
 
         return $dataProvider;
     }
+
 }
