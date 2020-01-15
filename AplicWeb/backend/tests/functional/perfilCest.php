@@ -15,6 +15,8 @@ class perfilCest
         $I->fillField('LoginForm[password]', '123456');
         $I->click('login-button');
         $I->click(['class' => 'perfil']);
-        $I->see('Simão Marques');
+        $I->fillField('Perfil[nome]', 'Simão Marques1');
+        $I->click(['class' => 'btn-primary']);
+        $I->see('Simão Marques1');
     }
 }
