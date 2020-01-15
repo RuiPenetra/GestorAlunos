@@ -29,7 +29,7 @@ AppAssetLogin::register($this);
                 </div>
                 <div class="div">
                     <h5>Email</h5>
-                    <?= $form->field($model, 'username', ['options' => ['tag' => 'input', 'style' => 'display: none;']])->textInput(['class' => 'input'])->label(false) ?>
+                    <?= $form->field($model, 'username', ['options' => ['tag' => 'input', 'style' => 'display: none;', 'name' => 'nome']])->textInput(['class' => 'input'])->label(false) ?>
                 </div>
             </div>
             <div class="input-div pass">
@@ -38,7 +38,7 @@ AppAssetLogin::register($this);
                 </div>
                 <div class="div">
                     <h5>Password</h5>
-                    <?= $form->field($model, 'password', ['options' => ['tag' => 'input', 'style' => 'display: none;']])->textInput(['class' => 'input', 'type' => 'password'])->label(false) ?>
+                    <?= $form->field($model, 'password', ['options' => ['tag' => 'input', 'style' => 'display: none;', 'name' => 'password']])->textInput(['class' => 'input', 'type' => 'password'])->label(false) ?>
                 </div>
             </div>
             <div class="form-group">

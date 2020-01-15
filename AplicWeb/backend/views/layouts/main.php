@@ -118,7 +118,7 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                                                 <a href="<?php echo Url::toRoute(['perfil/update', 'id' => $perfil->id_user]) ?>" class="btn btn-default btn-flat"><i class="fa fa-gear fa-spin"></i> Perfil</a>
                                             </div>
                                             <div class="pull-right">
-                                                <a href="<?php echo Url::toRoute(['site/logout']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-sign-out"></i> Sair</a>
+                                                <a href="<?php echo Url::toRoute(['site/logout']) ?>" class="btn btn-danger btn-flat" name="sair"><i class="fa fa-sign-out"></i> Sair</a>
                                             </div>
                                         </li>
                                     </ul>
@@ -362,7 +362,7 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                                             <a href="<?php echo Url::toRoute(['perfil/update', 'id' => $perfil->id_user]) ?>" class="btn btn-default btn-flat"><i class="fa fa-gear fa-spin"></i> Perfil</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="<?php echo Url::toRoute(['site/logout']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-sign-out"></i> Sair</a>
+                                            <a href="<?php echo Url::toRoute(['site/logout']) ?>" class="btn btn-danger btn-flat" name="sair"><i class="fa fa-sign-out"></i> Sair</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -522,10 +522,10 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="<?php echo Url::toRoute(['perfil/update', 'id' => $perfil->id_user]) ?>" class="btn btn-default btn-flat"><i class="fa fa-gear fa-spin"></i> Perfil</a>
+                                        <a href="<?php echo Url::toRoute(['perfil/update', 'id' => $perfil->id_user]) ?>" class="btn btn-default btn-flat perfil"><i class="fa fa-gear fa-spin"></i> Perfil</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="<?php echo Url::toRoute(['site/logout']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-sign-out"></i> Sair</a>
+                                        <a href="<?php echo Url::toRoute(['site/logout']) ?>" class="btn btn-danger btn-flat logout" ><i class="fa fa-sign-out"></i> Sair</a>
                                     </div>
                                 </li>
                             </ul>
@@ -562,7 +562,7 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                         </a>
                         <ul class="treeview-menu">
                             <li class="">
-                                <a href="<?= Url::toRoute(['user/index']) ?>">
+                                <a href="<?= Url::toRoute(['user/index']) ?>" class="users">
                                     <i class="fa fa-users"></i> <span>Utilizadores</span>
                                 </a>
                             </li>
@@ -647,11 +647,11 @@ $perfil = Perfil::findOne(['id_user' => $id_user]);
                         </ul>
                     </li>
                     <li class="">
-                        <a href="<?= Url::toRoute(['teste/index']) ?>">
+                        <a href="<?= Url::toRoute(['teste/index']) ?>" class="testes">
                             <i class="fa fa-book"></i> <span>Testes</span>
                         </a>
                     </li><li class="">
-                        <a href="<?= Url::toRoute(['feriados/index']) ?>">
+                        <a href="<?= Url::toRoute(['feriado/index']) ?>">
                             <i class="fa fa-calendar"></i> <span>Feriados</span>
                         </a>
                     </li>
