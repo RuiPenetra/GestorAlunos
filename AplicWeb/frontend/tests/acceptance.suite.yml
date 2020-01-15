@@ -1,0 +1,13 @@
+suite_namespace: frontend\tests\acceptance
+actor: AcceptanceTester
+modules:
+    enabled:
+        - WebDriver
+        - AcceptanceHelper
+    config:
+        PhpBrowser:
+            url: 'http://localhost/'
+        WebDriver:
+            url: 'http://localhost/'
+            browser: firefox
+

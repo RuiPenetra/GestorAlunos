@@ -13,26 +13,30 @@ use Yii;
  * @property Aluno $aluno
  * @property Turno $turno
  */
-class AlunoTurno extends \yii\db\ActiveRecord
-{
+class AlunoTurno extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'aluno_turno';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
+<<<<<<< HEAD
             [['aluno_id'], 'required', 'message' => 'Tem de selecionar um aluno!'],
             [['turno_id'], 'required', 'message' => 'Tem de selecionar um turno!'],
             [['aluno_id', 'turno_id'], 'integer'],
             [['aluno_id', 'turno_id'], 'unique', 'targetAttribute' => ['aluno_id', 'turno_id']],
+=======
+            [['aluno_id', 'turno_id'], 'required', 'message' => 'Este campo é obrigatório.'],
+            [['aluno_id', 'turno_id'], 'integer', 'message' => 'O valor tem que ser inteiro.'],
+            [['aluno_id', 'turno_id'], 'unique', 'targetAttribute' => ['aluno_id', 'turno_id'],'message' => 'Esta combinação já se encontra inserida.'],
+>>>>>>> 3facdfbf54791f3ee6b9ea4097301aef3fa9d458
             [['aluno_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::className(), 'targetAttribute' => ['aluno_id' => 'id_perfil']],
             [['turno_id'], 'exist', 'skipOnError' => true, 'targetClass' => Turno::className(), 'targetAttribute' => ['turno_id' => 'id']],
         ];
@@ -41,8 +45,7 @@ class AlunoTurno extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'aluno_id' => 'Aluno: ',
             'turno_id' => 'Turno: ',
@@ -52,16 +55,15 @@ class AlunoTurno extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAluno()
-    {
+    public function getAluno() {
         return $this->hasOne(Aluno::className(), ['id_perfil' => 'aluno_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTurno()
-    {
+    public function getTurno() {
         return $this->hasOne(Turno::className(), ['id' => 'turno_id']);
     }
+
 }
