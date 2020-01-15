@@ -30,7 +30,7 @@ class Professor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_perfil'], 'required'],
+            [['id_perfil'], 'required','message'=>'Tem de selecionarum utilizador!'],
             [['id_perfil'], 'integer'],
             [['id_perfil'], 'unique'],
             [['id_perfil'], 'exist', 'skipOnError' => true, 'targetClass' => Perfil::className(), 'targetAttribute' => ['id_perfil' => 'id_user']],
@@ -43,7 +43,7 @@ class Professor extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_perfil' => 'Id Perfil',
+            'id_perfil' => 'Utilizador',
         ];
     }
 

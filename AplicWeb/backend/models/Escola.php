@@ -29,7 +29,8 @@ class Escola extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nome', 'abreviatura'], 'required'],
+            [['nome'], 'required','message' => 'Introduza um nome!'],
+            [['abreviatura'], 'required','message' => 'Introduza uma abreviatura!'],
             [['nome'], 'string', 'max' => 255],
             [['abreviatura'], 'string', 'max' => 45],
         ];

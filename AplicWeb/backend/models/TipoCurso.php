@@ -29,7 +29,8 @@ class TipoCurso extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nome', 'descricao'], 'required'],
+            [['nome'], 'required','message' => 'Introduza um nome!'],
+            [['descricao'], 'required','message' => 'Introduza uma descrição!'],
             [['nome', 'descricao'], 'string', 'max' => 255],
         ];
     }

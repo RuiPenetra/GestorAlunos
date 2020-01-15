@@ -34,7 +34,11 @@ class Teste extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data', 'sala', 'duracao', 'percentagem', 'id_disciplina'], 'required'],
+            [['data'], 'required','message' => 'Tem de escolher uma data!'],
+            [['sala'], 'required','message' => 'Introduza uma sala!'],
+            [['duracao'], 'required','message' => 'Introduza a duração do teste!'],
+            [['percentagem'], 'required','message' => 'Introduza a percentagem!'],
+            [['id_disciplina'], 'required','message' => 'Tem de selecionar uma disciplina!'],
             [['data', 'duracao'], 'safe'],
             [['percentagem', 'id_disciplina'], 'integer'],
             [['sala'], 'string', 'max' => 255],
@@ -49,11 +53,11 @@ class Teste extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'data' => 'Data',
-            'sala' => 'Sala',
-            'duracao' => 'Duracao',
-            'percentagem' => 'Percentagem',
-            'id_disciplina' => 'Disciplina',
+            'data' => 'Data:',
+            'sala' => 'Sala:',
+            'duracao' => 'Duração:',
+            'percentagem' => 'Percentagem:',
+            'id_disciplina' => 'Disciplina:',
         ];
     }
 

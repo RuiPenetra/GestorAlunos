@@ -30,7 +30,8 @@ class Horario extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nome', 'id_curso'], 'required'],
+            [['nome'], 'required','message' => 'Introduza um nome!'],
+            [['id_curso'], 'required','message' => 'Tem de selecionar um curso!'],
             [['id_curso'], 'integer'],
             [['nome'], 'string', 'max' => 255],
             [['id_curso'], 'exist', 'skipOnError' => true, 'targetClass' => Curso::className(), 'targetAttribute' => ['id_curso' => 'id']],

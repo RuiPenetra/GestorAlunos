@@ -28,7 +28,7 @@ class DiretorCurso extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_professor'], 'required'],
+            [['id_professor'], 'required','message' => 'Tem de selecionar um professor!'],
             [['id_professor'], 'integer'],
             [['id_professor'], 'unique'],
             [['id_professor'], 'exist', 'skipOnError' => true, 'targetClass' => Professor::className(), 'targetAttribute' => ['id_professor' => 'id_perfil']],

@@ -28,7 +28,8 @@ class AlunoTeste extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['aluno_id', 'teste_id'], 'required', 'message' => 'Este campo é obrigatório.'],
+            [['aluno_id'], 'required', 'message' => 'Tem de selecionar um aluno!'],
+            [['teste_id'], 'required', 'message' => 'Tem de selecionar um teste de uma determinada disciplina!'],
             [['aluno_id', 'teste_id', 'nota'], 'integer', 'message' => 'Este campo tem que ser um valor inteiro.'],
             [['aluno_id', 'teste_id'], 'unique', 'targetAttribute' => ['aluno_id', 'teste_id'], 'message' => 'Esta combinação já foi utilizada.'],
             [['aluno_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::className(), 'targetAttribute' => ['aluno_id' => 'id_perfil']],
@@ -41,7 +42,7 @@ class AlunoTeste extends \yii\db\ActiveRecord {
      */
     public function attributeLabels() {
         return [
-            'aluno_id' => 'Nome:',
+            'aluno_id' => 'Aluno:',
             'teste_id' => 'Disciplina:',
             'nota' => 'Nota:',
         ];

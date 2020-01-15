@@ -38,7 +38,12 @@ class Curso extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nome', 'abreviatura', 'ano', 'tipo_curso', 'id_escola', 'diretor_curso'], 'required'],
+            [['nome'], 'required','message' => 'Introduza um nome!'],
+            [['abreviatura'], 'required','message' => 'Introduza uma abreviatura!'],
+            [['ano'], 'required','message' => 'Tem de selecionarum ano!'],
+            [['tipo_curso'], 'required','message' => 'Tem de selecionar um tipo de curso!'],
+            [['id_escola'], 'required','message' => 'Tem de selecionar uma escola!'],
+            [['diretor_curso'], 'required','message' => 'Tem de selecionar um professor!'],
             [['ano', 'tipo_curso', 'id_escola', 'diretor_curso'], 'integer'],
             [['nome'], 'string', 'max' => 255],
             [['abreviatura'], 'string', 'max' => 45],
@@ -58,9 +63,9 @@ class Curso extends \yii\db\ActiveRecord
             'nome' => 'Nome',
             'abreviatura' => 'Abreviatura',
             'ano' => 'Ano',
-            'tipo_curso' => 'Tipo Curso',
+            'tipo_curso' => 'Tipo de curso',
             'id_escola' => 'Escola',
-            'diretor_curso' => 'Diretor Curso',
+            'diretor_curso' => 'Diretor de curso',
             'tipoCurso.nome' => 'Curso',
             'escola.nome' => 'Escola',
         ];

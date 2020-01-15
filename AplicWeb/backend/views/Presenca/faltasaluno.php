@@ -22,9 +22,9 @@ $id_user = \Yii::$app->user->identity->id;
   <table class="table table-bordered table-striped">
     <thead >
       <tr>
-        <th scope="col">Dia Semana</th>
+        <th scope="col">Dia da Semana</th>
         <th scope="col">Data</th>
-        <th scope="col">Unidade Curricular</th>
+        <th scope="col">Disciplina</th>
         <th></th>
       </tr>
     </thead>

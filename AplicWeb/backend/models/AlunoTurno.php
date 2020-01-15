@@ -29,7 +29,8 @@ class AlunoTurno extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['aluno_id', 'turno_id'], 'required'],
+            [['aluno_id'], 'required', 'message' => 'Tem de selecionar um aluno!'],
+            [['turno_id'], 'required', 'message' => 'Tem de selecionar um turno!'],
             [['aluno_id', 'turno_id'], 'integer'],
             [['aluno_id', 'turno_id'], 'unique', 'targetAttribute' => ['aluno_id', 'turno_id']],
             [['aluno_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::className(), 'targetAttribute' => ['aluno_id' => 'id_perfil']],
@@ -43,7 +44,7 @@ class AlunoTurno extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'aluno_id' => 'Nome: ',
+            'aluno_id' => 'Aluno: ',
             'turno_id' => 'Turno: ',
         ];
     }

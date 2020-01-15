@@ -32,7 +32,8 @@ class Turno extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tipo', 'id_disciplina'], 'required'],
+            [['tipo'], 'required','message' => 'Introduza um tipo de turno!'],
+            [['id_disciplina'], 'required','message' => 'Tem de selecionar uma disciplina!'],
             [['id_disciplina'], 'integer'],
             [['tipo'], 'string', 'max' => 45],
             [['id_disciplina'], 'exist', 'skipOnError' => true, 'targetClass' => Disciplina::className(), 'targetAttribute' => ['id_disciplina' => 'id']],

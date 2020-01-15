@@ -7,7 +7,7 @@ use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model backend\models\AlunoTeste */
 
-$this->title = 'Create Aluno Teste';
+$this->title = 'Criar teste do aluno';
 $this->params['breadcrumbs'][] = ['label' => 'Aluno Testes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -28,7 +28,8 @@ class AlunoDisciplina extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['aluno_id', 'disciplina_id'], 'required', 'message' => 'Este campo é obrigatório.'],
+            [['aluno_id'], 'required', 'message' => 'Tem de selecionar um aluno!'],
+            [['disciplina_id'], 'required', 'message' => 'Tem de selecionar uma disciplina!'],
             [['aluno_id', 'disciplina_id', 'nota'], 'integer', 'message' => 'Este valor tem de ser inteiro.'],
             [['aluno_id', 'disciplina_id'], 'unique', 'targetAttribute' => ['aluno_id', 'disciplina_id'], 'message' => 'Este tipo de combinação já foi introduzida.'],
             [['aluno_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::className(), 'targetAttribute' => ['aluno_id' => 'id_perfil']],

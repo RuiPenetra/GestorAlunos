@@ -31,7 +31,9 @@ class Presenca extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_aula', 'data', 'id_perfil'], 'required'],
+            [['id_aula'], 'required','message' => 'Tem de selecionar a aula!'],
+            [['data'], 'required','message' => 'Tem de escolher uma data!'],
+            [['id_perfil'], 'required','message' => 'Tem de selecionar o aluno!'],
             [['id_aula', 'id_perfil'], 'integer'],
             [['data'], 'safe'],
             [['id_aula'], 'exist', 'skipOnError' => true, 'targetClass' => Aula::className(), 'targetAttribute' => ['id_aula' => 'id']],
@@ -46,10 +48,11 @@ class Presenca extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_aula' => 'Aula',
-            'data' => 'Data',
-            'id_perfil' => 'Aluno',
-            'perfil.perfil.nome' => 'Aluno',
+            'id_aula' => 'Aula:',
+            'data' => 'Data:',
+            'id_perfil' => 'Aluno:',
+            'perfil.perfil.nome' => 'Aluno:',
+            'aula.nome' => 'Disciplina:',
         ];
     }
 

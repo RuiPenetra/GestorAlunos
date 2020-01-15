@@ -37,7 +37,8 @@ class Aluno extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_perfil', 'id_curso'], 'required'],
+            [['id_perfil'], 'required','message'=>'Tem de selecionarum utilizador'],
+            [['id_curso'], 'required','message'=>'Tem de selecionarum curso'],
             [['id_perfil', 'id_curso'], 'integer'],
             [['id_perfil'], 'unique'],
             [['id_perfil'], 'exist', 'skipOnError' => true, 'targetClass' => Perfil::className(), 'targetAttribute' => ['id_perfil' => 'id_user']],

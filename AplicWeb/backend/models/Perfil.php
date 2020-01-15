@@ -37,7 +37,7 @@ class Perfil extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nome', 'email', 'genero', 'telemovel', 'datanascimento'], 'required'],
+            [['nome', 'email', 'genero', 'telemovel', 'datanascimento'], 'required','message'=>'Não pode deixar em branco!'],
             [['telemovel'], 'integer'],
             [['datanascimento'], 'safe'],
             [['nome', 'email', 'genero'], 'string', 'max' => 255],

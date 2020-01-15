@@ -27,7 +27,8 @@ class Feriado extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['dia', 'nome'], 'required'],
+            [['dia'], 'required','message' => 'Introduza o dia'],
+            [['nome'], 'required','message' => 'Introduza o nome'],
             [['dia'], 'safe'],
             [['nome'], 'string', 'max' => 255],
         ];
@@ -40,8 +41,8 @@ class Feriado extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'dia' => 'Dia',
-            'nome' => 'Nome',
+            'dia' => 'Dia:',
+            'nome' => 'Nome:',
         ];
     }
 }
