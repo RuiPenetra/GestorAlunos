@@ -27,16 +27,13 @@ class AlunoTurno extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-<<<<<<< HEAD
             [['aluno_id'], 'required', 'message' => 'Tem de selecionar um aluno!'],
             [['turno_id'], 'required', 'message' => 'Tem de selecionar um turno!'],
             [['aluno_id', 'turno_id'], 'integer'],
             [['aluno_id', 'turno_id'], 'unique', 'targetAttribute' => ['aluno_id', 'turno_id']],
-=======
             [['aluno_id', 'turno_id'], 'required', 'message' => 'Este campo é obrigatório.'],
             [['aluno_id', 'turno_id'], 'integer', 'message' => 'O valor tem que ser inteiro.'],
             [['aluno_id', 'turno_id'], 'unique', 'targetAttribute' => ['aluno_id', 'turno_id'],'message' => 'Esta combinação já se encontra inserida.'],
->>>>>>> 3facdfbf54791f3ee6b9ea4097301aef3fa9d458
             [['aluno_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::className(), 'targetAttribute' => ['aluno_id' => 'id_perfil']],
             [['turno_id'], 'exist', 'skipOnError' => true, 'targetClass' => Turno::className(), 'targetAttribute' => ['turno_id' => 'id']],
         ];

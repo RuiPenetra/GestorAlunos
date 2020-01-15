@@ -107,11 +107,14 @@ class AlunoController extends Controller
     public function actionDelete($id)
     {
         if(Yii::$app->user->can('gerirPermissoes')){
-            if($this->findModelAuth($id)->delete()){
-                $this->findModel($id)->delete();
+          try {
+            if($this->findModelAuth($id)->delete() && $this->findModel($id)->delete()){
+                return $this->redirect(['index']);
             }
 
-            return $this->redirect(['index']);
+          } catch (\Exception $e) {
+            throw new \Exception("Tem Registos associados", 1);
+          }
         }
         else{
             throw new ForbiddenHttpException;
