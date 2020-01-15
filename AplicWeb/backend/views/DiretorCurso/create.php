@@ -7,13 +7,13 @@ use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model backend\models\DiretorCurso */
 
-$this->title = 'Create Diretor Curso';
-$this->params['breadcrumbs'][] = ['label' => 'Diretor Cursos', 'url' => ['index']];
+$this->title = 'Criar diretor de curso';
+$this->params['breadcrumbs'][] = ['label' => 'Diretor de curso', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="diretor-curso-create">
 
-    <h1>Criar Diretor Curso</h1>
+    <h1>Criar diretor de curso</h1>
 
     <?php $form = ActiveForm::begin(); ?>
       <?= $form->field($model, 'id_professor')->dropDownList(ArrayHelper::map($professores, 'id_perfil','perfil.nome'), ['prompt'=>'Selecione uma Opção']) ?>
