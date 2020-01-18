@@ -28,7 +28,7 @@
                                 <ImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:background="@drawable/circle"
+                                    android:background="@drawable/fundo_circle"
                                     android:src="@drawable/img_ligacao"
                                     android:padding="30dp"/>
 

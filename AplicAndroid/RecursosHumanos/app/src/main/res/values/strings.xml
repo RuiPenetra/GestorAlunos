@@ -106,4 +106,6 @@
     <string name="tv_hora_inicio">Entrada</string>
     <string name="tv_hora_fim">Saida</string>
     <string name="tv_professor">Professor</string>
+    <string name="password_invalida">Password Invalida</string>
+    <string name="email_invalido">Email Inválido</string>
 </resources>

@@ -137,13 +137,13 @@ public class ListaUnidadesCurricularesAdaptador extends BaseAdapter {
 
                     FragmentManager fm = ((FragmentActivity)context).getSupportFragmentManager();
 
-                    Bundle teste= new Bundle();
+                    Bundle ccccc= new Bundle();
 
                     valor = String.valueOf(horario.getId());
                     Toast.makeText(context, "" + valor, Toast.LENGTH_SHORT).show();
-                    teste.putString("id",valor);
+                    ccccc.putString("id",valor);
 
-                    bt.setArguments(teste);
+                    bt.setArguments(ccccc);
 
                     Toast.makeText(context, ""+id, Toast.LENGTH_SHORT).show();
                     bt.show(fm,"");*/

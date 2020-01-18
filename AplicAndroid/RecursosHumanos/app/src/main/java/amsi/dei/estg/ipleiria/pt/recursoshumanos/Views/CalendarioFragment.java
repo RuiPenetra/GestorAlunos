@@ -43,7 +43,7 @@ public class CalendarioFragment extends Fragment {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 String date = dayOfMonth + "/" + (month+1) + "/" + year;
-                Log.d("teste",date);
+                Log.d("ccccc",date);
             }
         });
 

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/button_rectangle"
+    android:layout_gravity="center"
+    tools:ignore="MissingDefaultResource">
+
+    <ImageButton
+        android:id="@+id/imgBtn_fechar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="end"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_close"
+        android:padding="10dp"
+        android:background="@drawable/btn_circle"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:background="@drawable/fundo_circle"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:src="@drawable/img_ligacao" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Sem ligação a internet"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:fontFamily="sans-serif-smallcaps"/>
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_tentar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tentar Novamente"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="30dp"
+        android:padding="20dp"
+        android:background="@drawable/button_geral"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="sans-serif-smallcaps"/>
+
+</LinearLayout>

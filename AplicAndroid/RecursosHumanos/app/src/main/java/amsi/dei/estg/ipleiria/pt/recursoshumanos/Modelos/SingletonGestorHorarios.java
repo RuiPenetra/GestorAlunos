@@ -55,7 +55,7 @@ public class SingletonGestorHorarios implements Serializable {
         mQueue = Volley.newRequestQueue(mContext);
 
 //      String URL = "http://localhost/GestorAlunos/API/web/perfil";
-        String URL = "https://weunify.pt/API/web/aula";
+        String URL = "https://weunify.pt/API/web/v1/aula?access-token=m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
 
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
@@ -88,7 +88,7 @@ public class SingletonGestorHorarios implements Serializable {
                                 Integer id_professor =posts.getInt("id_professor");
                                 Integer horario_id =posts.getInt("horario_id");
 
-                                Horario horario = new Horario(id,unidade_curricular, hora_inicio,hora_fim,sala,dia_semana,id_turno,id_professor,horario_id);
+                                Horario horario = new Horario(id,unidade_curricular, hora_inicio,hora_fim,sala,dia_semana,id_turno,id_professor);
 
                                 horarios.add(horario);
 

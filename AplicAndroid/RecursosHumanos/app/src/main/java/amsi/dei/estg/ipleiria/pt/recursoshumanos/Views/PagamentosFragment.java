@@ -2,6 +2,7 @@ package amsi.dei.estg.ipleiria.pt.recursoshumanos.Views;
 
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.IntentSender;
 import android.graphics.Color;
@@ -13,7 +14,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,8 +24,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -59,7 +64,8 @@ public class PagamentosFragment extends Fragment {
     private CheckBox cb_status;
     private int valApagado;
     private GestorAlunosHelper db;
-
+    SwipeRefreshLayout swipeRefreshLayout;
+    Dialog myDialog;
 
 
 
@@ -68,8 +74,11 @@ public class PagamentosFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_pagamentos, container, false);
+
         lvListaPagamentos = rootView.findViewById(R.id.lvPagamentos);
         cb_status = rootView.findViewById(R.id.cb_status);
+        swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayout);
+        myDialog = new Dialog(getContext());
 
         // // <----- ListView ----->
         /*Verificar Conecção a Internet*/
@@ -78,10 +87,12 @@ public class PagamentosFragment extends Fragment {
 
             setHasOptionsMenu(false);
 
-            db = new GestorAlunosHelper(getContext());
+           // db = new GestorAlunosHelper(getContext());
 //            listaatualizada = db.getAllPagamentosBD();
 
             listaatualizada = SingletonGestorPagamentos.getInstance(getContext()).getPagamentosBD();
+            Log.e("--->","" + listaatualizada);
+
             lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaatualizada));
             lvListaPagamentos.deferNotifyDataSetChanged();
 
@@ -89,13 +100,32 @@ public class PagamentosFragment extends Fragment {
 
 
             setHasOptionsMenu(true);
-            OpenDialog();
+
+            PopUP_Ligacao_internet();
+
             listaatualizada = SingletonGestorPagamentos.getInstance(getContext()).getPagamentosBD();
             lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaatualizada));
             lvListaPagamentos.deferNotifyDataSetChanged();
 
         }
 
+        //  <----------- Swipe Up Refresh Layout ----------->
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        listaatualizada = SingletonGestorPagamentos.getInstance(getContext()).getPagamentosBD();
+                        lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaatualizada));
+                        lvListaPagamentos.deferNotifyDataSetChanged();
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 2500);
+            }
+        });
         return rootView;
     }
 
@@ -113,17 +143,36 @@ public class PagamentosFragment extends Fragment {
         return estado;
     }
 
+    /*<!--ABRIR POPUP Ligacao_internet-->*/
+    public void PopUP_Ligacao_internet(){
 
-    public void OpenDialog(){
+        ImageButton btnFechar;
+        Button btnTentarNovamente;
 
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
-        View mView = getLayoutInflater().inflate(R.layout.erro_dialog,null);
+        myDialog.setContentView(R.layout.popup_ligacao_internet);
+        btnFechar = myDialog.findViewById(R.id.imgBtn_fechar);
+        btnTentarNovamente = myDialog.findViewById(R.id.btn_tentar);
 
-        mBuilder.setView(mView);
-        AlertDialog dialog = mBuilder.create();
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.show();
+        btnFechar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+
+        btnTentarNovamente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                myDialog.dismiss();
+            }
+        });
+
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
+
     }
+
 
     // create an action bar button
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -146,31 +195,5 @@ public class PagamentosFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    public Pagamento adicionarPagamento1(){
-
-        ArrayList<Pagamento> pagamentos= new ArrayList<>();
-
-        Pagamento pagamento = new Pagamento("1","2","3","4","5");
-
-        return pagamento;
-    }
-
-    public Pagamento adicionarPagamento2(){
-
-        ArrayList<Pagamento> pagamentos= new ArrayList<>();
-
-        Pagamento pagamento = new Pagamento("2","2","3","4","5");
-
-        return pagamento;
-    }
-
-    public Pagamento adicionarPagamento3(){
-
-        ArrayList<Pagamento> pagamentos= new ArrayList<>();
-
-        Pagamento pagamento = new Pagamento("3","2","3","4","5");
-
-        return pagamento;
-    }
 
 }

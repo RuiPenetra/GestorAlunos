@@ -6,46 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".Views.PagamentosFragment">
 
-    <RelativeLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <RelativeLayout
-            android:id="@+id/header_pagamentos"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <include
-                layout="@layout/header_lista_pagamentos"
+            <RelativeLayout
+                android:id="@+id/header_pagamentos"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
+
+                <include
+                    layout="@layout/header_lista_pagamentos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/lista_pagamentos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/header_pagamentos"
+                android:orientation="vertical">
+
+                <ListView
+                    android:id="@+id/lvPagamentos"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </ListView>
+            </RelativeLayout>
+
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/lista_pagamentos"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/header_pagamentos"
-            android:orientation="vertical">
-
-            <ListView
-                android:id="@+id/lvPagamentos"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </ListView>
-        </RelativeLayout>
-
-
-    </RelativeLayout>
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:clickable="true"
-        android:src="@drawable/ic_fax"/>-->
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </FrameLayout>

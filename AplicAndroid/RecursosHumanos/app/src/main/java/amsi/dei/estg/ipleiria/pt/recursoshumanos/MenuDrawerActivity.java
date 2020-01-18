@@ -68,8 +68,8 @@ public class MenuDrawerActivity extends AppCompatActivity implements NavigationV
 
         if(isNetworkAvaliable()){
 
-
             carregarDadosAPI();
+
         }
 
     }
@@ -139,28 +139,6 @@ public class MenuDrawerActivity extends AppCompatActivity implements NavigationV
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-    public void onClickCalendario(View view){
-
-        Fragment fragment = new CalendarioFragment();
-        setTitle("Calendário");
-        fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).commit();
-    }
-
-    public void onClickHorario(View view){
-
-        Fragment fragment = new HorarioFragment();
-        setTitle("Horário");
-        fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).commit();
-    }
-
-    public void onClickForum(View view){
-
-        Fragment fragment = new ForumFragment();
-        setTitle("Fórum");
-        fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).commit();
-    }
-
 
     public void carregarDadosAPI(){
 

@@ -49,29 +49,8 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-       db.execSQL(
-               "CREATE TABLE " + TABLE_PAGAMENTOS + "(\n" +
-               ID_PAGAMENTO + "INTEGER NOT NULL PRIMARY KEY,\n" +
-               VALOR + "TEXT NOT NULL,\n" +
-               DATA_LIMITE + "TEXT NOT NULL,\n" +
-               ESTADO + "TEXT NOT NULL,\n" +
-               ID_ALUNO + "INTEGER  NOT NULL\n" +
-               ")"
-            );
-
-
-       db.execSQL(
-                "CREATE TABLE " + TABLE_HORARIOS + "(\n" +
-                 ID_HORARIO + "INTEGER NOT NULL PRIMARY KEY,\n" +
-                 UNIDADE_CURRICULAR + "TEXT NOT NULL,\n" +
-                 HORA_INICIO + "TEXT NOT NULL,\n" +
-                 HORA_FIM + "TEXT NOT NULL,\n" +
-                 SALA + "TEXT  NOT NULL\n" +
-                 DIA_SEMANA + "TEXT  NOT NULL\n" +
-                 ID_TURNO + "TEXT  NOT NULL\n" +
-                 ID_PROFESSOR + "TEXT  NOT NULL\n" +
-                 ")"
-        );
+        CriarTabelaPagamentos(db);
+        CriarTabelaHorarios(db);
 
     }
 
@@ -86,7 +65,36 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
 
     // <----------------------------------------- MÉTODOS CRUD ----------------------------------------------->
 
-    //#adicionar pagamento
+    // # Para Criar Tabela Pagamentos na Base de Dados local
+    public void CriarTabelaPagamentos(SQLiteDatabase db){
+
+        db.execSQL(
+                "CREATE TABLE " + TABLE_PAGAMENTOS + "(\n" +
+                        ID_PAGAMENTO + "INTEGER PRIMARY KEY,\n" +
+                        VALOR + "TEXT NOT NULL,\n" +
+                        DATA_LIMITE + "TEXT NOT NULL,\n" +
+                        ESTADO + "TEXT NOT NULL,\n" +
+                        ID_ALUNO + "INTEGER  NOT NULL\n" +
+                        ")"
+        );
+    }
+
+    // # Para Criar Tabela Horarios na Base de Dados local
+    public void CriarTabelaHorarios(SQLiteDatabase db){
+
+        db.execSQL(
+                "CREATE TABLE " + TABLE_HORARIOS + "(\n" +
+                     ID_HORARIO + "INTEGER NOT NULL PRIMARY KEY,\n" +
+                     UNIDADE_CURRICULAR + "TEXT NOT NULL,\n" +
+                     HORA_INICIO + "TEXT NOT NULL,\n" +
+                     HORA_FIM + "TEXT NOT NULL,\n" +
+                     SALA + "TEXT  NOT NULL,\n" +
+                     DIA_SEMANA + "TEXT  NOT NULL,\n" +
+                     ID_TURNO + "TEXT  NOT NULL,\n" +
+                     ID_PROFESSOR + "TEXT  NOT NULL\n" +
+                     ")"
+        );
+    }
 
     // # Para Adicionar na Base de Dados local
     public Pagamento adicionarPagamentoBD(Pagamento pagamento){
@@ -153,7 +161,6 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
         this.database.delete(TABLE_PAGAMENTOS, null, null);
 
     }
-
 
     // # Para Adicionar na Base de Dados local
     public Horario adicionarHorario(Horario horario){

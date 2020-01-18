@@ -3,10 +3,19 @@ package amsi.dei.estg.ipleiria.pt.recursoshumanos.Views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.MenuDrawerActivity;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
@@ -15,23 +24,128 @@ import amsi.dei.estg.ipleiria.pt.recursoshumanos.StartAppActivity;
 public class LoginActivity extends AppCompatActivity {
 
     private Button btn_login;
+    private EditText edt_email;
+    private EditText edt_password;
+    Dialog myDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        btn_login=findViewById(R.id.btn_IrLogin);
+        btn_login = findViewById(R.id.btn_IrLogin);
 
+        edt_email = findViewById(R.id.edt_email);
+
+        edt_password = findViewById(R.id.edt_password);
+
+        myDialog = new Dialog(this);
     }
 
     public void onClickLogin(View view){
-        Intent next= new Intent(this, MenuDrawerActivity.class);
-        startActivity(next);
-        finish();
+
+        if(isNetworkAvaliable()){
+
+            String email = edt_email.getText().toString();
+            String password = edt_password.getText().toString();
+
+            // Se o email não for válido
+            if(!isEmailValido(email)){
+                edt_email.setError(getString(R.string.email_invalido));
+                return;
+            }
+
+            // Se a password não for válida
+            if(!isPasswordValida(password)){
+                edt_password.setError(getString(R.string.password_invalida));
+                return;
+            }
+
+            // Intent que permite a passagem de parametros (email)
+            Intent abrir = new Intent(this, MenuDrawerActivity.class);
+           // abrir.putExtra(MainActivity.CHAVE_EMAIL, email);
+
+            // ABRE A ATIVIDADE MENUDRAWER
+            startActivity(abrir);
+
+            // FECHA ESTA ATIVIDADE
+            finish();
+
+        }else {
+
+            PopUP_Ligacao_internet();
+        }
+
     }
 
     public void onClickRetornar(View view){
         Intent goBack= new Intent(this, StartAppActivity.class);
         startActivity(goBack);
     }
+
+    /*<!--ABRIR POPUP Ligacao_internet-->*/
+    public void PopUP_Ligacao_internet(){
+
+        ImageButton btnFechar;
+        Button btnTentarNovamente;
+
+        myDialog.setContentView(R.layout.popup_ligacao_internet);
+        btnFechar = myDialog.findViewById(R.id.imgBtn_fechar);
+        btnTentarNovamente = myDialog.findViewById(R.id.btn_tentar);
+
+        btnFechar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                myDialog.dismiss();
+
+            }
+        });
+
+        btnTentarNovamente.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                myDialog.dismiss();
+
+            }
+        });
+
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
+
+    }
+
+    /*<!--VERIFICAR LIGAÇÃO À INTERNET-->*/
+    private boolean isNetworkAvaliable() {
+
+        boolean estado;
+
+        ConnectivityManager cm = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        //necessita de permissões de acesso à internet e acesso ao estado da ligação
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        estado = activeNetwork != null && activeNetwork.isConnected();
+
+        return estado;
+    }
+
+    /*<!--VERIFICAR SE EMAIL É VALIDO-->*/
+    public boolean isEmailValido(String email){
+        if(email == null){
+            return false;
+        }
+        // Só devolve verdade se for um email válido
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    /*<!--VERIFICAR SE PASSWORD É VALIDA-->*/
+    public boolean isPasswordValida(String password){
+        if(password == null){
+            return false;
+        }
+        return password.length() > 4;
+    }
+
 }

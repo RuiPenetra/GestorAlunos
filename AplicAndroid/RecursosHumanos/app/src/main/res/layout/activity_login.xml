@@ -51,10 +51,11 @@
             android:layout_below="@id/ident_user"
             android:background="@drawable/bg_tv_login"
             android:drawableLeft="@drawable/tv_email"
+            android:drawablePadding="10dp"
             android:layout_marginTop="30dp"
-            android:ems="20"
+            android:ems="40"
             android:inputType="textEmailAddress"
-            android:textColor="#ffffff" />
+            android:textColor="#000000" />
 
         <EditText
             android:id="@+id/edt_password"
@@ -64,9 +65,10 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_tv_login"
             android:drawableLeft="@drawable/tv_password"
-            android:ems="20"
+            android:drawablePadding="10dp"
+            android:ems="8"
             android:inputType="textPassword"
-            android:textColor="#ffffff"
+            android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_email" />
