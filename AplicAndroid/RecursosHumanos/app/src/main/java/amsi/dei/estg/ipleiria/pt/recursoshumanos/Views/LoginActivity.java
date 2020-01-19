@@ -6,14 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -23,9 +26,13 @@ import amsi.dei.estg.ipleiria.pt.recursoshumanos.StartAppActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private SharedPreferences mPreferences;
+    private SharedPreferences.Editor mEditor;
+
     private Button btn_login;
     private EditText edt_email;
     private EditText edt_password;
+    private CheckBox mCheckBox;
     Dialog myDialog;
 
     @Override
@@ -39,10 +46,107 @@ public class LoginActivity extends AppCompatActivity {
 
         edt_password = findViewById(R.id.edt_password);
 
+        mCheckBox = findViewById(R.id.mcheckbox);
+
         myDialog = new Dialog(this);
+
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        mEditor = mPreferences.edit();
+
+        checkSharedPreferences();
+
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(mCheckBox.isChecked()){
+
+                    //defenir o estado da checkbox quando a atividade começar
+                    mEditor.putString(getString(R.string.checkbox), "True");
+                    mEditor.commit();
+
+                    //guardar o email
+                    String email = edt_email.getText().toString();
+                    mEditor.putString(getString(R.string.email), email);
+                    mEditor.commit();
+
+                    //guardar a password
+                    String password = edt_password.getText().toString();
+                    mEditor.putString(getString(R.string.password), password);
+                    mEditor.commit();
+
+
+                }else {
+
+                    mEditor.putString(getString(R.string.checkbox), "False");
+                    mEditor.commit();
+
+                    mEditor.putString(getString(R.string.email), "");
+                    mEditor.commit();
+
+                    mEditor.putString(getString(R.string.password), "");
+                    mEditor.commit();
+
+                }
+
+                if(isNetworkAvaliable()){
+
+                     String email = edt_email.getText().toString();
+                     String password = edt_password.getText().toString();
+
+                    // Se o email não for válido
+                    if(!isEmailValido(email)){
+                        edt_email.setError(getString(R.string.email_invalido));
+                        return;
+                    }
+
+                    // Se a password não for válida
+                    if(!isPasswordValida(password)){
+                        edt_password.setError(getString(R.string.password_invalida));
+                        return;
+                    }
+
+                    // Intent que permite a passagem de parametros (email)
+                    Intent abrir = new Intent(getApplicationContext(), MenuDrawerActivity.class);
+                    // abrir.putExtra(MainActivity.CHAVE_EMAIL, email);
+
+                    // ABRE A ATIVIDADE MENUDRAWER
+                    startActivity(abrir);
+
+                    // FECHA ESTA ATIVIDADE
+                    finish();
+
+                }else {
+
+                    PopUP_Ligacao_internet();
+                }
+
+
+            }
+        });
     }
 
-    public void onClickLogin(View view){
+    private void checkSharedPreferences(){
+
+        String checkbox = mPreferences.getString(getString(R.string.checkbox), "False");
+        String email = mPreferences.getString(getString(R.string.email), "");
+        String password = mPreferences.getString(getString(R.string.password), "");
+
+        edt_email.setText(email);
+        edt_password.setText(password);
+
+        if(checkbox.equals("True")){
+
+            mCheckBox.setChecked(true);
+        }else{
+
+            mCheckBox.setChecked(false);
+
+        }
+
+    }
+   /* public void onClickLogin(View view){
 
         if(isNetworkAvaliable()){
 
@@ -76,7 +180,7 @@ public class LoginActivity extends AppCompatActivity {
             PopUP_Ligacao_internet();
         }
 
-    }
+    }*/
 
     public void onClickRetornar(View view){
         Intent goBack= new Intent(this, StartAppActivity.class);

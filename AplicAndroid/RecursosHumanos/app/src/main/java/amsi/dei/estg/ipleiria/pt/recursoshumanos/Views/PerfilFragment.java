@@ -21,7 +21,9 @@ import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
 public class PerfilFragment extends Fragment {
 
 
-   Spinner dias_semana;
+   private CardView cv_dados_autenticacao;
+   private CardView cv_dados_pessoais;
+   private CardView cv_dados_academicos;
 
 
     @Override
@@ -32,7 +34,10 @@ public class PerfilFragment extends Fragment {
 
         final Context context = rootView.getContext(); // Assign your rootView to context
 
-        CardView cv_dados_autenticacao = (CardView) rootView.findViewById(R.id.cv_dados_autenticacao);
+        cv_dados_autenticacao = (CardView) rootView.findViewById(R.id.cv_dados_autenticacao);
+        cv_dados_academicos= (CardView) rootView.findViewById(R.id.cv_dados_academicos);
+        cv_dados_pessoais = (CardView) rootView.findViewById(R.id.cv_dados_pessoais);
+
         cv_dados_autenticacao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,7 +47,7 @@ public class PerfilFragment extends Fragment {
             }
         });
 
-        CardView cv_dados_pessoais = (CardView) rootView.findViewById(R.id.cv_dados_pessoais);
+
         cv_dados_pessoais.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +57,7 @@ public class PerfilFragment extends Fragment {
             }
         });
 
-        CardView cv_dados_academicos= (CardView) rootView.findViewById(R.id.cv_dados_academicos);
+
         cv_dados_academicos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

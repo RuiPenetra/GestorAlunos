@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,9 +23,12 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.net.PasswordAuthentication;
 import java.util.ArrayList;
 
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Horario;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Pagamento;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorHorarios;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorPagamentos;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.CalendarioFragment;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.ConfiguracoesFragment;
@@ -69,6 +73,8 @@ public class MenuDrawerActivity extends AppCompatActivity implements NavigationV
         if(isNetworkAvaliable()){
 
             carregarDadosAPI();
+
+        }else{
 
         }
 
@@ -142,8 +148,13 @@ public class MenuDrawerActivity extends AppCompatActivity implements NavigationV
 
     public void carregarDadosAPI(){
 
+        // # BUSCAR E GUARDAR NA BD
         SingletonGestorPagamentos.getInstance(getApplicationContext()).removerPagamentosBD();
         SingletonGestorPagamentos.getInstance(getApplicationContext()).carregarDadosAPI();
+
+        // # BUSCAR E GUARDAR NO SINGLETON
+        SingletonGestorHorarios.getInstance(getApplicationContext()).carregarDadosAPI();
+
     }
 
     private boolean isNetworkAvaliable() {

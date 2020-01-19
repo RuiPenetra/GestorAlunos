@@ -38,6 +38,7 @@ public class SingletonGestorHorarios implements Serializable {
     final String NEW_FORMAT = " hh:mm";
     final String OLD_FORMAT = "hh:mm:ss";
     private static SingletonGestorHorarios INSTANCE = null;
+    private GestorAlunosHelper db;
 
     public static synchronized SingletonGestorHorarios getInstance(Context context){
 
@@ -50,11 +51,100 @@ public class SingletonGestorHorarios implements Serializable {
 
     private SingletonGestorHorarios(Context context){
 
-        mContext=context;
-        horarios= new ArrayList<>();
+        mContext =context;
+
+        db = new GestorAlunosHelper(context);
+
+    }
+
+    public Horario getHorario(int idHorario){
+
+        for (Horario h: horarios){
+            if(h.getId()== idHorario){
+                return h;
+            }
+        }
+
+        return null;
+    }
+
+/*    // # ADICIONAR HORARIO A BASE DE DADOS LOCAL
+    public void adicionarHorarioBD(Horario horario){
+
+
+       // Horario auxHorario = db.adicionarHorarioBD(horario);
+
+
+        if(auxHorario != null){
+
+            horarios.add(auxHorario);
+
+            System.out.println("--> Horario Inserido");
+
+        }
+    }
+
+    // # MOSTRAR TODOS HORARIOS DA BASE DE DADOS LOCAL
+    public ArrayList<Horario> mostrarHorariosBD(){
+
+        return db.mostrarTodosHorariosBD();
+
+    }
+
+    // # REMOVER TODOS HORARIOS DA BASE DE DADOS LOCAL
+    public void removerHorariosBD(){
+
+        db.removerTodosHorariosBD();
+    }*/
+
+    public ArrayList<Horario> getHorarioSpinner(String dia_semana){
+
+        Log.i("-->","Entrou no mostrar");
+        ArrayList<Horario> resultado= new ArrayList<>();
+
+        if(horarios != null){
+
+            for (Horario h: horarios){
+                if(h.getDia_semana().equals(dia_semana)){
+
+                    Log.i("--->","" + h.getId());
+                    resultado.add(h);
+
+                }
+            }
+
+            return resultado;
+
+        }else{
+
+            return null;
+        }
+
+    }
+
+    public String formatTime(String time){
+
+        String formatDate;
+        SimpleDateFormat sdf = new SimpleDateFormat(OLD_FORMAT);
+        Date d = null;
+        try {
+            d = sdf.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        sdf.applyPattern(NEW_FORMAT);
+        formatDate=sdf.format(d);
+
+        return formatDate;
+
+    }
+
+
+
+    public void carregarDadosAPI(){
+
         mQueue = Volley.newRequestQueue(mContext);
 
-//      String URL = "http://localhost/GestorAlunos/API/web/perfil";
         String URL = "https://weunify.pt/API/web/v1/aula?access-token=m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
 
 
@@ -69,14 +159,15 @@ public class SingletonGestorHorarios implements Serializable {
                     public void onResponse(JSONArray response) {
                         try{
 
-                            horarios = new ArrayList<>(response.length());
+                            horarios = new ArrayList<>();
 
                             for (int i=0; i < response.length(); i++){
                                 JSONObject posts = response.getJSONObject(i);
 
+                                Log.i("-->","Entrou no carregar dados api Horario");
                                 int id=posts.getInt("id");
+
                                 String unidade_curricular = posts.getString("nome");
-                                Log.i("-->","" + unidade_curricular);
 
                                 String hora_inicio= formatTime(posts.getString("inicio"));
 
@@ -88,9 +179,10 @@ public class SingletonGestorHorarios implements Serializable {
                                 Integer id_professor =posts.getInt("id_professor");
                                 Integer horario_id =posts.getInt("horario_id");
 
-                                Horario horario = new Horario(id,unidade_curricular, hora_inicio,hora_fim,sala,dia_semana,id_turno,id_professor);
+                                Horario horario = new Horario(id,unidade_curricular, hora_inicio,hora_fim,sala,dia_semana,id_turno,id_professor,horario_id);
 
                                 horarios.add(horario);
+                                //adicionarHorarioBD(horario);
 
                                 //Log.i("-->","" + posts.getInt("id"));
 
@@ -109,72 +201,5 @@ public class SingletonGestorHorarios implements Serializable {
                 }
         );
         mQueue.add(jsonArrayRequest);
-
-    }
-
-/*
-    public Horario getHorarios(Horario pp){
-
-        return horarios;
-    }
-*/
-
-    public Horario getHorario(int idHorario){
-
-        for (Horario h: horarios){
-            if(h.getId()== idHorario){
-                return h;
-            }
-        }
-
-        return null;
-    }
-
-    public ArrayList<Horario> getHorarioSpinner(String dia_semana){
-
-        ArrayList<Horario> resultado= new ArrayList<>();
-
-        for (Horario h: horarios){
-            if(h.getDia_semana().equals(dia_semana)){
-
-                resultado.add(h);
-
-            }
-        }
-
-        if(resultado != null){
-
-            return resultado;
-        }else {
-
-            return null;
-        }
-    }
-
-/*    private void Data() {
-
-        horarios.add(new Horario(1,"8:00","9:00", "Integração na Profissão","A.S.1.14","Prof.Helena Duarte"));
-        horarios.add(new Horario(2,"10:00","11:00", "Plataformas de Sistemas de Informação","D.S.2.1","Prof.João Santos"));
-        horarios.add(new Horario(3,"12:00","13:00", "Acesso Móvel a Sistemas de Informação","A.S.1.1","Prof.Sónia Silva"));
-        horarios.add(new Horario(4,"14:00","16:00", "Projeto em Sistemas de Informação","D.S.0.5","Prof.Elia Silva"));
-        horarios.add(new Horario(5,"16:00","18:00", "Serviços e Interoperabilidade de Sistemas TeSP PSI(Lra + TV)","A.S.0.1","Prof.Anabela Duarte"));
-        horarios.add(new Horario(6,"19:00","20:00", "Integração na Profissão","A.S.0.1","Prof.Maria Anacleta"));
-    }*/
-
-    public String formatTime(String time){
-
-        String formatDate;
-        SimpleDateFormat sdf = new SimpleDateFormat(OLD_FORMAT);
-        Date d = null;
-        try {
-            d = sdf.parse(time);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        sdf.applyPattern(NEW_FORMAT);
-        formatDate=sdf.format(d);
-
-        return formatDate;
-
     }
 }

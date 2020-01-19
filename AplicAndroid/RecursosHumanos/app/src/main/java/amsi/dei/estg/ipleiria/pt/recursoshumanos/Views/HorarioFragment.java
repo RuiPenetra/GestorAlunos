@@ -13,6 +13,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -44,6 +46,7 @@ public class HorarioFragment extends Fragment {
     private ListView lvListaHorario;
     private ListaHorarioAdaptador adaptador;
     private Horario r;
+    private ArrayList<Horario> listaTotal;
     private ArrayList<Horario> listaEscolhida;
     private ArrayAdapter adapter;
     private TextView tv_dados;
@@ -73,18 +76,46 @@ public class HorarioFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                String selectedItemText= (String) adapter.getItem(position);
+                if(parent.getItemAtPosition(position).equals("Nenhum")){
 
-                /*Verificar Conecção a Internet*/
+
+                }else{
+
+                    String itemSelecionado = parent.getItemAtPosition(position).toString();
+
+                    Toast.makeText(getContext(), "" + itemSelecionado, Toast.LENGTH_SHORT).show();
+
+                    listaEscolhida = SingletonGestorHorarios.getInstance(getContext()).getHorarioSpinner(itemSelecionado);
+
+                    if(listaEscolhida != null){
+
+                        lvListaHorario.setAdapter(new ListaHorarioAdaptador(getContext(), listaEscolhida));
+                        lvListaHorario.deferNotifyDataSetChanged();
+
+                    }else{
+
+                        Log.e("-->","Não existe horários");
+                    }
+                }
+/*                *//*Verificar Conecção a Internet*//*
                 if(isNetworkAvaliable()){
 
-                    setHasOptionsMenu(false);
+                    //setHasOptionsMenu(false);
 
                     if(selectedItemText != "Nenhum")
                     {
+
                         listaEscolhida = SingletonGestorHorarios.getInstance(getContext()).getHorarioSpinner(selectedItemText);
-                        lvListaHorario.setAdapter(new ListaHorarioAdaptador(getContext(), listaEscolhida));
-                        lvListaHorario.deferNotifyDataSetChanged();
+
+                        if(listaEscolhida != null){
+
+                            lvListaHorario.setAdapter(new ListaHorarioAdaptador(getContext(), listaEscolhida));
+                            lvListaHorario.deferNotifyDataSetChanged();
+
+                        }else{
+
+                            Log.e("-->","Não existe horários");
+                        }
 
                     }else {
 
@@ -96,7 +127,7 @@ public class HorarioFragment extends Fragment {
 
                     setHasOptionsMenu(true);
                     OpenDialog();
-                }
+                }*/
 
 
             }

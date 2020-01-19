@@ -58,7 +58,7 @@
                 <EditText
                     android:id="@+id/edt_n_estudante"
                     android:layout_width="150dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="40dp"
                     android:background="@drawable/ic_content"
                     android:ems="30"
                     android:inputType="textEmailAddress"
@@ -96,7 +96,7 @@
                     <EditText
                         android:id="@+id/edt_curso"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:background="@drawable/ic_content"
                         android:ems="10"
                         android:inputType="textEmailAddress"
@@ -137,7 +137,7 @@
                     <EditText
                         android:id="@+id/edt_ano_lectivo"
                         android:layout_width="150dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:background="@drawable/ic_content"
                         android:ems="10"
                         android:inputType="textEmailAddress"
@@ -201,7 +201,7 @@
                         <EditText
                             android:id="@+id/edt_email"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="40dp"
                             android:background="@drawable/ic_content"
                             android:ems="10"
                             android:inputType="textEmailAddress"
@@ -245,7 +245,7 @@
                     <EditText
                         android:id="@+id/edt_n_creditos"
                         android:layout_width="150dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:background="@drawable/ic_content"
                         android:ems="10"
                         android:inputType="textEmailAddress"

@@ -41,7 +41,7 @@ public class SingletonGestorUnidadesCurriculares implements Serializable {
         unidadesCurriculares= new ArrayList<>();
         mQueue = Volley.newRequestQueue(mContext);
 
-      String URL = "https://weunify.pt/API/web/disciplina";
+      String URL = "https://weunify.pt/API/web/v1/disciplina?access-token=m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
 
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(

@@ -1,10 +1,8 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Views;
 
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.IntentSender;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
@@ -12,7 +10,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -26,23 +23,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 
-import amsi.dei.estg.ipleiria.pt.recursoshumanos.Adaptadores.ListaHorarioAdaptador;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Adaptadores.ListaPagamentoAdaptador;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.GestorAlunosHelper;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Pagamento;
-import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorHorarios;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorPagamentos;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
 
@@ -87,10 +79,7 @@ public class PagamentosFragment extends Fragment {
 
             setHasOptionsMenu(false);
 
-           // db = new GestorAlunosHelper(getContext());
-//            listaatualizada = db.getAllPagamentosBD();
-
-            listaatualizada = SingletonGestorPagamentos.getInstance(getContext()).getPagamentosBD();
+            listaatualizada = SingletonGestorPagamentos.getInstance(getContext()).mostrarTodosPagamentosBD();
             Log.e("--->","" + listaatualizada);
 
             lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaatualizada));
@@ -98,12 +87,15 @@ public class PagamentosFragment extends Fragment {
 
         }else{
 
+            // # CASO FIQUE SEM LIGAÇÃO À INTERNET
 
             setHasOptionsMenu(true);
 
+            // # MOSTRA MENSAGEM DE ERRO
             PopUP_Ligacao_internet();
 
-            listaatualizada = SingletonGestorPagamentos.getInstance(getContext()).getPagamentosBD();
+            // # CARREGA OS PAGAMENTOS DA BASE DE DADOS LOCAL
+            listaatualizada = SingletonGestorPagamentos.getInstance(getContext()).mostrarTodosPagamentosBD();
             lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaatualizada));
             lvListaPagamentos.deferNotifyDataSetChanged();
 
@@ -118,7 +110,7 @@ public class PagamentosFragment extends Fragment {
                     @Override
                     public void run() {
 
-                        listaatualizada = SingletonGestorPagamentos.getInstance(getContext()).getPagamentosBD();
+                        //listaatualizada = SingletonGestorPagamentos.getInstance(getContext()).mostrarTodosPagamentosBD();
                         lvListaPagamentos.setAdapter(new ListaPagamentoAdaptador(getContext(), listaatualizada));
                         lvListaPagamentos.deferNotifyDataSetChanged();
                         swipeRefreshLayout.setRefreshing(false);
@@ -126,6 +118,7 @@ public class PagamentosFragment extends Fragment {
                 }, 2500);
             }
         });
+
         return rootView;
     }
 

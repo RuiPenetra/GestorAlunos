@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
     private static String BD_NOME = "gestoralunos.db";
 
     private static final String TABLE_PAGAMENTOS ="Pagamentos";
-    private static final String TABLE_HORARIOS ="horarios";
+    private static final String TABLE_HORARIOS ="Horarios";
 
     private static final String ID_PAGAMENTO="id";
     private static final String VALOR = "valor";
@@ -32,8 +33,7 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
     private static final String DIA_SEMANA = "dia_semana";
     private static final String ID_TURNO = "id_turno";
     private static final String ID_PROFESSOR = "id_professor";
-
-
+    private static final String HORARIO_ID="horario_id";
 
     private final SQLiteDatabase database;
 
@@ -49,8 +49,29 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        CriarTabelaPagamentos(db);
-        CriarTabelaHorarios(db);
+
+        db.execSQL(
+                "CREATE TABLE " + TABLE_HORARIOS + "(\n" +
+                        ID_HORARIO + "INTEGER NOT NULL PRIMARY KEY,\n" +
+                        UNIDADE_CURRICULAR + "TEXT NOT NULL,\n" +
+                        HORA_INICIO + "TEXT NOT NULL,\n" +
+                        HORA_FIM + "TEXT NOT NULL,\n" +
+                        SALA + "TEXT  NOT NULL,\n" +
+                        DIA_SEMANA + "TEXT  NOT NULL,\n" +
+                        ID_TURNO + "TEXT  NOT NULL,\n" +
+                        ID_PROFESSOR + "TEXT  NOT NULL\n" +
+                        ")"
+        );
+
+        db.execSQL(
+                "CREATE TABLE " + TABLE_PAGAMENTOS + "(\n" +
+                        ID_PAGAMENTO + "INTEGER PRIMARY KEY,\n" +
+                        VALOR + "TEXT NOT NULL,\n" +
+                        DATA_LIMITE + "TEXT NOT NULL,\n" +
+                        ESTADO + "TEXT NOT NULL,\n" +
+                        ID_ALUNO + "INTEGER  NOT NULL\n" +
+                        ")"
+        );
 
     }
 
@@ -63,43 +84,11 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
     }
 
 
-    // <----------------------------------------- MÉTODOS CRUD ----------------------------------------------->
+    // <----------------------------------------- MÉTODOS CRUD TABELA PAGAMENTOS----------------------------------------------->
 
-    // # Para Criar Tabela Pagamentos na Base de Dados local
-    public void CriarTabelaPagamentos(SQLiteDatabase db){
-
-        db.execSQL(
-                "CREATE TABLE " + TABLE_PAGAMENTOS + "(\n" +
-                        ID_PAGAMENTO + "INTEGER PRIMARY KEY,\n" +
-                        VALOR + "TEXT NOT NULL,\n" +
-                        DATA_LIMITE + "TEXT NOT NULL,\n" +
-                        ESTADO + "TEXT NOT NULL,\n" +
-                        ID_ALUNO + "INTEGER  NOT NULL\n" +
-                        ")"
-        );
-    }
-
-    // # Para Criar Tabela Horarios na Base de Dados local
-    public void CriarTabelaHorarios(SQLiteDatabase db){
-
-        db.execSQL(
-                "CREATE TABLE " + TABLE_HORARIOS + "(\n" +
-                     ID_HORARIO + "INTEGER NOT NULL PRIMARY KEY,\n" +
-                     UNIDADE_CURRICULAR + "TEXT NOT NULL,\n" +
-                     HORA_INICIO + "TEXT NOT NULL,\n" +
-                     HORA_FIM + "TEXT NOT NULL,\n" +
-                     SALA + "TEXT  NOT NULL,\n" +
-                     DIA_SEMANA + "TEXT  NOT NULL,\n" +
-                     ID_TURNO + "TEXT  NOT NULL,\n" +
-                     ID_PROFESSOR + "TEXT  NOT NULL\n" +
-                     ")"
-        );
-    }
 
     // # Para Adicionar na Base de Dados local
     public Pagamento adicionarPagamentoBD(Pagamento pagamento){
-
-        Log.i("-->","entrou adicionar");
 
         ContentValues values = new ContentValues();
         values.put(ID_PAGAMENTO, pagamento.getId());
@@ -112,7 +101,7 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
 
         // Se o pagamento foi inserido
         if(id > -1){
-            Log.i("-->","Inserido");
+            Log.i("-->","Pagamento Inserido");
             return pagamento;
         }
         return null;
@@ -129,7 +118,6 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()){
             do{
-                Log.i("-->","TENTA ADICIONAR" + cursor.getCount());
                 Pagamento auxPagamento = new Pagamento(
                         cursor.getInt(cursor.getColumnIndex(ID_PAGAMENTO)),
                         cursor.getFloat(cursor.getColumnIndex(VALOR)),
@@ -146,12 +134,6 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
             System.out.println("--> ERROOOOOOOO");
         }
 
-        Log.e("-->","SAIO");
-
-        if(pagamentos!=null){
-
-            Log.e("-->","BD ARRAY É VAZIO");
-        }
         return pagamentos;
     }
 
@@ -159,32 +141,39 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
     public void removerTodosPagamentosBD(){
 
         this.database.delete(TABLE_PAGAMENTOS, null, null);
+        Log.i("-->","Pagamentos Apagados");
 
     }
 
-    // # Para Adicionar na Base de Dados local
-    public Horario adicionarHorario(Horario horario){
 
-        Log.i("-->","entrou adicionar");
+    // <----------------------------------------- MÉTODOS CRUD TABELA HORARIOS----------------------------------------------->
+
+/*    // # Para Adicionar na Base de Dados local
+    public Horario adicionarHorarioBD(Horario horario){
 
         ContentValues values = new ContentValues();
-        values.put(ID_HORARIO, horario.getId());
-        values.put(UNIDADE_CURRICULAR, horario.getUnidade_curricular());
-        values.put(HORA_INICIO, horario.getHora_inicio());
-        values.put(HORA_FIM, horario.getHora_fim());
-        values.put(SALA, horario.getSala());
-        values.put(DIA_SEMANA, horario.getDia_semana());
-        values.put(ID_TURNO, horario.getId_turno());
-        values.put(ID_PROFESSOR, horario.getId_professor());
+        values.put(ID_HORARIO, 1);
+        values.put(UNIDADE_CURRICULAR, "22");
+        values.put(HORA_INICIO, "22");
+        values.put(HORA_FIM, "22");
+        values.put(SALA, "22");
+        values.put(DIA_SEMANA, 23);
+        values.put(ID_TURNO, 2);
+        values.put(ID_PROFESSOR, 2);
+        values.put(HORARIO_ID,2);
 
-        long id = this.database.insert(TABLE_PAGAMENTOS, null, values);
+        long id = this.database.insert(TABLE_HORARIOS, null, values);
 
-        // Se o horario foi inserido
+        // Se o pagamento foi inserido
         if(id > -1){
-            Log.i("-->","Inserido");
+            Log.i("-->","Horario Inserido");
             return horario;
+
+        }else{
+            Log.i("-->","Não inserio");
+            return null;
         }
-        return null;
+
     }
 
     // # Para Devolver todos os horarios da Base de Dados local
@@ -193,7 +182,7 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
         ArrayList<Horario> horarios = new ArrayList<>();
 
         Cursor cursor = this.database.query(TABLE_HORARIOS, new String[]{
-                        ID_HORARIO,UNIDADE_CURRICULAR,HORA_INICIO,HORA_FIM,SALA,DIA_SEMANA,ID_TURNO,ID_PROFESSOR},
+                        ID_HORARIO,UNIDADE_CURRICULAR,HORA_INICIO,HORA_FIM,SALA,DIA_SEMANA,ID_TURNO,ID_PROFESSOR,HORARIO_ID},
                 null, null, null, null, null);
 
         if (cursor.moveToFirst()){
@@ -207,7 +196,8 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
                         cursor.getString(cursor.getColumnIndex(SALA)),
                         cursor.getString(cursor.getColumnIndex(DIA_SEMANA)),
                         cursor.getInt(cursor.getColumnIndex(ID_TURNO)),
-                        cursor.getInt(cursor.getColumnIndex(ID_PROFESSOR))
+                        cursor.getInt(cursor.getColumnIndex(ID_PROFESSOR)),
+                        cursor.getInt(cursor.getColumnIndex(HORARIO_ID))
                 );
 
                 horarios.add(auxHorario);
@@ -218,20 +208,23 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
             System.out.println("--> ERROOOOOOOO");
         }
 
-        Log.e("-->","SAIO");
+        if(horarios != null){
 
-        if(horarios!=null){
-
+            return horarios;
+        }else{
             Log.e("-->","BD ARRAY É VAZIO");
+
+            return null;
         }
-        return horarios;
+
     }
 
     // # Para Remover todos os elementos da Base de Dados local
     public void removerTodosHorariosBD(){
 
         this.database.delete(TABLE_HORARIOS, null, null);
+        Log.i("-->","Apagados");
 
-    }
+    }*/
 
 }

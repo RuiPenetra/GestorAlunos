@@ -10,9 +10,12 @@
     <string name="bt_login">Login</string>
 
     //Login Activity
-    <string name="email">Email:</string>
-    <string name="password">Password:</string>
+
     <string name="bt_entrar">Entrar</string>
+
+    <string name="email">amsi.dei.estg.ipleiria.pt.recursoshumanos.email</string>
+    <string name="password">amsi.dei.estg.ipleiria.pt.recursoshumanos.password</string>
+    <string name="checkbox">amsi.dei.estg.ipleiria.pt.recursoshumanos.checkbox</string>
 
     //Start Activity
     <string name="calendario">Calendário</string>

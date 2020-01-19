@@ -30,11 +30,7 @@ public class SingletonGestorPagamentos implements Serializable {
     private static SingletonGestorPagamentos INSTANCE = null;
     private  RequestQueue mQueue;
     private Context mContext;
- /*   final String NEW_FORMAT = " hh:mm";
-    final String OLD_FORMAT = "hh:mm:ss";*/
-    private JsonArrayRequest jsonArrayRequest;
     private GestorAlunosHelper db;
-    Pagamento p;
 
     public static synchronized SingletonGestorPagamentos getInstance(Context context){
 
@@ -49,30 +45,15 @@ public class SingletonGestorPagamentos implements Serializable {
 
         mContext = context;
 
-      db = new GestorAlunosHelper(context);
+        db = new GestorAlunosHelper(context);
 
     }
 
-    public ArrayList<Pagamento> getPagamentosBD(){
-
-        Log.i("-->","entrou no LISTAR");
-
-        Log.i("-->","array devolvido é preenchido ");
+    public ArrayList<Pagamento> mostrarTodosPagamentosBD(){
 
          return db.mostrarTodosPagamentosBD();
 
     }
-
-    /*public Pagamento getPagamento(String idPagamento){
-
-        for (Pagamento p: pagamentos){
-            if(p.getId()== idPagamento){
-                return p;
-            }
-        }
-
-        return null;
-    }*/
 
     public void adicionarPagamentoBD(Pagamento pagamento){
 
@@ -80,7 +61,6 @@ public class SingletonGestorPagamentos implements Serializable {
 
         if(auxPagamento != null){
             pagamentos.add(auxPagamento);
-            System.out.println("--> ADICIONOU ");
         }
     }
 
@@ -109,23 +89,17 @@ public class SingletonGestorPagamentos implements Serializable {
                             for (int i=0; i < response.length(); i++){
                                 JSONObject posts = response.getJSONObject(i);
 
-
-                                Log.i("-->","ciclo for:");
-
                                 int id= posts.getInt("id");
-                                Log.i("-->","" + id);
+                                //Log.i("-->","" + id);
                                 float valor= Float.valueOf(posts.getString("valor"));
                                 String dataLimite =posts.getString("data_lim");
                                 int status =posts.getInt("status");
                                 int id_aluno = posts.getInt("id_aluno");
 
-
                                 Pagamento pagamento = new Pagamento(id,valor,dataLimite,status,id_aluno);
 
                                 adicionarPagamentoBD(pagamento);
 
-
-                                Log.i("-->","api");
                             }
 
                         } catch (JSONException e) {

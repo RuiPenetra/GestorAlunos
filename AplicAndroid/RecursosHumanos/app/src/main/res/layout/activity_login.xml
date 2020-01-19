@@ -13,7 +13,7 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,23 +47,23 @@
         <EditText
             android:id="@+id/edt_email"
             android:layout_width="match_parent"
-            android:layout_height="36dp"
+            android:layout_height="40dp"
             android:layout_below="@id/ident_user"
-            android:background="@drawable/bg_tv_login"
+            android:background="@drawable/ic_content"
             android:drawableLeft="@drawable/tv_email"
             android:drawablePadding="10dp"
-            android:layout_marginTop="30dp"
-            android:ems="40"
+            android:layout_marginTop="10dp"
+            android:ems="20"
             android:inputType="textEmailAddress"
             android:textColor="#000000" />
 
         <EditText
             android:id="@+id/edt_password"
             android:layout_width="match_parent"
-            android:layout_height="36dp"
+            android:layout_height="40dp"
             android:layout_below="@id/edt_email"
             android:layout_marginTop="20dp"
-            android:background="@drawable/bg_tv_login"
+            android:background="@drawable/ic_content"
             android:drawableLeft="@drawable/tv_password"
             android:drawablePadding="10dp"
             android:ems="8"
@@ -73,36 +73,83 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_email" />
 
-        <Button
-            android:id="@+id/btn_IrLogin"
+        <LinearLayout android:id="@+id/container_relembrar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/edt_password"
-            android:layout_marginTop="46dp"
-            android:background="@drawable/button_rectangle"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="right">
+
+                <CheckBox android:id="@+id/mcheckbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Relebrar dados Autenticação"
+                    android:textColor="#000000"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/container_btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/container_relembrar">
+
+            <Button
+                android:id="@+id/btn_IrLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_rectangle"
+                android:gravity="center"
+                android:onClick="onClickLogin"
+                android:text="@string/bt_login"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/container_btn_login"
             android:gravity="center"
-            android:onClick="onClickLogin"
-            android:text="@string/bt_login"
-            android:textColor="#ffffff"
-            android:textSize="20sp" />
+            android:layout_marginTop="50dp">
 
+            <ImageView
+                android:id="@+id/btn_retornar_inicio"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/oval"
+                android:onClick="onClickRetornar"
+                android:padding="19dp"
+                android:src="@drawable/ic_retornar" />
 
+        </LinearLayout>
     </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/btn_retornar_inicio"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_margin="10dp"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/oval"
-        android:onClick="onClickRetornar"
-        android:padding="19dp"
-        android:src="@drawable/ic_retornar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
