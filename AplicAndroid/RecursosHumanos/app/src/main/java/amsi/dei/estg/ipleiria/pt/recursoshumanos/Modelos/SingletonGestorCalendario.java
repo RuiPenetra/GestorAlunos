@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class SingletonGestorCalendario implements Serializable {
     private Context mcontext;
     private RequestQueue mQueue;
-    private ArrayList<Calendario> calendarios;
+    private Calendario calendario;
     private static SingletonGestorCalendario INSTANCE = null;
 
 
@@ -34,10 +34,14 @@ public class SingletonGestorCalendario implements Serializable {
         return INSTANCE;
     }
 
+    public Calendario retornaTeste(){
+        return calendario;
+    }
+
     private SingletonGestorCalendario(Context context){
         mcontext = context;
 
-        String URL = "https://weunify.pt/API/web/aula";
+        String URL = "https://weunify.pt/API/web/v1/aula?access-token=m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
 
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
@@ -51,10 +55,7 @@ public class SingletonGestorCalendario implements Serializable {
                     public void onResponse(JSONArray response) {
                         try{
 
-                            calendarios = new ArrayList<>(response.length());
-
-                            for (int i=0; i < response.length(); i++){
-                                JSONObject posts = response.getJSONObject(i);
+                                JSONObject posts = response.getJSONObject(0);
 
                                 int id = posts.getInt("id");
                                 String data = posts.getString("data");
@@ -65,10 +66,6 @@ public class SingletonGestorCalendario implements Serializable {
 
 
                                 Calendario calendario = new Calendario(id, data, sala, duracao, percentagem, id_disciplina);
-
-                                calendarios.add(calendario);
-
-                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
