@@ -54,6 +54,7 @@ public class CalendarioFragment extends Fragment {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 String date = dayOfMonth + "/" + month + 1 + "/" + year;
                 lista = SingletonGestorCalendario.getInstance(getContext()).retornaTeste();
+
                 tvdia.setText(lista.getData());
                 sala.setText(lista.getSala());
                 duracao.setText(lista.getSala());

@@ -55,7 +55,8 @@ public class SingletonGestorCalendario implements Serializable {
                     public void onResponse(JSONArray response) {
                         try{
 
-                                JSONObject posts = response.getJSONObject(0);
+                            for (int i=0; i < response.length(); i++){
+                                JSONObject posts = response.getJSONObject(i);
 
                                 int id = posts.getInt("id");
                                 String data = posts.getString("data");
@@ -65,7 +66,9 @@ public class SingletonGestorCalendario implements Serializable {
                                 Integer id_disciplina = posts.getInt("id_disciplina");
 
 
-                                Calendario calendario = new Calendario(id, data, sala, duracao, percentagem, id_disciplina);
+                                calendario = new Calendario(id, data, sala, duracao, percentagem, id_disciplina);
+
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
