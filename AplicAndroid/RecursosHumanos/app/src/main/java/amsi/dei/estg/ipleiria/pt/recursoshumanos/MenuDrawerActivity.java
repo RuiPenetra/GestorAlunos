@@ -28,6 +28,7 @@ import java.util.ArrayList;
 
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Horario;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Pagamento;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorDadosPessoais;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorHorarios;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorPagamentos;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.CalendarioFragment;
@@ -154,6 +155,7 @@ public class MenuDrawerActivity extends AppCompatActivity implements NavigationV
 
         // # BUSCAR E GUARDAR NO SINGLETON
         SingletonGestorHorarios.getInstance(getApplicationContext()).carregarDadosAPI();
+        SingletonGestorDadosPessoais.getInstance(getApplicationContext()).carregarDadosAPI();
 
     }
 

@@ -10,7 +10,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#DAE6FD"
+        android:background="#C0E0FF"
         android:fillViewport="true">
 
     <RelativeLayout

@@ -2,6 +2,7 @@ package amsi.dei.estg.ipleiria.pt.recursoshumanos.Views;
 
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -24,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -42,16 +44,11 @@ import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
 public class HorarioFragment extends Fragment {
 
     private Spinner spinnerDropDown;
-    private ArrayList<Horario> listaHorarios;
     private ListView lvListaHorario;
-    private ListaHorarioAdaptador adaptador;
-    private Horario r;
-    private ArrayList<Horario> listaTotal;
     private ArrayList<Horario> listaEscolhida;
     private ArrayAdapter adapter;
     private TextView tv_dados;
-    private Integer ValorRecebido;
-    private Boolean estado;
+    Dialog myDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,6 +61,7 @@ public class HorarioFragment extends Fragment {
         tv_dados= rootView.findViewById(R.id.tv_dados);
 
         tv_dados.setVisibility(View.INVISIBLE);
+        myDialog = new Dialog(getContext());
 
 
         /*Carregar array no spinner*/
@@ -78,34 +76,17 @@ public class HorarioFragment extends Fragment {
 
                 if(parent.getItemAtPosition(position).equals("Nenhum")){
 
-
                 }else{
 
-                    String itemSelecionado = parent.getItemAtPosition(position).toString();
+                    if(isNetworkAvaliable()){
 
-                    Toast.makeText(getContext(), "" + itemSelecionado, Toast.LENGTH_SHORT).show();
+                        setHasOptionsMenu(false);
 
-                    listaEscolhida = SingletonGestorHorarios.getInstance(getContext()).getHorarioSpinner(itemSelecionado);
+                        String itemSelecionado = parent.getItemAtPosition(position).toString();
 
-                    if(listaEscolhida != null){
+                        Toast.makeText(getContext(), "" + itemSelecionado, Toast.LENGTH_SHORT).show();
 
-                        lvListaHorario.setAdapter(new ListaHorarioAdaptador(getContext(), listaEscolhida));
-                        lvListaHorario.deferNotifyDataSetChanged();
-
-                    }else{
-
-                        Log.e("-->","Não existe horários");
-                    }
-                }
-/*                *//*Verificar Conecção a Internet*//*
-                if(isNetworkAvaliable()){
-
-                    //setHasOptionsMenu(false);
-
-                    if(selectedItemText != "Nenhum")
-                    {
-
-                        listaEscolhida = SingletonGestorHorarios.getInstance(getContext()).getHorarioSpinner(selectedItemText);
+                        listaEscolhida = SingletonGestorHorarios.getInstance(getContext()).getHorarioSpinner(itemSelecionado);
 
                         if(listaEscolhida != null){
 
@@ -117,19 +98,14 @@ public class HorarioFragment extends Fragment {
                             Log.e("-->","Não existe horários");
                         }
 
-                    }else {
+                    }else{
 
-                        tv_dados.setVisibility(View.VISIBLE);
+                        setHasOptionsMenu(true);
+                        PopUP_Ligacao_internet();
 
                     }
 
-                }else{
-
-                    setHasOptionsMenu(true);
-                    OpenDialog();
-                }*/
-
-
+                }
             }
 
             @Override
@@ -142,6 +118,7 @@ public class HorarioFragment extends Fragment {
 
     }
 
+    /*<!--ABRIR POPUP Ligacao_internet-->*/
     private boolean isNetworkAvaliable() {
 
         boolean estado;
@@ -154,18 +131,6 @@ public class HorarioFragment extends Fragment {
         estado = activeNetwork != null && activeNetwork.isConnected();
 
         return estado;
-    }
-
-
-    public void OpenDialog(){
-
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
-        View mView = getLayoutInflater().inflate(R.layout.erro_dialog,null);
-
-        mBuilder.setView(mView);
-        AlertDialog dialog = mBuilder.create();
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.show();
     }
 
     // create an action bar button
@@ -187,6 +152,39 @@ public class HorarioFragment extends Fragment {
         if (id == R.id.itemErro) {
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /*<!--ABRIR POPUP Ligacao_internet-->*/
+    public void PopUP_Ligacao_internet(){
+
+        ImageButton btnFechar;
+        Button btnTentarNovamente;
+
+        myDialog.setContentView(R.layout.popup_ligacao_internet);
+        btnFechar = myDialog.findViewById(R.id.imgBtn_fechar);
+        btnTentarNovamente = myDialog.findViewById(R.id.btn_tentar);
+
+        btnFechar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                myDialog.dismiss();
+
+            }
+        });
+
+        btnTentarNovamente.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                myDialog.dismiss();
+
+            }
+        });
+
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
+
     }
 
 }

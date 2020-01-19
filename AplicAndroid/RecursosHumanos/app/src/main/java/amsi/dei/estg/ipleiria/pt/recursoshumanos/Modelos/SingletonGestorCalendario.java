@@ -68,8 +68,6 @@ public class SingletonGestorCalendario implements Serializable {
 
                                 calendarios.add(calendario);
 
-                                //Log.i("-->","" + posts.getInt("id"));
-
                             }
 
                         } catch (JSONException e) {

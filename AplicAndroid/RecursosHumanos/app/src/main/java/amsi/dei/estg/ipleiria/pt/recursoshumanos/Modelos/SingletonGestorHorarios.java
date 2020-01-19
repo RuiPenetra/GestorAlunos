@@ -145,7 +145,11 @@ public class SingletonGestorHorarios implements Serializable {
 
         mQueue = Volley.newRequestQueue(mContext);
 
-        String URL = "https://weunify.pt/API/web/v1/aula?access-token=m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
+        String Dominio ="https://weunify.pt/API/web/v1";
+        String Action ="/aula";
+        String AcessToken = "m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
+
+        String URL = Dominio + Action + "?access-token=" + AcessToken;
 
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(

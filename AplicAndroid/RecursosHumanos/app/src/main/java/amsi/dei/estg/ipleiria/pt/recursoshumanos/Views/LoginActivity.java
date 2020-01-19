@@ -1,6 +1,7 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Views;
 
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
@@ -11,16 +12,22 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Base64;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.MenuDrawerActivity;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Pagamento;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.StartAppActivity;
 
@@ -34,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edt_password;
     private CheckBox mCheckBox;
     Dialog myDialog;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         mEditor = mPreferences.edit();
 
         checkSharedPreferences();
+
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,11 +101,11 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(isNetworkAvaliable()){
 
-                     String email = edt_email.getText().toString();
-                     String password = edt_password.getText().toString();
+                    String email = edt_email.getText().toString();
+                    String password = edt_password.getText().toString();
 
                     // Se o email não for válido
-                    if(!isEmailValido(email)){
+/*                    if(!isEmailValido(email)){
                         edt_email.setError(getString(R.string.email_invalido));
                         return;
                     }
@@ -105,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(!isPasswordValida(password)){
                         edt_password.setError(getString(R.string.password_invalida));
                         return;
-                    }
+                    }*/
 
                     // Intent que permite a passagem de parametros (email)
                     Intent abrir = new Intent(getApplicationContext(), MenuDrawerActivity.class);
@@ -146,41 +155,6 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
-   /* public void onClickLogin(View view){
-
-        if(isNetworkAvaliable()){
-
-            String email = edt_email.getText().toString();
-            String password = edt_password.getText().toString();
-
-            // Se o email não for válido
-            if(!isEmailValido(email)){
-                edt_email.setError(getString(R.string.email_invalido));
-                return;
-            }
-
-            // Se a password não for válida
-            if(!isPasswordValida(password)){
-                edt_password.setError(getString(R.string.password_invalida));
-                return;
-            }
-
-            // Intent que permite a passagem de parametros (email)
-            Intent abrir = new Intent(this, MenuDrawerActivity.class);
-           // abrir.putExtra(MainActivity.CHAVE_EMAIL, email);
-
-            // ABRE A ATIVIDADE MENUDRAWER
-            startActivity(abrir);
-
-            // FECHA ESTA ATIVIDADE
-            finish();
-
-        }else {
-
-            PopUP_Ligacao_internet();
-        }
-
-    }*/
 
     public void onClickRetornar(View view){
         Intent goBack= new Intent(this, StartAppActivity.class);
