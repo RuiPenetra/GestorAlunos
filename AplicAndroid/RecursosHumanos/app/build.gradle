@@ -42,7 +42,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.browser:browser:1.0.0'
     implementation 'androidx.media:media:1.1.0'
-    //implementation 'com.etebarian:meow-bottom-navigation:1.0.4' // Botão redondo navigation bar
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
@@ -53,7 +52,5 @@ dependencies {
     implementation 'com.applandeo:material-calendar-view:1.4.0'
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.github.bumptech.glide:glide:4.10.0'
-    //implementation 'com.github.florent37:expansionpanel:1.2.2' //Biblioteca para usar o widget Acordião https://github.com/florent37/ExpansionPanel
-    //implementation 'com.riyagayasen.android:easyaccordion:1.0.3'//Biblioteca para usar o widget Acordião https://github.com/riyagayasen/Android_accordion_view
 
 }

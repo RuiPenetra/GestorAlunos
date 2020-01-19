@@ -32,17 +32,15 @@ public class PerfilFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView= inflater.inflate(R.layout.fragment_perfil, container, false);
 
-        final Context context = rootView.getContext(); // Assign your rootView to context
-
-        cv_dados_autenticacao = (CardView) rootView.findViewById(R.id.cv_dados_autenticacao);
-        cv_dados_academicos= (CardView) rootView.findViewById(R.id.cv_dados_academicos);
-        cv_dados_pessoais = (CardView) rootView.findViewById(R.id.cv_dados_pessoais);
+        cv_dados_autenticacao = rootView.findViewById(R.id.cv_dados_autenticacao);
+        cv_dados_academicos= rootView.findViewById(R.id.cv_dados_academicos);
+        cv_dados_pessoais = rootView.findViewById(R.id.cv_dados_pessoais);
 
         cv_dados_autenticacao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Pass the context and the Activity class you need to open from the Fragment Class, to the Intent
-                Intent intent = new Intent(context, DadosAutenticacaoActivity.class);
+
+                Intent intent = new Intent(getContext(), DadosAutenticacaoActivity.class);
                 startActivity(intent);
             }
         });
@@ -51,8 +49,8 @@ public class PerfilFragment extends Fragment {
         cv_dados_pessoais.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Pass the context and the Activity class you need to open from the Fragment Class, to the Intent
-                Intent intent = new Intent(context, DadosPessoaisActivity.class);
+
+                Intent intent = new Intent(getContext(), DadosPessoaisActivity.class);
                 startActivity(intent);
             }
         });
@@ -61,8 +59,7 @@ public class PerfilFragment extends Fragment {
         cv_dados_academicos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Pass the context and the Activity class you need to open from the Fragment Class, to the Intent
-                Intent intent = new Intent(context, DadosAcademicosActivity.class);
+                Intent intent = new Intent(getContext(), DadosAcademicosActivity.class);
                 startActivity(intent);
             }
         });

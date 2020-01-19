@@ -75,7 +75,7 @@
     <string name="tv_nome">Nome :</string>
     <string name="tv_email">Email :</string>
     <string name="tv_genero">Género :</string>
-    <string name="tv_telemovel">Telemovel :</string>
+    <string name="tv_telemovel">Telemóvel :</string>
     <string name="tv_data_nascimento">Data Nascimento :</string>
 
 
@@ -109,6 +109,7 @@
     <string name="tv_hora_inicio">Entrada</string>
     <string name="tv_hora_fim">Saida</string>
     <string name="tv_professor">Professor</string>
+
     <string name="password_invalida">Password Invalida</string>
     <string name="email_invalido">Email Inválido</string>
 </resources>
