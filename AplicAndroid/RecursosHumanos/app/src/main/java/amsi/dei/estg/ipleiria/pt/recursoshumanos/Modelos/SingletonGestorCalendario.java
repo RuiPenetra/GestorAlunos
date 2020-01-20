@@ -10,27 +10,23 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class SingletonGestorCalendario implements Serializable {
-    private Context mContext;
+    private Context mcontext;
     private RequestQueue mQueue;
     private Calendario calendario;
     private static SingletonGestorCalendario INSTANCE = null;
 
 
-    public static synchronized SingletonGestorCalendario getInstance(Context context){
+    public static synchronized SingletonGestorCalendario getInstance(Context context, String date){
         if(INSTANCE == null){
-            INSTANCE = new SingletonGestorCalendario(context.getApplicationContext());
+            INSTANCE = new SingletonGestorCalendario(context.getApplicationContext(), date);
         }
 
         return INSTANCE;
@@ -40,25 +36,13 @@ public class SingletonGestorCalendario implements Serializable {
         return calendario;
     }
 
-    private SingletonGestorCalendario(Context context){
+    private SingletonGestorCalendario(Context context, String date){
+        mcontext = context;
 
-        mContext = context;
+        String URL = "https://weunify.pt/API/web/v1/alunoteste/?data="+date+"&access-token=m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
 
-    }
-
-    public void carregarDadosAPI(){
-
-        Log.i("-->","Entrar");
-
-        mQueue = Volley.newRequestQueue(mContext);
-
-        String Dominio ="https://weunify.pt/API/web/v1/";
-        String Action ="/alunoteste";
-        String AcessToken = "m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
-
-        String URL = Dominio + Action + "?access-token=" + AcessToken;
-
-        JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(
+        Log.i("-->", URL);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
                 null,
@@ -67,22 +51,22 @@ public class SingletonGestorCalendario implements Serializable {
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onResponse(JSONObject response) {
+                        //Log.i("-->", response.toString());
+                        try{
+                            for (int i=0; i < response.length(); i++){
 
-                            Log.i("-->","" + response);
-       /*                     JSONObject posts = response.getJSONObject(1);
+                                int id = response.getInt("id");
+                                String data = response.getString("data");
+                                String sala = response.getString("sala");
+                                String duracao = response.getString("duracao");
+                                Integer percentagem = response.getInt("percentagem");
+                                Integer id_disciplina = response.getInt("id_disciplina");
 
-                            int id = posts.getInt("id");
-                            Log.i("-->","" + id);
-                            String data = posts.getString("data");
-                            String sala = posts.getString("sala");
-                            String duracao = posts.getString("duracao");
-                            Integer percentagem = posts.getInt("percentagem");
-                            Integer id_disciplina = posts.getInt("id_disciplina");*/
-
-
-                         /*   calendario = new Calendario(id, data, sala, duracao, percentagem, id_disciplina);*/
-
-
+                                calendario = new Calendario(id, data, sala, duracao, percentagem, id_disciplina);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
