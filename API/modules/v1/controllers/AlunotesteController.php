@@ -70,7 +70,7 @@ class AlunotesteController extends ActiveController
         $model = Teste::find()->where(['between', 'data', $data1, $data2])->one();
 
         if ($model === null)
-            throw new \yii\web\NotFoundHttpException("O pagamento nao existe!");
+            throw new \yii\web\NotFoundHttpException("O teste nao existe!");
 
         return $model;
     }
