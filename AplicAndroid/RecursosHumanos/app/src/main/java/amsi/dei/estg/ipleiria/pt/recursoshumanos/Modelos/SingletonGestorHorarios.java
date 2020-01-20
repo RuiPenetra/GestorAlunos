@@ -1,8 +1,15 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -30,6 +37,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.CustomOnItemSelectedListener;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
 
 public class SingletonGestorHorarios implements Serializable {
 
@@ -37,7 +45,11 @@ public class SingletonGestorHorarios implements Serializable {
     private Context mContext;
     private ArrayList<Horario> horarios;
     final String NEW_FORMAT = " hh:mm";
+    private String TOKEN;
     final String OLD_FORMAT = "hh:mm:ss";
+    private SharedPreferences mPreferences;
+    private SharedPreferences.Editor mEditor;
+
     private static SingletonGestorHorarios INSTANCE = null;
 
 
@@ -51,6 +63,7 @@ public class SingletonGestorHorarios implements Serializable {
     }
 
     private SingletonGestorHorarios(Context context){
+
 
         mContext =context;
 
@@ -92,15 +105,18 @@ public class SingletonGestorHorarios implements Serializable {
     //<---Carregar dados da API--->
     public void carregarDadosAPI(){
 
+
+
         mQueue = Volley.newRequestQueue(mContext);
 
         String Dominio ="https://weunify.pt/API/web/v1";
         String Action ="/aula";
-        String AcessToken = "m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
-
-        String URL = Dominio + Action + "?access-token=" + AcessToken;
+        TOKEN = "m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
 
 
+        String URL = Dominio + Action + "?access-token=" + TOKEN;
+
+        Log.i("-->","" + URL);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
                 URL,

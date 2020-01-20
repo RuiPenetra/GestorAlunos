@@ -1,6 +1,8 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -12,6 +14,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.Serializable;
 
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
+
 
 public class SingletonGestorDadosPessoais implements Serializable {
 
@@ -19,6 +23,8 @@ public class SingletonGestorDadosPessoais implements Serializable {
     private Context mContext;
     private RequestQueue mQueue;
     private DadosPessoais dadosPessoais;
+    private SharedPreferences mPreferences;
+    private static String TOKEN;
 
     public static synchronized SingletonGestorDadosPessoais getInstance(Context context){
 
@@ -35,6 +41,8 @@ public class SingletonGestorDadosPessoais implements Serializable {
 
         mContext = context;
 
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
     }
 
     public DadosPessoais mostrarDadosPessoais(){
@@ -49,9 +57,9 @@ public class SingletonGestorDadosPessoais implements Serializable {
 
         String Dominio = "https://weunify.pt/API/web/v1";
         String Action = "/perfil";
-        String AcessToken = "m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
+        TOKEN = "m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
 
-        String URL = Dominio + Action + "?access-token=" + AcessToken;
+        String URL = Dominio + Action + "?access-token=" + TOKEN;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
 

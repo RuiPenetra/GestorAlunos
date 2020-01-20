@@ -24,8 +24,7 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
     private static final String ESTADO = "estado";
     private static final String ID_ALUNO = "id_aluno";
 
-
-    private static final String ID_HORARIO="id";
+/*    private static final String ID_HORARIO="id";
     private static final String UNIDADE_CURRICULAR = "unidade_curricular";
     private static final String HORA_INICIO = "hora_inicio";
     private static final String HORA_FIM ="hora_fim";
@@ -33,7 +32,7 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
     private static final String DIA_SEMANA = "dia_semana";
     private static final String ID_TURNO = "id_turno";
     private static final String ID_PROFESSOR = "id_professor";
-    private static final String HORARIO_ID="horario_id";
+    private static final String HORARIO_ID="horario_id";*/
 
     private final SQLiteDatabase database;
 
@@ -50,7 +49,7 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
 
-        db.execSQL(
+/*        db.execSQL(
                 "CREATE TABLE " + TABLE_HORARIOS + "(\n" +
                         ID_HORARIO + "INTEGER NOT NULL PRIMARY KEY,\n" +
                         UNIDADE_CURRICULAR + "TEXT NOT NULL,\n" +
@@ -61,7 +60,7 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
                         ID_TURNO + "TEXT  NOT NULL,\n" +
                         ID_PROFESSOR + "TEXT  NOT NULL\n" +
                         ")"
-        );
+        );*/
 
         db.execSQL(
                 "CREATE TABLE " + TABLE_PAGAMENTOS + "(\n" +
@@ -142,6 +141,23 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
 
         this.database.delete(TABLE_PAGAMENTOS, null, null);
         Log.i("-->","Pagamentos Apagados");
+
+    }
+
+    // # Para Remover todos os elementos da Base de Dados local
+    public boolean atualizarPagamentoBD(Pagamento pagamento){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ID_PAGAMENTO, pagamento.getId());
+        contentValues.put(VALOR, pagamento.getValor());
+        contentValues.put(DATA_LIMITE, pagamento.getDataLimite());
+        contentValues.put(ESTADO, pagamento.getStatus());
+        contentValues.put(ID_ALUNO, pagamento.getId_aluno());
+
+        db.update(TABLE_PAGAMENTOS, contentValues, "id = ?", new String[] {String.valueOf(pagamento.getId())});
+
+        return true;
 
     }
 

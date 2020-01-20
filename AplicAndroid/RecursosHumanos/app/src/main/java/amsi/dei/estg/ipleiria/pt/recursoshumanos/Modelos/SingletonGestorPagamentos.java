@@ -1,7 +1,9 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -24,6 +26,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
+
 public class SingletonGestorPagamentos implements Serializable {
 
     private ArrayList<Pagamento> pagamentos;
@@ -31,6 +35,8 @@ public class SingletonGestorPagamentos implements Serializable {
     private  RequestQueue mQueue;
     private Context mContext;
     private GestorAlunosHelper db;
+    private static String TOKEN;
+    private SharedPreferences mPreferences;
 
     public static synchronized SingletonGestorPagamentos getInstance(Context context){
 
@@ -45,6 +51,7 @@ public class SingletonGestorPagamentos implements Serializable {
 
         mContext = context;
 
+
         db = new GestorAlunosHelper(context);
 
     }
@@ -53,6 +60,18 @@ public class SingletonGestorPagamentos implements Serializable {
     public ArrayList<Pagamento> mostrarTodosPagamentosBD(){
 
          return db.mostrarTodosPagamentosBD();
+
+    }
+
+    //<---Esta função chama a função atualizar da BD--->
+    public void atualizarPagamentoBD(Pagamento pagamento){
+
+        boolean confirmar = db.atualizarPagamentoBD(pagamento);
+
+        if(confirmar == true){
+
+            Log.i("-->", "Atualizou pagamentos");
+        }
 
     }
 
@@ -79,10 +98,11 @@ public class SingletonGestorPagamentos implements Serializable {
 
         String Dominio ="https://weunify.pt/API/web/v1";
         String Action ="/pagamento";
-        String AcessToken = "m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
+        TOKEN = "m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
 
-        String URL = Dominio + Action + "?access-token=" + AcessToken;
+        String URL = Dominio + Action + "?access-token=" + TOKEN;
 
+        Log.i("-->","" + URL);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
                 URL,
@@ -116,7 +136,7 @@ public class SingletonGestorPagamentos implements Serializable {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(mContext, "Não é possivel carregar os dados da API", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(mContext, "Não é possivel carregar os dados da API", Toast.LENGTH_SHORT).show();
                     }
                 }
         );

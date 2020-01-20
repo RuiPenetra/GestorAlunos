@@ -1,7 +1,9 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
@@ -18,11 +20,14 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
+
 public class SingletonGestorCalendario implements Serializable {
     private Context mcontext;
     private RequestQueue mQueue;
     private Calendario calendario;
     private static SingletonGestorCalendario INSTANCE = null;
+    private static String TOKEN;
 
 
     public static synchronized SingletonGestorCalendario getInstance(Context context, String date){
@@ -38,13 +43,18 @@ public class SingletonGestorCalendario implements Serializable {
     }
 
     private SingletonGestorCalendario(Context context, String date){
+
+
         mcontext = context;
 
-        String URL = "https://weunify.pt/API/web/v1/alunoteste/?data="+date+"&access-token=m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
+        String DOMINIO ="https://weunify.pt/API/web/v1";
+        String ACTION = "/alunoteste/";
+        TOKEN = "m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
+
+        String URL = DOMINIO + ACTION + "?data=" + date + "&access-token=" + TOKEN;
 
         mQueue = Volley.newRequestQueue(mcontext);
 
-        //Log.i("-->", URL);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
@@ -54,7 +64,7 @@ public class SingletonGestorCalendario implements Serializable {
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onResponse(JSONObject response) {
-                        //Log.i("-->", response.toString());
+
                         try{
                             for (int i=0; i < response.length(); i++){
 

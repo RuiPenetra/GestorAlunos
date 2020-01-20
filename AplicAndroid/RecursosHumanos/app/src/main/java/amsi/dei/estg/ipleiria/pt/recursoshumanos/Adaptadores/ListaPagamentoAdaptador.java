@@ -24,6 +24,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Pagamento;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorPagamentos;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Views.PagamentosFragment;
 
@@ -113,31 +114,42 @@ public class ListaPagamentoAdaptador extends BaseAdapter {
 
             cb_status.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    // update your model (or other business logic) based on isChecked
 
-                    if (cb_status.isChecked()) {
+                    if(cb_status.isChecked()){
 
+                        pagamento.setStatus(1);
+                        SingletonGestorPagamentos.getInstance(context).atualizarPagamentoBD(pagamento);
 
-                        validarData(pagamento.getDataLimite());
-                    } else {
+                        imgV_status.setImageResource(R.drawable.img_pago);
 
-                       validarData(pagamento.getDataLimite());
+                       // validarData(pagamento.getDataLimite());
+
+                    } else{
+
+                        pagamento.setStatus(0);
+                        SingletonGestorPagamentos.getInstance(context).atualizarPagamentoBD(pagamento);
+
+                        //validarData(pagamento.getDataLimite());
+                        imgV_status.setImageResource(R.drawable.img_divida);
+
                     }
 
                 }
             });
 
+
             dataLimite.setText(pagamento.getDataLimite());
             valor.setText(String.valueOf(pagamento.getValor()));
 
-            if (pagamento.getStatus()==1) {
+            if (pagamento.getStatus()!=0 ) {
 
-                //cb_status.setChecked(true);
+                cb_status.setChecked(true);
                 imgV_status.setImageResource(R.drawable.img_pago);
 
             } else {
 
                 imgV_status.setImageResource(R.drawable.img_divida);
+
             }
 
         }
@@ -159,23 +171,25 @@ public class ListaPagamentoAdaptador extends BaseAdapter {
         public void validarData(String dataRecb){
 
             SimpleDateFormat formataData = new SimpleDateFormat("dd-MM-yyyy");
-            Date data = Calendar.getInstance().getTime();
+            Date data_atual = Calendar.getInstance().getTime();
 
             Date dataFormt = formatFormatar(dataRecb);
 
-            //# SE FOR MAIOR ,A "Data" É DEPOIS DA "dataFormt"
-            if (data.compareTo(dataFormt) > 0) {
+            Log.i("-->","a" + data_atual);
+            Log.i("-->","b" + dataFormt);
 
-                imgV_status.setImageResource(R.drawable.img_divida);
+            //# SE FOR MAIOR ,A "data_atual" É DEPOIS DA "dataFormt"
+            if (data_atual.compareTo(dataFormt) > 0) {
 
-                //# SE FOR MENOR ,A "Data" É ANTES DA "dataFormt"
-            } else if (data.compareTo(dataFormt) < 0) {
-
+                //Por pagar
                 imgV_status.setImageResource(R.drawable.img_por_pagar);
 
-            } else {
+                //# SE FOR MENOR ,A "Data" É ANTES DA "dataFormt"
+            } else{
 
-                imgV_status.setImageResource(R.drawable.img_pago);
+                //Divida
+                imgV_status.setImageResource(R.drawable.img_divida);
+
             }
 
         }

@@ -6,16 +6,17 @@
     <string name="navigation_drawer_open">Abrir</string>
     <string name="navigation_drawer_close">Fechar</string>
 
+    // # Shared Preferences
+    <string name="SH_USERNAME">amsi.dei.estg.ipleiria.pt.recursoshumanos.username</string>
+    <string name="SH_PASSWORD">amsi.dei.estg.ipleiria.pt.recursoshumanos.password</string>
+    <string name="SH_TOKEN">amsi.dei.estg.ipleiria.pt.recursoshumanos.token</string>
+
     //Start APP Activity
     <string name="bt_login">Login</string>
 
     //Login Activity
 
     <string name="bt_entrar">Entrar</string>
-
-    <string name="email">amsi.dei.estg.ipleiria.pt.recursoshumanos.email</string>
-    <string name="password">amsi.dei.estg.ipleiria.pt.recursoshumanos.password</string>
-    <string name="token">amsi.dei.estg.ipleiria.pt.recursoshumanos.token</string>
 
     //Start Activity
     <string name="calendario">Calendário</string>
@@ -108,8 +109,10 @@
     <string name="tv_hora_fim">Saida</string>
     <string name="tv_professor">Professor</string>
 
+
+    <string name="username_invalido">Username Inválido</string>
     <string name="password_invalida">Password Invalida</string>
-    <string name="email_invalido">Email Inválido</string>
     <string name="relembrar_dados_autentica_o">Relembrar</string>
     <string name="tv_ano">Ano</string>
+    <string name="edt_username">Username</string>
 </resources>

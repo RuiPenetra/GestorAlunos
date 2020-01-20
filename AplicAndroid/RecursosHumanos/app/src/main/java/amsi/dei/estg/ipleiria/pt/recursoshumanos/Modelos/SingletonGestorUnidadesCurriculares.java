@@ -1,6 +1,8 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -17,14 +19,16 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
+
 public class SingletonGestorUnidadesCurriculares implements Serializable {
 
     private ArrayList<UnidadesCurriculares> unidadesCurriculares;
     private static SingletonGestorUnidadesCurriculares INSTANCE = null;
     private  RequestQueue mQueue;
     private Context mContext;
-    private JsonArrayRequest jsonArrayRequest;
-    UnidadesCurriculares uc;
+    private static String TOKEN;
+    private SharedPreferences mPreferences;
 
     public static synchronized SingletonGestorUnidadesCurriculares getInstance(Context context){
 
@@ -39,13 +43,61 @@ public class SingletonGestorUnidadesCurriculares implements Serializable {
 
         mContext=context;
         unidadesCurriculares= new ArrayList<>();
+
+
+    }
+
+    public ArrayList<UnidadesCurriculares> getUnidadesCurriculares(){
+
+        return unidadesCurriculares;
+    }
+
+    public ArrayList<UnidadesCurriculares> getAtualizar(){
+
+        return unidadesCurriculares;
+    }
+
+    public UnidadesCurriculares getUnidadeCurricular(int idUnidadeCurricular){
+
+        for (UnidadesCurriculares uc: unidadesCurriculares){
+            if(uc.getId()== idUnidadeCurricular){
+                return uc;
+            }
+        }
+
+        return null;
+    }
+
+    public ArrayList<UnidadesCurriculares> getUnidadesCurricularesSpinner(String semestre){
+
+        ArrayList<UnidadesCurriculares> resultado= new ArrayList<>();
+
+        for (UnidadesCurriculares u: unidadesCurriculares){
+            if(u.getSemestre().equals(semestre)){
+
+                resultado.add(u);
+
+            }
+        }
+
+        if(resultado != null){
+
+            return resultado;
+        }else {
+
+            return null;
+        }
+    }
+
+    public void carregarDadosAPI()
+    {
         mQueue = Volley.newRequestQueue(mContext);
 
         String Dominio ="https://weunify.pt/API/web/v1";
         String Action ="/disciplina";
-        String AcessToken = "m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
+        TOKEN = "m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
 
-        String URL = Dominio + Action + "?access-token=" + AcessToken;
+        String URL = Dominio + Action + "?access-token=" + TOKEN;
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
@@ -92,49 +144,6 @@ public class SingletonGestorUnidadesCurriculares implements Serializable {
         mQueue.add(jsonArrayRequest);
 
     }
-
-    public ArrayList<UnidadesCurriculares> getUnidadesCurriculares(){
-
-        return unidadesCurriculares;
-    }
-
-    public ArrayList<UnidadesCurriculares> getAtualizar(){
-
-        return unidadesCurriculares;
-    }
-
-    public UnidadesCurriculares getUnidadeCurricular(int idUnidadeCurricular){
-
-        for (UnidadesCurriculares uc: unidadesCurriculares){
-            if(uc.getId()== idUnidadeCurricular){
-                return uc;
-            }
-        }
-
-        return null;
-    }
-
-    public ArrayList<UnidadesCurriculares> getUnidadesCurricularesSpinner(String semestre){
-
-        ArrayList<UnidadesCurriculares> resultado= new ArrayList<>();
-
-        for (UnidadesCurriculares u: unidadesCurriculares){
-            if(u.getSemestre().equals(semestre)){
-
-                resultado.add(u);
-
-            }
-        }
-
-        if(resultado != null){
-
-            return resultado;
-        }else {
-
-            return null;
-        }
-    }
-
 
 
 
