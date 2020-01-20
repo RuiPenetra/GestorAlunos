@@ -59,6 +59,11 @@ public class CalendarioFragment extends Fragment {
                     sala.setText(lista.getSala());
                     duracao.setText(lista.getSala());
                 }
+                else{
+                    tvdia.setText("");
+                    sala.setText("");
+                    duracao.setText("");
+                }
             }
         });
 
