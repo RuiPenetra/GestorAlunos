@@ -52,6 +52,10 @@ public class CalendarioFragment extends Fragment {
         calView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                tvdia.setText("");
+                sala.setText("");
+                duracao.setText("");
+                
                 String date = dayOfMonth + "-" + month + 1 + "-" + year;
                 lista = SingletonGestorCalendario.getInstance(getContext(), date).retornaTeste();
                 if (lista != null) {
