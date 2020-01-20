@@ -72,64 +72,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_email" />
 
-        <LinearLayout android:id="@+id/container_relembrar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/edt_password"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="6"
-                android:orientation="vertical"
-                android:gravity="right">
-
-                <CheckBox android:id="@+id/mcheckbox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/relembrar_dados_autentica_o"
-                    android:textColor="#000000"
-                    android:textAlignment="center"
-                    android:gravity="center"
-                    android:textStyle="bold"/>
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout android:id="@+id/container_btn_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/container_relembrar">
-
-            <Button
-                android:id="@+id/btn_IrLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/button_rectangle"
-                android:gravity="center"
-                android:text="@string/bt_login"
-                android:textColor="#ffffff"
-                android:textSize="20sp" />
-        </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -141,17 +83,42 @@
             android:layout_marginEnd="62dp"
             android:gravity="center">
 
-            <ImageView
-                android:id="@+id/btn_retornar_inicio"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="@drawable/oval"
-                android:onClick="onClickRetornar"
-                android:padding="19dp"
-                android:src="@drawable/ic_retornar" />
-
         </LinearLayout>
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/container_btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        tools:layout_editor_absoluteX="58dp">
+
+        <Button
+            android:id="@+id/btn_IrLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_rectangle"
+            android:gravity="center"
+            android:text="@string/bt_login"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/btn_retornar_inicio"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/oval"
+        android:onClick="onClickRetornar"
+        android:padding="19dp"
+        android:src="@drawable/ic_retornar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container_btn_login"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="170dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

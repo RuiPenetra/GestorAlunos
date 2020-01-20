@@ -15,7 +15,7 @@
 
     <string name="email">amsi.dei.estg.ipleiria.pt.recursoshumanos.email</string>
     <string name="password">amsi.dei.estg.ipleiria.pt.recursoshumanos.password</string>
-    <string name="checkbox">amsi.dei.estg.ipleiria.pt.recursoshumanos.checkbox</string>
+    <string name="token">amsi.dei.estg.ipleiria.pt.recursoshumanos.token</string>
 
     //Start Activity
     <string name="calendario">Calendário</string>

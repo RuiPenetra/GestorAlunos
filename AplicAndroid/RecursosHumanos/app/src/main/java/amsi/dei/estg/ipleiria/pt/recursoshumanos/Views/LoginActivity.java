@@ -43,8 +43,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.MenuDrawerActivity;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Calendario;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.DadosPessoais;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Pagamento;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.User;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.StartAppActivity;
 
@@ -58,9 +60,11 @@ public class LoginActivity extends AppCompatActivity {
     private Button btn_login;
     private EditText edt_email;
     private EditText edt_password;
-    private CheckBox mCheckBox;
     Dialog myDialog;
     Context context;
+    RequestQueue mQueue;
+    User user;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,67 +77,71 @@ public class LoginActivity extends AppCompatActivity {
 
         edt_password = findViewById(R.id.edt_password);
 
-        mCheckBox = findViewById(R.id.mcheckbox);
-
         myDialog = new Dialog(this);
 
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         mEditor = mPreferences.edit();
 
-        checkSharedPreferences();
-
-
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (mCheckBox.isChecked()) {
+                if (token != null){
+                    // Intent que permite a passagem de parametros (email)
+                    Intent abrir = new Intent(getApplicationContext(), MenuDrawerActivity.class);
+                    // abrir.putExtra(MainActivity.CHAVE_EMAIL, email);
 
-                    //defenir o estado da checkbox quando a atividade começar
-                    mEditor.putString(getString(R.string.checkbox), "True");
-                    mEditor.commit();
+                    // ABRE A ATIVIDADE MENUDRAWER
+                    startActivity(abrir);
 
-                    //guardar o email
-                    String email = edt_email.getText().toString();
-                    mEditor.putString(getString(R.string.email), email);
-                    mEditor.commit();
-
-                    //guardar a password
-                    String password = edt_password.getText().toString();
-                    mEditor.putString(getString(R.string.password), password);
-                    mEditor.commit();
-
-
-                } else {
-
-                    mEditor.putString(getString(R.string.checkbox), "False");
-                    mEditor.commit();
-
-                    mEditor.putString(getString(R.string.email), "");
-                    mEditor.commit();
-
-                    mEditor.putString(getString(R.string.password), "");
-                    mEditor.commit();
-
+                    // FECHA ESTA ATIVIDADE
+                    finish();
                 }
 
                 if (isNetworkAvaliable()) {
 
-                    String email = edt_email.getText().toString();
-                    String password = edt_password.getText().toString();
+                    String username = edt_email.getText().toString();
+                    String passsword = edt_password.getText().toString();
+                    String URL = "https://weunify.pt/API/web/v1/alunoteste/?username="+username+"&password="+passsword+"&access-token=m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
+                    mQueue = Volley.newRequestQueue(context);
 
-                    // Se o email não for válido
-/*                    if(!isEmailValido(email)){
-                        edt_email.setError(getString(R.string.email_invalido));
-                        return;
-                    }
+                    //Log.i("-->", URL);
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                            Request.Method.GET,
+                            URL,
+                            null,
+                            new Response.Listener<JSONObject>() {
 
-                    // Se a password não for válida
-                    if(!isPasswordValida(password)){
-                        edt_password.setError(getString(R.string.password_invalida));
-                        return;
-                    }*/
+                                @RequiresApi(api = Build.VERSION_CODES.O)
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    //Log.i("-->", response.toString());
+                                    try{
+                                        for (int i=0; i < response.length(); i++){
+
+                                            int id = response.getInt("id");
+                                            String username = response.getString("username");
+                                            String auth_key = response.getString("auth_key");
+
+                                            mEditor.putString(auth_key, token);
+                                            mEditor.commit();
+
+                                            user = new User(id, username, auth_key);
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Log.i("-->","erro");
+                                }
+                            }
+                    );
+                    mQueue.add(jsonObjectRequest);
 
                     // Intent que permite a passagem de parametros (email)
                     Intent abrir = new Intent(getApplicationContext(), MenuDrawerActivity.class);
@@ -155,25 +163,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void checkSharedPreferences() {
-
-        String checkbox = mPreferences.getString(getString(R.string.checkbox), "False");
-        String email = mPreferences.getString(getString(R.string.email), "");
-        String password = mPreferences.getString(getString(R.string.password), "");
-
-        edt_email.setText(email);
-        edt_password.setText(password);
-
-        if (checkbox.equals("True")) {
-
-            mCheckBox.setChecked(true);
-        } else {
-
-            mCheckBox.setChecked(false);
-
-        }
-
-    }
 
     public void onClickRetornar(View view) {
         Intent goBack = new Intent(this, StartAppActivity.class);
