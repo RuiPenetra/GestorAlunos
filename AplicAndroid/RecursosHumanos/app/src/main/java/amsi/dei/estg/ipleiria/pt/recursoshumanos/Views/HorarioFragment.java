@@ -84,7 +84,7 @@ public class HorarioFragment extends Fragment {
 
                         String itemSelecionado = parent.getItemAtPosition(position).toString();
 
-                        Toast.makeText(getContext(), "" + itemSelecionado, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), "" + itemSelecionado, Toast.LENGTH_SHORT).show();
 
                         listaEscolhida = SingletonGestorHorarios.getInstance(getContext()).getHorarioSpinner(itemSelecionado);
 

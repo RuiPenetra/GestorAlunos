@@ -3,6 +3,7 @@ package amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos;
 import android.content.Context;
 import android.os.Build;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -38,7 +39,7 @@ public class SingletonGestorHorarios implements Serializable {
     final String NEW_FORMAT = " hh:mm";
     final String OLD_FORMAT = "hh:mm:ss";
     private static SingletonGestorHorarios INSTANCE = null;
-    private GestorAlunosHelper db;
+
 
     public static synchronized SingletonGestorHorarios getInstance(Context context){
 
@@ -53,10 +54,9 @@ public class SingletonGestorHorarios implements Serializable {
 
         mContext =context;
 
-        db = new GestorAlunosHelper(context);
-
     }
 
+    //<---Procura um determinado horário pelo id--->
     public Horario getHorario(int idHorario){
 
         for (Horario h: horarios){
@@ -68,38 +68,9 @@ public class SingletonGestorHorarios implements Serializable {
         return null;
     }
 
-/*    // # ADICIONAR HORARIO A BASE DE DADOS LOCAL
-    public void adicionarHorarioBD(Horario horario){
-
-
-       // Horario auxHorario = db.adicionarHorarioBD(horario);
-
-
-        if(auxHorario != null){
-
-            horarios.add(auxHorario);
-
-            System.out.println("--> Horario Inserido");
-
-        }
-    }
-
-    // # MOSTRAR TODOS HORARIOS DA BASE DE DADOS LOCAL
-    public ArrayList<Horario> mostrarHorariosBD(){
-
-        return db.mostrarTodosHorariosBD();
-
-    }
-
-    // # REMOVER TODOS HORARIOS DA BASE DE DADOS LOCAL
-    public void removerHorariosBD(){
-
-        db.removerTodosHorariosBD();
-    }*/
-
+    //<---Devolve o horário do dia da semana selecionado--->
     public ArrayList<Horario> getHorarioSpinner(String dia_semana){
 
-        Log.i("-->","Entrou no mostrar");
         ArrayList<Horario> resultado= new ArrayList<>();
 
         if(horarios != null){
@@ -107,40 +78,18 @@ public class SingletonGestorHorarios implements Serializable {
             for (Horario h: horarios){
                 if(h.getDia_semana().equals(dia_semana)){
 
-                    Log.i("--->","" + h.getId());
                     resultado.add(h);
-
                 }
             }
-
             return resultado;
 
         }else{
 
             return null;
         }
-
     }
 
-    public String formatTime(String time){
-
-        String formatDate;
-        SimpleDateFormat sdf = new SimpleDateFormat(OLD_FORMAT);
-        Date d = null;
-        try {
-            d = sdf.parse(time);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        sdf.applyPattern(NEW_FORMAT);
-        formatDate=sdf.format(d);
-
-        return formatDate;
-
-    }
-
-
-
+    //<---Carregar dados da API--->
     public void carregarDadosAPI(){
 
         mQueue = Volley.newRequestQueue(mContext);
@@ -168,7 +117,6 @@ public class SingletonGestorHorarios implements Serializable {
                             for (int i=0; i < response.length(); i++){
                                 JSONObject posts = response.getJSONObject(i);
 
-                                Log.i("-->","Entrou no carregar dados api Horario");
                                 int id=posts.getInt("id");
 
                                 String unidade_curricular = posts.getString("nome");
@@ -186,9 +134,6 @@ public class SingletonGestorHorarios implements Serializable {
                                 Horario horario = new Horario(id,unidade_curricular, hora_inicio,hora_fim,sala,dia_semana,id_turno,id_professor,horario_id);
 
                                 horarios.add(horario);
-                                //adicionarHorarioBD(horario);
-
-                                //Log.i("-->","" + posts.getInt("id"));
 
                             }
 
@@ -200,10 +145,28 @@ public class SingletonGestorHorarios implements Serializable {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.i("-->","erro");
+
+                        Toast.makeText(mContext, "Não é possivel carregar os dados da API", Toast.LENGTH_SHORT).show();
                     }
                 }
         );
         mQueue.add(jsonArrayRequest);
+    }
+
+    public String formatTime(String time){
+
+        String formatDate;
+        SimpleDateFormat sdf = new SimpleDateFormat(OLD_FORMAT);
+        Date d = null;
+        try {
+            d = sdf.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        sdf.applyPattern(NEW_FORMAT);
+        formatDate=sdf.format(d);
+
+        return formatDate;
+
     }
 }

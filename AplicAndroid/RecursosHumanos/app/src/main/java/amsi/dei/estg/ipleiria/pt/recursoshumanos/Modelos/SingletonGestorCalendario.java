@@ -11,6 +11,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,7 +22,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class SingletonGestorCalendario implements Serializable {
-    private Context mcontext;
+    private Context mContext;
     private RequestQueue mQueue;
     private Calendario calendario;
     private static SingletonGestorCalendario INSTANCE = null;
@@ -39,37 +41,48 @@ public class SingletonGestorCalendario implements Serializable {
     }
 
     private SingletonGestorCalendario(Context context){
-        mcontext = context;
 
-        String URL = "https://weunify.pt/API/web/v1/aula?access-token=m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
+        mContext = context;
 
+    }
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+    public void carregarDadosAPI(){
+
+        Log.i("-->","Entrar");
+
+        mQueue = Volley.newRequestQueue(mContext);
+
+        String Dominio ="https://weunify.pt/API/web/v1/";
+        String Action ="/alunoteste";
+        String AcessToken = "m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
+
+        String URL = Dominio + Action + "?access-token=" + AcessToken;
+
+        JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
                 null,
-                new Response.Listener<JSONArray>() {
+                new Response.Listener<JSONObject>() {
 
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
-                    public void onResponse(JSONArray response) {
-                        try{
+                    public void onResponse(JSONObject response) {
 
-                                JSONObject posts = response.getJSONObject(0);
+                            Log.i("-->","" + response);
+       /*                     JSONObject posts = response.getJSONObject(1);
 
-                                int id = posts.getInt("id");
-                                String data = posts.getString("data");
-                                String sala = posts.getString("sala");
-                                String duracao = posts.getString("duracao");
-                                Integer percentagem = posts.getInt("percentagem");
-                                Integer id_disciplina = posts.getInt("id_disciplina");
+                            int id = posts.getInt("id");
+                            Log.i("-->","" + id);
+                            String data = posts.getString("data");
+                            String sala = posts.getString("sala");
+                            String duracao = posts.getString("duracao");
+                            Integer percentagem = posts.getInt("percentagem");
+                            Integer id_disciplina = posts.getInt("id_disciplina");*/
 
 
-                                Calendario calendario = new Calendario(id, data, sala, duracao, percentagem, id_disciplina);
+                         /*   calendario = new Calendario(id, data, sala, duracao, percentagem, id_disciplina);*/
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -79,7 +92,7 @@ public class SingletonGestorCalendario implements Serializable {
                     }
                 }
         );
-        mQueue.add(jsonArrayRequest);
+        mQueue.add(jsonObjectRequest);
     }
 
 }

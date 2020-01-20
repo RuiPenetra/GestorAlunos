@@ -49,12 +49,14 @@ public class SingletonGestorPagamentos implements Serializable {
 
     }
 
+    //<---Esta função recebe todos os pagamentos da BD --->
     public ArrayList<Pagamento> mostrarTodosPagamentosBD(){
 
          return db.mostrarTodosPagamentosBD();
 
     }
 
+    //<---Esta função chama a função guardar da BD--->
     public void adicionarPagamentoBD(Pagamento pagamento){
 
         Pagamento auxPagamento = db.adicionarPagamentoBD(pagamento);
@@ -64,11 +66,13 @@ public class SingletonGestorPagamentos implements Serializable {
         }
     }
 
+    //<---Esta função chama a função remover todos os dados da tabela pagamentos da BD--->
     public void removerPagamentosBD(){
 
         db.removerTodosPagamentosBD();
     }
 
+    //<---Carregar dados da API --->
     public void carregarDadosAPI(){
 
         mQueue = Volley.newRequestQueue(mContext);
@@ -93,7 +97,6 @@ public class SingletonGestorPagamentos implements Serializable {
                                 JSONObject posts = response.getJSONObject(i);
 
                                 int id= posts.getInt("id");
-                                //Log.i("-->","" + id);
                                 float valor= Float.valueOf(posts.getString("valor"));
                                 String dataLimite =posts.getString("data_lim");
                                 int status =posts.getInt("status");
@@ -113,7 +116,7 @@ public class SingletonGestorPagamentos implements Serializable {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.i("-->","erro");
+                        Toast.makeText(mContext, "Não é possivel carregar os dados da API", Toast.LENGTH_SHORT).show();
                     }
                 }
         );

@@ -64,19 +64,17 @@
     <string name="tv_conf_nova_password">Conf nova password:</string>
 
     //Activity Dados Academicos
-    <string name="tv_n_estudante">Nº : </string>
-    <string name="tv_curso">Curso : </string>
-    <string name="tv_coordenador">Coordenador : </string>
-    <string name="tv_n_unidades_curriculares">Nº Unidades Curriculares : </string>
-    <string name="tv_creditos">Nº Créditos : </string>
-    <string name="tv_ano_lectivo">Ano Lectivo : </string>
+    <string name="tv_n_estudante">Nº</string>
+    <string name="tv_curso">Curso</string>
+    <string name="tv_coordenador">Coordenador</string>
+    <string name="tv_ano_lectivo">Ano Lectivo</string>
 
     //Activity Dados Pessoais
-    <string name="tv_nome">Nome :</string>
-    <string name="tv_email">Email :</string>
-    <string name="tv_genero">Género :</string>
-    <string name="tv_telemovel">Telemóvel :</string>
-    <string name="tv_data_nascimento">Data Nascimento :</string>
+    <string name="tv_nome">Nome</string>
+    <string name="tv_email">Email</string>
+    <string name="tv_genero">Género</string>
+    <string name="tv_telemovel">Telemóvel</string>
+    <string name="tv_data_nascimento">Data Nascimento</string>
 
 
     //Fragment Perfil
@@ -112,4 +110,6 @@
 
     <string name="password_invalida">Password Invalida</string>
     <string name="email_invalido">Email Inválido</string>
+    <string name="relembrar_dados_autentica_o">Relembrar</string>
+    <string name="tv_ano">Ano</string>
 </resources>

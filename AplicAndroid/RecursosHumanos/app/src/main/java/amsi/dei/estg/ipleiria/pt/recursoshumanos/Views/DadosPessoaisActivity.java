@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.DadosPessoais;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorCalendario;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.SingletonGestorDadosPessoais;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
 
@@ -30,11 +31,22 @@ public class DadosPessoaisActivity extends AppCompatActivity {
         edt_dataNascimento = findViewById(R.id.edt_data_nascimento);
 
 
+        SingletonGestorDadosPessoais.getInstance(getApplicationContext()).carregarDadosAPI();
         dadosPessoais = SingletonGestorDadosPessoais.getInstance(this).mostrarDadosPessoais();
 
         edt_nome.setText(dadosPessoais.getNome());
         edt_email.setText(dadosPessoais.getEmail());
-        edt_genero.setText(dadosPessoais.getGenero());
+
+        if(dadosPessoais.getGenero() == "m"){
+
+            edt_genero.setText("Masculino");
+
+        }else{
+
+            edt_genero.setText("Feminino");
+
+        }
+
         edt_telemovel.setText(dadosPessoais.getTelemovel());
         edt_dataNascimento.setText(dadosPessoais.getData_nascimento());
 

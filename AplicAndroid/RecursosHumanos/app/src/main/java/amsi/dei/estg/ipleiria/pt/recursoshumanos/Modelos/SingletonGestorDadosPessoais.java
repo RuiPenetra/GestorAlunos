@@ -1,26 +1,17 @@
 package amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos;
 
 import android.content.Context;
-import android.os.Build;
 import android.util.Log;
-import android.widget.Toast;
-
-import androidx.annotation.RequiresApi;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.Serializable;
-import java.util.ArrayList;
+
 
 public class SingletonGestorDadosPessoais implements Serializable {
 
@@ -54,8 +45,7 @@ public class SingletonGestorDadosPessoais implements Serializable {
 
     public void carregarDadosAPI(){
 
-
-        RequestQueue mQueue = Volley.newRequestQueue(mContext);
+        mQueue = Volley.newRequestQueue(mContext);
 
         String Dominio = "https://weunify.pt/API/web/v1";
         String Action = "/perfil";
@@ -73,10 +63,25 @@ public class SingletonGestorDadosPessoais implements Serializable {
                     @Override
                     public void onResponse(JSONObject response) {
 
-                        Log.i("-->", "" + response);
+                        try{
+
+                            for (int i=0; i < response.length(); i++){
+
+                                int id = response.getInt("id_user");
+                                String nome = response.getString("nome");
+                                String email = response.getString("email");
+                                String genero = response.getString("genero");
+                                String telemovel = response.getString("telemovel");
+                                String datanascimento =response.getString("datanascimento");
+
+                                dadosPessoais = new DadosPessoais(id,nome,email,genero,telemovel,datanascimento);
 
 
-                        //dadosPessoais = new DadosPessoais(id,nome,email,genero,telemovel,data_nascimento);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
                     }
                 },

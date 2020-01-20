@@ -15,6 +15,7 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.SyncStateContract;
 import android.util.Base64;
 import android.util.Log;
 import android.util.Patterns;
@@ -26,10 +27,28 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.MenuDrawerActivity;
+import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.DadosPessoais;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Pagamento;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.R;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.StartAppActivity;
+
+import static android.provider.Telephony.Carriers.PASSWORD;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -69,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(mCheckBox.isChecked()){
+                if (mCheckBox.isChecked()) {
 
                     //defenir o estado da checkbox quando a atividade começar
                     mEditor.putString(getString(R.string.checkbox), "True");
@@ -86,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                     mEditor.commit();
 
 
-                }else {
+                } else {
 
                     mEditor.putString(getString(R.string.checkbox), "False");
                     mEditor.commit();
@@ -99,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
 
-                if(isNetworkAvaliable()){
+                if (isNetworkAvaliable()) {
 
                     String email = edt_email.getText().toString();
                     String password = edt_password.getText().toString();
@@ -126,7 +145,7 @@ public class LoginActivity extends AppCompatActivity {
                     // FECHA ESTA ATIVIDADE
                     finish();
 
-                }else {
+                } else {
 
                     PopUP_Ligacao_internet();
                 }
@@ -136,7 +155,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void checkSharedPreferences(){
+    private void checkSharedPreferences() {
 
         String checkbox = mPreferences.getString(getString(R.string.checkbox), "False");
         String email = mPreferences.getString(getString(R.string.email), "");
@@ -145,10 +164,10 @@ public class LoginActivity extends AppCompatActivity {
         edt_email.setText(email);
         edt_password.setText(password);
 
-        if(checkbox.equals("True")){
+        if (checkbox.equals("True")) {
 
             mCheckBox.setChecked(true);
-        }else{
+        } else {
 
             mCheckBox.setChecked(false);
 
@@ -156,13 +175,13 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void onClickRetornar(View view){
-        Intent goBack= new Intent(this, StartAppActivity.class);
+    public void onClickRetornar(View view) {
+        Intent goBack = new Intent(this, StartAppActivity.class);
         startActivity(goBack);
     }
 
     /*<!--ABRIR POPUP Ligacao_internet-->*/
-    public void PopUP_Ligacao_internet(){
+    public void PopUP_Ligacao_internet() {
 
         ImageButton btnFechar;
         Button btnTentarNovamente;
@@ -180,7 +199,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnTentarNovamente.setOnClickListener(new View.OnClickListener(){
+        btnTentarNovamente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -210,8 +229,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /*<!--VERIFICAR SE EMAIL É VALIDO-->*/
-    public boolean isEmailValido(String email){
-        if(email == null){
+    public boolean isEmailValido(String email) {
+        if (email == null) {
             return false;
         }
         // Só devolve verdade se for um email válido
@@ -219,11 +238,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /*<!--VERIFICAR SE PASSWORD É VALIDA-->*/
-    public boolean isPasswordValida(String password){
-        if(password == null){
+    public boolean isPasswordValida(String password) {
+        if (password == null) {
             return false;
         }
         return password.length() > 4;
     }
-
 }
+
+
