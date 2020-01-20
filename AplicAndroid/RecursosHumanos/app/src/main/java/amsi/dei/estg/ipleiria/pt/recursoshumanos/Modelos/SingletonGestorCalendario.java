@@ -11,6 +11,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,7 +42,9 @@ public class SingletonGestorCalendario implements Serializable {
 
         String URL = "https://weunify.pt/API/web/v1/alunoteste/?data="+date+"&access-token=m3C2gj0IZRmNMY1kDi8QQf8rr2D9cBgl";
 
-        Log.i("-->", URL);
+        mQueue = Volley.newRequestQueue(mcontext);
+
+        //Log.i("-->", URL);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
@@ -59,8 +62,8 @@ public class SingletonGestorCalendario implements Serializable {
                                 String data = response.getString("data");
                                 String sala = response.getString("sala");
                                 String duracao = response.getString("duracao");
-                                Integer percentagem = response.getInt("percentagem");
-                                Integer id_disciplina = response.getInt("id_disciplina");
+                                int percentagem = response.getInt("percentagem");
+                                int id_disciplina = response.getInt("id_disciplina");
 
                                 calendario = new Calendario(id, data, sala, duracao, percentagem, id_disciplina);
                             }

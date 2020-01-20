@@ -52,12 +52,13 @@ public class CalendarioFragment extends Fragment {
         calView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                String date = dayOfMonth + "/" + month + 1 + "/" + year;
+                String date = dayOfMonth + "-" + month + 1 + "-" + year;
                 lista = SingletonGestorCalendario.getInstance(getContext(), date).retornaTeste();
-
-                tvdia.setText(lista.getData());
-                sala.setText(lista.getSala());
-                duracao.setText(lista.getSala());
+                if (lista != null) {
+                    tvdia.setText(lista.getData());
+                    sala.setText(lista.getSala());
+                    duracao.setText(lista.getSala());
+                }
             }
         });
 
