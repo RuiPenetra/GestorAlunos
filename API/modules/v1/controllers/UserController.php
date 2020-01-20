@@ -1,6 +1,7 @@
 <?php
 namespace app\modules\v1\controllers;
 
+use app\models\User;
 use Yii;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBasicAuth;
@@ -62,9 +63,15 @@ class UserController extends ActiveController
 
     public function actionIndex()
     {
-        $iduser = \Yii::$app->user->identity->id;
-        $userdetails = \app\models\User::findIdentity($iduser);
-        return $userdetails;
+        $username = $_GET['username'];
+        $passwordn = $_GET['password'];
+
+        $user = \app\models\User::findByUsername($username);
+        if ($user && $user->validatePassword($passwordn)){
+            return $user;
+        }
+
+        return null;
     }
 
 }

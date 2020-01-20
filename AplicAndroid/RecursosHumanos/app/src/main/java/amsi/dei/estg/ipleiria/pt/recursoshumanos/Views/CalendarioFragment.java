@@ -55,7 +55,7 @@ public class CalendarioFragment extends Fragment {
                 tvdia.setText("");
                 sala.setText("");
                 duracao.setText("");
-                
+
                 String date = dayOfMonth + "-" + month + 1 + "-" + year;
                 lista = SingletonGestorCalendario.getInstance(getContext(), date).retornaTeste();
                 if (lista != null) {
