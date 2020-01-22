@@ -3,6 +3,7 @@ package amsi.dei.estg.ipleiria.pt.recursoshumanos.Adaptadores;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +16,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -64,6 +69,7 @@ public class ListaPagamentoAdaptador extends BaseAdapter {
         return position;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -109,6 +115,7 @@ public class ListaPagamentoAdaptador extends BaseAdapter {
         }
 
 
+        @RequiresApi(api = Build.VERSION_CODES.O)
         public void update(final Pagamento pagamento) {
 
 
@@ -130,7 +137,12 @@ public class ListaPagamentoAdaptador extends BaseAdapter {
                         SingletonGestorPagamentos.getInstance(context).atualizarPagamentoBD(pagamento);
 
                         //validarData(pagamento.getDataLimite());
-                        imgV_status.setImageResource(R.drawable.img_divida);
+                        if(validarData(pagamento.getDataLimite())){
+
+                            imgV_status.setImageResource(R.drawable.img_divida);
+                        }else{
+                            imgV_status.setImageResource(R.drawable.img_por_pagar);
+                        }
 
                     }
 
@@ -148,47 +160,41 @@ public class ListaPagamentoAdaptador extends BaseAdapter {
 
             } else {
 
-                imgV_status.setImageResource(R.drawable.img_divida);
+                if(validarData(pagamento.getDataLimite())){
+
+                    imgV_status.setImageResource(R.drawable.img_divida);
+                }else{
+                    imgV_status.setImageResource(R.drawable.img_por_pagar);
+                }
 
             }
 
         }
 
-        public Date formatFormatar(String data) {
+        @RequiresApi(api = Build.VERSION_CODES.O)
+        public boolean validarData(String data_escolhida){
 
-            String formatDate;
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
-            Date d = null;
-            try {
-                d = sdf.parse(data);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            LocalDate agora = LocalDate.now();
+            DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String dataFormatada = formatterData.format(agora);
 
-            return d;
-        }
+            LocalDate data_atual= LocalDate.parse(dataFormatada,formatterData);
 
-        public void validarData(String dataRecb){
+            LocalDate data_recebida = LocalDate.parse(data_escolhida,formatterData);
 
-            SimpleDateFormat formataData = new SimpleDateFormat("dd-MM-yyyy");
-            Date data_atual = Calendar.getInstance().getTime();
 
-            Date dataFormt = formatFormatar(dataRecb);
-
-            Log.i("-->","a" + data_atual);
-            Log.i("-->","b" + dataFormt);
 
             //# SE FOR MAIOR ,A "data_atual" É DEPOIS DA "dataFormt"
-            if (data_atual.compareTo(dataFormt) > 0) {
+            if (data_atual.compareTo(data_recebida) > 0) {
 
-                //Por pagar
-                imgV_status.setImageResource(R.drawable.img_por_pagar);
+                //Por divida
+                return true;
 
                 //# SE FOR MENOR ,A "Data" É ANTES DA "dataFormt"
             } else{
 
-                //Divida
-                imgV_status.setImageResource(R.drawable.img_divida);
+                //atual
+                return false;
 
             }
 

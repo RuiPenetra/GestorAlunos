@@ -2,8 +2,10 @@ package amsi.dei.estg.ipleiria.pt.recursoshumanos;
 
 import android.R.layout;
 import android.content.Context;
+import android.icu.util.LocaleData;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -13,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -24,7 +27,14 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.navigation.NavigationView;
 
 import java.net.PasswordAuthentication;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Horario;
 import amsi.dei.estg.ipleiria.pt.recursoshumanos.Modelos.Pagamento;
@@ -148,12 +158,14 @@ public class MenuDrawerActivity extends AppCompatActivity implements NavigationV
         return true;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void carregarDadosAPI(){
 
         // # BUSCAR E GUARDAR NA BD
         SingletonGestorPagamentos.getInstance(getApplicationContext()).removerPagamentosBD();
         SingletonGestorPagamentos.getInstance(getApplicationContext()).carregarDadosAPI();
 
+        
         // # BUSCAR E GUARDAR NO SINGLETON
         SingletonGestorHorarios.getInstance(getApplicationContext()).carregarDadosAPI();
         SingletonGestorDadosPessoais.getInstance(getApplicationContext()).carregarDadosAPI();

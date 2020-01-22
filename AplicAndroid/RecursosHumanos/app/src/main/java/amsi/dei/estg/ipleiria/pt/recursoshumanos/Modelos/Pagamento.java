@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Pagamento implements Serializable {
 

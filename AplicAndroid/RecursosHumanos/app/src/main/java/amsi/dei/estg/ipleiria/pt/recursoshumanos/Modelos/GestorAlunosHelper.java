@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class GestorAlunosHelper extends SQLiteOpenHelper {
@@ -20,6 +23,7 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
     private static final String ID= "id";
     private static final String VALOR = "valor";
     private static final String DATA_LIMITE ="data";
+    private static final Date DATA = null;
     private static final String ESTADO = "estado";
     private static final String ID_ALUNO = "id_aluno";
 
@@ -41,7 +45,7 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
                 "CREATE TABLE " + TABLE_PAGAMENTOS + "(\n"
                         + ID + " INTEGER  NOT NULL PRIMARY KEY,\n"
                         + VALOR + " TEXT  NOT NULL,\n"
-                        + DATA_LIMITE + " TEXT  NOT NULL,\n"
+                        + DATA_LIMITE + " DATE  NOT NULL,\n"
                         + ESTADO + " TEXT  NOT NULL,\n"
                         + ID_ALUNO + " INTEGER  NOT NULL\n" +
                         ")"
@@ -93,6 +97,8 @@ public class GestorAlunosHelper extends SQLiteOpenHelper {
     public ArrayList<Pagamento> mostrarTodosPagamentosBD(){
 
         ArrayList<Pagamento> pagamentos = new ArrayList<>();
+
+        SimpleDateFormat spf = new SimpleDateFormat("yyyy-MM-dd");
 
         Cursor cursor = this.database.query(TABLE_PAGAMENTOS, new String[]{
                         ID,VALOR,DATA_LIMITE,ESTADO,ID_ALUNO},
