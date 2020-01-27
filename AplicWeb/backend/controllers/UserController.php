@@ -65,7 +65,7 @@ class UserController extends Controller {
          $model = new SignupForm();
          if ($model->load(Yii::$app->request->post()) && $model->signup()) {
              Yii::$app->session->setFlash('success', 'Registo Efetuado com Sucesso!');
-             return $this->goHome();
+             return $this->actionIndex();
          }
 
          return $this->render('signup', [

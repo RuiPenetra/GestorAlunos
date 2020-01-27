@@ -78,16 +78,9 @@ class SiteController extends Controller {
 
         $id_user = \Yii::$app->user->identity->id;
 
-        $alunos = Aluno::find()
-               // ->innerJoin('curso', 'aluno.id_curso = curso.id AND curso.diretor_curso = ' . $id_user)
-                ->all();
-        $cursos = Curso::find()
-                ->innerJoin('diretor_curso', 'diretor_curso.id_professor = curso.diretor_curso AND diretor_curso.id_professor =' . $id_user)
-                ->all();
-        $disciplinas = Disciplina::find()
-                // ->innerJoin('curso', 'curso.id = disciplina.curso_id AND curso.diretor_curso =' . $id_user)
-                ->where('disciplina.id_professor =' . $id_user)
-                ->all();
+        $alunos = Aluno::find()->all();
+        $cursos = Curso::find()->innerJoin('diretor_curso', 'diretor_curso.id_professor = curso.diretor_curso AND diretor_curso.id_professor =' . $id_user)->all();
+        $disciplinas = Disciplina::find()->where('disciplina.id_professor =' . $id_user)->all();
         $escolas = Escola::find()->all();
 
         $alunos = count($alunos);
